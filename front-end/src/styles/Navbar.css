@@ -1,0 +1,28 @@
+#app-icon
+{
+padding:0px;
+margin:0px;
+width:100px;
+height:35px;
+}
+
+.nav-div{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    width:95%;
+    margin:auto;
+}
+
+ .nav-links{
+    display:flex;
+    align-items: center;
+} 
+
+.nav-links a{
+    text-decoration:none;
+    margin-left:100px;
+    
+}
+
+
