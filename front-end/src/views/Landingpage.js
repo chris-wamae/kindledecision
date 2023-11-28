@@ -13,7 +13,9 @@ function Landingpage(){
         <div class="info-text">
 
             <div class="main-header">
-                The easiest way to make group decisions
+                <h1>
+                The easiest way to make group decisions.
+                </h1>
             </div>
 
             <div class="sub-header">

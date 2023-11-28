@@ -1,4 +1,33 @@
 .main{
-    /* color:var(--lavender); */
-    background-color: blueviolet;
+background-color:var(--lavender);
+}
+
+.info{
+margin-top:5px;
+}
+
+.info-text{
+width:60%;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.info-text .main-header{
+font-size:35px;
+color:var(--chefchaouenBlue);
+text-align:center;
+}
+
+.info-text .sub-header{
+    color:var(--auburn);
+    font-size:30px;
+    line-height:50px;
+    text-align:center;
+    width:90%;
+}
+
+
+.info-img{
+
 }
