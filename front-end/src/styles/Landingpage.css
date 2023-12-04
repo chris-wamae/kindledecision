@@ -1,11 +1,14 @@
 .main{
-background-color:var(--lavender);
+    background-color: var(--lavender);
+    display:flex;
 }
 
 .info{
 margin-top:5px;
 display:flex;
 flex-direction:row;
+padding-top:3%;
+
 }
 
 .info-text{
@@ -16,11 +19,9 @@ align-items:center;
 }
 
 .info-text .main-header{
-margin-top:20px;
 font-size:35px;
 color:var(--chefchaouenBlue);
 text-align:center;
-margin-bottom:10px;
 }
 
 .info-text .sub-header{
