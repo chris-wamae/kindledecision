@@ -5,7 +5,6 @@ function Navbar({navItems}){
     function LinkFormater(rawLink){
     
     let formattedLink = rawLink.replace(/ /g,"-")
-    console.log(formattedLink.toLowerCase())
     return formattedLink.toLowerCase()
     }
     return (
