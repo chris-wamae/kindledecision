@@ -4,6 +4,8 @@ background-color:var(--lavender);
 
 .info{
 margin-top:5px;
+display:flex;
+flex-direction:row;
 }
 
 .info-text{
@@ -14,20 +16,63 @@ align-items:center;
 }
 
 .info-text .main-header{
+margin-top:20px;
 font-size:35px;
 color:var(--chefchaouenBlue);
 text-align:center;
+margin-bottom:10px;
 }
 
 .info-text .sub-header{
     color:var(--auburn);
-    font-size:30px;
+    font-size:27px;
     line-height:50px;
     text-align:center;
     width:90%;
 }
 
 
-.info-img{
+.info-img-buttons img{
+margin-top:20px;
+width:500px;
+}
+ 
+.info-img-buttons button{
+    width:120px;
+    height:40px;
+    font-size:20px;
+    font-weight:600;
+    border-radius:20px;
+    border:0px;
+}
 
+.buttons{
+    display:flex;
+    justify-content:space-around;
+    margin-top:20px;
+}
+
+#sign-up-button
+{
+background-color:var(--chefchaouenBlue);
+color:white;
+}
+
+#sign-up-button:hover
+{
+background-color:white;
+color:var(--chefchaouenBlue);
+border:2px solid var(--chefchaouenBlue);
+}
+
+#login-button{
+background-color:var(--auburn);
+color:white;
+}
+
+#login-button:hover
+{
+background-color:white;
+color:var(--auburn);
+border:2px solid var(--auburn);
 }
