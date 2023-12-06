@@ -1,0 +1,95 @@
+.election-selectors
+{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+}
+
+.election-selector-active
+{
+    font-size:25px;
+    width:200px;
+    border:0px;
+    border-bottom:5px solid var(--auburn);
+    color:var(--auburn);
+    margin-right:2px;
+    margin-left:2px;
+    font-weight:bold;
+    padding:5px;
+}
+
+.election-selector-inactive 
+{
+    font-size:25px;
+    width:200px;
+    border:0px;
+    border-bottom:5px solid lightslategray;
+    color:lightslategray;
+    margin-right:2px;
+    font-weight: bold;
+    margin-left:2px;  
+    padding:5px;
+}
+
+.election-section
+{
+display:flex;
+flex-direction:column;
+align-items:center;
+margin-top:30px;
+padding-top:30px;
+border-top:1px solid var(--auburn);
+}
+
+.election-section button 
+{
+width:250px;
+height:40px;
+border-radius:15px;
+border:0px;
+color:white;
+background-color:var(--auburn);
+font-weight:bold;
+font-size:20px;
+}
+
+.election-list-container
+{
+background-color:white;
+padding:20px;
+border-radius:20px;
+margin-top:20px;
+width:60%;
+}
+.election-list
+{
+background-color:var(--lavender);
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:5px;
+border-radius:20px;
+padding-bottom:20px;
+}
+
+.single-election
+{
+display:flex;
+margin-top:10px;
+background-color:white;
+color:var(--chefchaouenBlue);
+width:90%;
+justify-content:space-between;
+padding:10px;
+}
+
+.votes
+{
+display:flex;
+margin-left:10px;
+}
+
+.election-title
+{
+font-size:20px;
+}

@@ -89,3 +89,16 @@ border-radius:20px;
 {
 color:var(--chefchaouenBlue);
 }
+
+.election-info
+{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.election-votecount
+{
+display:flex;
+}
