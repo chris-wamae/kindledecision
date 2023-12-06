@@ -2,9 +2,15 @@
     display:none;
    }
 
-#hiw-text
+.hiw-text
 {
-
+font-size:20px;
+padding:20px;
+margin-bottom:20px;
+margin-top:20px;
+border-radius:10px;
+border:1px solid lightslategray;
+color:lightslategray;
 }
 
 .how-it-works-title + div 
@@ -14,6 +20,8 @@
  margin-top:10px;
  border:10px solid white;
  border-radius:30px;
+ margin-bottom:30px;
+ background-color: white;
 }
 
 .how-it-works-title
