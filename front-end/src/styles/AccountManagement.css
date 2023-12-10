@@ -1,0 +1,90 @@
+.page-container
+{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.page-title
+{
+color:var(--chefchaouenBlue);  
+font-size:30px;
+text-decoration:underline;
+margin:40px;
+}
+
+.email-container
+{
+background-color:white;
+text-align:center;
+width:40%;
+height:140px;
+border-radius:10px;
+
+}
+
+.email-header
+{
+color:var(--chefchaouenBlue);
+font-size:20px;
+text-decoration:underline;
+margin-top:5px;
+margin-bottom:20px;
+}
+
+.email
+{
+color:white;
+background-color:var(--chefchaouenBlue);
+font-size:25px;
+width:400px;
+padding:10px;
+border-radius:10px;
+
+margin:auto;
+}
+
+.password-container
+{
+background-color:white;
+margin-top:50px;
+text-align:center;
+width:40%;
+height:180px;
+border-radius:10px;
+
+}
+
+.password-header
+{
+    color:var(--chefchaouenBlue);
+    font-size:20px;
+    text-decoration:underline;
+    margin-top:5px;
+    margin-bottom:20px;
+}
+
+.password
+{
+    color:white;
+    background-color:var(--chefchaouenBlue);
+    font-size:25px;
+    width:400px;
+    padding:10px;
+    border-radius:10px;
+    margin:auto;
+}
+
+.password-button
+{
+color:white;
+background-color:var(--auburn); 
+border:0px;
+font-size:25px;
+margin-top:20px;
+padding:10px;
+border-radius:10px;
+margin-right:5px;
+margin-left:5px;
+}
+
