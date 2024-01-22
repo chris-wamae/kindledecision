@@ -9,12 +9,12 @@ function Navbar({navItems}){
     }
     return (
         <>
-        <div class="nav-div">
+        <div className="nav-div">
             <Link exact to="/"><img src="Casta-vote-text.png" id="app-icon"></img></Link>                
-            <div class="nav-links">
+            <div className="nav-links">
             {navItems.map(e => {
             
-             return <Link exact to={LinkFormater(e)}><a href="#">{e}</a></Link>
+             return <Link key={e} exact to={LinkFormater(e)}><span>{e}</span></Link>
             })}
             </div>
         </div>

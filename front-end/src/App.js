@@ -5,6 +5,7 @@ import Signup from './views/Signup';
 import Login from './views/Login';
 import UserDashboard from './views/UserDashboard';
 import AccountManagement from './views/AccountManagement';
+import CreateElection from './views/CreateElection';
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
       <Route exaxt path="/login" element={<Login/>}></Route>
       <Route exact path="/dashboard" element={<UserDashboard/>}></Route>
       <Route exact path="/account-management" element={<AccountManagement/>}></Route>
+      <Route exact path="/create-election" element={<CreateElection/>}></Route>
+      <Route exact path="/user-dashboard" element={<UserDashboard/>}></Route>
       </Routes> 
      </Router>
    </>
