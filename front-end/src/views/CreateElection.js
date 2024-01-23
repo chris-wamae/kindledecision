@@ -21,13 +21,12 @@ function CreateElection() {
   const [electionVoters, setElectionVoters] = useState([])
 
   const canSave = () => {
-  if(electionTitle !== "" && electionChoices.length !== 0 && electionVoters.length !== 0)
-  {
-    return false
-  } 
-  else{
-    return true
-  }
+    if (electionTitle !== "" && electionChoices.length !== 0 && electionVoters.length != 0) {
+      return false
+    }
+    else {
+      return true
+    }
   }
 
   const getTime = () => {
@@ -76,9 +75,9 @@ function CreateElection() {
             <>
               {
                 electionChoices.length == 0 ?
-                  <></>
+                  <div className="list-column"></div>
                   :
-                  <>
+                  <div className="list-column">
                     <div className="info-title">Current choices</div>
                     <div className="choices-container">
                       {
@@ -86,14 +85,19 @@ function CreateElection() {
                         electionChoices.map((choice, i) => {
                           if (electionChoices.length - 1 == i) {
                             return <>
-                              <div>{choice}</div>
-                              <button>-</button>
+                              <div className="option-container">
+                                <div>{choice}</div>
+                                <button className="remove-button">X</button>
+                              </div>
+
                             </>
                           }
                           else {
                             return <>
-                              <div>{choice}</div>
-                              <button>-</button>
+                              <div className="option-container">
+                                <div>{choice}</div>
+                                <button className="remove-button">X</button>
+                              </div>
                               <hr />
                             </>
                           }
@@ -103,7 +107,7 @@ function CreateElection() {
 
                       }
                     </div>
-                  </>
+                  </div>
               }
 
             </>
@@ -116,14 +120,14 @@ function CreateElection() {
 
           <form className="election-form">
 
-            <label htmlFor="election-title">Tile:</label>
+            <label htmlFor="election-title" id="title" className="input-title" >Tile:</label>
 
-            <input title="election-title" placeholder="What's the election about?"  onChange={(e) => setElectionTitle(e.target.value)}></input>
+            <input title="election-title" placeholder="What's the election about?" onChange={(e) => setElectionTitle(e.target.value)}></input>
 
-            <label htmlFor="election-choice">Option:</label>
+            <label htmlFor="election-choice" className="input-title">Option:</label>
             <input title="election-choice" placeholder="Enter name of option" ref={choiceInput} onChange={(e) => setChoiceName(e.target.value)}></input>
 
-            <button className="add-button" disabled={choiceName == ""}  onClick={(e) => {
+            <button className="add-button" disabled={choiceName == ""} onClick={(e) => {
               e.preventDefault();
               setElectionChoices([...electionChoices, choiceName])
               choiceInput.current.value = ""
@@ -133,16 +137,16 @@ function CreateElection() {
             }
             >Add</button>
 
-            <label htmlFor="election-voter">Voter:</label>
+            <label htmlFor="election-voter" className="input-title">Voter:</label>
             <input title="election-voter" placeholder="Enter name of voter" onChange={(e) => setVoterName(e.target.value)} ref={voterInput}></input>
 
             <button className="add-button" disabled={voterName
-             == ""}  onClick={(e) => {
-              e.preventDefault();
-              setElectionVoters([...electionVoters, voterName])
-              voterInput.current.value = ""
-              setVoterName("")
-            }}>Add</button>
+              == ""} onClick={(e) => {
+                e.preventDefault();
+                setElectionVoters([...electionVoters, voterName])
+                voterInput.current.value = ""
+                setVoterName("")
+              }}>Add</button>
 
             <button className="submit-button" disabled={canSave()} onClick={(e) => {
               e.preventDefault();
@@ -159,24 +163,28 @@ function CreateElection() {
             <>
               {
                 electionVoters.length == 0 ?
-                  <></>
+                  <div className="list-column"></div>
                   :
-                  <>
-                    <div className="info-title">Current choices</div>
-                    <div className="voters-container">
+                  <div className="list-column">
+                    <div className="info-title">Current voters</div>
+                    <div className="choices-container">
                       {
 
                         electionVoters.map((voter, i) => {
                           if (electionVoters.length - 1 == i) {
                             return <>
-                              <div>{voter}</div>
-                              <button>-</button>
+                              <div className="option-container">
+                                <div>{voter}</div>
+                                <button className="remove-button">X</button>
+                              </div>
                             </>
                           }
                           else {
                             return <>
-                              <div>{voter}</div>
-                              <button>-</button>
+                              <div className="option-container">
+                                <div>{voter}</div>
+                                <button className="remove-button">X</button>
+                              </div>
                               <hr />
                             </>
                           }
@@ -186,7 +194,7 @@ function CreateElection() {
 
                       }
                     </div>
-                  </>
+                  </div>
               }
 
             </>
