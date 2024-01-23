@@ -1,0 +1,131 @@
+.election-container {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    color:var(--chefchaouenBlue);
+}
+
+.page-header {
+    color:var(--chefchaouenBlue);
+    text-decoration:underline;
+    font-size:35px;
+    font-weight: bold;
+    text-align: center;
+    margin:10px 0px;
+}
+
+.election-form
+{
+display:flex;
+flex-direction:column;
+min-width:450px;
+padding-top:0px;
+}
+
+.election-form input
+{
+min-width:350px;
+}
+
+.choice-info{
+    
+}
+
+.choices-container
+{
+    background-color:white;
+    border-radius:0px 0px 10px 10px;
+    padding-top:10px;
+    padding-bottom:10px;
+
+}
+
+
+.hr
+{
+color:black;
+height:20px;
+}
+
+.info-title {
+  font-size:23px;
+  text-align:center;
+  background-color:var(--chefchaouenBlue);
+  padding-top:10px;
+  padding-bottom:10px;
+  color:white;
+  border-radius:10px 10px 0px 0px;
+}
+
+.election-form-div {}
+
+.election-form {}
+
+.add-button{
+margin:auto;
+margin-top:15px;
+width:150px;
+
+}
+
+.add-button:disabled{
+   opacity:0.5;
+}
+
+.submit-button:disabled
+{
+  opacity:0.5;
+}
+
+.voter-info {}
+
+.input-title
+{
+font-size:25px;
+margin-top:40px;
+margin-bottom:5px;
+}
+
+.submit-button
+{
+background-color:var(--auburn);
+width:200px;
+height:45px;
+border-radius:5px;
+}
+
+.remove-button{
+    border:0px;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background-color:red;
+    font-weight:bold;
+    font-size:12px;
+    color:white;
+}
+
+.option-container
+{
+  display:flex;
+  margin:10px;
+  justify-content:space-around;
+}
+
+.option-container > div {
+  font-size:18px;
+  color:black;
+  font-weight:100;
+}
+
+.choices-container
+{
+
+}
+
+.list-column
+{
+min-width:300px;
+margin-left:10px;
+}
+
