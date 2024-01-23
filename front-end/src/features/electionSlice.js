@@ -5,34 +5,39 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    title: "",
-    //each choice has a title and unique id 
-    choices: [],
-    //each voter has an email and unique id
-    voters: [],
-    //votes holds objects with voterId and choiceId
-    votes: [],
 
-    votesCast: 0,
+    election:
 
-    totalVotes: 0,
+    {
+        title: "",
+        //each choice has a title and unique id 
+        choices: [],
+        //each voter has an email and unique id
+        voters: [],
+        //votes holds objects with voterId and choiceId
+        votes: [],
+    
+        votesCast: 0,
+    
+        totalVotes: 0,
+    
+        creationDate: null,
+    }
 
-    creationDate: null,
 }
 
 export const electionSlice = createSlice({
     name: "election",
     initialState,
     reducers: {
-        initialCreate: (state, action) => {
-            state.title = action.payload.title;
-            state.choices = action.payload.choices;
-            state.voters = action.payload.voters;
-            state.totalVotes = action.payload.totalVotes;
-            state.creationDate = action.payload.creationDate;
+        initialCreate:
+         (state, action) => {
+            state.election = action.payload
         }
     }
 })
+
+export const electionState = state => state.election.election
 
 export const {initialCreate} = electionSlice.actions;
 
