@@ -1,14 +1,19 @@
-//Handles displaying of elections
-//Handles creation of elections
-//Handles updating elections
-//Handles deletion of an election
 import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const postElection = createAsyncThunk("election/postElection",async (post) => {
+
+const response = await axios.post(`${process.env.REACT_APP_BASE_URL}elections`,post )
+
+return response.data
+
+})
 
 const initialState = {
 
-    election:
+    election: {
 
-    {
         title: "",
         //each choice has a title and unique id 
         choices: [],
@@ -22,7 +27,9 @@ const initialState = {
         totalVotes: 0,
     
         creationDate: null,
-    }
+    },
+    status: "idle",
+    error: null
 
 }
 
@@ -34,6 +41,24 @@ export const electionSlice = createSlice({
          (state, action) => {
             state.election = action.payload
         }
+    },
+    extraReducers(builder){
+    builder
+    
+    .addCase(postElection.pending, (state, action) => {
+        state.status = "loading"
+    })
+
+    .addCase(postElection.fulfilled, (state,action) =>{
+        state.status = "succeeded"
+        state.election = action.payload
+    })
+
+    .addCase(postElection.rejected, (state,action) =>{
+        state.status = "failed"
+        state.error = action.error.message
+    })
+         
     }
 })
 
