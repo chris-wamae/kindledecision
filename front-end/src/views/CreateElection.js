@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initialCreate } from "../features/electionSlice";
 import { electionState } from "../features/electionSlice";
+import { postElection } from "../features/electionSlice";
 
 
 function CreateElection() {
@@ -163,8 +164,7 @@ function CreateElection() {
 
             <button className="submit-button" disabled={canSave()} onClick={(e) => {
               e.preventDefault();
-              dispatch(initialCreate(createElection(electionTitle, electionChoices, electionVoters)))
-              console.log(election)
+              dispatch(postElection(createElection(electionTitle, electionChoices, electionVoters)))
             }}>Create</button>
 
           </form>
