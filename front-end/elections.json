@@ -1,0 +1,20 @@
+{
+  "elections": [
+    {
+      "id": "21c1",
+      "title": "What for Christmas?",
+      "choices": [
+        "Beef",
+        "Turkey",
+        "Pork"
+      ],
+      "voters": [
+        "Wamae",
+        "Joanna",
+        "Maxwell"
+      ],
+      "totalVotes": 3,
+      "creationDate": "Wed Jan 24 2024 at 3:29:13 PM"
+    }
+  ]
+}

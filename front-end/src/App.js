@@ -7,6 +7,7 @@ import UserDashboard from './views/UserDashboard';
 import AccountManagement from './views/AccountManagement';
 import CreateElection from './views/CreateElection';
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
+import { postElection } from './features/electionSlice';
 
 function App() {
   return (

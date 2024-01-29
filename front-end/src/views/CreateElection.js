@@ -2,7 +2,17 @@ import Navbar from "../components/Navbar";
 import "../styles/CreateElection.css"
 import { useState } from "react";
 import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { initialCreate } from "../features/electionSlice";
+import { electionState } from "../features/electionSlice";
+import { postElection } from "../features/electionSlice";
+
+
 function CreateElection() {
+
+  const election = useSelector(electionState)
+  
+  const dispatch = useDispatch();
 
   const choiceInput = useRef(null)
 
@@ -19,6 +29,11 @@ function CreateElection() {
   const [electionChoices, setElectionChoices] = useState([])
 
   const [electionVoters, setElectionVoters] = useState([])
+
+  const removeOption = (stateArray, stateArraySetterFunction, index) => {
+    const newArray = stateArray.filter((item) => item != stateArray[index])
+    stateArraySetterFunction(newArray)
+  }
 
   const canSave = () => {
     if (electionTitle !== "" && electionChoices.length !== 0 && electionVoters.length != 0) {
@@ -87,16 +102,15 @@ function CreateElection() {
                             return <>
                               <div className="option-container">
                                 <div>{choice}</div>
-                                <button className="remove-button">X</button>
+                                <button className="remove-button" onClick={() => removeOption(electionChoices, setElectionChoices, i)}>X</button>
                               </div>
-
                             </>
                           }
                           else {
                             return <>
                               <div className="option-container">
                                 <div>{choice}</div>
-                                <button className="remove-button">X</button>
+                                <button className="remove-button" onClick={() => removeOption(electionChoices, setElectionChoices, i)}>X</button>
                               </div>
                               <hr />
                             </>
@@ -150,7 +164,7 @@ function CreateElection() {
 
             <button className="submit-button" disabled={canSave()} onClick={(e) => {
               e.preventDefault();
-              console.log(createElection(electionTitle, electionChoices, electionVoters))
+              dispatch(postElection(createElection(electionTitle, electionChoices, electionVoters)))
             }}>Create</button>
 
           </form>
@@ -175,7 +189,7 @@ function CreateElection() {
                             return <>
                               <div className="option-container">
                                 <div>{voter}</div>
-                                <button className="remove-button">X</button>
+                                <button className="remove-button" onClick={() => removeOption(electionVoters, setElectionVoters, i)}>X</button>
                               </div>
                             </>
                           }
@@ -183,7 +197,7 @@ function CreateElection() {
                             return <>
                               <div className="option-container">
                                 <div>{voter}</div>
-                                <button className="remove-button">X</button>
+                                <button className="remove-button" onClick={() => removeOption(electionVoters, setElectionVoters, i)}>X</button>
                               </div>
                               <hr />
                             </>
