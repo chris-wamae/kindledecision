@@ -1,38 +1,68 @@
-//Handles displaying of elections
-//Handles creation of elections
-//Handles updating elections
-//Handles deletion of an election
 import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const postElection = createAsyncThunk("election/postElection",async (post) => {
+
+const response = await axios.post(`${process.env.REACT_APP_BASE_URL}elections`,post )
+
+return response.data
+
+})
 
 const initialState = {
-    title: "",
-    //each choice has a title and unique id 
-    choices: [],
-    //each voter has an email and unique id
-    voters: [],
-    //votes holds objects with voterId and choiceId
-    votes: [],
 
-    votesCast: 0,
+    election: {
 
-    totalVotes: 0,
+        title: "",
+        //each choice has a title and unique id 
+        choices: [],
+        //each voter has an email and unique id
+        voters: [],
+        //votes holds objects with voterId and choiceId
+        votes: [],
+    
+        votesCast: 0,
+    
+        totalVotes: 0,
+    
+        creationDate: null,
+    },
+    status: "idle",
+    error: null
 
-    creationDate: null,
 }
 
 export const electionSlice = createSlice({
     name: "election",
     initialState,
     reducers: {
-        initialCreate: (state, action) => {
-            state.title = action.payload.title;
-            state.choices = action.payload.choices;
-            state.voters = action.payload.voters;
-            state.totalVotes = action.payload.totalVotes;
-            state.creationDate = action.payload.creationDate;
+        initialCreate:
+         (state, action) => {
+            state.election = action.payload
         }
+    },
+    extraReducers(builder){
+    builder
+    
+    .addCase(postElection.pending, (state, action) => {
+        state.status = "loading"
+    })
+
+    .addCase(postElection.fulfilled, (state,action) =>{
+        state.status = "succeeded"
+        state.election = action.payload
+    })
+
+    .addCase(postElection.rejected, (state,action) =>{
+        state.status = "failed"
+        state.error = action.error.message
+    })
+         
     }
 })
+
+export const electionState = state => state.election.election
 
 export const {initialCreate} = electionSlice.actions;
 

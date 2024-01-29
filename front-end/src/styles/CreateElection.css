@@ -109,7 +109,7 @@ border-radius:5px;
 {
   display:flex;
   margin:10px;
-  justify-content:space-around;
+  justify-content:space-between;
 }
 
 .option-container > div {
