@@ -1,4 +1,4 @@
-﻿namespace CastaVote.Models
+﻿namespace KindleDecision.Models
 {
     public class Election
     {
