@@ -6,6 +6,7 @@ import Login from './views/Login';
 import UserDashboard from './views/UserDashboard';
 import AccountManagement from './views/AccountManagement';
 import CreateElection from './views/CreateElection';
+import NewElection from './views/NewElection';
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 import { postElection } from './features/electionSlice';
 
@@ -22,6 +23,7 @@ function App() {
       <Route exact path="/account-management" element={<AccountManagement/>}></Route>
       <Route exact path="/create-election" element={<CreateElection/>}></Route>
       <Route exact path="/user-dashboard" element={<UserDashboard/>}></Route>
+      <Route exact path="/new-election" element={<NewElection/>}></Route>
       </Routes> 
      </Router>
    </>
