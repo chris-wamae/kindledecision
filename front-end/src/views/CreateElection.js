@@ -14,6 +14,8 @@ function CreateElection() {
   
   const dispatch = useDispatch();
 
+  const titleRef = useRef(null)
+
   const choiceInput = useRef(null)
 
   const voterInput = useRef(null)
@@ -29,6 +31,12 @@ function CreateElection() {
   const [electionChoices, setElectionChoices] = useState([])
 
   const [electionVoters, setElectionVoters] = useState([])
+  
+  const resetForm = (arrayFields) => {
+   arrayFields.forEach(e => e.current.value = "")
+  } 
+  
+
 
   const removeOption = (stateArray, stateArraySetterFunction, index) => {
     const newArray = stateArray.filter((item) => item != stateArray[index])
@@ -136,7 +144,7 @@ function CreateElection() {
 
             <label htmlFor="election-title" id="title" className="input-title" >Tile:</label>
 
-            <input title="election-title" placeholder="What's the election about?" onChange={(e) => setElectionTitle(e.target.value)}></input>
+            <input title="election-title" placeholder="What's the election about?" onChange={(e) => setElectionTitle(e.target.value)} ref={titleRef}></input>
 
             <label htmlFor="election-choice" className="input-title">Option:</label>
             <input title="election-choice" placeholder="Enter name of option" ref={choiceInput} onChange={(e) => setChoiceName(e.target.value)}></input>
@@ -165,6 +173,10 @@ function CreateElection() {
             <button className="submit-button" disabled={canSave()} onClick={(e) => {
               e.preventDefault();
               dispatch(postElection(createElection(electionTitle, electionChoices, electionVoters)))
+              resetForm([titleRef,choiceInput,voterInput])
+              setElectionVoters([])
+              setElectionChoices([])
+              
             }}>Create</button>
 
           </form>
