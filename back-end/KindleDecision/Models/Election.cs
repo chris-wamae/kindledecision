@@ -1,4 +1,4 @@
-﻿namespace CastaVote.Models
+﻿namespace KindleDecision.Models
 {
     public class Election
     {
@@ -13,6 +13,8 @@
         public int TotalVotes { get; set; }
 
         public int RemainingVotes { get; set; }
+
+        public int CreatorUserId { get; set; }
 
         public ICollection<Choice> Choices { get; set; }
 

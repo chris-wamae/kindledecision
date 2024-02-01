@@ -1,9 +1,9 @@
-﻿using CastaVote.Models;
+﻿using KindleDecision.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore;
 
 
-namespace CastaVote.Data
+namespace KindleDecision.Data
 {
     public class DataContext : DbContext
     {
