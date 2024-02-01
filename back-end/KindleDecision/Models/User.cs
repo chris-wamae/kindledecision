@@ -12,7 +12,9 @@
 
         public string Language { get; set; }
 
-        public string Password { get; set; }    
+        public string Password { get; set; }   
+        
+       
 
         public ICollection<UserElection> UserElections { get; set; }
     }

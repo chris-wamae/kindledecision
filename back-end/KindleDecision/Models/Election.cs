@@ -14,6 +14,8 @@
 
         public int RemainingVotes { get; set; }
 
+        public int CreatorUserId { get; set; }
+
         public ICollection<Choice> Choices { get; set; }
 
         public ICollection<UserElection> UserElections { get; set; }
