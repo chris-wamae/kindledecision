@@ -1,7 +1,7 @@
-﻿using KindleDecison.Data;
-using KindleDecison.Models;
+﻿using KindleDecision.Data;
+using KindleDecision.Models;
 
-namespace KindleDecison
+namespace KindleDecision
 {
     public class Seed
     {
@@ -32,14 +32,31 @@ namespace KindleDecison
                                 new Choice
                                 {
                                     Title = "Maldives",
-                                    Votes = new List<Vote>() { }
+                                    Votes = new List<Vote>()
+                                    {
+                                    new Vote()
+                                    {
+                                    VoterUserId = 2
+                                    },
+                                    new Vote()
+                                    {
+                                    VoterUserId = 1
+                                    }
+                                    }
                                 },
                                 new Choice
                                 {
                                     Title = "Pueto Vallarta",
-                                    Votes = new List<Vote>() { }
+                                    Votes = new List<Vote>()
+                                    {
+                                    new Vote()
+                                    {
+                                    VoterUserId = 3
+                                    }
+                                    }
                                 }
-                            }
+                            },
+                            CreatorUserId = 1
                         },
                         User = new User()
                         {
@@ -64,19 +81,39 @@ namespace KindleDecison
                                 new Choice
                                 {
                                     Title = "Spirited Away?",
-                                    Votes = new List<Vote>() { }
+                                    Votes = new List<Vote>()
+                                    {
+                                    new Vote()
+                                    {
+                                        VoterUserId = 1
+                                    }
+
+                                    }
                                 },
                                 new Choice
                                 {
                                     Title = "Avengers: Endgame",
-                                    Votes = new List<Vote>() { }
+                                    Votes = new List<Vote>()
+                                    {
+                                    new Vote()
+                                    {
+                                    VoterUserId = 2
+                                    }
+                                    }
                                 },
                                 new Choice()
                                 {
                                     Title = "X-Men: Days of future past",
-                                    Votes = new List<Vote>() { }
+                                    Votes = new List<Vote>()
+                                    {
+                                    new Vote()
+                                    {
+                                    VoterUserId = 3
+                                    }
+                                    }
                                 }
-                            }
+                            },
+                            CreatorUserId   =  2,
                         },
                         User = new User()
                         {
@@ -101,19 +138,40 @@ namespace KindleDecison
                                 new Choice
                                 {
                                     Title = "108",
-                                    Votes = new List<Vote>() { }
+                                    Votes = new List<Vote>()
+                                    {
+                                    new Vote()
+                                    {
+                                     VoterUserId = 1
+                                    }
+                                    ,
+                                    new Vote()
+                                    {
+                                    VoterUserId  = 2
+                                    }
+                                    }
                                 },
                                 new Choice
                                 {
                                     Title = "112",
-                                    Votes = new List<Vote>() { }
+                                    Votes = new List<Vote>()
+                                    {
+                                    new Vote()
+                                    {
+                                    VoterUserId = 3
+                                    }
+                                    }
                                 },
                                 new Choice()
                                 {
                                     Title = "113",
-                                    Votes = new List<Vote>() { }
+                                    Votes = new List<Vote>()
+                                    {
+
+                                    }
                                 }
-                            }
+                            },
+                            CreatorUserId = 3
                         },
                         User = new User()
                         {

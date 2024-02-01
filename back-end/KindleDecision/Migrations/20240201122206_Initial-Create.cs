@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace CastaVote.Migrations
+namespace KindleDecision.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -21,7 +21,8 @@ namespace CastaVote.Migrations
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalVotes = table.Column<int>(type: "int", nullable: false),
-                    RemainingVotes = table.Column<int>(type: "int", nullable: false)
+                    RemainingVotes = table.Column<int>(type: "int", nullable: false),
+                    CreatorUserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
