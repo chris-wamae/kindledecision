@@ -30,7 +30,7 @@ height:450px;
 
 .election-title
 {
-color:var(--auburn);
+color:var(--carrotOrange);
 font-size:25px;
 text-decoration:underline;
 }
@@ -50,7 +50,7 @@ text-align:center;
 }
 
 .link{
-color:var(--auburn);
+color:var(--carrotOrange);
 text-align:center;
 }
 
@@ -59,7 +59,7 @@ text-align:center;
   width:160px;
   height:40px;
   color:white;
-  background-color:var(--auburn);
+  background-color:var(--carrotOrange);
   border:0px;
   font-size:25px;
   font-weight:bold;
