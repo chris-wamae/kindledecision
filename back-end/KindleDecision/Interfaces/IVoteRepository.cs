@@ -4,14 +4,17 @@ namespace KindleDecision.Interfaces
 {
     public interface IVoteRepository
     {
-     Vote GetVote(int id);
-     Vote GetAllVotes();
-     bool VoteExists(int id);
-     ICollection<Vote> GetVotesByUser(int userId);
+        Vote GetVote(int id);
+        ICollection<Vote> GetAllVotes();
+        bool VoteExists(int id);
+        ICollection<Vote> GetVotesByUser(int userId);
 
-     
+        bool CreateVote(int choiceId,Vote vote);
 
+        bool UpdateVote(int voteId, Vote vote);
 
+        bool DeleteVote(Vote vote);
 
+        bool Save();
     }
 }
