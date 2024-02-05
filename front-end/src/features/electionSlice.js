@@ -10,15 +10,11 @@ return response.data
 
 })
 
-export const getAllElections = createAsyncThunk("election/getAllElections", async (post) => {
- const response = await axios.get(`${process.env.REACT_APP_BASE_URL}elections`)
 
- return response.data
-})
 
 const initialState = {
 
-    elections:[{
+    election:{
 
         title: "",
         //each choice has a title and unique id 
@@ -33,7 +29,7 @@ const initialState = {
         totalVotes: 0,
     
         creationDate: null,
-    }],
+    },
     status: "idle",
     error: null,
 }
@@ -44,7 +40,7 @@ export const electionSlice = createSlice({
     reducers: {
         initialCreate:
          (state, action) => {
-            state.elections = [action.payload]
+            state.election = action.payload
         }
     },
     extraReducers(builder){
@@ -56,7 +52,7 @@ export const electionSlice = createSlice({
 
     .addCase(postElection.fulfilled, (state,action) =>{
         state.status = "succeeded"
-        state.elections = [action.payload]
+        state.election = action.payload
     })
 
     .addCase(postElection.rejected, (state,action) =>{
@@ -72,7 +68,7 @@ export const electionSlice = createSlice({
     }
 })
 
-export const electionState = state => state.election.elections
+export const electionState = state => state.election.election
 
 export const {initialCreate} = electionSlice.actions;
 

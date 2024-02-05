@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { initialCreate } from "../features/electionSlice";
 import { electionState } from "../features/electionSlice";
 import { postElection } from "../features/electionSlice";
+import ToolTip from "../components/ToolTip";
 
 
 function CreateElection() {
@@ -28,14 +29,28 @@ function CreateElection() {
 
   const [voterName, setVoterName] = useState("")
 
+  const [voterEmail, setVoterEmail] = useState("")
+
+  const [expiryDate, setExpiryDate] = useState("")
+
   const [electionChoices, setElectionChoices] = useState([])
 
   const [electionVoters, setElectionVoters] = useState([])
   
+  const [emailInputClassName,setEmailInputClassName] = useState([])
+  
+  const validateEmail = (email) => {
+    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+
+  
+
   const resetForm = (arrayFields) => {
    arrayFields.forEach(e => e.current.value = "")
   } 
   
+
 
 
   const removeOption = (stateArray, stateArraySetterFunction, index) => {
@@ -72,14 +87,15 @@ function CreateElection() {
 
       title: electionTitle,
 
-      choices: electionChoices,
-
-      voters: electionVoters,
-
       totalVotes: electionVoters.length,
 
-      creationDate: creationTime
+      creationDate: creationTime,
 
+      expiryDate:expiryDate,
+
+      totalVotes:null,
+
+      remainingVotes:null
     }
 
   }
@@ -149,6 +165,9 @@ function CreateElection() {
             <label htmlFor="election-choice" className="input-title">Option:</label>
             <input title="election-choice" placeholder="Enter name of option" ref={choiceInput} onChange={(e) => setChoiceName(e.target.value)}></input>
 
+            <label htmlFor="expiry-date" className="date-title">Expiry date:</label>
+            <input title="expiry-date" type="date" onChange={(e) => setExpiryDate(e.target.value)}></input>
+
             <button className="add-button" disabled={choiceName == ""} onClick={(e) => {
               e.preventDefault();
               setElectionChoices([...electionChoices, choiceName])
@@ -158,7 +177,11 @@ function CreateElection() {
 
             }
             >Add</button>
+            
+          <label htmlFor="voter-email">Voter email:</label>
+          <input type="email" placeholder="Please enter the email of the voter" onChange={e => setVoterEmail(e.target.value)}></input>
 
+             <ToolTip type="tip"/>
             <label htmlFor="election-voter" className="input-title">Voter:</label>
             <input title="election-voter" placeholder="Enter name of voter" onChange={(e) => setVoterName(e.target.value)} ref={voterInput}></input>
 

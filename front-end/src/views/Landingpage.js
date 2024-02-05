@@ -26,7 +26,7 @@ function Landingpage() {
                     </div>
 
                     <div class="info-img-buttons">
-                        <img src="casta-vote-landing.png"></img>
+                        <div className="graphic-placeholder"></div>
                         <div class="buttons">
                             <Link exact to="sign-up">
                             <button id="sign-up-button">Sign Up</button>
