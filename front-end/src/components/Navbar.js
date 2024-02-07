@@ -10,7 +10,7 @@ function Navbar({navItems}){
     return (
         <>
         <div className="nav-div">
-            <Link exact to="/"><img src="Casta-vote-text.png" id="app-icon"></img></Link>                
+            <Link exact to="/"><span id="kindle">kindle</span><span id="decision">decision</span></Link>                
             <div className="nav-links">
             {navItems.map(e => {
             

@@ -1,5 +1,5 @@
 .main{
-    background-color: var(--lavender);
+    background-color: var(--utOrange);
     display:flex;
 }
 
@@ -20,13 +20,13 @@ align-items:center;
 
 .info-text .main-header{
 font-size:40px;
-color:var(--chefchaouenBlue);
+color:var(--white);
 text-align:center;
 margin-bottom:10px;
 }
 
 .info-text .sub-header{
-    color:var(--auburn);
+    color:var(--black);
     font-size:30px;
     line-height:50px;
     text-align:center;
@@ -56,25 +56,32 @@ width:500px;
 
 #sign-up-button
 {
-background-color:var(--chefchaouenBlue);
+background-color:var(--black);
 color:white;
 }
 
 #sign-up-button:hover
 {
 background-color:white;
-color:var(--chefchaouenBlue);
-border:2px solid var(--chefchaouenBlue);
+color:var(--black);
+border:2px solid var(--black);
 }
 
 #login-button{
-background-color:var(--auburn);
-color:white;
+background-color:var(--white);
+color:black;
 }
 
 #login-button:hover
 {
-background-color:white;
-color:var(--auburn);
-border:2px solid var(--auburn);
+background-color:black;
+color:var(--white);
+border:2px solid var(--white);
+}
+
+.graphic-placeholder
+{
+ background-color:white;
+ width:400px;
+ height:300px;
 }

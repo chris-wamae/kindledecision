@@ -1,112 +1,63 @@
 {
   "elections": [
     {
-      "id": "21c1",
-      "title": "What for Christmas?",
-      "choices": [
-        "Beef",
-        "Turkey",
-        "Pork"
-      ],
-      "voters": [
-        "Wamae",
-        "Joanna",
-        "Maxwell"
-      ],
-      "totalVotes": 3,
-      "creationDate": "Wed Jan 24 2024 at 3:29:13 PM"
+      "id": "7307",
+      "title": "How many apples does an apple tree have?",
+      "creationTime": "Wed Feb 07 2024 at 3:27:11 PM",
+      "expiryDate": "2024-02-29",
+      "totalVotes": null,
+      "remainingVotes": null
     },
     {
-      "id": "6578",
-      "title": "Best movie of all time?",
-      "choices": [
-        "Spirited Away",
-        "Avengers: Endgame",
-        "X-men: Days of Future Past"
-      ],
-      "voters": [
-        "Wamae",
-        "Chris",
-        "Muraguri"
-      ],
-      "totalVotes": 3,
-      "creationDate": "Mon Jan 29 2024 at 11:13:51 AM"
+      "id": "757e",
+      "title": "How many months are in a year?",
+      "creationTime": "Wed Feb 07 2024 at 3:27:36 PM",
+      "expiryDate": "2024-02-28",
+      "totalVotes": null,
+      "remainingVotes": null
     },
     {
-      "id": "6bb2",
-      "title": "Best calender?",
-      "choices": [
-        "Roman",
-        "Chinese"
-      ],
-      "voters": [
-        "Wamae",
-        "Chris"
-      ],
-      "totalVotes": 2,
-      "creationDate": "Mon Jan 29 2024 at 11:43:49 AM"
+      "id": "7bd5",
+      "title": "How many pays?",
+      "creationTime": "Wed Feb 07 2024 at 3:31:32 PM",
+      "expiryDate": "2024-02-12",
+      "totalVotes": null,
+      "remainingVotes": null
     },
     {
-      "id": "e66a",
-      "title": "Best calender?",
-      "choices": [
-        "Roman",
-        "Chinese"
-      ],
-      "voters": [
-        "Wamae",
-        "Chris"
-      ],
-      "totalVotes": 2,
-      "creationDate": "Mon Jan 29 2024 at 11:44:04 AM"
+      "id": "44d1",
+      "title": "gfsfgfs",
+      "creationTime": "Wed Feb 07 2024 at 3:52:46 PM",
+      "expiryDate": "2024-03-01",
+      "totalVotes": null,
+      "remainingVotes": null
     },
     {
-      "id": "0ef9",
-      "title": "Who let the dogs out?",
-      "choices": [
-        "Woof",
-        "Woof",
-        "Woof"
-      ],
-      "voters": [
-        "Wamae",
-        "Munea",
-        "Jumia"
-      ],
-      "totalVotes": 3,
-      "creationDate": "Mon Jan 29 2024 at 11:51:04 AM"
+      "id": "e837",
+      "title": "fdfadfda",
+      "creationTime": "Wed Feb 07 2024 at 3:53:49 PM",
+      "expiryDate": "2024-02-28",
+      "totalVotes": null,
+      "remainingVotes": null
     },
     {
-      "id": "732d",
-      "title": "Bixby best assisstant",
-      "choices": [
-        "Yes",
-        "No",
-        "Maybe"
-      ],
-      "voters": [
-        "Me",
-        "You",
-        "Them"
-      ],
-      "totalVotes": 3,
-      "creationDate": "Mon Jan 29 2024 at 11:52:24 AM"
+      "id": "33bc",
+      "title": "JAJKJJAF",
+      "creationTime": "Wed Feb 07 2024 at 3:54:41 PM",
+      "expiryDate": "2024-02-20",
+      "totalVotes": null,
+      "remainingVotes": null
     },
     {
-      "id": "a3f3",
-      "title": "Bring back X23",
-      "choices": [
-        "yes",
-        "yes, but with update",
-        "no"
-      ],
-      "voters": [
-        "Jin",
-        "Mori",
-        "Original"
-      ],
-      "totalVotes": 3,
-      "creationDate": "Mon Jan 29 2024 at 11:53:38 AM"
+      "id": "ef0f",
+      "title": "ffsfdfssd",
+      "creationTime": "Wed Feb 07 2024 at 3:55:27 PM",
+      "expiryDate": "2024-02-29",
+      "totalVotes": null,
+      "remainingVotes": null
     }
-  ]
+  ],
+  "Choices": [],
+  "Votes": [],
+  "Users": []
 }

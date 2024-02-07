@@ -1,50 +1,111 @@
 import Navbar from "../components/Navbar";
 import "../styles/CreateElection.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initialCreate } from "../features/electionSlice";
 import { electionState } from "../features/electionSlice";
 import { postElection } from "../features/electionSlice";
-
+import ToolTip from "../components/ToolTip";
+import { useNavigate } from "react-router-dom";
+import { resetForm } from "../Helper/Form";
+import { getTime } from "../Helper/Time";
 
 function CreateElection() {
-
+  
+  const redirect = useNavigate();
   const election = useSelector(electionState)
   
   const dispatch = useDispatch();
 
   const titleRef = useRef(null)
+  const dateRef = useRef(null)
 
-  const choiceInput = useRef(null)
 
-  const voterInput = useRef(null)
+ // const voterInput = useRef(null)
+
 
   const navItems = ["Features", "Login", "How it Works"]
 
   const [electionTitle, setElectionTitle] = useState("")
 
-  const [choiceName, setChoiceName] = useState("")
 
-  const [voterName, setVoterName] = useState("")
 
-  const [electionChoices, setElectionChoices] = useState([])
+ // const [voterName, setVoterName] = useState("")
 
-  const [electionVoters, setElectionVoters] = useState([])
-  
-  const resetForm = (arrayFields) => {
-   arrayFields.forEach(e => e.current.value = "")
-  } 
+ // const [voterEmail, setVoterEmail] = useState("")
+
+  const [expiryDate, setExpiryDate] = useState("")
+
   
 
+  //const [electionVoters, setElectionVoters] = useState([])
+  
+ // const [emailInputClassName,setEmailInputClassName] = useState("")
 
-  const removeOption = (stateArray, stateArraySetterFunction, index) => {
-    const newArray = stateArray.filter((item) => item != stateArray[index])
-    stateArraySetterFunction(newArray)
-  }
+ // const [validEmail, setValidEmail] = useState(undefined)  
+ 
+ // const emailDataBaseSearch = () => {
+ //   let num = Math.floor(Math.random() * 10)
+ //   if(num < 5)
+  //  {
+  //    setValidEmail("notfound")
+ //   }
+ //   else
+  //  {
+ //      setValidEmail(true)
+ //   }
+ // }
+
+  // const toolTipRenderer = (validity) => {
+  //  if(validity == undefined)
+  //  {
+  //   return <ToolTip type={"error"} message={" Email is required"}/>
+  //  }
+  //  else if(validity == false)
+  //  {
+  //   return <ToolTip type={"error"} message={" Invalid email format"}/>
+  //  }
+  //  else if(validity == true)
+  //  {
+  //   return <ToolTip type={"success"} message={" This email can be added"}/>
+  //  }
+  //  else if(validity == "notfound")
+  //  {
+  //   return <ToolTip type={"error"} message={" A user with this email does not exist"}/>
+  //  }
+  // }
+
+  // useEffect(()=>{
+  // if(voterEmail == "")
+  // {
+  // setValidEmail(undefined)
+  // }
+  // else
+  // {
+  //  if(validateEmail(voterEmail) == false)
+  //  {
+  //   setValidEmail(false)
+  //  }
+  //  else
+  //  {
+  //   emailDataBaseSearch();
+  //  }
+
+  // }
+   
+  // },[voterEmail])
+
+
+  // const validateEmail = (email) => {
+  //   var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   return regex.test(email);
+  // }
+
 
   const canSave = () => {
-    if (electionTitle !== "" && electionChoices.length !== 0 && electionVoters.length != 0) {
+    //&& electionChoices.length !== 0 && electionVoters.length != 0
+    if (electionTitle !== "" && expiryDate !== "") {
       return false
     }
     else {
@@ -52,19 +113,9 @@ function CreateElection() {
     }
   }
 
-  const getTime = () => {
-
-    const date = new Date();
-
-    const currentDate = date.toDateString();
-
-    const currentTime = date.toLocaleTimeString();
-
-    return `${currentDate} at ${currentTime}`;
-  }
 
 
-  const createElection = (electionTitle, electionChoices, electionVoters) => {
+  const createElection = (electionTitle) => {
 
     const creationTime = getTime();
 
@@ -72,14 +123,13 @@ function CreateElection() {
 
       title: electionTitle,
 
-      choices: electionChoices,
+      creationTime: creationTime,
 
-      voters: electionVoters,
+      expiryDate:expiryDate,
 
-      totalVotes: electionVoters.length,
+      totalVotes:null,
 
-      creationDate: creationTime
-
+      remainingVotes:null
     }
 
   }
@@ -93,49 +143,7 @@ function CreateElection() {
 
       <div className="election-container">
 
-        <div className="choice-info">
-          {
-            <>
-              {
-                electionChoices.length == 0 ?
-                  <div className="list-column"></div>
-                  :
-                  <div className="list-column">
-                    <div className="info-title">Current choices</div>
-                    <div className="choices-container">
-                      {
 
-                        electionChoices.map((choice, i) => {
-                          if (electionChoices.length - 1 == i) {
-                            return <>
-                              <div className="option-container">
-                                <div>{choice}</div>
-                                <button className="remove-button" onClick={() => removeOption(electionChoices, setElectionChoices, i)}>X</button>
-                              </div>
-                            </>
-                          }
-                          else {
-                            return <>
-                              <div className="option-container">
-                                <div>{choice}</div>
-                                <button className="remove-button" onClick={() => removeOption(electionChoices, setElectionChoices, i)}>X</button>
-                              </div>
-                              <hr />
-                            </>
-                          }
-
-                        })
-
-
-                      }
-                    </div>
-                  </div>
-              }
-
-            </>
-
-          }
-        </div>
 
 
         <div className="election-form-div">
@@ -146,10 +154,13 @@ function CreateElection() {
 
             <input title="election-title" placeholder="What's the election about?" onChange={(e) => setElectionTitle(e.target.value)} ref={titleRef}></input>
 
-            <label htmlFor="election-choice" className="input-title">Option:</label>
-            <input title="election-choice" placeholder="Enter name of option" ref={choiceInput} onChange={(e) => setChoiceName(e.target.value)}></input>
+            {/* <label htmlFor="election-choice" className="input-title">Option:</label>
+            <input title="election-choice" placeholder="Enter name of option" ref={choiceInput} onChange={(e) => setChoiceName(e.target.value)}></input> */}
 
-            <button className="add-button" disabled={choiceName == ""} onClick={(e) => {
+            <label htmlFor="expiry-date" className="date-title">Expiry date:</label>
+            <input title="expiry-date" type="date" onChange={(e) => setExpiryDate(e.target.value)} ref={dateRef}></input>
+
+            {/* <button className="add-button" disabled={choiceName == ""} onClick={(e) => {
               e.preventDefault();
               setElectionChoices([...electionChoices, choiceName])
               choiceInput.current.value = ""
@@ -157,7 +168,11 @@ function CreateElection() {
             }
 
             }
-            >Add</button>
+            >Add</button> */}
+
+          {/* {toolTipRenderer(validEmail)}
+          <label htmlFor="voter-email">Voter email:</label>
+          <input type="email" placeholder="Please enter the email of the voter" onChange={e => setVoterEmail(e.target.value)}></input>
 
             <label htmlFor="election-voter" className="input-title">Voter:</label>
             <input title="election-voter" placeholder="Enter name of voter" onChange={(e) => setVoterName(e.target.value)} ref={voterInput}></input>
@@ -168,23 +183,25 @@ function CreateElection() {
                 setElectionVoters([...electionVoters, voterName])
                 voterInput.current.value = ""
                 setVoterName("")
-              }}>Add</button>
+              }}>Add</button> */}
 
             <button className="submit-button" disabled={canSave()} onClick={(e) => {
               e.preventDefault();
-              dispatch(postElection(createElection(electionTitle, electionChoices, electionVoters)))
-              resetForm([titleRef,choiceInput,voterInput])
-              setElectionVoters([])
-              setElectionChoices([])
+              dispatch(postElection(createElection(electionTitle)))
+              resetForm([titleRef,dateRef])
+              redirect("/add-choices", {replace: true})
+              // setElectionVoters([])
+              // setElectionChoices([])
               
             }}>Create</button>
+          
 
           </form>
 
         </div>
 
 
-        <div className="voter-info">
+        {/* <div className="voter-info">
           {
             <>
               {
@@ -227,7 +244,7 @@ function CreateElection() {
 
           }
 
-        </div>
+        </div> */}
 
       </div>
 

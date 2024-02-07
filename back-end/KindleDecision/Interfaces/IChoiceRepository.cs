@@ -16,7 +16,8 @@ namespace KindleDecision.Interfaces
 
         ICollection<Choice> GetChoicesByUserVote(int userId);
 
-        Choice GetChoiceByVote(int voteId);
+        //Choice GetChoiceByVote(int voteId);
+        bool Save();
 
         bool CreateChoice(int electionId,Choice choice);
 
