@@ -17,18 +17,14 @@ const initialState = {
     election:{
 
         title: "",
-        //each choice has a title and unique id 
-        choices: [],
-        //each voter has an email and unique id
-        voters: [],
-        //votes holds objects with voterId and choiceId
-        votes: [],
-    
-        votesCast: 0,
-    
-        totalVotes: 0,
-    
-        creationDate: null,
+
+        creationTime: null,
+  
+        expiryDate:null,
+  
+        totalVotes:null,
+  
+        remainingVotes:null
     },
     status: "idle",
     error: null,

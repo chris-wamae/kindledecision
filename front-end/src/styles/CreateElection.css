@@ -2,16 +2,16 @@
     display: flex;
     flex-direction: row;
     justify-content:space-around;
-    color:var(--chefchaouenBlue);
+    color:var(--black);
 }
 
 .page-header {
-    color:var(--chefchaouenBlue);
+    color:var(--black);
     text-decoration:underline;
     font-size:35px;
     font-weight: bold;
     text-align: center;
-    margin:10px 0px;
+    margin:20px 0px;
 }
 
 .election-form
@@ -20,6 +20,7 @@ display:flex;
 flex-direction:column;
 min-width:450px;
 padding-top:0px;
+border:1px solid black;
 }
 
 .election-form input
@@ -31,33 +32,12 @@ min-width:350px;
     
 }
 
-.choices-container
-{
-    background-color:white;
-    border-radius:0px 0px 10px 10px;
-    padding-top:10px;
-    padding-bottom:10px;
-
-}
 
 
-.hr
-{
-color:black;
-height:20px;
-}
 
-.info-title {
-  font-size:23px;
-  text-align:center;
-  background-color:var(--chefchaouenBlue);
-  padding-top:10px;
-  padding-bottom:10px;
-  color:white;
-  border-radius:10px 10px 0px 0px;
-}
 
-.election-form-div {}
+
+/* .election-form-div {}
 
 .election-form {}
 
@@ -66,15 +46,26 @@ margin:auto;
 margin-top:15px;
 width:150px;
 
-}
+} */
 
-.add-button:disabled{
+/* .add-button:disabled{
    opacity:0.5;
-}
+} */
 
 .submit-button:disabled
 {
   opacity:0.5;
+}
+
+.submit-button:hover{
+  color:black;
+  background-color:var(--white);
+}
+
+.date-title{
+  font-size:25px;
+  margin-top:40px;
+  margin-bottom:5px;
 }
 
 .voter-info {}
@@ -88,44 +79,11 @@ margin-bottom:5px;
 
 .submit-button
 {
-background-color:var(--auburn);
+background-color:var(--black);
 width:200px;
 height:45px;
 border-radius:5px;
 }
 
-.remove-button{
-    border:0px;
-    width:20px;
-    height:20px;
-    border-radius:50%;
-    background-color:red;
-    font-weight:bold;
-    font-size:12px;
-    color:white;
-}
 
-.option-container
-{
-  display:flex;
-  margin:10px;
-  justify-content:space-between;
-}
-
-.option-container > div {
-  font-size:18px;
-  color:black;
-  font-weight:100;
-}
-
-.choices-container
-{
-
-}
-
-.list-column
-{
-min-width:300px;
-margin-left:10px;
-}
 
