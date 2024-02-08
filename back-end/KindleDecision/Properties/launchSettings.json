@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "CastaVote": {
+    "KindleDecision": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
