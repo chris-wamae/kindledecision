@@ -129,7 +129,9 @@ function CreateElection() {
 
       totalVotes:null,
 
-      remainingVotes:null
+      remainingVotes:null,
+
+      creatorUserId:null
     }
 
   }

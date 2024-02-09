@@ -24,7 +24,9 @@ const initialState = {
   
         totalVotes:null,
   
-        remainingVotes:null
+        remainingVotes:null,
+
+        creatorUserId:null
     },
     status: "idle",
     error: null,
