@@ -1,7 +1,6 @@
 import "../styles/Tooltip.css"
 
 function ToolTip({message,type,color}){ 
-console.log(color);
 if(!color)
 {
  if(type == "error")
@@ -24,7 +23,6 @@ if(!color)
   }
 
 }
-console.log(color);
 
 const iconGenerator = (type) => {
 if(type == "error")

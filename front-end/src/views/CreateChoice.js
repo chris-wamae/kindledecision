@@ -1,11 +1,22 @@
 import { useState } from "react";
 import "../styles/CreateChoice.css"
 import DynamicList from "../components/DynamicList";
+import { useSelector, useDispatch} from "react-redux";
+import { currentElectionId } from "../features/idSlice";
+import { postChoice } from "../features/choiceSlice";
 
 function CreateChoice(){   
-
+     
+    const dispatch = useDispatch();
+    const currentElection = useSelector(currentElectionId)
     const [choiceName, setChoiceName] = useState("")
     const [electionChoices, setElectionChoices] = useState([])
+
+    const choiceDispatcher = () => {
+      electionChoices.forEach((e) => {
+        dispatch(postChoice({title:e, electionId:currentElection}))
+      })
+    }
 
     const removeOption = (e) => {
       let newChoices = electionChoices.filter((c,i) => i !== e )
@@ -33,7 +44,7 @@ function CreateChoice(){
             }>Add</button>
         </form>
 
-        <button disabled={buttonDisable(electionChoices)} className="done-button" onMouseOver={e => e.target.textContent = "Done"} onMouseLeave={e => e.target.textContent = ">"}>&gt;</button>
+        <button disabled={buttonDisable(electionChoices)} className="done-button" onMouseOver={e => e.target.textContent = "Done"} onMouseLeave={e => e.target.textContent = ">"} onClick={() => choiceDispatcher()}>&gt;</button>
 
         <DynamicList listTitle={"Added choices"} itemsArray={electionChoices} removeOption={removeOption}/>
         

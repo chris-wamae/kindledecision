@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+   
  voteId:null,
 
  choiceId:null,
@@ -41,13 +42,13 @@ reducers:{
 
 })
 
-export const currentVoteId = state => state.voteId
+export const currentVoteId = state => state.id.voteId
 
-export const currentStateId = state => state.choiceId
+export const currentStateId = state => state.id.choiceId
 
-export const currentElectionId = state => state.electionId
+export const currentElectionId = state => state.id.electionId
 
-export const  currentUserId = state => state.userId
+export const  currentUserId = state => state.id.userId
 
 export const { changeVoteId ,changeChoiceId, changeElectionId, changeUserId} = idSlice.actions;
 
