@@ -5,7 +5,7 @@ import axios from "axios";
 export const postChoice = createAsyncThunk("choice/postChoice", async (post) =>
 {
 
-const response = await axios.post((`${process.env.REACT_APP_BASE_URL}choices`,post))
+const response = await axios.post(`${process.env.REACT_APP_BASE_URL}Choices`, post)
 
 return response.data
 
@@ -42,8 +42,6 @@ export const choiceSlice = createSlice(
 )
 
 export const choiceState = state => state.choice.choice
-
-export const {initialCreate} = postChoice.actions;
 
 export default choiceSlice.reducer;
 

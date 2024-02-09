@@ -68,6 +68,5 @@ export const electionSlice = createSlice({
 
 export const electionState = state => state.election.election
 
-export const {initialCreate} = electionSlice.actions;
 
 export default electionSlice.reducer;

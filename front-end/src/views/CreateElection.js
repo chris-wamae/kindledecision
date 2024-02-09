@@ -3,11 +3,12 @@ import "../styles/CreateElection.css"
 import { useState } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { electionState } from "../features/electionSlice";
 import { postElection } from "../features/electionSlice";
 import { useNavigate } from "react-router-dom";
 import { resetForm } from "../Helper/Form";
 import { getTime } from "../Helper/Time";
+import { electionState } from "../features/electionSlice";
+import { changeElectionId } from "../features/idSlice";
 
 function CreateElection() {
 
@@ -18,6 +19,9 @@ function CreateElection() {
   const navItems = ["Features", "Login", "How it Works"]
   const [electionTitle, setElectionTitle] = useState("")
   const [expiryDate, setExpiryDate] = useState("")
+  const currentElectionState = useSelector(electionState)
+
+  
 
   const canSave = () => {
 
@@ -74,6 +78,7 @@ function CreateElection() {
               e.preventDefault();
               dispatch(postElection(createElection(electionTitle)))
               resetForm([titleRef, dateRef])
+              dispatch(changeElectionId(3))
               redirect("/add-choices", { replace: true })
 
             }}>Create</button>

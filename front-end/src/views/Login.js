@@ -1,11 +1,16 @@
 import Navbar from "../components/Navbar";
 import Authetication from "../components/Authentication";
+
+
+
 function Login() {
+    
     const authTitle = " Login to your account"
     const authType = false
     const passwordHeader = "Enter your password:"
     const buttonText = "Sign in"
     const navItems = ["Features", "Login", "How it Works"]
+    
 
     return (
         <>

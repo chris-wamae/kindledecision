@@ -1,63 +1,83 @@
 {
-  "elections": [
-    {
-      "id": "7307",
-      "title": "How many apples does an apple tree have?",
-      "creationTime": "Wed Feb 07 2024 at 3:27:11 PM",
-      "expiryDate": "2024-02-29",
-      "totalVotes": null,
-      "remainingVotes": null
-    },
-    {
-      "id": "757e",
-      "title": "How many months are in a year?",
-      "creationTime": "Wed Feb 07 2024 at 3:27:36 PM",
-      "expiryDate": "2024-02-28",
-      "totalVotes": null,
-      "remainingVotes": null
-    },
-    {
-      "id": "7bd5",
-      "title": "How many pays?",
-      "creationTime": "Wed Feb 07 2024 at 3:31:32 PM",
-      "expiryDate": "2024-02-12",
-      "totalVotes": null,
-      "remainingVotes": null
-    },
-    {
-      "id": "44d1",
-      "title": "gfsfgfs",
-      "creationTime": "Wed Feb 07 2024 at 3:52:46 PM",
-      "expiryDate": "2024-03-01",
-      "totalVotes": null,
-      "remainingVotes": null
-    },
-    {
-      "id": "e837",
-      "title": "fdfadfda",
-      "creationTime": "Wed Feb 07 2024 at 3:53:49 PM",
-      "expiryDate": "2024-02-28",
-      "totalVotes": null,
-      "remainingVotes": null
-    },
-    {
-      "id": "33bc",
-      "title": "JAJKJJAF",
-      "creationTime": "Wed Feb 07 2024 at 3:54:41 PM",
-      "expiryDate": "2024-02-20",
-      "totalVotes": null,
-      "remainingVotes": null
-    },
-    {
-      "id": "ef0f",
-      "title": "ffsfdfssd",
-      "creationTime": "Wed Feb 07 2024 at 3:55:27 PM",
-      "expiryDate": "2024-02-29",
-      "totalVotes": null,
-      "remainingVotes": null
-    }
-  ],
+  "elections": [],
   "Choices": [],
   "Votes": [],
-  "Users": []
+  "Users": [
+{
+ "id":0,
+ "username":"Wamae",
+ "email":"wamae@gmail.com",
+ "phone":"08948488484",
+ "language":"en",
+ "password":"wamae"
+},
+{
+  "id":1,
+  "username":"Joker",
+  "email":"joker@gmail.com",
+  "phone":"30499955",
+  "language":"jp",
+  "password":"joker"
+ },
+ {
+  "id":2,
+  "username":"Killua",
+  "email":"killua@gmail.com",
+  "phone":"9329492452",
+  "language":"kr",
+  "password":"killua"
+ },
+
+ {
+  "id":3,
+  "username":"Henry",
+  "email":"henry@gmail.com",
+  "phone":"942775252",
+  "language":"en",
+  "password":"henry"
+ },
+ {
+  "id":4,
+  "username":"Janie",
+  "email":"janie@gmail.com",
+  "phone":"949294942",
+  "language":"en",
+  "password":"janie"
+ },
+
+ {
+  "id":5,
+  "username":"Brooks",
+  "email":"brooks@gmail.com",
+  "phone":"2994942942",
+  "language":"en",
+  "password":"brooks"
+ },
+
+ {
+  "id":6,
+  "username":"Mary",
+  "email":"mary@gmail.com",
+  "phone":"02499294",
+  "language":"kw",
+  "password":"mary"
+ },
+
+ {
+  "id":7,
+  "username":"Eunice",
+  "email":"eunice@gmail.com",
+  "phone":"08384844",
+  "language":"kw",
+  "password":"eunice"
+ },
+ {
+  "id":8,
+  "username":"Alex",
+  "email":"alex@gmail.com",
+  "phone":"039428442",
+  "language":"en",
+  "password":"alex"
+ }
+  ]
 }
