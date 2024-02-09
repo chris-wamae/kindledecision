@@ -1,10 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "../styles/DynamicList.css"
 import { removeOption } from "../Helper/Form";
 //provides a list with a button for removing items from the list persitently
-function DynamicList({listTitle, itemsArray}){
+function DynamicList({listTitle, itemsArray, removeOption}){
 
-const [listItems, setListItems] = useState(itemsArray);
 
 return (
 //pv:item-info
@@ -12,7 +11,7 @@ return (
           {
             <>
               {
-                listItems.length == 0 ?
+                itemsArray.length == 0 ?
                   <div className="list-column"></div>
                   :
                   <div className="list-column">
@@ -20,12 +19,12 @@ return (
                     <div className="list-container">
                       {
 
-                        listItems.map((item, i) => {
-                          if (listItems.length - 1 == i) {
+                        itemsArray.map((item, i) => {
+                          if (itemsArray.length - 1 == i) {
                             return <>
                               <div className="option-container">
                                 <div>{item}</div>
-                                <button className="remove-button" onClick={() => removeOption(listItems, setListItems, i)}>X</button>
+                                <button className="remove-button" onClick={() => removeOption(i)}>X</button>
                               </div>
                             </>
                           }
@@ -33,7 +32,7 @@ return (
                             return <>
                               <div className="option-container">
                                 <div>{item}</div>
-                                <button className="remove-button" onClick={() => removeOption(listItems, setListItems, i)}>X</button>
+                                <button className="remove-button" onClick={() => removeOption(i)}>X</button>
                               </div>
                               <hr />
                             </>
