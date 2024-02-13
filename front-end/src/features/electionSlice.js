@@ -29,7 +29,7 @@ const initialState = {
         creatorUserId:null
     },
     status: "idle",
-    error: null,
+    error: null
 }
 
 export const electionSlice = createSlice({
