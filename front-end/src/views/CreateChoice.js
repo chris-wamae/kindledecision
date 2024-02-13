@@ -31,7 +31,7 @@ function CreateChoice(){
 
          <div className="page-title">Election choices</div>
 
-        <form >
+        <form>
 
           <label htmlFor="choice-input" className="choice-label">Choice:</label>
 

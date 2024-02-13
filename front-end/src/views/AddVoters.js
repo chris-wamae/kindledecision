@@ -1,13 +1,116 @@
-  //const [electionVoters, setElectionVoters] = useState([])
-  
+import { useDispatch } from "react-redux"
+import { useState } from "react"
+import DynamicList from "../components/DynamicList";
+import { postUserElection } from "../features/userElectionsSlice";
+import { currentElectionId } from "../features/idSlice";
+import { useSelector } from "react-redux";
+import { validateEmail } from "../Helper/Form";
+import { emailToolTipRenderer } from "../Helper/Form";
+import { useEffect } from "react";
+import axios from "axios";
+
+//make email database search depend on physical button press by user
+//move email validation to form Helper since it will no longer be using fetch
 
 
-   // const [voterName, setVoterName] = useState("")
 
- // const [voterEmail, setVoterEmail] = useState("")
+function AddVoters() {
+    
+    const stateElectionId = useSelector(currentElectionId)
+    const dispatch = useDispatch();
+    const [voterEmail, setVoterEmail] = useState("")
+    const [electionVoters, setElectionVoters] = useState([])
+    const [emailState, setEmailState] = useState(undefined)
+    const [foundUser, setFoundUser] = useState(undefined)
+   
+    useEffect(() => {
+      if(validateEmail(voterEmail))
+      {
+       setEmailState(true)
+      }
+      else if(voterEmail !== ""){
+       setEmailState(false)
+      }
+      else if(voterEmail == "")
+      {
+        setEmailState(undefined)
+      }
+    },[voterEmail])
+    
+    useEffect(() => {
+    
+
+    },[emailState])
+
+    useEffect(() => {
+    if(emailState && foundUser == undefined)
+    {
+       setEmailState("notfound")
+    }
+    },[foundUser])
+
+  const removeOption = (e) => {
+      let newVoters = electionVoters.filter((c,i) => i !== e )
+      setElectionVoters(newVoters);
+    }
+
+  const voterDispatcher = () => {
+    electionVoters.forEach((e) => {
+     dispatch(postUserElection({electionId:stateElectionId,
+                          userId:null}))
+    })
+  }
 
 
-         {/* <div className="voter-info">
+  const buttonDisable = (array) => array.length > 1 ? false : true
+
+  return (
+    <>
+      <div className="page-container">
+
+        <div className="page-title">Election voters</div>
+
+        <form>
+
+          <label htmlFor="voter-input" className="voter-label">Voter:</label>
+          {emailToolTipRenderer(emailState)}
+          <input id="voter-input" className="enter-voter" placeholder="Please enter a voter's email" onChange={e => setVoterEmail(e.target.value)}></input>
+
+          <button className="add-button" onClick={(e) => {
+            e.preventDefault();
+            setElectionVoters([...electionVoters, voterEmail])
+          }
+          }>Add</button>
+        </form>
+
+        <button disabled={buttonDisable(electionVoters)} className="done-button" onClick={() => voterDispatcher()}>Create election</button>
+
+        <DynamicList listTitle={"Added voters"} itemsArray={electionVoters} removeOption={removeOption} />
+
+      </div>
+    </>
+  )
+}
+
+export default AddVoters;
+
+
+
+
+
+
+
+
+//const [electionVoters, setElectionVoters] = useState([])
+
+
+
+// const [voterName, setVoterName] = useState("")
+
+// const [voterEmail, setVoterEmail] = useState("")
+
+
+{/* <div className="voter-info">
           {
             <>
               {
@@ -53,7 +156,7 @@
         </div> */}
 
 
-                   {/* <button className="add-button" disabled={choiceName == ""} onClick={(e) => {
+{/* <button className="add-button" disabled={choiceName == ""} onClick={(e) => {
               e.preventDefault();
               setElectionChoices([...electionChoices, choiceName])
               choiceInput.current.value = ""
@@ -63,7 +166,7 @@
             }
             >Add</button> */}
 
-          {/* {toolTipRenderer(validEmail)}
+{/* {toolTipRenderer(validEmail)}
           <label htmlFor="voter-email">Voter email:</label>
           <input type="email" placeholder="Please enter the email of the voter" onChange={e => setVoterEmail(e.target.value)}></input>
 
@@ -79,9 +182,9 @@
               }}>Add</button> */}
 
 
-               // setElectionVoters([])
-              // setElectionChoices([])
-                          // const voterInput = useRef(null)
-    //&& electionChoices.length !== 0 && electionVoters.length != 0
-            {/* <label htmlFor="election-choice" className="input-title">Option:</label>
+// setElectionVoters([])
+// setElectionChoices([])
+// const voterInput = useRef(null)
+//&& electionChoices.length !== 0 && electionVoters.length != 0
+{/* <label htmlFor="election-choice" className="input-title">Option:</label>
             <input title="election-choice" placeholder="Enter name of option" ref={choiceInput} onChange={(e) => setChoiceName(e.target.value)}></input> */}
