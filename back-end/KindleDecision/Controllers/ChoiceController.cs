@@ -18,59 +18,66 @@ namespace KindleDecision.Controllers
         {
             _choiceRepository = choiceRepository;
             _mapper = mapper;
-            _electionRepository  = electionRepository;
+            _electionRepository = electionRepository;
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Choice>)]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Choice>))]
 
-        public IActionResult GetAllChoices() 
+        public IActionResult GetAllChoices()
         {
-        var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetAllChoices());
-        
-        if(!ModelState.IsValid) 
+            var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetAllChoices());
+
+            if (!ModelState.IsValid)
             {
-            return BadRequest(ModelState);
+                return BadRequest(ModelState);
             }
 
-        return Ok(choices);
+            return Ok(choices);
 
         }
 
         [HttpGet("{choiceId}")]
         [ProducesResponseType(200, Type = typeof(Choice))]
+        [ProducesResponseType(400)]
 
-        public IActionResult GetChoice(int id) 
+        public IActionResult GetChoice(int choiceId)
         {
 
-        if(_choiceRepository.ChoiceExists(id))
+            if (!_choiceRepository.ChoiceExists(choiceId))
             {
                 return NotFound();
             }
 
-        var choice = _mapper.Map<ChoiceDto>(_choiceRepository.GetChoice(id));
+            var choice = _mapper.Map<ChoiceDto>(_choiceRepository.GetChoice(choiceId));
 
-        if(!ModelState.IsValid)
-           return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-        return Ok(choice);        
+            return Ok(choice);
 
         }
 
         [HttpGet("get-election-choices/{electionId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Choice>))]
 
-        public IActionResult GetChoicesByElection(int electionId) 
+        public IActionResult GetChoicesByElection(int electionId)
         {
 
-         var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByElection(electionId));
-        
-         if(!ModelState.IsValid)
+            var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByElection(electionId));
+
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
+            if (choices == null)
+            {
+                ModelState.AddModelError("", "Something went wrong while getting the choices");
 
-         return Ok(choices);
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok(choices);
 
         }
 
@@ -78,24 +85,24 @@ namespace KindleDecision.Controllers
         [HttpGet("get-choices-by-user-vote/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Choice>))]
 
-        public IActionResult GetChoicesByUserId(int userId) 
+        public IActionResult GetChoicesByUserId(int userId)
         {
-        var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByUserVote(userId));
+            var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByUserVote(userId));
 
-        if(ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-        return Ok(choices);
+            return Ok(choices);
 
         }
 
-        [HttpPost]
+        [HttpPost("{electionId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
 
-        public IActionResult CreateChoice([FromQuery] int electionId, [FromBody] ChoiceDto choiceCreate)
+        public IActionResult CreateChoice( int electionId, [FromBody] ChoiceDto choiceCreate)
         {
             if (choiceCreate == null)
                 return BadRequest(ModelState);
@@ -123,7 +130,7 @@ namespace KindleDecision.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
 
-        public IActionResult UpdateGame(int choiceId, ChoiceDto updateChoice)
+        public IActionResult UpdateChoice(int choiceId, ChoiceDto updateChoice)
         {
          if(updateChoice == null)
             {
@@ -149,7 +156,7 @@ namespace KindleDecision.Controllers
         }
 
 
-        [HttpDelete("{choideId}")]
+        [HttpDelete("{choiceId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
