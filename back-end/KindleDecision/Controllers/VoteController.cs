@@ -1,9 +1,10 @@
-﻿using KindleDecision.Models;
+﻿using AutoMapper;
 using KindleDecision.Data;
-using KindleDecision.Interfaces;
-using AutoMapper;
 using KindleDecision.Dto;
+using KindleDecision.Interfaces;
+using KindleDecision.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace KindleDecision.Controllers
 {
@@ -45,14 +46,14 @@ namespace KindleDecision.Controllers
         [HttpGet("{voteId}")]
         [ProducesResponseType(200, Type = typeof(VoteDto))]
         [ProducesResponseType(400)]
-        public IActionResult GetVote(int id)
+        public IActionResult GetVote(int voteId)
         {
-            if (!_voteRepository.VoteExists(id))
+            if (!_voteRepository.VoteExists(voteId))
             {
                 return NotFound();
             }
 
-            var vote = _mapper.Map<VoteDto>(_voteRepository.GetVote(id));
+            var vote = _mapper.Map<VoteDto>(_voteRepository.GetVote(voteId));
 
             if (!ModelState.IsValid)
             {
@@ -60,6 +61,28 @@ namespace KindleDecision.Controllers
             }
 
             return Ok(vote);
+        }
+
+        [HttpGet("get-votes-by-choice/{choiceId}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<VoteDto>))]
+        [ProducesResponseType(400)]
+        public IActionResult GetVoteByChoice(int choiceId)
+        {
+            if (!_choiceRepository.ChoiceExists(choiceId))
+            {
+                ModelState.AddModelError("", "This choice does not exist");
+
+                return StatusCode(404, ModelState);
+            }
+
+            var votes = _mapper.Map<List<VoteDto>>(_voteRepository.GetVotesByChoice(choiceId));
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(votes);
         }
 
         [HttpGet("get-votes-by-user/{userId}")]
@@ -79,32 +102,50 @@ namespace KindleDecision.Controllers
         [HttpPost("{choiceId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateVote(int electionId, int userId, int choiceId, VoteDto voteDto)
+        public IActionResult CreateVote(
+            [Required] int electionId,
+            [Required] int userId,
+            int choiceId,
+            VoteDto voteDto
+        )
         {
-            List<Vote> votes = _voteRepository.GetVotesByUser(userId).ToList();
+            List<Vote> userVotes = _voteRepository.GetVotesByUser(userId).ToList();
 
-            if (votes.Any(v => v.Choice.Election.Id == electionId))
+            List<Vote> choiceVotes = _voteRepository.GetVotesByChoice(choiceId).ToList();
+
+            bool hasVoted = false;
+
+            foreach (Vote cv in choiceVotes)
+            {
+                if (!hasVoted)
+                {
+                    if(userVotes.Any(v => v.Id == cv.Id))
+                    {
+                        hasVoted = true;
+                    }
+                }
+            }
+
+            if (hasVoted)
             {
                 ModelState.AddModelError("", "This user has already voted in this election");
                 return StatusCode(422, ModelState);
             }
-
-
 
             if (voteDto == null)
             {
                 return BadRequest(ModelState);
             }
 
-            var vote = _dataContext.Votes
-                .Where(v => v.VoterUserId == voteDto.VoterUserId)
-                .FirstOrDefault();
+            //var vote = _dataContext.Votes
+            //    .Where(v => v.VoterUserId == voteDto.VoterUserId)
+            //    .FirstOrDefault();
 
-            if (vote != null)
-            {
-                ModelState.AddModelError("", "Error, this vote already exists");
-                return StatusCode(422, ModelState);
-            }
+            //if (vote != null)
+            //{
+            //    ModelState.AddModelError("", "Error, this vote already exists");
+            //    return StatusCode(422, ModelState);
+            //}
 
             if (!ModelState.IsValid)
             {
@@ -112,6 +153,15 @@ namespace KindleDecision.Controllers
             }
 
             var voteCreate = _mapper.Map<Vote>(voteDto);
+
+            if (!_voteRepository.CreateVote(choiceId, voteCreate))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving the vote");
+
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok(voteCreate);
         }
     }
 }
