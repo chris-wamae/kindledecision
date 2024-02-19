@@ -34,11 +34,11 @@ namespace KindleDecision
                                     Title = "Maldives",
                                     Votes = new List<Vote>()
                                     {
-                                    new Vote()
+                                    new Vote
                                     {
                                     VoterUserId = 2
                                     },
-                                    new Vote()
+                                    new Vote
                                     {
                                     VoterUserId = 1
                                     }
@@ -47,13 +47,7 @@ namespace KindleDecision
                                 new Choice
                                 {
                                     Title = "Pueto Vallarta",
-                                    Votes = new List<Vote>()
-                                    {
-                                    new Vote()
-                                    {
-                                    VoterUserId = 3
-                                    }
-                                    }
+                                    Votes = new List<Vote>(){}
                                 }
                             },
                             CreatorUserId = 1
@@ -83,7 +77,7 @@ namespace KindleDecision
                                     Title = "Spirited Away?",
                                     Votes = new List<Vote>()
                                     {
-                                    new Vote()
+                                    new Vote
                                     {
                                         VoterUserId = 1
                                     }
@@ -95,7 +89,7 @@ namespace KindleDecision
                                     Title = "Avengers: Endgame",
                                     Votes = new List<Vote>()
                                     {
-                                    new Vote()
+                                    new Vote
                                     {
                                     VoterUserId = 2
                                     }
@@ -106,7 +100,7 @@ namespace KindleDecision
                                     Title = "X-Men: Days of future past",
                                     Votes = new List<Vote>()
                                     {
-                                    new Vote()
+                                    new Vote
                                     {
                                     VoterUserId = 3
                                     }
@@ -140,12 +134,12 @@ namespace KindleDecision
                                     Title = "108",
                                     Votes = new List<Vote>()
                                     {
-                                    new Vote()
+                                    new Vote
                                     {
                                      VoterUserId = 1
                                     }
                                     ,
-                                    new Vote()
+                                    new Vote
                                     {
                                     VoterUserId  = 2
                                     }
@@ -156,7 +150,7 @@ namespace KindleDecision
                                     Title = "112",
                                     Votes = new List<Vote>()
                                     {
-                                    new Vote()
+                                    new Vote
                                     {
                                     VoterUserId = 3
                                     }

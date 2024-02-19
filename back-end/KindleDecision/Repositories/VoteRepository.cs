@@ -1,6 +1,7 @@
 ﻿using KindleDecision.Models;
 using KindleDecision.Data;
 using KindleDecision.Interfaces;
+using AutoMapper;
 
 namespace KindleDecision.Repositories
 {
@@ -30,6 +31,11 @@ namespace KindleDecision.Repositories
         public ICollection<Vote> GetVotesByUser(int userId)
         {
             return _dataContext.Votes.Where(v => v.VoterUserId == userId).ToList();
+        }
+
+        public ICollection<Vote>  GetVotesByChoice(int choiceId)
+        {
+            return _dataContext.Votes.Where(v => v.Choice.Id == choiceId).ToList();
         }
 
         public bool Save()
