@@ -8,6 +8,9 @@ import { validateEmail } from "../Helper/Form";
 import { emailToolTipRenderer } from "../Helper/Form";
 import { useEffect } from "react";
 import axios from "axios";
+import "../styles/AddVoters.css"
+import Navbar from "../components/Navbar";
+import { electionState } from "../features/electionSlice";
 
 //make email database search depend on physical button press by user
 //move email validation to form Helper since it will no longer be using fetch
@@ -15,50 +18,76 @@ import axios from "axios";
 
 
 function AddVoters() {
-    
-    const stateElectionId = useSelector(currentElectionId)
-    const dispatch = useDispatch();
-    const [voterEmail, setVoterEmail] = useState("")
-    const [electionVoters, setElectionVoters] = useState([])
-    const [emailState, setEmailState] = useState(undefined)
-    const [foundUser, setFoundUser] = useState(undefined)
-   
-    useEffect(() => {
-      if(validateEmail(voterEmail))
-      {
-       setEmailState(true)
-      }
-      else if(voterEmail !== ""){
-       setEmailState(false)
-      }
-      else if(voterEmail == "")
-      {
-        setEmailState(undefined)
-      }
-    },[voterEmail])
-    
-    useEffect(() => {
-    
+  
+  const navItems = ["Features", "Login", "How it Works"]
+  const stateElectionId = useSelector(electionState)
+  const dispatch = useDispatch();
+  const [voterEmail, setVoterEmail] = useState("")
+  const [electionVoters, setElectionVoters] = useState([])
+  const [emailState, setEmailState] = useState(undefined)
+  const [foundUser, setFoundUser] = useState(undefined)
+  const [disableSearch, setDisableSearch] = useState(true);
+  const [showSearch, setShowSearch] = useState("inline");
+  const [showAdd, setShowAdd] = useState("none");
+  const [usersArray,setUsersArray] = useState([])
 
-    },[emailState])
+  useEffect(() => {
 
-    useEffect(() => {
-    if(emailState && foundUser == undefined)
-    {
-       setEmailState("notfound")
+    setFoundUser(undefined)
+
+    if (validateEmail(voterEmail)) {
+      setEmailState(true)
+      setDisableSearch(false)
     }
-    },[foundUser])
+    else if (voterEmail !== "") {
+      setEmailState(false)
+      setDisableSearch(true)
+    }
+    else if (voterEmail == "") {
+      setEmailState(undefined)
+      setDisableSearch(true)
+    }
+  }, [voterEmail])
+
+
+  useEffect(() => {
+    if (foundUser != undefined) {
+
+      if (emailState && foundUser.length == 0) {
+        setEmailState("notfound")
+        setDisableSearch(true);
+      }
+      else if (foundUser.length > 0) {
+        setShowAdd("inline");
+        setShowSearch("none");
+
+      }
+
+    }
+
+    else {
+      setShowAdd("none");
+      setShowSearch("inline");
+    }
+
+  }, [foundUser])
 
   const removeOption = (e) => {
-      let newVoters = electionVoters.filter((c,i) => i !== e )
-      setElectionVoters(newVoters);
-    }
+    let newVoters = electionVoters.filter((c, i) => i !== e)
+    setElectionVoters(newVoters);
+  }
 
   const voterDispatcher = () => {
-    electionVoters.forEach((e) => {
-     dispatch(postUserElection({electionId:stateElectionId,
-                          userId:null}))
+    electionVoters.forEach((e,i) => {
+      dispatch(postUserElection({
+        electionId: stateElectionId.id,
+        userId: usersArray[i]
+      }))
     })
+  }
+
+  const emailSearch = () => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}Users?email=${voterEmail}`).then(r => setFoundUser(r.data))
   }
 
 
@@ -66,6 +95,7 @@ function AddVoters() {
 
   return (
     <>
+    <Navbar navItems={navItems}/>
       <div className="page-container">
 
         <div className="page-title">Election voters</div>
@@ -76,9 +106,17 @@ function AddVoters() {
           {emailToolTipRenderer(emailState)}
           <input id="voter-input" className="enter-voter" placeholder="Please enter a voter's email" onChange={e => setVoterEmail(e.target.value)}></input>
 
-          <button className="add-button" onClick={(e) => {
+          <button style={{ display: `${showSearch}` }} disabled={disableSearch} className="search-button" onClick={
+            (e) => {
+              e.preventDefault()
+              emailSearch()
+            }
+          }>Search for voter</button>
+
+          <button style={{ display: `${showAdd}` }} className="add-button" onClick={(e) => {
             e.preventDefault();
             setElectionVoters([...electionVoters, voterEmail])
+            setUsersArray([...usersArray,foundUser[0].id])
           }
           }>Add</button>
         </form>

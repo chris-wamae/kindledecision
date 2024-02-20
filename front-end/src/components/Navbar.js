@@ -10,11 +10,11 @@ function Navbar({navItems}){
     return (
         <>
         <div className="nav-div">
-            <Link exact to="/"><span id="kindle">kindle</span><span id="decision">decision</span></Link>                
+            <Link  to="/"><span id="kindle">kindle</span><span id="decision">decision</span></Link>                
             <div className="nav-links">
             {navItems.map(e => {
             
-             return <Link key={e} exact to={LinkFormater(e)}><span>{e}</span></Link>
+             return <Link key={e}  to={LinkFormater(e)}><span>{e}</span></Link>
             })}
             </div>
         </div>
