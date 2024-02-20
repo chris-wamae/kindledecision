@@ -4,18 +4,24 @@ import DynamicList from "../components/DynamicList";
 import { useSelector, useDispatch} from "react-redux";
 import { currentElectionId } from "../features/idSlice";
 import { postChoice } from "../features/choiceSlice";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import { electionState } from "../features/electionSlice";
 
-function CreateChoice(){   
-     
+function CreateChoice(){  
+    const navItems = ["Features", "Login", "How it Works"]
+    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const currentElection = useSelector(currentElectionId)
+    const currentElection = useSelector(electionState)
     const [choiceName, setChoiceName] = useState("")
     const [electionChoices, setElectionChoices] = useState([])
-
+    
+    console.log(currentElection);
     const choiceDispatcher = () => {
       electionChoices.forEach((e) => {
-        dispatch(postChoice({title:e, electionId:currentElection}))
+        dispatch(postChoice({title:e, electionId:currentElection.id}))
       })
+      navigate("/add-voters", {replace: true})
     }
 
     const removeOption = (e) => {
@@ -27,6 +33,7 @@ function CreateChoice(){
 
     return(
         <>
+          <Navbar navItems={navItems}/>
         <div className="page-container">
 
          <div className="page-title">Election choices</div>

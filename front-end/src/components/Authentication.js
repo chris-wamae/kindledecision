@@ -26,10 +26,8 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     const [foundUser, setFoundUser] = useState(undefined)
     const [emailState, setEmailState] = useState(undefined)
 
-
-
     useEffect(() => {
-        if (validateEmail(email) && foundUser !== undefined) {
+        if (validateEmail(email)) {
             setEmailState(true)
         }
         else if (email == "") {
@@ -38,17 +36,32 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         else if (!validateEmail(email)) {
             setEmailState(false);
         }
-        else if (validateEmail(email) && foundUser == undefined) {
-            setEmailState("notfound")
-        }
+        // else if (validateEmail(email) && foundUser == undefined) {
+        //     
+        // }
     }, [email])
 
+ 
+    const searchUser = () => {
+        if (emailState === true) {
+            axios.get(`${process.env.REACT_APP_BASE_URL}Users?email=${email}`).then(r => setFoundUser(r.data));
+        }
+    }
 
     useEffect(() => {
-        if (emailState) {
-            axios.get(`${process.env.REACT_APP_BASE_URL}Users?email=${email}`).then(r => setFoundUser(r.data[0]));
-        }
-    }, [emailState])
+    if(foundUser != undefined)
+    {
+    if (emailState && foundUser.length > 0) {
+            dispatch(changeUserId(foundUser[0].id))
+            navigate("/create-election")
+    }
+    else if(foundUser.length == 0)
+    {
+        setEmailState("notfound")
+    }
+    }
+
+    },[foundUser])
 
     // useEffect(() => {
     //     //|| foundUser.length == 0
@@ -60,8 +73,8 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         <>
             <div className="auth-page">
                 <section className="form-change">
-                    <Link exact to="/sign-up"><button className={authType ? "form-change-active" : "form-change-inactive"}>Sign up</button></Link>
-                    <Link exact to="/login"><button className={!authType ? "form-change-active" : "form-change-inactive"}>Login</button></Link>
+                    <Link to="/sign-up"><button className={authType ? "form-change-active" : "form-change-inactive"}>Sign up</button></Link>
+                    <Link to="/login"><button className={!authType ? "form-change-active" : "form-change-inactive"}>Login</button></Link>
 
 
                 </section>
@@ -75,10 +88,7 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                         <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}></input>
                         <button onClick={(e) => {
                             e.preventDefault();
-                            if (emailState && foundUser != undefined) {
-                                dispatch(changeUserId(foundUser.id))
-                                navigate("/create-election")
-                            }
+                            searchUser()
 
                         }}>{buttonText}</button>
 

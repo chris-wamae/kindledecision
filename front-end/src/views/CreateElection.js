@@ -9,9 +9,10 @@ import { resetForm } from "../Helper/Form";
 import { getTime } from "../Helper/Time";
 import { electionState } from "../features/electionSlice";
 import { changeElectionId } from "../features/idSlice";
+import { currentUserId } from "../features/idSlice";
 
 function CreateElection() {
-
+  
   const redirect = useNavigate();
   const dispatch = useDispatch();
   const titleRef = useRef(null)
@@ -19,8 +20,8 @@ function CreateElection() {
   const navItems = ["Features", "Login", "How it Works"]
   const [electionTitle, setElectionTitle] = useState("")
   const [expiryDate, setExpiryDate] = useState("")
-  const currentElectionState = useSelector(electionState)
-
+  //const [currentElectionId, setCurrentElectionId] = useState(undefined);
+  const userId = useSelector(currentUserId)
   
 
   const canSave = () => {
@@ -49,7 +50,7 @@ function CreateElection() {
 
       remainingVotes: null,
 
-      creatorUserId: null
+      creatorUserId: userId
     }
 
   }
@@ -78,7 +79,8 @@ function CreateElection() {
               e.preventDefault();
               dispatch(postElection(createElection(electionTitle)))
               resetForm([titleRef, dateRef])
-              dispatch(changeElectionId(3))
+              //console.log(currentElectionState);
+              //dispatch(changeElectionId(currentElectionState["id"]))
               redirect("/add-choices", { replace: true })
 
             }}>Create</button>

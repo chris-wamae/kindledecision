@@ -4,11 +4,13 @@ import axios from "axios";
 
 export const postElection = createAsyncThunk("election/postElection",async (post) => {
 
-const response = await axios.post(`${process.env.REACT_APP_BASE_URL}elections`,post )
+const response = await axios.post(`${process.env.REACT_APP_BASE_URL}elections`, post )
 
 return response.data
 
 })
+
+
 
 
 
