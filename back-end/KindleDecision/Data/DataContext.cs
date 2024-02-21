@@ -20,6 +20,8 @@ namespace KindleDecision.Data
 
     public DbSet<Vote> Votes { get; set; }
 
+    public DbSet<UserVotedInElection> UserVotedInElections { get; set; }    
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

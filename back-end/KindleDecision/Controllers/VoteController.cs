@@ -163,5 +163,33 @@ namespace KindleDecision.Controllers
 
             return Ok(voteCreate);
         }
+
+        [HttpDelete("{voteId}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+
+        public IActionResult DeleteVote(int voteId)
+        {
+            if(!_voteRepository.VoteExists(voteId))
+            {
+                return NotFound();
+            }
+
+            var voteRemove  = _voteRepository.GetVote(voteId);
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(!_voteRepository.DeleteVote(voteRemove))
+            {
+                ModelState.AddModelError("", "Something went wrong while deleting");
+                return StatusCode(500, ModelState);
+            } 
+
+            return NoContent();
+        }
+
     }
 }
