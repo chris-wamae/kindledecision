@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KindleDecision.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240201122206_Initial-Create")]
+    [Migration("20240219131449_Initial-Create")]
     partial class InitialCreate
     {
         /// <inheritdoc />

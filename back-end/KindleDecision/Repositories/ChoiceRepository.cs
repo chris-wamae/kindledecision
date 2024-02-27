@@ -1,6 +1,7 @@
 ﻿using KindleDecision.Interfaces;
 using KindleDecision.Data;
 using KindleDecision.Models;
+using System.Web.Mvc;
 
 namespace KindleDecision.Repositories
 {
@@ -14,14 +15,14 @@ namespace KindleDecision.Repositories
             _dataContext = dataContext;
         }
 
-        public bool ChoiceExists(int id)
+        public bool ChoiceExists(int choiceId)
         {
-            return _dataContext.Choices.Any(c => c.Id == id);
+            return _dataContext.Choices.Any(c => c.Id == choiceId);
         }
 
-        public Choice GetChoice(int id)
+        public Choice GetChoice(int choiceId)
         {
-            return _dataContext.Choices.Where(c => c.Id == id).FirstOrDefault();
+            return _dataContext.Choices.Where(c => c.Id == choiceId).FirstOrDefault();
         }
 
         public Choice GetChoice(string title)
@@ -36,22 +37,21 @@ namespace KindleDecision.Repositories
 
         public ICollection<Choice> GetChoicesByElection(int electionId)
         {
-            Election election = _dataContext.Elections
-                .Where(e => e.Id == electionId)
-                .FirstOrDefault();
-
-            return election.Choices.ToList();
+           return _dataContext.Choices.Where(c => c.Election.Id == electionId).ToList();
         }
 
         public ICollection<Choice> GetChoicesByUserVote(int userId)
         {
-            ICollection<Vote> votes = _voteRepository.GetVotesByUser(userId);
-            List<Choice> choices = new List<Choice>();
-            foreach (Vote vote in votes)
-            {
-                choices.Add(vote.Choice);
-            }
-            return choices;
+              List<Vote> votes = _dataContext.Votes.Where(v => v.VoterUserId == userId).ToList();
+              
+              List<Choice> choices = new List<Choice>();
+
+              foreach (Vote vote in votes)
+                {
+                choices.Add(_dataContext.Votes.Where(v => v.Id == vote.Id).Select(v => v.Choice).FirstOrDefault());
+                }
+
+              return choices;
         }
 
         public bool Save()
@@ -70,6 +70,7 @@ namespace KindleDecision.Repositories
             choice.Election = election;
 
             _dataContext.Add(choice);
+
             return Save();
         }
 

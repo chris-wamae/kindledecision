@@ -18,11 +18,10 @@ namespace KindleDecision.Interfaces
 
     bool CreateElection(Election election);
 
-    bool UpdateElection(int electionId, Election election);
+    bool UpdateElection(Election election);
 
     bool DeleteElection(Election election);
 
     bool Save();
-
     }
 }

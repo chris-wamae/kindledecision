@@ -1,8 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import electionReducer from "../features/electionSlice";
+import queryReducer from "../features/querySlice";
+import choiceReducer from "../features/choiceSlice"
+import idReducer from "../features/idSlice"
+import userQueriesReducer from "../features/userQueriesSlice";
 
 export const store = configureStore({
     reducer:{
-     election: electionReducer
+     query: queryReducer,
+     choice: choiceReducer,
+     id: idReducer,
+     userQuery:userQueriesReducer
     }
 })

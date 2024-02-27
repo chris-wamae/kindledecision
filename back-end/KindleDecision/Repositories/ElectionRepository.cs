@@ -56,7 +56,7 @@ namespace KindleDecision.Repositories
             return Save();
         }
 
-        public bool UpdateElection(int electionId,Election election)
+        public bool UpdateElection(Election election)
         {
             _dataContext.Update(election);
             return Save();

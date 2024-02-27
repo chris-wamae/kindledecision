@@ -7,31 +7,31 @@ function Landingpage() {
     return (
         <>
             <Navbar navItems={navItems} />
-            <div class="main">
+            <div className="main">
 
-                <div class="info">
+                <div className="info">
 
-                    <div class="info-text">
+                    <div className="info-text">
 
-                        <div class="main-header">
+                        <div className="main-header">
                             <h1>
                                 The easiest way to make group decisions.
                             </h1>
                         </div>
 
-                        <div class="sub-header">
-                            Casta Vote makes voting on anything increadibly simple while maintaining credibility and fairness.
+                        <div className="sub-header">
+                            Kindledecision makes voting on anything increadibly simple while maintaining credibility and fairness.
                         </div>
 
                     </div>
 
-                    <div class="info-img-buttons">
+                    <div className="info-img-buttons">
                         <div className="graphic-placeholder"></div>
-                        <div class="buttons">
-                            <Link exact to="sign-up">
+                        <div className="buttons">
+                            <Link to="sign-up">
                             <button id="sign-up-button">Sign Up</button>
                             </Link> 
-                            <Link exact to="login">
+                            <Link to="login">
                             <button id="login-button">Login</button>
                             </Link>
                         </div>

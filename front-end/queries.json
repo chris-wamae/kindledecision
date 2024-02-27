@@ -1,0 +1,83 @@
+{
+  "queries": [
+  ],
+  "Choices": [
+  ],
+  "Selections": [],
+  "Users": [
+    {
+      "id": "0",
+      "username": "Wamae",
+      "email": "wamae@gmail.com",
+      "phone": "08948488484",
+      "language": "en",
+      "password": "wamae"
+    },
+    {
+      "id": "1",
+      "username": "Joker",
+      "email": "joker@gmail.com",
+      "phone": "30499955",
+      "language": "jp",
+      "password": "joker"
+    },
+    {
+      "id": "2",
+      "username": "Killua",
+      "email": "killua@gmail.com",
+      "phone": "9329492452",
+      "language": "kr",
+      "password": "killua"
+    },
+    {
+      "id": "3",
+      "username": "Henry",
+      "email": "henry@gmail.com",
+      "phone": "942775252",
+      "language": "en",
+      "password": "henry"
+    },
+    {
+      "id": "4",
+      "username": "Janie",
+      "email": "janie@gmail.com",
+      "phone": "949294942",
+      "language": "en",
+      "password": "janie"
+    },
+    {
+      "id": "5",
+      "username": "Brooks",
+      "email": "brooks@gmail.com",
+      "phone": "2994942942",
+      "language": "en",
+      "password": "brooks"
+    },
+    {
+      "id": "6",
+      "username": "Mary",
+      "email": "mary@gmail.com",
+      "phone": "02499294",
+      "language": "kw",
+      "password": "mary"
+    },
+    {
+      "id": "7",
+      "username": "Eunice",
+      "email": "eunice@gmail.com",
+      "phone": "08384844",
+      "language": "kw",
+      "password": "eunice"
+    },
+    {
+      "id": "8",
+      "username": "Alex",
+      "email": "alex@gmail.com",
+      "phone": "039428442",
+      "language": "en",
+      "password": "alex"
+    }
+  ],
+  "UserQueries": [
+  ]
+}

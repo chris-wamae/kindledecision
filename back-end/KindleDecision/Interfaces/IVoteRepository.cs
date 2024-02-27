@@ -8,7 +8,7 @@ namespace KindleDecision.Interfaces
         ICollection<Vote> GetAllVotes();
         bool VoteExists(int id);
         ICollection<Vote> GetVotesByUser(int userId);
-
+        ICollection<Vote> GetVotesByChoice(int choiceId);
         bool CreateVote(int choiceId,Vote vote);
 
         bool UpdateVote(int voteId, Vote vote);
