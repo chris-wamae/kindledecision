@@ -21,6 +21,8 @@ const initialState = {
         title: "",
 
         creationTime: null,
+
+        startDate:null,
   
         expiryDate:null,
   
