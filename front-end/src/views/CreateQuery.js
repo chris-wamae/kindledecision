@@ -10,18 +10,20 @@ import { getTime } from "../Helper/Time";
 import { queryState } from "../features/querySlice";
 import { changeQueryId } from "../features/idSlice";
 import { currentUserId } from "../features/idSlice";
+import { useEffect } from "react";
 
 function CreateQuery() {
-  
+
   const redirect = useNavigate();
   const dispatch = useDispatch();
   const titleRef = useRef(null)
   const dateRef = useRef(null)
   const navItems = ["Features", "Login", "How it Works"]
   const [queryTitle, setQueryTitle] = useState("")
+  const [startDate, setStartDate] = useState(null)
   const [expiryDate, setExpiryDate] = useState("")
+  const [showStartDateInput, setShowStartDateInput] = useState("display-none start-date-input")
   const userId = useSelector(currentUserId)
-  
 
   const canSave = () => {
 
@@ -33,6 +35,8 @@ function CreateQuery() {
     }
   }
 
+
+
   const createQuery = (queryTitle) => {
 
     const creationTime = getTime();
@@ -42,6 +46,8 @@ function CreateQuery() {
       title: queryTitle,
 
       creationTime: creationTime,
+
+      startDate: startDate,
 
       expiryDate: expiryDate,
 
@@ -70,6 +76,18 @@ function CreateQuery() {
 
             <input title="query-title" placeholder="What's the query?" onChange={(e) => setQueryTitle(e.target.value)} ref={titleRef}></input>
 
+            <label htmlFor="start-date">Start date:</label>
+            <select onChange={(e) => {
+              setShowStartDateInput(e.target.value)
+              if (e.target.value == "display-none start-date-input") {
+                setStartDate(null)
+              }
+            }}>
+              <option value="display-none start-date-input">Immediately</option>
+              <option value="start-date-input">Specific date</option>
+            </select>
+            <input type="date" onChange={e => setStartDate(e.target.value)} className={showStartDateInput}></input>
+
             <label htmlFor="expiry-date" className="date-title">Expiry date:</label>
 
             <input title="expiry-date" type="date" onChange={(e) => setExpiryDate(e.target.value)} ref={dateRef}></input>
@@ -84,7 +102,7 @@ function CreateQuery() {
 
             }}>Create</button>
 
-          </form>          
+          </form>
         </div>
       </div>
     </>
