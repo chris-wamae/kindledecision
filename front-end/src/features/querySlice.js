@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const postElection = createAsyncThunk("election/postElection",async (post) => {
+export const postQuery = createAsyncThunk("query/postQuery",async (post) => {
 
-const response = await axios.post(`${process.env.REACT_APP_BASE_URL}elections`, post )
+const response = await axios.post(`${process.env.REACT_APP_BASE_URL}queries`, post )
 
 return response.data
 
@@ -16,7 +16,7 @@ return response.data
 
 const initialState = {
 
-    election:{
+    query:{
 
         title: "",
 
@@ -24,9 +24,9 @@ const initialState = {
   
         expiryDate:null,
   
-        totalVotes:null,
+        totalSelections:null,
   
-        remainingVotes:null,
+        remainingSelections:null,
 
         creatorUserId:null
     },
@@ -34,28 +34,28 @@ const initialState = {
     error: null
 }
 
-export const electionSlice = createSlice({
-    name: "election",
+export const querySlice = createSlice({
+    name: "query",
     initialState,
     reducers: {
         initialCreate:
          (state, action) => {
-            state.election = action.payload
+            state.query = action.payload
         }
     },
     extraReducers(builder){
     builder
     
-    .addCase(postElection.pending, (state, action) => {
+    .addCase(postQuery.pending, (state, action) => {
         state.status = "loading"
     })
 
-    .addCase(postElection.fulfilled, (state,action) =>{
+    .addCase(postQuery.fulfilled, (state,action) =>{
         state.status = "succeeded"
-        state.election = action.payload
+        state.query = action.payload
     })
 
-    .addCase(postElection.rejected, (state,action) =>{
+    .addCase(postQuery.rejected, (state,action) =>{
         state.status = "failed"
         state.error = action.error.message
     })
@@ -68,7 +68,7 @@ export const electionSlice = createSlice({
     }
 })
 
-export const electionState = state => state.election.election
+export const queryState = state => state.query.query
 
 
-export default electionSlice.reducer;
+export default querySlice.reducer;

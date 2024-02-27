@@ -1,11 +1,9 @@
 {
-  "elections": [
-    
+  "queries": [
   ],
   "Choices": [
-   
   ],
-  "Votes": [],
+  "Selections": [],
   "Users": [
     {
       "id": "0",
@@ -80,7 +78,6 @@
       "password": "alex"
     }
   ],
-  "UserElections": [
-   
+  "UserQueries": [
   ]
 }

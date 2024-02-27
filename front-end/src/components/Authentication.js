@@ -53,7 +53,7 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     {
     if (emailState && foundUser.length > 0) {
             dispatch(changeUserId(foundUser[0].id))
-            navigate("/create-election")
+            navigate("/create-query")
     }
     else if(foundUser.length == 0)
     {

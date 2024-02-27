@@ -1,6 +1,12 @@
 # Project Description 
 Casta Vote is an application that aims to facilitate quick **casual** voting for small groups. Users can either create an election or participate in voting. To create an election, one must create a topic and atleast two options. To participate in voting, a user must be invited by the creator of the vote.
 
+Premium Features
+## Custom mail to voters interface
+## Increased number of voters
+## Increased number of features
+## Ad free
+
 Additional Features:
 ## Anonymous voting
 ## Dark mode

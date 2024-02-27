@@ -1,4 +1,4 @@
-.election-container {
+.query-container {
     display: flex;
     flex-direction: row;
     justify-content:space-around;
@@ -14,7 +14,7 @@
     margin:20px 0px;
 }
 
-.election-form
+.query-form
 {
 display:flex;
 flex-direction:column;
@@ -23,7 +23,7 @@ padding-top:0px;
 border:1px solid black;
 }
 
-.election-form input
+.query-form input
 {
 min-width:350px;
 }

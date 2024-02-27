@@ -1,29 +1,31 @@
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 import DynamicList from "../components/DynamicList";
-import { postUserElection } from "../features/userElectionsSlice";
-import { currentElectionId } from "../features/idSlice";
+import { postUserQuery } from "../features/userQueriesSlice";
+import { currentQueryId } from "../features/idSlice";
 import { useSelector } from "react-redux";
 import { validateEmail } from "../Helper/Form";
 import { emailToolTipRenderer } from "../Helper/Form";
 import { useEffect } from "react";
 import axios from "axios";
-import "../styles/AddVoters.css"
+import "../styles/AddSelectors.css"
 import Navbar from "../components/Navbar";
-import { electionState } from "../features/electionSlice";
+import { queryState } from "../features/querySlice";
+import { redirect, useNavigate } from "react-router-dom";
 
 //make email database search depend on physical button press by user
 //move email validation to form Helper since it will no longer be using fetch
 
 
 
-function AddVoters() {
+function AddSelectors() {
   
+  const navigate = useNavigate()
   const navItems = ["Features", "Login", "How it Works"]
-  const stateElectionId = useSelector(electionState)
+  const stateQueryId = useSelector(queryState)
   const dispatch = useDispatch();
-  const [voterEmail, setVoterEmail] = useState("")
-  const [electionVoters, setElectionVoters] = useState([])
+  const [selectorEmail, setSelectorEmail] = useState("")
+  const [querySelectors, setQuerySelectors] = useState([])
   const [emailState, setEmailState] = useState(undefined)
   const [foundUser, setFoundUser] = useState(undefined)
   const [disableSearch, setDisableSearch] = useState(true);
@@ -35,19 +37,19 @@ function AddVoters() {
 
     setFoundUser(undefined)
 
-    if (validateEmail(voterEmail)) {
+    if (validateEmail(selectorEmail)) {
       setEmailState(true)
       setDisableSearch(false)
     }
-    else if (voterEmail !== "") {
+    else if (selectorEmail !== "") {
       setEmailState(false)
       setDisableSearch(true)
     }
-    else if (voterEmail == "") {
+    else if (selectorEmail == "") {
       setEmailState(undefined)
       setDisableSearch(true)
     }
-  }, [voterEmail])
+  }, [selectorEmail])
 
 
   useEffect(() => {
@@ -73,21 +75,22 @@ function AddVoters() {
   }, [foundUser])
 
   const removeOption = (e) => {
-    let newVoters = electionVoters.filter((c, i) => i !== e)
-    setElectionVoters(newVoters);
+    let newSelectors = querySelectors.filter((c, i) => i !== e)
+    setQuerySelectors(newSelectors);
   }
 
-  const voterDispatcher = () => {
-    electionVoters.forEach((e,i) => {
-      dispatch(postUserElection({
-        electionId: stateElectionId.id,
+  const selectorDispatcher = () => {
+    querySelectors.forEach((e,i) => {
+      dispatch(postUserQuery({
+        queryId: stateQueryId.id,
         userId: usersArray[i]
       }))
     })
+    navigate("/new-query", {replace:true})
   }
 
   const emailSearch = () => {
-    axios.get(`${process.env.REACT_APP_BASE_URL}Users?email=${voterEmail}`).then(r => setFoundUser(r.data))
+    axios.get(`${process.env.REACT_APP_BASE_URL}Users?email=${selectorEmail}`).then(r => setFoundUser(r.data))
   }
 
 
@@ -98,39 +101,41 @@ function AddVoters() {
     <Navbar navItems={navItems}/>
       <div className="page-container">
 
-        <div className="page-title">Election voters</div>
+        <div className="page-title">Query selectors</div>
 
         <form>
 
           <label htmlFor="voter-input" className="voter-label">Voter:</label>
           {emailToolTipRenderer(emailState)}
-          <input id="voter-input" className="enter-voter" placeholder="Please enter a voter's email" onChange={e => setVoterEmail(e.target.value)}></input>
+          <input id="voter-input" className="enter-selector" placeholder="Please enter a selector's email" onChange={e => setSelectorEmail(e.target.value)}></input>
 
           <button style={{ display: `${showSearch}` }} disabled={disableSearch} className="search-button" onClick={
             (e) => {
               e.preventDefault()
               emailSearch()
             }
-          }>Search for voter</button>
+          }>Search for participant</button>
 
           <button style={{ display: `${showAdd}` }} className="add-button" onClick={(e) => {
             e.preventDefault();
-            setElectionVoters([...electionVoters, voterEmail])
+            setQuerySelectors([...querySelectors, selectorEmail])
             setUsersArray([...usersArray,foundUser[0].id])
           }
           }>Add</button>
         </form>
 
-        <button disabled={buttonDisable(electionVoters)} className="done-button" onClick={() => voterDispatcher()}>Create election</button>
+        <button disabled={buttonDisable(querySelectors)} className="done-button" onClick={(e) => {
+          e.preventDefault();
+          selectorDispatcher()}}>Create query</button>
 
-        <DynamicList listTitle={"Added voters"} itemsArray={electionVoters} removeOption={removeOption} />
+        <DynamicList listTitle={"Added participants"} itemsArray={querySelectors} removeOption={removeOption} />
 
       </div>
     </>
   )
 }
 
-export default AddVoters;
+export default AddSelectors;
 
 
 

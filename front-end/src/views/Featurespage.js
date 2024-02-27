@@ -12,11 +12,11 @@ function Featurespage() {
                 <div>
                     <div className="single-feature">
                         <img src="download.png"></img>
-                        <div>Anonymous voting</div>
+                        <div>Anonymous participation</div>
                     </div>
                     <div className="single-feature">
                         <img src="download.png"></img>
-                        <div>Voting automation</div>
+                        <div>Automation</div>
                     </div>
                     <div className="single-feature">
                         <img src="download.png"></img>
