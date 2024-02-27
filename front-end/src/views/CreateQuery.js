@@ -1,32 +1,31 @@
 import Navbar from "../components/Navbar";
-import "../styles/CreateElection.css"
+import "../styles/CreateQuery.css"
 import { useState } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postElection } from "../features/electionSlice";
+import { postQuery } from "../features/querySlice";
 import { useNavigate } from "react-router-dom";
 import { resetForm } from "../Helper/Form";
 import { getTime } from "../Helper/Time";
-import { electionState } from "../features/electionSlice";
-import { changeElectionId } from "../features/idSlice";
+import { queryState } from "../features/querySlice";
+import { changeQueryId } from "../features/idSlice";
 import { currentUserId } from "../features/idSlice";
 
-function CreateElection() {
+function CreateQuery() {
   
   const redirect = useNavigate();
   const dispatch = useDispatch();
   const titleRef = useRef(null)
   const dateRef = useRef(null)
   const navItems = ["Features", "Login", "How it Works"]
-  const [electionTitle, setElectionTitle] = useState("")
+  const [queryTitle, setQueryTitle] = useState("")
   const [expiryDate, setExpiryDate] = useState("")
-  //const [currentElectionId, setCurrentElectionId] = useState(undefined);
   const userId = useSelector(currentUserId)
   
 
   const canSave = () => {
 
-    if (electionTitle !== "" && expiryDate !== "") {
+    if (queryTitle !== "" && expiryDate !== "") {
       return false
     }
     else {
@@ -34,21 +33,21 @@ function CreateElection() {
     }
   }
 
-  const createElection = (electionTitle) => {
+  const createQuery = (queryTitle) => {
 
     const creationTime = getTime();
 
     return {
 
-      title: electionTitle,
+      title: queryTitle,
 
       creationTime: creationTime,
 
       expiryDate: expiryDate,
 
-      totalVotes: null,
+      totalSelectors: null,
 
-      remainingVotes: null,
+      remainingSelectors: null,
 
       creatorUserId: userId
     }
@@ -59,17 +58,17 @@ function CreateElection() {
     <>
       <Navbar navItems={navItems} />
 
-      <div className="page-header">Create an election</div>
+      <div className="page-header">Create a query</div>
 
-      <div className="election-container">
+      <div className="query-container">
 
-        <div className="election-form-div">
+        <div className="query-form-div">
 
-          <form className="election-form">
+          <form className="query-form">
 
-            <label htmlFor="election-title" id="title" className="input-title" >Tile:</label>
+            <label htmlFor="query-title" id="title" className="input-title" >Tile:</label>
 
-            <input title="election-title" placeholder="What's the election about?" onChange={(e) => setElectionTitle(e.target.value)} ref={titleRef}></input>
+            <input title="query-title" placeholder="What's the query?" onChange={(e) => setQueryTitle(e.target.value)} ref={titleRef}></input>
 
             <label htmlFor="expiry-date" className="date-title">Expiry date:</label>
 
@@ -77,7 +76,7 @@ function CreateElection() {
 
             <button className="submit-button" disabled={canSave()} onClick={(e) => {
               e.preventDefault();
-              dispatch(postElection(createElection(electionTitle)))
+              dispatch(postQuery(createQuery(queryTitle)))
               resetForm([titleRef, dateRef])
               //console.log(currentElectionState);
               //dispatch(changeElectionId(currentElectionState["id"]))
@@ -92,4 +91,4 @@ function CreateElection() {
   )
 }
 
-export default CreateElection;
+export default CreateQuery;

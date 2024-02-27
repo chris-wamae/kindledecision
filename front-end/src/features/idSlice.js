@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
    
- voteId:null,
+ selectionId:null,
 
  choiceId:null,
 
- electionId:null,
+ queryId:null,
 
  userId:null,
 
@@ -18,17 +18,17 @@ export const idSlice = createSlice({
 name:"id",
 initialState,
 reducers:{
- changeVoteId:
+ changeSelectionId:
  (state, action) => {
-    state.voteId = action.payload
+    state.selectionId = action.payload
  },
  changeChoiceId: 
  (state, action) => {
     state.choiceId = action.payload
  },
- changeElectionId:
+ changeQueryId:
  (state, action) => {
-    state.electionId = action.payload
+    state.queryId = action.payload
  },
  changeUserId:
  (state,action) => {
@@ -42,14 +42,14 @@ reducers:{
 
 })
 
-export const currentVoteId = state => state.id.voteId
+export const currentSelectionId = state => state.id.selectionId
 
-export const currentStateId = state => state.id.choiceId
+export const currentChoiceId = state => state.id.choiceId
 
-export const currentElectionId = state => state.id.electionId
+export const currentQueryId = state => state.id.queryId
 
 export const  currentUserId = state => state.id.userId
 
-export const { changeVoteId ,changeChoiceId, changeElectionId, changeUserId} = idSlice.actions;
+export const { changeSelectionId ,changeChoiceId, changeQueryId, changeUserId} = idSlice.actions;
 
 export default idSlice.reducer;

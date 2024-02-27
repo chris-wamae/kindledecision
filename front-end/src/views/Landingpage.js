@@ -20,7 +20,7 @@ function Landingpage() {
                         </div>
 
                         <div className="sub-header">
-                            Casta Vote makes voting on anything increadibly simple while maintaining credibility and fairness.
+                            Kindledecision makes voting on anything increadibly simple while maintaining credibility and fairness.
                         </div>
 
                     </div>

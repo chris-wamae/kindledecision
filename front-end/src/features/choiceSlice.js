@@ -14,7 +14,7 @@ return response.data
 const initialState = {
   choice:{
     title:"",
-    electionId:null
+    queryId:null
   },
   status:"idle",
   error:null,
