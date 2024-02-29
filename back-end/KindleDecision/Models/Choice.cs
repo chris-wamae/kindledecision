@@ -6,8 +6,8 @@
 
         public string Title { get; set; }
 
-        public  Election Election { get; set; }
+        public  Query Query { get; set; }
 
-        public ICollection<Vote> Votes { get; set; }
+        public ICollection<Selection> Selections { get; set; }
     }
 }

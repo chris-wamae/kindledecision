@@ -1,13 +1,13 @@
 ﻿namespace KindleDecision.Models
 {
-    public class Vote
+    public class Selection
     {
      
     public int Id { get; set; }
 
     public Choice Choice { get; set; }
 
-    public int VoterUserId { get; set;}
+    public int SelectorUserId { get; set;}
 
     }
 }

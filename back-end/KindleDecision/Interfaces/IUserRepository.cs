@@ -12,9 +12,9 @@ namespace KindleDecision.Interfaces
 
         bool UserExists(int id);
 
-        ICollection<User> GetUsersByElection(int electionId);
+        ICollection<User> GetUsersByQuery(int queryId);
 
-        User GetElectionCreator(int electionId);
+        User GetQueryCreator(int queryId);
 
         bool CreateUser(User user);
 

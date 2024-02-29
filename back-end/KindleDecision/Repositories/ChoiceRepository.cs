@@ -8,7 +8,7 @@ namespace KindleDecision.Repositories
     public class ChoiceRepository : IChoiceRepository
     {
         private readonly DataContext _dataContext;
-        private readonly IVoteRepository _voteRepository;
+        private readonly ISelectionRepository _voteRepository;
 
         public ChoiceRepository(DataContext dataContext)
         {
@@ -35,20 +35,20 @@ namespace KindleDecision.Repositories
             return _dataContext.Choices.OrderBy(c => c.Id).ToList();
         }
 
-        public ICollection<Choice> GetChoicesByElection(int electionId)
+        public ICollection<Choice> GetChoicesByQuery(int queryId)
         {
-           return _dataContext.Choices.Where(c => c.Election.Id == electionId).ToList();
+           return _dataContext.Choices.Where(c => c.Query.Id == queryId).ToList();
         }
 
-        public ICollection<Choice> GetChoicesByUserVote(int userId)
+        public ICollection<Choice> GetChoicesByUserSelection(int userId)
         {
-              List<Vote> votes = _dataContext.Votes.Where(v => v.VoterUserId == userId).ToList();
+              List<Selection> selections = _dataContext.Selections.Where(s => s.SelectorUserId == userId).ToList();
               
               List<Choice> choices = new List<Choice>();
 
-              foreach (Vote vote in votes)
+              foreach (Selection selection in selections)
                 {
-                choices.Add(_dataContext.Votes.Where(v => v.Id == vote.Id).Select(v => v.Choice).FirstOrDefault());
+                choices.Add(_dataContext.Selections.Where(s => s.Id == selection.Id).Select(v => v.Choice).FirstOrDefault());
                 }
 
               return choices;
@@ -61,13 +61,13 @@ namespace KindleDecision.Repositories
             return saved > 0 ? true : false;
         }
 
-        public bool CreateChoice(int electionId, Choice choice)
+        public bool CreateChoice(int queryId, Choice choice)
         {
-            Election election = _dataContext.Elections
-                .Where(e => e.Id == electionId)
+            Query query = _dataContext.Querys
+                .Where(e => e.Id == queryId)
                 .FirstOrDefault();
 
-            choice.Election = election;
+            choice.Query = query;
 
             _dataContext.Add(choice);
 
