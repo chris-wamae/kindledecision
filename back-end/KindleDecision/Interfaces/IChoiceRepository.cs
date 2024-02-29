@@ -12,14 +12,14 @@ namespace KindleDecision.Interfaces
 
         ICollection<Choice> GetAllChoices();
 
-        ICollection<Choice> GetChoicesByElection(int electionId);
+        ICollection<Choice> GetChoicesByQuery(int queryId);
 
-        ICollection<Choice> GetChoicesByUserVote(int userId);
+        ICollection<Choice> GetChoicesByUserSelection(int userId);
 
         //Choice GetChoiceByVote(int voteId);
         bool Save();
 
-        bool CreateChoice(int electionId,Choice choice);
+        bool CreateChoice(int queryId,Choice choice);
 
         //this method should only be available before the first vote is cast
         //ie. RemainingVotes == TotalVotes

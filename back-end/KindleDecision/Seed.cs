@@ -14,40 +14,40 @@ namespace KindleDecision
 
         public void SeedDataContext()
         {
-            if (!dataContext.UserElections.Any())
+            if (!dataContext.UserQuerys.Any())
             {
-                var UserElections = new List<UserElection>()
+                List<UserQuery> UserQuerys = new List<UserQuery>()
                 {
-                    new UserElection()
+                    new UserQuery()
                     {
-                        Election = new Election()
+                        Query = new Query()
                         {
                             Title = "Where to go for Christmas?",
                             CreationTime = new DateTime(2023, 12, 3, 15, 48, 44),
                             ExpiryDate = new DateTime(2023, 12, 15, 0, 0, 0),
-                            TotalVotes = 3,
-                            RemainingVotes = 3,
+                            TotalSelections = 3,
+                            RemainingSelections = 3,
                             Choices = new List<Choice>()
                             {
                                 new Choice
                                 {
                                     Title = "Maldives",
-                                    Votes = new List<Vote>()
+                                    Selections = new List<Selection>()
                                     {
-                                    new Vote
+                                    new Selection
                                     {
-                                    VoterUserId = 2
+                                    SelectorUserId = 2
                                     },
-                                    new Vote
+                                    new Selection
                                     {
-                                    VoterUserId = 1
+                                    SelectorUserId = 1
                                     }
                                     }
                                 },
                                 new Choice
                                 {
                                     Title = "Pueto Vallarta",
-                                    Votes = new List<Vote>(){}
+                                    Selections = new List<Selection>(){}
                                 }
                             },
                             CreatorUserId = 1
@@ -61,25 +61,25 @@ namespace KindleDecision
                             Password = "wamae",
                         }
                     },
-                    new UserElection()
+                    new UserQuery()
                     {
-                        Election = new Election()
+                        Query = new Query()
                         {
                             Title = "Which is the greatest movie of all time?",
                             CreationTime = new DateTime(2023, 12, 3, 17, 48, 44),
                             ExpiryDate = new DateTime(2023, 12, 15, 1, 0, 0),
-                            TotalVotes = 3,
-                            RemainingVotes = 3,
+                            TotalSelections = 3,
+                            RemainingSelections = 3,
                             Choices = new List<Choice>()
                             {
                                 new Choice
                                 {
                                     Title = "Spirited Away?",
-                                    Votes = new List<Vote>()
+                                    Selections = new List<Selection>()
                                     {
-                                    new Vote
+                                    new Selection
                                     {
-                                        VoterUserId = 1
+                                        SelectorUserId = 1
                                     }
 
                                     }
@@ -87,22 +87,22 @@ namespace KindleDecision
                                 new Choice
                                 {
                                     Title = "Avengers: Endgame",
-                                    Votes = new List<Vote>()
+                                    Selections = new List<Selection>()
                                     {
-                                    new Vote
+                                    new Selection
                                     {
-                                    VoterUserId = 2
+                                    SelectorUserId = 2
                                     }
                                     }
                                 },
                                 new Choice()
                                 {
                                     Title = "X-Men: Days of future past",
-                                    Votes = new List<Vote>()
+                                    Selections = new List<Selection>()
                                     {
-                                    new Vote
+                                    new Selection
                                     {
-                                    VoterUserId = 3
+                                    SelectorUserId = 3
                                     }
                                     }
                                 }
@@ -118,48 +118,48 @@ namespace KindleDecision
                             Password = "chris",
                         }
                     },
-                    new UserElection()
+                    new UserQuery()
                     {
-                        Election = new Election()
+                        Query = new Query()
                         {
                             Title = "What's the age of the oldest human alive?",
                             CreationTime = new DateTime(2023, 12, 3, 17, 51, 44),
                             ExpiryDate = new DateTime(2023, 12, 15, 1, 36, 0),
-                            TotalVotes = 3,
-                            RemainingVotes = 3,
+                            TotalSelections = 3,
+                            RemainingSelections = 3,
                             Choices = new List<Choice>()
                             {
                                 new Choice
                                 {
                                     Title = "108",
-                                    Votes = new List<Vote>()
+                                    Selections = new List<Selection>()
                                     {
-                                    new Vote
+                                    new Selection
                                     {
-                                     VoterUserId = 1
+                                     SelectorUserId = 1
                                     }
                                     ,
-                                    new Vote
+                                    new Selection
                                     {
-                                    VoterUserId  = 2
+                                    SelectorUserId  = 2
                                     }
                                     }
                                 },
                                 new Choice
                                 {
                                     Title = "112",
-                                    Votes = new List<Vote>()
+                                    Selections = new List<Selection>()
                                     {
-                                    new Vote
+                                    new Selection
                                     {
-                                    VoterUserId = 3
+                                    SelectorUserId = 3
                                     }
                                     }
                                 },
                                 new Choice()
                                 {
                                     Title = "113",
-                                    Votes = new List<Vote>()
+                                    Selections = new List<Selection>()
                                     {
 
                                     }
@@ -177,7 +177,7 @@ namespace KindleDecision
                         }
                     }
                 };
-                dataContext.UserElections.AddRange(UserElections);
+                dataContext.UserQuerys.AddRange(UserQuerys);
                 dataContext.SaveChanges();
             }
         }

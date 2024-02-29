@@ -30,7 +30,7 @@ namespace KindleDecision.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ElectionId")
+                    b.Property<int>("QueryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -39,12 +39,12 @@ namespace KindleDecision.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ElectionId");
+                    b.HasIndex("QueryId");
 
                     b.ToTable("Choices");
                 });
 
-            modelBuilder.Entity("KindleDecision.Models.Election", b =>
+            modelBuilder.Entity("KindleDecision.Models.Query", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,19 +61,40 @@ namespace KindleDecision.Migrations
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("RemainingVotes")
+                    b.Property<int>("RemainingSelections")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TotalVotes")
+                    b.Property<int>("TotalSelections")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Elections");
+                    b.ToTable("Querys");
+                });
+
+            modelBuilder.Entity("KindleDecision.Models.Selection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ChoiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SelectorUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChoiceId");
+
+                    b.ToTable("Selections");
                 });
 
             modelBuilder.Entity("KindleDecision.Models.User", b =>
@@ -109,22 +130,22 @@ namespace KindleDecision.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("KindleDecision.Models.UserElection", b =>
+            modelBuilder.Entity("KindleDecision.Models.UserQuery", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ElectionId")
+                    b.Property<int>("QueryId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId", "ElectionId");
+                    b.HasKey("UserId", "QueryId");
 
-                    b.HasIndex("ElectionId");
+                    b.HasIndex("QueryId");
 
-                    b.ToTable("UserElections");
+                    b.ToTable("UserQuerys");
                 });
 
-            modelBuilder.Entity("KindleDecision.Models.UserVotedInElection", b =>
+            modelBuilder.Entity("KindleDecision.Models.UserSelectedInQuery", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -132,7 +153,7 @@ namespace KindleDecision.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ElectionId")
+                    b.Property<int>("QueryId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -140,64 +161,24 @@ namespace KindleDecision.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserVotedInElections");
-                });
-
-            modelBuilder.Entity("KindleDecision.Models.Vote", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ChoiceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VoterUserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ChoiceId");
-
-                    b.ToTable("Votes");
+                    b.ToTable("UserSelectedInQuerys");
                 });
 
             modelBuilder.Entity("KindleDecision.Models.Choice", b =>
                 {
-                    b.HasOne("KindleDecision.Models.Election", "Election")
+                    b.HasOne("KindleDecision.Models.Query", "Query")
                         .WithMany("Choices")
-                        .HasForeignKey("ElectionId")
+                        .HasForeignKey("QueryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Election");
+                    b.Navigation("Query");
                 });
 
-            modelBuilder.Entity("KindleDecision.Models.UserElection", b =>
-                {
-                    b.HasOne("KindleDecision.Models.Election", "Election")
-                        .WithMany("UserElections")
-                        .HasForeignKey("ElectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("KindleDecision.Models.User", "User")
-                        .WithMany("UserElections")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Election");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("KindleDecision.Models.Vote", b =>
+            modelBuilder.Entity("KindleDecision.Models.Selection", b =>
                 {
                     b.HasOne("KindleDecision.Models.Choice", "Choice")
-                        .WithMany("Votes")
+                        .WithMany("Selections")
                         .HasForeignKey("ChoiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -205,21 +186,40 @@ namespace KindleDecision.Migrations
                     b.Navigation("Choice");
                 });
 
-            modelBuilder.Entity("KindleDecision.Models.Choice", b =>
+            modelBuilder.Entity("KindleDecision.Models.UserQuery", b =>
                 {
-                    b.Navigation("Votes");
+                    b.HasOne("KindleDecision.Models.Query", "Query")
+                        .WithMany("UserQuerys")
+                        .HasForeignKey("QueryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KindleDecision.Models.User", "User")
+                        .WithMany("UserQuerys")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Query");
+
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("KindleDecision.Models.Election", b =>
+            modelBuilder.Entity("KindleDecision.Models.Choice", b =>
+                {
+                    b.Navigation("Selections");
+                });
+
+            modelBuilder.Entity("KindleDecision.Models.Query", b =>
                 {
                     b.Navigation("Choices");
 
-                    b.Navigation("UserElections");
+                    b.Navigation("UserQuerys");
                 });
 
             modelBuilder.Entity("KindleDecision.Models.User", b =>
                 {
-                    b.Navigation("UserElections");
+                    b.Navigation("UserQuerys");
                 });
 #pragma warning restore 612, 618
         }

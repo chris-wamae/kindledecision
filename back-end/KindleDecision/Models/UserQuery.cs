@@ -1,12 +1,12 @@
 ﻿namespace KindleDecision.Models
 {
-    public class UserElection
+    public class UserQuery
     {
         public int UserId { get; set; }
-        public int ElectionId { get; set; }
+        public int QueryId { get; set; }
 
         public User User { get; set; }
 
-        public Election Election { get; set; }
+        public Query Query { get; set; }
     }
 }

@@ -16,6 +16,6 @@
         
        
 
-        public ICollection<UserElection> UserElections { get; set; }
+        public ICollection<UserQuery> UserQuerys { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace KindleDecision.Repositories
    
 
 
-        public UserRepository(DataContext context, IElectionRepository electionRepository)
+        public UserRepository(DataContext context)
         {
                 _context = context;
         }
@@ -41,16 +41,16 @@ namespace KindleDecision.Repositories
         
         }
 
-        public ICollection<User> GetUsersByElection(int electionId)
+        public ICollection<User> GetUsersByQuery(int queryId)
         {
-            return _context.UserElections.Where(e => e.UserId == electionId).Select(e => e.User).ToList();
+            return _context.UserQuerys.Where(u => u.UserId == queryId).Select(q => q.User).ToList();
         }
 
-        public User GetElectionCreator(int electionId) 
+        public User GetQueryCreator(int queryId) 
         {
-            Election election = _context.Elections.Where(e => e.Id == electionId).FirstOrDefault();
+            Query query = _context.Querys.Where(q => q.Id == queryId).FirstOrDefault();
 
-            int userId = election.CreatorUserId;
+            int userId = query.CreatorUserId;
 
             return _context.Users.Where(u => u.Id == userId).FirstOrDefault();
         }

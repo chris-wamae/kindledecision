@@ -8,65 +8,65 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KindleDecision.Controllers
 {
-    [Route("choice/vote")]
+    [Route("choice/selection")]
     [ApiController]
-    public class VoteController : Controller
+    public class SelectionController : Controller
     {
         private readonly DataContext _dataContext;
-        private readonly IVoteRepository _voteRepository;
+        private readonly ISelectionRepository _selectionRepository;
         private readonly IMapper _mapper;
         private readonly IChoiceRepository _choiceRepository;
 
-        public VoteController(
+        public SelectionController(
             DataContext dataContext,
-            IVoteRepository voteRepository,
+            ISelectionRepository selectionRepository,
             IMapper mapper,
             IChoiceRepository choiceRepository
         )
         {
             _dataContext = dataContext;
-            _voteRepository = voteRepository;
+            _selectionRepository = selectionRepository;
             _mapper = mapper;
             _choiceRepository = choiceRepository;
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<VoteDto>))]
-        public IActionResult GetVotes()
+        [ProducesResponseType(200, Type = typeof(IEnumerable<SelectionDto>))]
+        public IActionResult GetSelections()
         {
-            var votes = _mapper.Map<List<VoteDto>>(_voteRepository.GetAllVotes());
+            var selections = _mapper.Map<List<SelectionDto>>(_selectionRepository.GetAllSelections());
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            return Ok(votes);
+            return Ok(selections);
         }
 
-        [HttpGet("{voteId}")]
-        [ProducesResponseType(200, Type = typeof(VoteDto))]
+        [HttpGet("{selectionId}")]
+        [ProducesResponseType(200, Type = typeof(SelectionDto))]
         [ProducesResponseType(400)]
-        public IActionResult GetVote(int voteId)
+        public IActionResult GetSelection(int selectionId)
         {
-            if (!_voteRepository.VoteExists(voteId))
+            if (!_selectionRepository.SelectionExists(selectionId))
             {
                 return NotFound();
             }
 
-            var vote = _mapper.Map<VoteDto>(_voteRepository.GetVote(voteId));
+            var selection = _mapper.Map<SelectionDto>(_selectionRepository.GetSelection(selectionId));
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            return Ok(vote);
+            return Ok(selection);
         }
 
-        [HttpGet("get-votes-by-choice/{choiceId}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<VoteDto>))]
+        [HttpGet("get-selections-by-choice/{choiceId}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<SelectionDto>))]
         [ProducesResponseType(400)]
-        public IActionResult GetVoteByChoice(int choiceId)
+        public IActionResult GetSelectionByChoice(int choiceId)
         {
             if (!_choiceRepository.ChoiceExists(choiceId))
             {
@@ -75,51 +75,51 @@ namespace KindleDecision.Controllers
                 return StatusCode(404, ModelState);
             }
 
-            var votes = _mapper.Map<List<VoteDto>>(_voteRepository.GetVotesByChoice(choiceId));
+            var selections = _mapper.Map<List<SelectionDto>>(_selectionRepository.GetSelectionsByChoice(choiceId));
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            return Ok(votes);
+            return Ok(selections);
         }
 
-        [HttpGet("get-votes-by-user/{userId}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<VoteDto>))]
+        [HttpGet("get-selections-by-user/{userId}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<SelectionDto>))]
         [ProducesResponseType(400)]
-        public IActionResult GetVotesByUser(int userId)
+        public IActionResult GetSelectionsByUser(int userId)
         {
-            var votes = _mapper.Map<List<VoteDto>>(_voteRepository.GetVotesByUser(userId));
+            var selections = _mapper.Map<List<SelectionDto>>(_selectionRepository.GetSelectionsByUser(userId));
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            return Ok(votes);
+            return Ok(selections);
         }
 
         [HttpPost("{choiceId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateVote(
-            [Required] int electionId,
+        public IActionResult CreateSelection(
+            [Required] int queryId,
             [Required] int userId,
             int choiceId,
-            VoteDto voteDto
+            SelectionDto selectionDto
         )
         {
-            List<Vote> userVotes = _voteRepository.GetVotesByUser(userId).ToList();
+            List<Selection> userSelections = _selectionRepository.GetSelectionsByUser(userId).ToList();
 
-            List<Vote> choiceVotes = _voteRepository.GetVotesByChoice(choiceId).ToList();
+            List<Selection> choiceSelections = _selectionRepository.GetSelectionsByChoice(choiceId).ToList();
 
             bool hasVoted = false;
 
-            foreach (Vote cv in choiceVotes)
+            foreach (Selection cs in choiceSelections)
             {
                 if (!hasVoted)
                 {
-                    if(userVotes.Any(v => v.Id == cv.Id))
+                    if(userSelections.Any(s => s.Id == cs.Id))
                     {
                         hasVoted = true;
                     }
@@ -132,7 +132,7 @@ namespace KindleDecision.Controllers
                 return StatusCode(422, ModelState);
             }
 
-            if (voteDto == null)
+            if (selectionDto == null)
             {
                 return BadRequest(ModelState);
             }
@@ -152,39 +152,39 @@ namespace KindleDecision.Controllers
                 return BadRequest(ModelState);
             }
 
-            var voteCreate = _mapper.Map<Vote>(voteDto);
+            var selectionCreate = _mapper.Map<Selection>(selectionDto);
 
-            if (!_voteRepository.CreateVote(choiceId, voteCreate))
+            if (!_selectionRepository.CreateSelection(choiceId, selectionCreate))
             {
-                ModelState.AddModelError("", "Something went wrong while saving the vote");
+                ModelState.AddModelError("", "Something went wrong while saving the selection");
 
                 return StatusCode(500, ModelState);
             }
 
-            return Ok(voteCreate);
+            return Ok(selectionCreate);
         }
 
-        [HttpDelete("{voteId}")]
+        [HttpDelete("{selectionId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
 
-        public IActionResult DeleteVote(int voteId)
+        public IActionResult DeleteSelection(int selectionId)
         {
-            if(!_voteRepository.VoteExists(voteId))
+            if(!_selectionRepository.SelectionExists(selectionId))
             {
                 return NotFound();
             }
 
-            var voteRemove  = _voteRepository.GetVote(voteId);
+            var selectionRemove  = _selectionRepository.GetSelection(selectionId);
 
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if(!_voteRepository.DeleteVote(voteRemove))
+            if(!_selectionRepository.DeleteSelection(selectionRemove))
             {
-                ModelState.AddModelError("", "Something went wrong while deleting");
+                ModelState.AddModelError("", "Something went wrong while deleting the selection");
                 return StatusCode(500, ModelState);
             } 
 
