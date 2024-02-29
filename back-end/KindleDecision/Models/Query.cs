@@ -1,6 +1,6 @@
 ﻿namespace KindleDecision.Models
 {
-    public class Election
+    public class Query
     {
         public int Id { get; set; }
 
@@ -10,14 +10,14 @@
 
         public DateTime ExpiryDate { get; set; }
 
-        public int TotalVotes { get; set; }
+        public int TotalSelections { get; set; }
 
-        public int RemainingVotes { get; set; }
+        public int RemainingSelections { get; set; }
 
         public int CreatorUserId { get; set; }
 
         public ICollection<Choice> Choices { get; set; }
 
-        public ICollection<UserElection> UserElections { get; set; }
+        public ICollection<UserQuery> UserQuerys { get; set; }
     }
 }

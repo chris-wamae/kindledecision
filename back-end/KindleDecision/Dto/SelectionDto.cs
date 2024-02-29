@@ -2,9 +2,9 @@
 
 namespace KindleDecision.Dto
 {
-    public class VoteDto
+    public class SelectionDto
     {   
         public int Id { get; set; } 
-        public int VoterUserId { get; set; }
+        public int SelectionUserId { get; set; }
     }
 }

@@ -6,19 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KindleDecision.Controllers
 {
-    [Route("election/choice")]
+    [Route("query/choice")]
     [ApiController]
     public class ChoiceController : Controller
     {
         private readonly IChoiceRepository _choiceRepository;
-        private readonly IElectionRepository _electionRepository;
+        private readonly IQueryRepository _queryRepository;
         private readonly IMapper _mapper;
 
-        public ChoiceController(IChoiceRepository choiceRepository, IMapper mapper, IElectionRepository electionRepository)
+        public ChoiceController(IChoiceRepository choiceRepository, IMapper mapper, IQueryRepository queryRepository)
         {
             _choiceRepository = choiceRepository;
             _mapper = mapper;
-            _electionRepository = electionRepository;
+            _queryRepository = queryRepository;
         }
 
         [HttpGet]
@@ -58,13 +58,13 @@ namespace KindleDecision.Controllers
 
         }
 
-        [HttpGet("get-election-choices/{electionId}")]
+        [HttpGet("get-query-choices/{queryId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Choice>))]
 
-        public IActionResult GetChoicesByElection(int electionId)
+        public IActionResult GetChoicesByQuery(int queryId)
         {
 
-            var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByElection(electionId));
+            var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByQuery(queryId));
 
             if (!ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace KindleDecision.Controllers
 
         public IActionResult GetChoicesByUserId(int userId)
         {
-            var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByUserVote(userId));
+            var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByUserSelection(userId));
 
             if (!ModelState.IsValid)
             {
@@ -98,11 +98,11 @@ namespace KindleDecision.Controllers
 
         }
 
-        [HttpPost("{electionId}")]
+        [HttpPost("{queryId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
 
-        public IActionResult CreateChoice( int electionId, [FromBody] ChoiceDto choiceCreate)
+        public IActionResult CreateChoice( int queryId, [FromBody] ChoiceDto choiceCreate)
         {
             if (choiceCreate == null)
                 return BadRequest(ModelState);
@@ -115,7 +115,7 @@ namespace KindleDecision.Controllers
 
             var choiceMap = _mapper.Map<Choice>(choiceCreate);
 
-            if(!_choiceRepository.CreateChoice(electionId, choiceMap))
+            if(!_choiceRepository.CreateChoice(queryId, choiceMap))
             {
                 ModelState.AddModelError("", "Something went wrong while saving the Choice");
                 return StatusCode(500, ModelState);

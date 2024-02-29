@@ -9,14 +9,14 @@ namespace KindleDecision.Helper
     {
         public MappingProfile() 
         {
-            CreateMap<Election, ElectionDto>();
-            CreateMap<Vote, VoteDto>();
+            CreateMap<Query, QueryDto>();
+            CreateMap<Selection, SelectionDto>();
             CreateMap<User, UserDto>();
             CreateMap<Choice, ChoiceDto>();
-            CreateMap<VoteDto, Vote>();
+            CreateMap<SelectionDto, Selection>();
             CreateMap<UserDto, User>();
             CreateMap<ChoiceDto, Choice>();
-            CreateMap<ElectionDto, Election>();
+            CreateMap<QueryDto, Query>();
         }
     }
 }
