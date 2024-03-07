@@ -5,11 +5,13 @@ using System.Text.Json.Serialization;
 using Microsoft.OpenApi.Models;
 using KindleDecision.Repositories;
 using KindleDecision.Interfaces;
+using KindleDecision.ServiceExtentions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddAuthentication();
+builder.Services.ConfigureIdentity();
 builder.Services.AddControllers();
 builder.Services.AddTransient<Seed>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -20,6 +22,7 @@ builder.Services.AddScoped<IQueryRepository, QueryRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ISelectionRepository, SelectionRepository>();
 builder.Services.AddScoped<IChoiceRepository, ChoiceRepository>();
+builder.Services.AddScoped<IUserSelectedInQueryRepository, UserSelectedInQueryRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

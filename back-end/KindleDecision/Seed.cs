@@ -24,6 +24,7 @@ namespace KindleDecision
                         {
                             Title = "Where to go for Christmas?",
                             CreationTime = new DateTime(2023, 12, 3, 15, 48, 44),
+                            StartDate = new DateTime(2024,1,15,0,0,0),
                             ExpiryDate = new DateTime(2023, 12, 15, 0, 0, 0),
                             TotalSelections = 3,
                             RemainingSelections = 3,
@@ -31,18 +32,7 @@ namespace KindleDecision
                             {
                                 new Choice
                                 {
-                                    Title = "Maldives",
-                                    Selections = new List<Selection>()
-                                    {
-                                    new Selection
-                                    {
-                                    SelectorUserId = 2
-                                    },
-                                    new Selection
-                                    {
-                                    SelectorUserId = 1
-                                    }
-                                    }
+                                    Title = "Maldives"
                                 },
                                 new Choice
                                 {
@@ -67,6 +57,7 @@ namespace KindleDecision
                         {
                             Title = "Which is the greatest movie of all time?",
                             CreationTime = new DateTime(2023, 12, 3, 17, 48, 44),
+                            StartDate = new DateTime(2024,1,15,0,0,0),
                             ExpiryDate = new DateTime(2023, 12, 15, 1, 0, 0),
                             TotalSelections = 3,
                             RemainingSelections = 3,
@@ -74,37 +65,15 @@ namespace KindleDecision
                             {
                                 new Choice
                                 {
-                                    Title = "Spirited Away?",
-                                    Selections = new List<Selection>()
-                                    {
-                                    new Selection
-                                    {
-                                        SelectorUserId = 1
-                                    }
-
-                                    }
+                                    Title = "Spirited Away?"
                                 },
                                 new Choice
                                 {
-                                    Title = "Avengers: Endgame",
-                                    Selections = new List<Selection>()
-                                    {
-                                    new Selection
-                                    {
-                                    SelectorUserId = 2
-                                    }
-                                    }
+                                    Title = "Avengers: Endgame"
                                 },
                                 new Choice()
                                 {
-                                    Title = "X-Men: Days of future past",
-                                    Selections = new List<Selection>()
-                                    {
-                                    new Selection
-                                    {
-                                    SelectorUserId = 3
-                                    }
-                                    }
+                                    Title = "X-Men: Days of future past"
                                 }
                             },
                             CreatorUserId   =  2,
@@ -124,6 +93,7 @@ namespace KindleDecision
                         {
                             Title = "What's the age of the oldest human alive?",
                             CreationTime = new DateTime(2023, 12, 3, 17, 51, 44),
+                            StartDate = new DateTime(2024,1,15,0,0,0),
                             ExpiryDate = new DateTime(2023, 12, 15, 1, 36, 0),
                             TotalSelections = 3,
                             RemainingSelections = 3,
@@ -131,38 +101,15 @@ namespace KindleDecision
                             {
                                 new Choice
                                 {
-                                    Title = "108",
-                                    Selections = new List<Selection>()
-                                    {
-                                    new Selection
-                                    {
-                                     SelectorUserId = 1
-                                    }
-                                    ,
-                                    new Selection
-                                    {
-                                    SelectorUserId  = 2
-                                    }
-                                    }
+                                    Title = "108"
                                 },
                                 new Choice
                                 {
-                                    Title = "112",
-                                    Selections = new List<Selection>()
-                                    {
-                                    new Selection
-                                    {
-                                    SelectorUserId = 3
-                                    }
-                                    }
+                                    Title = "112"
                                 },
                                 new Choice()
                                 {
-                                    Title = "113",
-                                    Selections = new List<Selection>()
-                                    {
-
-                                    }
+                                    Title = "113"
                                 }
                             },
                             CreatorUserId = 3

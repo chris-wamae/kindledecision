@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KindleDecision.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240229123631_Initial-Create")]
-    partial class InitialCreate
+    [Migration("20240306084952_Intial-Migration")]
+    partial class IntialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,6 +66,9 @@ namespace KindleDecision.Migrations
 
                     b.Property<int>("RemainingSelections")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
