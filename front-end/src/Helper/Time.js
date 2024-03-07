@@ -8,3 +8,9 @@ export const getTime = () => {
 
     return `${currentDate} at ${currentTime}`;
   }
+
+
+export const timeAfterMinutes = (minutes) => {
+  
+  return new Date(new Date().getTime() + minutes * 60 * 1000);
+}

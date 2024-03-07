@@ -1,7 +1,8 @@
 import "../styles/NewQuery.css"
 import { useRef } from "react"
 import { queryState } from "../features/querySlice";
-import { UseSelector, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 function NewQuery() {
@@ -16,6 +17,7 @@ function NewQuery() {
     const buttonRef = useRef(null);
     const dummyTitle = "How many days to master something?"
     const dummyLink = "https://castavote.com/jc357cfh"
+    const navigate = useNavigate()
 
     console.log(query);
 
@@ -58,7 +60,13 @@ function NewQuery() {
                 <div>Done?</div>
 
                 <button>Go to dashboard</button>
-                <button>Go to Query</button>
+                <button onClick={() => {
+                navigate(
+                {
+                pathname: "/query",
+                search:`?id=${query.id}`
+                })
+                }}>Go to Query</button>
             </div>
         </>
     )

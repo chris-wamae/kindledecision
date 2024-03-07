@@ -1,10 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { timeAfterMinutes } from "../Helper/Time";
 
 export const postQuery = createAsyncThunk("query/postQuery",async (post) => {
 
 const response = await axios.post(`${process.env.REACT_APP_BASE_URL}queries`, post )
+
+Cookies.set("NQID", response.data.id, {expires:timeAfterMinutes(15)})
 
 return response.data
 
@@ -32,6 +36,7 @@ const initialState = {
 
         creatorUserId:null
     },
+    queries:[],
     status: "idle",
     error: null
 }
@@ -40,7 +45,7 @@ export const querySlice = createSlice({
     name: "query",
     initialState,
     reducers: {
-        initialCreate:
+        setQueryState:
          (state, action) => {
             state.query = action.payload
         }
@@ -72,5 +77,6 @@ export const querySlice = createSlice({
 
 export const queryState = state => state.query.query
 
+export const {setQueryState} = querySlice.actions
 
 export default querySlice.reducer;
