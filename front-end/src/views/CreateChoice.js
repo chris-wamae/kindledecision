@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/CreateChoice.css"
 import DynamicList from "../components/DynamicList";
 import { useSelector, useDispatch} from "react-redux";
@@ -7,6 +7,9 @@ import { postChoice } from "../features/choiceSlice";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { queryState } from "../features/querySlice";
+import Cookies from "js-cookie";
+import { timeAfterMinutes } from "../Helper/Time";
+import axios from "axios";
 
 function CreateChoice(){  
     const navItems = ["Features", "Login", "How it Works"]
@@ -15,12 +18,22 @@ function CreateChoice(){
     const currentQuery = useSelector(queryState)
     const [choiceName, setChoiceName] = useState("")
     const [queryChoices, setQueryChoices] = useState([])
-    
-    console.log(currentQuery);
+
     const choiceDispatcher = () => {
+     
+      let currentQueryId = currentQuery.id
+
+      if(currentQuery.id == undefined)
+      {
+       currentQueryId = Cookies.get("NQID")
+      }
+
+      console.log(currentQueryId);
+
       queryChoices.forEach((e) => {
-        dispatch(postChoice({title:e, queryId:currentQuery.id}))
+        dispatch(postChoice({title:e, queryId:currentQueryId}))
       })
+
       navigate("/add-participants", {replace: true})
     }
 

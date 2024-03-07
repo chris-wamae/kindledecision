@@ -15,6 +15,7 @@ const initialState = {
         queryId:null,
         userId:null
 },
+    queryUsers:[],
     status:"idle",
     error:null
 }
@@ -23,7 +24,10 @@ export const userQueriesSlice = createSlice({
     name:"userQuery",
     initialState,
     reducers: {
-
+    setQueryUsers : (state,action) => 
+    {
+        state.queryUsers = action.payload
+    }
     },
     extraReducers(builder)
     {
@@ -49,5 +53,8 @@ export const userQueriesSlice = createSlice({
 
 export const userQueryState = state => state.userQuery.userQuery;
 
+export const queryUsersState = state => state.userQuery.queryUsers;
+
+export const {setQueryUsers} = userQueriesSlice.actions;
 
 export default userQueriesSlice.reducer;

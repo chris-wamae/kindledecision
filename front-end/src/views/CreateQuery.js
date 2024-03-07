@@ -11,6 +11,8 @@ import { queryState } from "../features/querySlice";
 import { changeQueryId } from "../features/idSlice";
 import { currentUserId } from "../features/idSlice";
 import { useEffect } from "react";
+import Cookies from "js-cookie";
+import { timeAfterMinutes } from "../Helper/Time";
 
 function CreateQuery() {
 
@@ -24,6 +26,9 @@ function CreateQuery() {
   const [expiryDate, setExpiryDate] = useState("")
   const [showStartDateInput, setShowStartDateInput] = useState("display-none start-date-input")
   const userId = useSelector(currentUserId)
+  const query = useSelector(queryState)
+
+
 
   const canSave = () => {
 

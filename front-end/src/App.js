@@ -11,6 +11,7 @@ import CreateChoice from './views/CreateChoice';
 import AddSelectors from './views/AddSelectors';
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 import { postQuery } from './features/querySlice';
+import SingleQuery from './views/SingleQuery';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Route exact path="/new-query" element={<NewQuery/>}></Route>
       <Route exact path="/add-choices" element={<CreateChoice/>}></Route>
       <Route exact path="/add-participants" element={<AddSelectors/>}></Route>
+      <Route path="/query" element={<SingleQuery/>}></Route>
       </Routes> 
      </Router>
    </>
