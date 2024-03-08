@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using KindleDecision.Configurations;
 
 namespace KindleDecision.Data
 {
@@ -39,6 +40,8 @@ namespace KindleDecision.Data
                 .HasOne(p => p.Query)
                 .WithMany(pc => pc.UserQuerys)
                 .HasForeignKey(c => c.QueryId);
+
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
 
     }
