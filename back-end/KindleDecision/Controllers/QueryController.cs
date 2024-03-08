@@ -3,11 +3,13 @@ using KindleDecision.Models;
 using AutoMapper;
 using KindleDecision.Dto;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KindleDecision.Controllers
 {
     [Route("query")]
     [ApiController]
+    
     public class QueryController : Controller
     {
         private readonly IQueryRepository _queryRepository;
@@ -21,6 +23,7 @@ namespace KindleDecision.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
+        [Authorize]
         public IActionResult GetQueries()
         {
             var querys = _mapper.Map<List<QueryDto>>(_queryRepository.GetAllQuerys());

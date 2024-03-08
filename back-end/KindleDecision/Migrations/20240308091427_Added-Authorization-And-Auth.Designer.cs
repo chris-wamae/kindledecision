@@ -4,6 +4,7 @@ using KindleDecision.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KindleDecision.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240308091427_Added-Authorization-And-Auth")]
+    partial class AddedAuthorizationAndAuth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +44,7 @@ namespace KindleDecision.Migrations
 
                     b.HasIndex("QueryId");
 
-                    b.ToTable("Choices", (string)null);
+                    b.ToTable("Choices");
                 });
 
             modelBuilder.Entity("KindleDecision.Models.Query", b =>
@@ -76,7 +79,7 @@ namespace KindleDecision.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Querys", (string)null);
+                    b.ToTable("Querys");
                 });
 
             modelBuilder.Entity("KindleDecision.Models.Selection", b =>
@@ -97,7 +100,7 @@ namespace KindleDecision.Migrations
 
                     b.HasIndex("ChoiceId");
 
-                    b.ToTable("Selections", (string)null);
+                    b.ToTable("Selections");
                 });
 
             modelBuilder.Entity("KindleDecision.Models.User", b =>
@@ -130,7 +133,7 @@ namespace KindleDecision.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("KindleDecision.Models.UserQuery", b =>
@@ -145,7 +148,7 @@ namespace KindleDecision.Migrations
 
                     b.HasIndex("QueryId");
 
-                    b.ToTable("UserQuerys", (string)null);
+                    b.ToTable("UserQuerys");
                 });
 
             modelBuilder.Entity("KindleDecision.Models.UserSelectedInQuery", b =>
@@ -164,7 +167,7 @@ namespace KindleDecision.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserSelectedInQuerys", (string)null);
+                    b.ToTable("UserSelectedInQuerys");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
