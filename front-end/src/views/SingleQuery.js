@@ -6,7 +6,9 @@ import { setQueryState } from "../features/querySlice";
 import { setChoicesState } from "../features/choiceSlice";
 import { choicesState } from "../features/choiceSlice";
 import { queryUsersState, setQueryUsers } from "../features/userQueriesSlice";
+import "../styles/SingleQuery.css"
 import axios from "axios";
+import Navbar from "../components/Navbar";
 
 
 function SingleQuery() {
@@ -15,6 +17,10 @@ function SingleQuery() {
     const query = useSelector(queryState);
     const choices = useSelector(choicesState);
     const queryUsers = useSelector(queryUsersState);
+
+    console.log(query)
+    console.log(choices)
+    console.log(queryUsers)
 
     useEffect(() => {
         if (query.id == undefined) {
@@ -29,15 +35,18 @@ function SingleQuery() {
                 .then(r => dispatch(setChoicesState(r.data)))
             dispatch(setQueryUsers([{
                 id: 0,
-                email: "wamae@gmail.com"
+                email: "wamae@gmail.com",
+                status: true
             },
             {
                 id: 1,
-                email: "joker@gmail.com"
+                email: "joker@gmail.com",
+                status: true
             },
             {
                 id: 2,
-                email: "killua@gmail.com"
+                email: "killua@gmail.com",
+                status: false
             }
             ]))
         }
@@ -45,9 +54,63 @@ function SingleQuery() {
 
     }, [query])
 
+
+
     return (
-        <>
-            <h1>Hello World + {query.id}</h1>
+        <>  <Navbar navItems={["Features", "Login", "How it Works"]}/>
+            <div className="single-query-page">
+                <section className="query-details-container white-background">
+                    <div className="main-title">Query details</div>
+                    <div className="inner-qdc">
+                        <p>Title: {query.title}</p>
+                        <p>Start date: {query.startDate}</p>
+                        <p>Expiry date: {query.expiryDate}</p>
+                        <p>Total participants: {query.totalSelectors}</p>
+                        <p>Remaining participants: {query.remainingSelectors}</p>
+                        <p>Creator: creatorUserId:{query.creatorUserId}</p>
+                    </div>
+                    <button>Participate</button>
+                </section>
+                <section className="secondary-details">
+                    <div className="participants-container white-background">
+                        <div className="main-title">Participants</div>
+                        <div className="inner-pc">    
+                            <div className="participants-headers sub-heading">
+                                <div>Email</div>
+                                <div>Status</div>
+                            </div>                                                
+                            <div className="participants">
+                                {
+                                    queryUsers.map((u,i) => {
+                                        return <div className="single-participant">
+                                            <div className="single-participant-email">
+                                            <div>{i+1}.&#160;</div> 
+                                            <div>{u.email}</div>
+                                            </div>
+                                            
+                                            <div>{u.status ? "completed" : "pending"}</div>
+                                        </div>
+                                    })
+                                }
+                            </div>
+                        </div>
+                       
+
+
+                       
+                    </div>
+                    <div className="choices-container white-background">
+                        <div className="main-title">Choices</div>
+                        <div className="choices">
+                        {choices.map((c,i) => {
+                            return <div className="single-choice">{i+1}.&#160;{c.title}</div>
+                        })}
+                        </div>
+                    </div>
+                    
+                </section>
+            </div>
+
         </>
     )
 }
