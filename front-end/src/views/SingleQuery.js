@@ -9,6 +9,7 @@ import { queryUsersState, setQueryUsers } from "../features/userQueriesSlice";
 import "../styles/SingleQuery.css"
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 
 function SingleQuery() {
@@ -17,6 +18,7 @@ function SingleQuery() {
     const query = useSelector(queryState);
     const choices = useSelector(choicesState);
     const queryUsers = useSelector(queryUsersState);
+    const navigate = useNavigate();
 
     console.log(query)
     console.log(choices)
@@ -69,7 +71,12 @@ function SingleQuery() {
                         <p>Remaining participants: {query.remainingSelectors}</p>
                         <p>Creator: creatorUserId:{query.creatorUserId}</p>
                     </div>
-                    <button>Participate</button>
+                    <button onClick={() => {
+                    navigate({
+                    pathname:"/selection",
+                    search:`?id=${query.id}`
+                    })
+                    }}>Participate</button>
                 </section>
                 <section className="secondary-details">
                     <div className="participants-container white-background">

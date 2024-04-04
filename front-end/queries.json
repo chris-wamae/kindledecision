@@ -163,7 +163,9 @@
       "queryId": "1065"
     }
   ],
-  "Selections": [],
+  "UserChoices": [
+
+  ],
   "Users": [
     {
       "id": "0",
