@@ -100,15 +100,15 @@ function AddSelectors() {
     <>
     <Navbar navItems={navItems}/>
       <div className="page-container">
-        <p>*for app to work use these emails in their order:
+        {/* <p>*for app to work use these emails in their order:
           <br></br>
           wamae@gmail.com
           <br></br>
           joker@gmail.com
           <br></br>
           killua@gmail.com
-        </p>
-        <div className="page-title">Query selectors</div>
+        </p> */}
+        <div className="page-title">Add query participants</div>
 
         <form>
 

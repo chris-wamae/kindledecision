@@ -39,6 +39,36 @@
       "totalSelectors": null,
       "remainingSelectors": null,
       "creatorUserId": "0"
+    },
+    {
+      "id": "feba",
+      "title": "Where to go for Christmas?",
+      "creationTime": "Mon Mar 11 2024 at 2:29:02 PM",
+      "startDate": null,
+      "expiryDate": "2024-03-20",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "1126",
+      "title": "Where to go for Christmas?",
+      "creationTime": "Tue Mar 26 2024 at 12:19:11 PM",
+      "startDate": null,
+      "expiryDate": "2024-03-29",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "1065",
+      "title": "Where to go for Easter Holidays?",
+      "creationTime": "Thu Apr 04 2024 at 3:33:48 PM",
+      "startDate": "2024-05-01",
+      "expiryDate": "2024-05-10",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
     }
   ],
   "Choices": [
@@ -91,6 +121,46 @@
       "id": "9441",
       "title": "Tommorow",
       "queryId": "198a"
+    },
+    {
+      "id": "b767",
+      "title": "Prague",
+      "queryId": "feba"
+    },
+    {
+      "id": "ce27",
+      "title": "Prague",
+      "queryId": "feba"
+    },
+    {
+      "id": "4fd2",
+      "title": "Prague",
+      "queryId": "feba"
+    },
+    {
+      "id": "9191",
+      "title": "Prague",
+      "queryId": "1126"
+    },
+    {
+      "id": "d114",
+      "title": "Nyeri",
+      "queryId": "1065"
+    },
+    {
+      "id": "4243",
+      "title": "Nakuru",
+      "queryId": "1065"
+    },
+    {
+      "id": "de46",
+      "title": "Meru",
+      "queryId": "1065"
+    },
+    {
+      "id": "c795",
+      "title": "Kisumu",
+      "queryId": "1065"
     }
   ],
   "Selections": [],
@@ -223,6 +293,51 @@
       "id": "e622",
       "queryId": "198a",
       "userId": "2"
+    },
+    {
+      "id": "488f",
+      "queryId": "feba",
+      "userId": "0"
+    },
+    {
+      "id": "5289",
+      "queryId": "feba",
+      "userId": "0"
+    },
+    {
+      "id": "a938",
+      "queryId": "feba",
+      "userId": "0"
+    },
+    {
+      "id": "18d7",
+      "queryId": "1126",
+      "userId": "0"
+    },
+    {
+      "id": "fcd9",
+      "queryId": "1126",
+      "userId": "2"
+    },
+    {
+      "id": "511d",
+      "queryId": "1065",
+      "userId": "2"
+    },
+    {
+      "id": "89ca",
+      "queryId": "1065",
+      "userId": "0"
+    },
+    {
+      "id": "e1ae",
+      "queryId": "1065",
+      "userId": "0"
+    },
+    {
+      "id": "80fd",
+      "queryId": "1065",
+      "userId": "0"
     }
   ]
 }

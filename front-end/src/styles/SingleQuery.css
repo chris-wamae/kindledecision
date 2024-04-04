@@ -1,0 +1,133 @@
+.query-details-container
+{  
+    margin:20px;
+    width:90%;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+   
+}
+
+.inner-qdc
+{
+ display:flex;
+ flex-wrap:wrap;
+ width:50%;
+}
+
+.inner-qdc p {
+    margin:20px;
+}
+
+.white-background
+{
+    background-color:white;
+    border-radius:20px;
+}
+
+button{
+    color:white;
+    background-color:var(--utOrange);
+    height:40px;
+    width:140px;
+    border:0px;
+    font-size:20px;
+    font-weight:bold;
+    border-radius:10px;
+}
+
+.main-title
+{
+font-size:24px;
+text-decoration:underline;
+font-weight:bold;
+}
+
+.sub-titles
+{
+font-size:18px;
+font-weight:bold;
+}
+
+.single-query-page
+{
+display:flex;
+flex-wrap:wrap;
+}
+
+.secondary-details
+{
+display:flex;
+justify-content:space-around;
+width:90%;
+}
+
+
+.choices-container
+{
+width:35%;
+display:flex;
+align-items:center;
+flex-direction:column;
+
+}
+
+.participants-container
+{
+width:55%;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.participants-headers
+{
+display:flex;
+justify-content:space-around;
+margin-bottom:5px;
+
+}
+
+.participants
+{
+display:flex;
+flex-direction: column;
+}
+
+.inner-pc
+{
+ width:80%;
+}
+
+.single-participant
+{
+display:flex;
+justify-content:space-around;
+margin-bottom:20px;
+}
+
+
+.single-participant-email
+{
+display:flex;
+flex-direction:row;
+margin-right:20px;
+}
+
+.sub-heading
+{
+text-decoration:underline;
+font-weight:bold;
+font-size:24px;
+}
+.choices
+{
+width:80%;
+}
+
+.single-choice
+{
+margin-bottom:20px;
+}
