@@ -4,6 +4,9 @@ using KindleDecision.Data;
 using AutoMapper;
 using KindleDecision.Dto;
 using KindleDecision.Services;
+using KindleDecision.Models;
+using KindleDecision.Repositories;
+using KindleDecision.Interfaces;
 
 namespace KindleDecision.Controllers
 {
@@ -11,18 +14,21 @@ namespace KindleDecision.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-    private readonly UserManager<ApiUser> _userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
     private readonly ILogger<AccountController> _logger;
     private readonly IMapper _mapper;
     private readonly IAuthManager _authManager;
+    private readonly IUserRepository _userRepository;
 
 
-    public AccountController(UserManager<ApiUser> userManager, ILogger<AccountController> logger, IMapper mapper, IAuthManager authManager)
+
+    public AccountController(UserManager<ApplicationUser> userManager, ILogger<AccountController> logger, IMapper mapper, IAuthManager authManager, IUserRepository userRepository)
         {
             _userManager = userManager;
             _logger = logger;
             _mapper = mapper;
             _authManager = authManager;
+            _userRepository = userRepository;
         }
 
 
@@ -40,8 +46,31 @@ namespace KindleDecision.Controllers
 
             try
             {
-                var user = _mapper.Map<ApiUser>(userDto);
+                var user = _mapper.Map<ApplicationUser>(userDto);
+                var internalUser = _mapper.Map<User>(userDto);
+                
                 user.UserName = userDto.Email;
+
+                if(!_userRepository.CreateUser(internalUser))
+                {
+                    ModelState.AddModelError("", "Something went wrong while creating the user");
+                    return BadRequest(ModelState);
+                }
+
+                //can this functionality be improved?
+                //ie. not fetch the user again just to get their ID
+
+                internalUser = _userRepository.GetUserByEmail(internalUser.Email.ToString());
+
+                if(internalUser == null)
+                {
+                    ModelState.AddModelError("", "Something went wrong while retrieving the new User");
+
+                    return StatusCode(500, ModelState);
+                } 
+
+                user.UserId = internalUser.Id; user.Email = userDto.Email;
+
                 var result = await _userManager.CreateAsync(user, userDto.Password);
 
                 if(!result.Succeeded)
