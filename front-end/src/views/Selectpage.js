@@ -9,13 +9,21 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import "../styles/Selectpage.css"
+import { postSelection } from "../features/selectionSlice";
+import { selectionState } from "../features/selectionSlice";
+import { useNavigate } from "react-router-dom";
 
 function Selectpage() {
+    
+    const navigate = useNavigate()
+
     const query = useSelector(queryState)
 
     const choices = useSelector(choicesState)
 
     const location = useLocation()
+
+    const selection = useSelector(selectionState)
 
     const dispatch = useDispatch()
 
@@ -24,6 +32,15 @@ function Selectpage() {
     const [showConfirmation, setShowConfirmation] = useState(false)
 
     const [choiceTitle, setChoiceTitle] = useState("")
+
+        //placeholderUser(wamae)
+        const userId = 0
+
+        const selectChoice = (choiceId, userId) => 
+        {
+        dispatch(postSelection({choiceId:choiceId, selectorUserId:userId}))
+        }
+    //console.log(selection);
 
     //console.log(choiceId)
 
@@ -53,8 +70,11 @@ function Selectpage() {
                     <div className={showConfirmation ? "confirmation" : "hide-confirmation"}>
                         <div className="options-title">Select <span className="choice-name">{choiceTitle}</span> as your choice?</div>
                         <div className="select-buttons">
-                            <div className="yes option-select">&#x2714;</div>
-                            <div className="no option-select">X</div>
+                            <div className="yes option-select" onClick={() => {
+                                selectChoice(choiceId, userId)
+                                navigate("/successful-selection")}
+                        }>&#x2714;</div>
+                            <div className="no option-select" onClick={() => setShowConfirmation(false)}>X</div>
                         </div>
 
                     </div>

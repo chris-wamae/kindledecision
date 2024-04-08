@@ -13,6 +13,8 @@ import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 import { postQuery } from './features/querySlice';
 import SingleQuery from './views/SingleQuery';
 import Selectpage from './views/Selectpage';
+import SelectionSuccess from './views/SelectionSuccess';
+import UserDashboard from './views/UserDashboard';
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
       <Route exact path="/add-participants" element={<AddSelectors/>}></Route>
       <Route path="/query" element={<SingleQuery/>}></Route>
       <Route path="/selection" element={<Selectpage/>}></Route>
+      <Route exact path="/successful-selection" element={<SelectionSuccess/>}></Route><Route/>
+      <Route path="/dashboard" element={<UserDashboard/>}/>
       </Routes> 
      </Router>
    </>

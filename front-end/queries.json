@@ -69,6 +69,36 @@
       "totalSelectors": null,
       "remainingSelectors": null,
       "creatorUserId": "0"
+    },
+    {
+      "id": "260c",
+      "title": "Who let me?",
+      "creationTime": "Mon Apr 08 2024 at 11:05:16 AM",
+      "startDate": "2024-05-11",
+      "expiryDate": "2024-05-24",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "1e84",
+      "title": "Mango passion?",
+      "creationTime": "Mon Apr 08 2024 at 12:39:04 PM",
+      "startDate": "2024-06-06",
+      "expiryDate": "2024-07-18",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "fff1",
+      "title": "Writing gig?",
+      "creationTime": "Mon Apr 08 2024 at 12:43:55 PM",
+      "startDate": null,
+      "expiryDate": "2024-04-10",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
     }
   ],
   "Choices": [
@@ -161,10 +191,129 @@
       "id": "c795",
       "title": "Kisumu",
       "queryId": "1065"
+    },
+    {
+      "id": "94cd",
+      "title": "You",
+      "queryId": "260c"
+    },
+    {
+      "id": "3caa",
+      "title": "YouMe",
+      "queryId": "260c"
+    },
+    {
+      "id": "4063",
+      "title": "Them",
+      "queryId": "260c"
+    },
+    {
+      "id": "3403",
+      "title": "Mango",
+      "queryId": "1e84"
+    },
+    {
+      "id": "2b27",
+      "title": "Passion",
+      "queryId": "1e84"
+    },
+    {
+      "id": "06e5",
+      "title": "MangoPassion",
+      "queryId": "1e84"
+    },
+    {
+      "id": "45a6",
+      "title": "MangoPassion",
+      "queryId": "1e84"
+    },
+    {
+      "id": "74a1",
+      "title": "No",
+      "queryId": "fff1"
+    },
+    {
+      "id": "4df5",
+      "title": "Ye",
+      "queryId": "fff1"
+    },
+    {
+      "id": "2cb5",
+      "title": "Mayb",
+      "queryId": "fff1"
     }
   ],
-  "UserChoices": [
-
+  "selections": [
+    {
+      "id": "c543",
+      "choiceId": "94cd",
+      "selectorUserId": 0
+    },
+    {
+      "id": "9f97",
+      "choiceId": "3caa",
+      "selectorUserId": 0
+    },
+    {
+      "id": "999b",
+      "choiceId": "94cd",
+      "selectorUserId": 0
+    },
+    {
+      "id": "16b3",
+      "choiceId": "3caa",
+      "selectorUserId": 0
+    },
+    {
+      "id": "ab0a",
+      "choiceId": "94cd",
+      "selectorUserId": 0
+    },
+    {
+      "id": "0d9b",
+      "choiceId": "3caa",
+      "selectorUserId": 0
+    },
+    {
+      "id": "6152",
+      "choiceId": "94cd",
+      "selectorUserId": 0
+    },
+    {
+      "id": "e018",
+      "choiceId": "3caa",
+      "selectorUserId": 0
+    },
+    {
+      "id": "14c8",
+      "choiceId": "3caa",
+      "selectorUserId": 0
+    },
+    {
+      "id": "16d8",
+      "choiceId": "3403",
+      "selectorUserId": 0
+    },
+    {
+      "id": "d554",
+      "choiceId": "06e5",
+      "selectorUserId": 0
+    },
+    {
+      "id": "65ec",
+      "choiceId": "06e5",
+      "selectorUserId": 0
+    },
+    {
+      "id": "f28b",
+      "choiceId": "74a1",
+      "selectorUserId": 0
+    },
+    {
+      "id": "2c4e",
+      "choiceId": "4df5",
+      "selectorUserId": 0
+    }
   ],
   "Users": [
     {
@@ -340,6 +489,51 @@
       "id": "80fd",
       "queryId": "1065",
       "userId": "0"
+    },
+    {
+      "id": "ae22",
+      "queryId": "260c",
+      "userId": "0"
+    },
+    {
+      "id": "befa",
+      "queryId": "260c",
+      "userId": "1"
+    },
+    {
+      "id": "5913",
+      "queryId": "260c",
+      "userId": "2"
+    },
+    {
+      "id": "addc",
+      "queryId": "1e84",
+      "userId": "0"
+    },
+    {
+      "id": "aaa9",
+      "queryId": "1e84",
+      "userId": "2"
+    },
+    {
+      "id": "4ede",
+      "queryId": "1e84",
+      "userId": "1"
+    },
+    {
+      "id": "9350",
+      "queryId": "fff1",
+      "userId": "0"
+    },
+    {
+      "id": "5dfc",
+      "queryId": "fff1",
+      "userId": "2"
+    },
+    {
+      "id": "1c9a",
+      "queryId": "fff1",
+      "userId": "1"
     }
   ]
 }

@@ -110,7 +110,7 @@ function SingleQuery() {
                         <div className="main-title">Choices</div>
                         <div className="choices">
                         {choices.map((c,i) => {
-                            return <div className="single-choice">{i+1}.&#160;{c.title}</div>
+                            return <div className="one-choice">{i+1}.&#160;{c.title}</div>
                         })}
                         </div>
                     </div>
