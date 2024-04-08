@@ -5,16 +5,17 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using KindleDecision.Models;
 
 namespace KindleDecision.Services
 {
     public class AuthManager : IAuthManager
     {
-       private readonly UserManager<ApiUser> _userManager;
+       private readonly UserManager<ApplicationUser> _userManager;
        private readonly IConfiguration _configuration;
-        private ApiUser _user;
+        private ApplicationUser _user;
 
-       public AuthManager(UserManager<ApiUser> userManager, IConfiguration configuration)
+       public AuthManager(UserManager<ApplicationUser> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;
