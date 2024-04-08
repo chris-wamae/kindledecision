@@ -6,7 +6,7 @@ using KindleDecision.Configurations;
 
 namespace KindleDecision.Data
 {
-    public class DataContext : IdentityDbContext
+    public class DataContext : IdentityDbContext<ApplicationUser>
     {
 
     public DataContext(DbContextOptions<DataContext> options) : base(options) { }

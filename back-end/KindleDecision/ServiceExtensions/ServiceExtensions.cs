@@ -3,6 +3,7 @@ using KindleDecision.Data;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using KindleDecision.Models;
 
 namespace KindleDecision.ServiceExtentions
 {
@@ -10,7 +11,7 @@ namespace KindleDecision.ServiceExtentions
     {
      public static void ConfigureIdentity(this IServiceCollection services)
         {
-            var builder = services.AddIdentityCore<ApiUser>(q => q.User.RequireUniqueEmail = true);
+            var builder = services.AddIdentityCore<ApplicationUser>(q => q.User.RequireUniqueEmail = true);
 
             builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), services);
 

@@ -14,7 +14,6 @@
 
         public string Password { get; set; }   
         
-       
 
         public ICollection<UserQuery> UserQuerys { get; set; }
     }
