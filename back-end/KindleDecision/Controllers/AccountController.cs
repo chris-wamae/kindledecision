@@ -51,20 +51,11 @@ namespace KindleDecision.Controllers
                 
                 user.UserName = userDto.Email;
 
-                if(!_userRepository.CreateUser(internalUser))
-                {
-                    ModelState.AddModelError("", "Something went wrong while creating the user");
-                    return BadRequest(ModelState);
-                }
-
-                //can this functionality be improved?
-                //ie. not fetch the user again just to get their ID
-
-                internalUser = _userRepository.GetUserByEmail(internalUser.Email.ToString());
+                internalUser = _userRepository.CreateUser(internalUser);
 
                 if(internalUser == null)
                 {
-                    ModelState.AddModelError("", "Something went wrong while retrieving the new User");
+                    ModelState.AddModelError("", "Something went wrong while creating the new User");
 
                     return StatusCode(500, ModelState);
                 } 
@@ -123,7 +114,7 @@ namespace KindleDecision.Controllers
             catch(Exception ex) 
             {
                 _logger.LogError(ex, $"Something went wrong in the {nameof(Login)}");
-                return Problem($"Something went wrong in the{nameof(Login)}", statusCode: 500);
+                return Problem($"Something went wrong in the {nameof(Login)}", statusCode: 500);
             }
         }
 

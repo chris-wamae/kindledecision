@@ -7,6 +7,8 @@ using KindleDecision.Repositories;
 using KindleDecision.Interfaces;
 using KindleDecision.ServiceExtentions;
 using KindleDecision.Services;
+using Microsoft.Extensions.Configuration;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -109,12 +111,22 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("AllowAll");
+
+app.UseRouting();
+
 app.UseAuthentication();
 
 app.UseAuthorization();
 
+app.UseEndpoints(endpoints =>
+{
 
+    endpoints.MapControllers();
 
-app.MapControllers();
+});
 
 app.Run();
+
+
+

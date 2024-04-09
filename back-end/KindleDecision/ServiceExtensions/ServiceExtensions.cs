@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using KindleDecision.Models;
+using KindleDecision.Services;
 
 namespace KindleDecision.ServiceExtentions
 {
@@ -20,21 +21,23 @@ namespace KindleDecision.ServiceExtentions
         
     public static void ConfigureJWT(this IServiceCollection services, IConfiguration configuration) 
         {
+
             var jwtSettings = configuration.GetSection("Jwt");
-            var key = Environment.GetEnvironmentVariable("KEY");
+            var key = configuration["KEY"];
 
             services.AddAuthentication(o =>
             {
                 o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(o =>
-            {
+            {  
                 o.TokenValidationParameters = new TokenValidationParameters
-                {
+                {   
+                    ValidateAudience = false,
                     ValidateIssuer = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = jwtSettings.GetSection("Issuer").Value,
+                    ValidIssuer = jwtSettings.GetSection("validIssuer").Value,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
                 };
             });

@@ -28,6 +28,7 @@ namespace KindleDecision.Dto
         public string Phone { get; set; }
 
         public string Language { get; set; }
+        public ICollection<string> Roles {get;set;}
 
     }
 }
