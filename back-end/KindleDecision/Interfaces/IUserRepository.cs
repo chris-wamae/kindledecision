@@ -18,7 +18,7 @@ namespace KindleDecision.Interfaces
 
         User GetQueryCreator(int queryId);
 
-        bool CreateUser(User user);
+        User CreateUser(User user);
 
         bool UpdateUser(int userId,User user);
 

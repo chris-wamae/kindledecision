@@ -1,5 +1,9 @@
 {
-  "ExpandedNodes": [],
-  "SelectedNode": "\\KindleDecision.sln",
+  "ExpandedNodes": [
+    "",
+    "\\back-end",
+    "\\back-end\\KindleDecision"
+  ],
+  "SelectedNode": "\\back-end\\KindleDecision\\KindleDecision.csproj",
   "PreviewInSolutionExplorer": false
 }

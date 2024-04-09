@@ -21,9 +21,10 @@ namespace KindleDecision.Controllers
             _mapper = mapper;
         }
 
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
-        [Authorize]
+       
         public IActionResult GetQueries()
         {
             var querys = _mapper.Map<List<QueryDto>>(_queryRepository.GetAllQuerys());

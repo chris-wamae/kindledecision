@@ -6,6 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using KindleDecision.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace KindleDecision.Services
 {
@@ -13,7 +14,7 @@ namespace KindleDecision.Services
     {
        private readonly UserManager<ApplicationUser> _userManager;
        private readonly IConfiguration _configuration;
-        private ApplicationUser _user;
+       private ApplicationUser _user;
 
        public AuthManager(UserManager<ApplicationUser> userManager, IConfiguration configuration)
         {
@@ -24,8 +25,8 @@ namespace KindleDecision.Services
 
        async Task<bool> IAuthManager.ValidateUser(LoginUserDto userDto)
         {
-            var user = await _userManager.FindByNameAsync(userDto.Email);
-            return (user != null && await _userManager.CheckPasswordAsync(user, userDto.Password));
+            _user = await _userManager.FindByNameAsync(userDto.Email);
+            return (_user != null && await _userManager.CheckPasswordAsync(_user, userDto.Password));
         }
 
          async Task<string> IAuthManager.CreateToken()
@@ -39,7 +40,13 @@ namespace KindleDecision.Services
 
         private SigningCredentials GetSigningCredentials()
         {
-            var key = Environment.GetEnvironmentVariable("KEY");
+
+            //ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+
+            //IConfiguration configuration = configurationBuilder.AddUserSecrets<AuthManager>().Build();
+
+            var key = _configuration["KEY"];
+
             var secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
 
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
@@ -47,11 +54,7 @@ namespace KindleDecision.Services
 
         private async Task<List<Claim>> GetClaims()
         {
-            var claims = new List<Claim>();
-
-            {
-                new Claim(ClaimTypes.Name, _user.UserName);
-            };
+            var claims = new List<Claim>() { new Claim(ClaimTypes.Name, _user.UserName)};
 
             var roles = await _userManager.GetRolesAsync(_user);
 

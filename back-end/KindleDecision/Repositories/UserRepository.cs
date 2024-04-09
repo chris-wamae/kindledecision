@@ -66,10 +66,14 @@ namespace KindleDecision.Repositories
             return saved > 0 ? true : false;
         }
 
-        public bool CreateUser(User user)
+        public User CreateUser(User user)
         {
             _context.Add(user);
-            return Save();
+            if(!Save())
+            {
+            return null;
+            }
+            return user;
         }
 
         public bool UpdateUser(int userId, User user) 
