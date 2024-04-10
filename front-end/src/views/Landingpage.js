@@ -20,7 +20,7 @@ function Landingpage() {
                         </div>
 
                         <div className="sub-header">
-                            Kindledecision makes voting on anything increadibly simple while maintaining credibility and fairness.
+                            Kindledecision makes deciding on anything increadibly simple while maintaining credibility and fairness.
                         </div>
 
                     </div>
