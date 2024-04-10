@@ -3,7 +3,6 @@ import Landingpage from './views/Landingpage';
 import Featurespage from './views/Featurespage';
 import Signup from './views/Signup';
 import Login from './views/Login';
-import Queries from './views/Queries';
 import AccountManagement from './views/AccountManagement';
 import CreateQuery from './views/CreateQuery';
 import NewQuery from './views/NewQuery';
@@ -27,7 +26,7 @@ function App() {
       <Route exact path="/login" element={<Login/>}></Route>
       <Route exact path="/account-management" element={<AccountManagement/>}></Route>
       <Route exact path="/create-query" element={<CreateQuery/>}></Route>
-      <Route exact path="/queries" element={<Queries/>}></Route>
+      {/* <Route exact path="/queries" element={<Queries/>}></Route> */}
       <Route exact path="/new-query" element={<NewQuery/>}></Route>
       <Route exact path="/add-choices" element={<CreateChoice/>}></Route>
       <Route exact path="/add-participants" element={<AddSelectors/>}></Route>
