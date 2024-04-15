@@ -12,7 +12,31 @@ using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//Add services to the container.
+
+//builder.Services.AddDistributedMemoryCache();
+
+//builder.Services.AddSession(o =>
+//{
+// o.IdleTimeout = TimeSpan.FromHours(24);
+
+//o.Cookie.HttpOnly = false;
+
+//    o.Cookie.SameSite = SameSiteMode.None;
+
+//    o.Cookie.SecurePolicy = CookieSecurePolicy.None;    
+//});
+builder.Services.AddCors(o =>
+{
+    o.AddPolicy(name: "AllowAll",
+        policy => {
+            policy.AllowAnyOrigin();
+            policy.AllowAnyHeader();
+            policy.AllowAnyMethod();
+            }
+        );
+    
+});
 builder.Services.AddControllers();
 builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
@@ -36,8 +60,16 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-
 builder.Services.AddScoped<IAuthManager, AuthManager>();
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(o =>
+{
+    o.IdleTimeout = TimeSpan.FromMinutes(20);
+o.Cookie.IsEssential = true;
+
+});
 
 var app = builder.Build();
 
@@ -109,15 +141,20 @@ if (app.Environment.IsDevelopment())
 }
 
 
+
 app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
+
+app.UseCookiePolicy();
 
 app.UseRouting();
 
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.UseEndpoints(endpoints =>
 {

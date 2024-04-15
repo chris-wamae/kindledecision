@@ -94,31 +94,26 @@ namespace KindleDecision.Controllers
             return Ok(selections);
         }
 
-        [HttpGet("get-selections-by-user/{userId}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<SelectionDto>))]
-        [ProducesResponseType(400)]
-        public IActionResult GetSelectionsByUser(int userId)
-        {
-            var selections = _mapper.Map<List<SelectionDto>>(
-                _selectionRepository.GetSelectionsByUser(userId)
-            );
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[HttpGet("get-selections-by-user/{userId}")]
+        //[ProducesResponseType(200, Type = typeof(IEnumerable<SelectionDto>))]
+        //[ProducesResponseType(400)]
+        //public IActionResult GetSelectionsByUser(int userId)
+        //{
+        //    var selections = _mapper.Map<List<SelectionDto>>(
+        //        _selectionRepository.GetSelectionsByUser(userId)
+        //    );
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            return Ok(selections);
-        }
+        //    return Ok(selections);
+        //}
 
-        [HttpPost("{choiceId}")]
+        [HttpPost("{queryId}/{choiceId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateSelection(
-            [Required] int queryId,
-            [Required] int userId,
-            int choiceId,
-            SelectionDto selectionDto
-        )
+        public IActionResult CreateSelection( int queryId, int choiceId)
         {
             //List<Selection> userSelections = _selectionRepository.GetSelectionsByUser(userId).ToList();
 
@@ -136,7 +131,15 @@ namespace KindleDecision.Controllers
             //    }
             //}
 
-            bool hasVoted = _userSelectedInQueryRepository.UserHasSelectedInQuery(queryId, userId);
+            var userId = HttpContext.Session.GetInt32("userId");
+
+            if(userId == null)
+            {
+                ModelState.AddModelError("", "There was an error retrieving the current user");
+                return StatusCode(500, ModelState);
+            }
+
+            bool hasVoted = _userSelectedInQueryRepository.UserHasSelectedInQuery(queryId, (int)userId);
 
             if (hasVoted)
             {
@@ -144,8 +147,10 @@ namespace KindleDecision.Controllers
                 return StatusCode(422, ModelState);
             }
 
+            SelectionDto selectionDto = new SelectionDto() { SelectorUserId = (int)userId };
+
             if (selectionDto == null)
-            {
+            {   
                 return BadRequest(ModelState);
             }
 
@@ -164,19 +169,8 @@ namespace KindleDecision.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (
-                !_userSelectedInQueryRepository.CreateUserSelectedInQuery(
-                    new UserSelectedInQuery() { UserId = userId, QueryId = queryId }
-                )
-            )
-            {
-                ModelState.AddModelError(
-                    "",
-                    "Something went wrong while saving the UserSelectedInQuery"
-                );
+            selectionDto.SelectorUserId = (int)userId;
 
-                return StatusCode(500, ModelState);
-            }
 
             var selectionCreate = _mapper.Map<Selection>(selectionDto);
 
@@ -186,6 +180,23 @@ namespace KindleDecision.Controllers
 
                 return StatusCode(500, ModelState);
             }
+
+            if (
+          !_userSelectedInQueryRepository.CreateUserSelectedInQuery(
+              new UserSelectedInQuery() { UserId = (int)userId, QueryId = queryId }
+          )
+      )
+            {
+                ModelState.AddModelError(
+                    "",
+                    "Something went wrong while saving the UserSelectedInQuery"
+                );
+
+                return StatusCode(500, ModelState);
+            }
+
+
+
 
             return Ok(selectionCreate);
         }

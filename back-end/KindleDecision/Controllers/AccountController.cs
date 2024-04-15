@@ -7,6 +7,8 @@ using KindleDecision.Services;
 using KindleDecision.Models;
 using KindleDecision.Repositories;
 using KindleDecision.Interfaces;
+using Microsoft.AspNetCore.Http;
+using System.Text;
 
 namespace KindleDecision.Controllers
 {
@@ -29,6 +31,7 @@ namespace KindleDecision.Controllers
             _mapper = mapper;
             _authManager = authManager;
             _userRepository = userRepository;
+
         }
 
 
@@ -80,7 +83,7 @@ namespace KindleDecision.Controllers
             catch (Exception ex) 
             {
              
-                _logger.LogError(ex, $"Soemthing went wrong in the {nameof(Register)}");
+                _logger.LogError(ex, $"Something went wrong in the {nameof(Register)}");
 
                 return Problem($"Something went wrong in the {nameof(Register)}",statusCode:500);
             }
@@ -105,6 +108,20 @@ namespace KindleDecision.Controllers
              if(!await _authManager.ValidateUser(userDto))
                 {
                  return Unauthorized();
+                }
+                var user = await _userManager.FindByEmailAsync(userDto.Email);
+
+                var internalUser = _userRepository.GetUser(user.UserId);
+
+                if (internalUser == null)
+                {
+                    ModelState.AddModelError("", $"Something went wrong while retrieving the user with Id: {user.UserId}");
+
+                    return StatusCode(500, ModelState);
+                }
+                else
+                {
+                    HttpContext.Session.SetInt32("userId", user.UserId);
                 }
 
                 return Accepted(new { Token = await _authManager.CreateToken() });

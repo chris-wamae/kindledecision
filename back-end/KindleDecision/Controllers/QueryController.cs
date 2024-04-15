@@ -21,7 +21,6 @@ namespace KindleDecision.Controllers
             _mapper = mapper;
         }
 
-        [Authorize]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
        
@@ -33,8 +32,8 @@ namespace KindleDecision.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            return Ok(querys);
+                
+              return Ok(querys);
         }
 
         [HttpGet("{queryId}")]
@@ -55,13 +54,22 @@ namespace KindleDecision.Controllers
             return Ok(query);
         }
 
-        [HttpGet("created-querys/{userId}")]
+        [HttpGet("created-querys")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
         [ProducesResponseType(400)]
    
-        public IActionResult GetQuerysByCreator(int userId) 
+        public IActionResult GetQuerysByCreator() 
         {
-         var querys = _mapper.Map<List<QueryDto>>(_queryRepository.GetQuerysByCreator(userId));
+
+         var userId = HttpContext.Session.GetInt32("userId");
+
+        if(userId == null)
+         {
+                ModelState.AddModelError("", "There was a problem retrieving the current user");
+                return StatusCode(500, ModelState);
+         }
+
+         var querys = _mapper.Map<List<QueryDto>>(_queryRepository.GetQuerysByCreator((int)userId));
          if(!ModelState.IsValid)
             {
                 return BadRequest();
@@ -76,12 +84,19 @@ namespace KindleDecision.Controllers
 
 
 
-        [HttpGet("user-querys/{userId}")]
+        [HttpGet("user-querys")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
-        public IActionResult GetElectionsByUser(int userId)
+        public IActionResult GetElectionsByUser()
         {
+            var userId = HttpContext.Session.GetInt32("userId");    
+            if(userId == null)
+            {
+                ModelState.AddModelError("", "There was a problem retriving the current user");
+                return StatusCode(500, ModelState);
+            }
+
             var querys = _mapper.Map<List<QueryDto>>(
-                _queryRepository.GetQuerysByUser(userId)
+                _queryRepository.GetQuerysByUser((int)userId)
             );
 
             if (!ModelState.IsValid)
@@ -107,6 +122,19 @@ namespace KindleDecision.Controllers
                 return BadRequest(ModelState);
             }
 
+            var userId = HttpContext.Session.GetInt32("userId");
+
+            if(userId != null)
+            {
+                queryCreate.CreatorUserId = (int)userId;
+            }
+            else
+            {
+                ModelState.AddModelError("", "The current user details needed to create the query could not be retrieved");
+                return StatusCode(500, ModelState);
+            }
+
+         
             var queryMap = _mapper.Map<Query>(queryCreate);
 
         if(!_queryRepository.CreateQuery(queryMap))
@@ -139,6 +167,21 @@ namespace KindleDecision.Controllers
             }
 
             var updatedQueryMap = _mapper.Map<Query>(updateQuery);
+
+            var userId = HttpContext.Session.GetInt32("userId");
+
+            if(userId != null) 
+            {
+                ModelState.AddModelError("", "The user details required to update the query could not be retrieved");
+                return StatusCode(500, ModelState);
+            }
+
+            else
+            {
+
+             updatedQueryMap.CreatorUserId = (int)userId;
+
+            }
 
             if(!_queryRepository.UpdateQuery(updatedQueryMap))
             {
