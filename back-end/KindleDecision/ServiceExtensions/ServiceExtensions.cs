@@ -10,6 +10,7 @@ namespace KindleDecision.ServiceExtentions
 {
     public static class ServiceExtensions
     {
+         
      public static void ConfigureIdentity(this IServiceCollection services)
         {
             var builder = services.AddIdentityCore<ApplicationUser>(q => q.User.RequireUniqueEmail = true);

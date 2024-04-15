@@ -82,21 +82,25 @@ namespace KindleDecision.Controllers
         }
 
 
-        [HttpGet("get-choices-by-user-vote/{userId}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Choice>))]
 
-        public IActionResult GetChoicesByUserId(int userId)
-        {
-            var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByUserSelection(userId));
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
+        //[HttpGet("get-choices-by-user-vote/{userId}")]
+        //[ProducesResponseType(200, Type = typeof(IEnumerable<Choice>))]
 
-            return Ok(choices);
+        //public IActionResult GetChoicesByUserId(int userId)
+        //{
+        //    var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByUserSelection(userId));
 
-        }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    return Ok(choices);
+
+        //}
+
+
 
         [HttpPost("{queryId}")]
         [ProducesResponseType(204)]
