@@ -260,7 +260,8 @@ namespace KindleDecision.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ChoiceId = table.Column<int>(type: "int", nullable: false),
-                    SelectorUserId = table.Column<int>(type: "int", nullable: false)
+                    SelectorUserId = table.Column<int>(type: "int", nullable: false),
+                    UserSelectedInQueryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -271,6 +272,12 @@ namespace KindleDecision.Migrations
                         principalTable: "Choices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Selections_UserSelectedInQuerys_UserSelectedInQueryId",
+                        column: x => x.UserSelectedInQueryId,
+                        principalTable: "UserSelectedInQuerys",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -278,8 +285,8 @@ namespace KindleDecision.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "a879339a-06a2-41fb-a635-2363876a9cb9", "e79e84e4-1493-4699-9bf3-51371ec28d01", "User", "USER" },
-                    { "db0ff5a4-003e-4344-bc10-38489fa34091", "894aef3e-24cc-4581-bdad-a5ff3c484d19", "Administrator", "ADMINISTATOR" }
+                    { "e19cffce-c993-4a5c-a361-c011305d01b5", "550f624c-0d5a-47c6-972d-dde5d971e6cd", "Administrator", "ADMINISTATOR" },
+                    { "f960afc0-0d69-4143-bf7f-d3acb62da5d4", "e62296e0-35f9-43f4-800c-0a4dcf48b003", "User", "USER" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -332,6 +339,11 @@ namespace KindleDecision.Migrations
                 column: "ChoiceId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Selections_UserSelectedInQueryId",
+                table: "Selections",
+                column: "UserSelectedInQueryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserQuerys_QueryId",
                 table: "UserQuerys",
                 column: "QueryId");
@@ -362,9 +374,6 @@ namespace KindleDecision.Migrations
                 name: "UserQuerys");
 
             migrationBuilder.DropTable(
-                name: "UserSelectedInQuerys");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -372,6 +381,9 @@ namespace KindleDecision.Migrations
 
             migrationBuilder.DropTable(
                 name: "Choices");
+
+            migrationBuilder.DropTable(
+                name: "UserSelectedInQuerys");
 
             migrationBuilder.DropTable(
                 name: "Users");
