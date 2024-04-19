@@ -174,29 +174,29 @@ namespace KindleDecision.Controllers
 
             var selectionCreate = _mapper.Map<Selection>(selectionDto);
 
+            selectionCreate.UserSelectedInQuery = new UserSelectedInQuery() { UserId = (int)userId, QueryId = queryId };
+
+
             if (!_selectionRepository.CreateSelection(choiceId, selectionCreate))
-            {
+            {   
                 ModelState.AddModelError("", "Something went wrong while saving the selection");
 
                 return StatusCode(500, ModelState);
             }
 
-            if (
-          !_userSelectedInQueryRepository.CreateUserSelectedInQuery(
-              new UserSelectedInQuery() { UserId = (int)userId, QueryId = queryId }
-          )
-      )
-            {
-                ModelState.AddModelError(
-                    "",
-                    "Something went wrong while saving the UserSelectedInQuery"
-                );
+      //      if (
+      //    !_userSelectedInQueryRepository.CreateUserSelectedInQuery(
+      //        new UserSelectedInQuery() { UserId = (int)userId, QueryId = queryId }
+      //    )
+      //)
+      //      {
+      //          ModelState.AddModelError(
+      //              "",
+      //              "Something went wrong while saving the UserSelectedInQuery"
+      //          );
 
-                return StatusCode(500, ModelState);
-            }
-
-
-
+      //          return StatusCode(500, ModelState);
+      //      }
 
             return Ok(selectionCreate);
         }

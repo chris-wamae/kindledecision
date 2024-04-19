@@ -18,8 +18,6 @@ namespace KindleDecision.Configurations
               {   Name = "Administrator",
                   NormalizedName = "ADMINISTATOR"
               }
-
-
                 );
 
 

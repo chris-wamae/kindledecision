@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KindleDecision.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240405133224_Initial-Migration")]
+    [Migration("20240417080931_Initial-Migration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -164,9 +164,14 @@ namespace KindleDecision.Migrations
                     b.Property<int>("SelectorUserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserSelectedInQueryId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ChoiceId");
+
+                    b.HasIndex("UserSelectedInQueryId");
 
                     b.ToTable("Selections");
                 });
@@ -267,15 +272,15 @@ namespace KindleDecision.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a879339a-06a2-41fb-a635-2363876a9cb9",
-                            ConcurrencyStamp = "e79e84e4-1493-4699-9bf3-51371ec28d01",
+                            Id = "f960afc0-0d69-4143-bf7f-d3acb62da5d4",
+                            ConcurrencyStamp = "e62296e0-35f9-43f4-800c-0a4dcf48b003",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "db0ff5a4-003e-4344-bc10-38489fa34091",
-                            ConcurrencyStamp = "894aef3e-24cc-4581-bdad-a5ff3c484d19",
+                            Id = "e19cffce-c993-4a5c-a361-c011305d01b5",
+                            ConcurrencyStamp = "550f624c-0d5a-47c6-972d-dde5d971e6cd",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTATOR"
                         });
@@ -406,7 +411,15 @@ namespace KindleDecision.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("KindleDecision.Models.UserSelectedInQuery", "UserSelectedInQuery")
+                        .WithMany()
+                        .HasForeignKey("UserSelectedInQueryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Choice");
+
+                    b.Navigation("UserSelectedInQuery");
                 });
 
             modelBuilder.Entity("KindleDecision.Models.UserQuery", b =>
