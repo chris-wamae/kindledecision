@@ -2,6 +2,8 @@
 ##Build Stage
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /source
+RUN pwd
+RUN ls
 COPY . .
 RUN dotnet restore "KindleDesision.csproj" --disable-parallel
 RUN dotnet publish "KindleDecision.csproj" -c release -o /publish --no-restore
