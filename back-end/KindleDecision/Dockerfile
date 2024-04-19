@@ -13,6 +13,5 @@ COPY --from=build /publish ./publish
 
 FROM base AS final
 WORKDIR /app/publish
-COPY --from=migration /migration ./migration
 EXPOSE 5000
 ENTRYPOINT ["dotnet", "KindleDecision.dll"]
