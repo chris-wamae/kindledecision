@@ -19,5 +19,5 @@ ENTRYPOINT ["dotnet", "KindleDecision.dll"]
 
 FROM build AS migrations
 RUN dotnet tool install --global dotnet-ef
-ENV PATH="$PATH":/root/.dotnet/tools"
+ENV PATH="$PATH:/root/.dotnet/tools"
 ENTRYPOINT  dotnet-ef database update
