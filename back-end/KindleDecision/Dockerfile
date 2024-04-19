@@ -11,7 +11,7 @@ COPY --from=build /publish ./publish
 
 #Serve Stage as BASE
 
-FROM base AS final
+FROM build AS final
 WORKDIR /app/publish
 EXPOSE 5000
 ENTRYPOINT ["dotnet", "KindleDecision.dll"]
