@@ -17,3 +17,8 @@ a{
 .display-none{
     display:none;
 }
+
+input
+{
+width:50px;
+}

@@ -12,7 +12,7 @@ function NewQuery() {
     //if absent check for election in state
     //if present search for its users and send them email
     //if absent redirect user to their dashboard
-    const navItems = ["Features", "Login", "How it Works"]
+    const navItems = [""]
     const query = useSelector(queryState)
     const buttonRef = useRef(null);
     const dummyTitle = "How many days to master something?"
@@ -56,17 +56,16 @@ function NewQuery() {
                     setTimeout(editButtonText, 1000)
                 }
                 }>Copy</button>
-
-                <div>Done?</div>
-
-                <button>Go to dashboard</button>
-                <button onClick={() => {
+                <div className="dashboard-button-container">
+                <button className="dashboard-btn" onClick={() => navigate("/dashboard")}>Go to dashboard</button>
+                <button className="dashboard-btn" onClick={() => {
                 navigate(
                 {
                 pathname: "/query",
                 search:`?id=${query.id}`
                 })
                 }}>Go to Query</button>
+                </div>
             </div>
         </>
     )

@@ -59,7 +59,7 @@ function SingleQuery() {
 
 
     return (
-        <>  <Navbar navItems={["Features", "Login", "How it Works"]}/>
+        <>  <Navbar navItems={["Dashboard"]}/>
             <div className="single-query-page">
                 <section className="query-details-container white-background">
                     <div className="main-title">Query details</div>

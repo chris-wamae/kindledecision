@@ -53,7 +53,10 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     {
     if (emailState && foundUser.length > 0) {
             dispatch(changeUserId(foundUser[0].id))
-            navigate("/create-query")
+            navigate({
+            pathname:"/dashboard",
+            search:"?id=" + foundUser[0].id
+            })
     }
     else if(foundUser.length == 0)
     {
@@ -80,7 +83,7 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                 </section>
                 <section>
                     <div className="auth-title">{authTitle}</div>
-                    <form>
+                    <form className="auth-form">
                         <div className="input-header">Your email address:</div>
                         {emailToolTipRenderer(emailState)}
                         <input placeholder="email address" type="email" onChange={(e) => setEmail(e.target.value)}></input>

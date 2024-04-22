@@ -3,7 +3,7 @@ import HowItWorks from "./HowItWorkspage"
 import "../styles/Featurespage.css"
 
 function Featurespage() {
-    const navItems = ["Features", "Login", "How it Works"]
+    const navItems = ["Login"]
     return (
         <>
             <Navbar navItems={navItems} />

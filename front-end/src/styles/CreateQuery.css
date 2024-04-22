@@ -18,15 +18,32 @@
 {
 display:flex;
 flex-direction:column;
+align-items:center;
 min-width:450px;
 padding-top:0px;
 border:1px solid black;
+border-radius:10px;
 }
 
-.query-form input
+.query-form input, select
 {
 min-width:350px;
+height:30px;
+border-radius:5px;
+text-align:center;
+border:0px;
+margin: top 10px;
+margin-bottom:10px;
 }
+
+.query-form button
+{
+margin-bottom:10px;
+}
+
+
+
+
 
 /* .election-form-div {}
 

@@ -31,7 +31,6 @@ const DashboardAccount = () => {
   return (
     <>
       <div className="page-header">Account</div>
-
       <div className="card-container">
 
         <div className="card">

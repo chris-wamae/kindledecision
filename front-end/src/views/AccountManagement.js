@@ -3,7 +3,7 @@ import "../styles/AccountManagement.css"
 import { useState } from "react";
 
 function AccountManagement() {
-    const navItems = ["Features", "Login", "How it Works"]
+    const navItems = [""]
     const dummyEmail = "dummy-email@mail.com"
     const dummyPassword = "dummy-password"
     const [showPassword, setShowPassword] = useState(false)
