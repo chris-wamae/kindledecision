@@ -36,7 +36,7 @@ function Queries({ queriesType }) {
         )
       }}>
         <div className="query-title">{e.title}</div>
-        <div className="non-title-container">
+        <div className="other-container">
             <div className="dates">{e.startDate ? e.startDate : "Open"}</div>
             <div className="dates">{e.expiryDate}</div>
             <div className="selections">

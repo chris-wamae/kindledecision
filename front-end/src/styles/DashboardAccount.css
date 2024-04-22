@@ -30,3 +30,53 @@ margin-bottom:20px;
 font-size:18px;
 text-decoration:underline;
 }
+
+.card
+{
+background-color:white;
+width:40%;
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+padding:20px;
+border-radius:20px;
+}
+
+.edit-form
+{
+width:80%;
+display:flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
+}
+
+.edit-form input
+{
+width:200px;
+text-align:center;
+height:20px;
+border-radius:5px;
+border:1px solid black;
+}
+
+
+.edit-form p
+{
+font-size:10px;
+margin-top:10px;
+margin-bottom:5px;
+}
+
+.edit-form button
+{
+width:100px;
+height:20px;
+font-size:16px;
+padding:0px;
+margin:0px;
+background-color:var(--utOrange);
+margin-top:10px;
+}
+

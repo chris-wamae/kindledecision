@@ -21,7 +21,7 @@ import { redirect, useNavigate } from "react-router-dom";
 function AddSelectors() {
   
   const navigate = useNavigate()
-  const navItems = ["Features", "Login", "How it Works"]
+  const navItems = ["About"]
   const stateQueryId = useSelector(queryState)
   const dispatch = useDispatch();
   const [selectorEmail, setSelectorEmail] = useState("")
@@ -110,7 +110,7 @@ function AddSelectors() {
         </p> */}
         <div className="page-title">Add query participants</div>
 
-        <form>
+        <form className="selector-form">
 
           <label htmlFor="voter-input" className="voter-label">Voter:</label>
           {emailToolTipRenderer(emailState)}

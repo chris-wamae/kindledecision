@@ -3,8 +3,8 @@
 text-align:center;
 padding-top:3px;
 padding-bottom:3px;
-font-size:30px;
-color:var(--chefchaouenBlue);
+font-size:24px;
+color:black;
 background-color:white;
 margin-top:5px;
 align-items:center;
@@ -29,6 +29,6 @@ margin-right:10px;
 
 .single-feature div
 {
-font-size:30px;
+font-size:20px;
 color:var(--carrotOrange);
 }

@@ -12,7 +12,7 @@ import { timeAfterMinutes } from "../Helper/Time";
 import axios from "axios";
 
 function CreateChoice(){  
-    const navItems = ["Features", "Login", "How it Works"]
+    const navItems = [""]
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const currentQuery = useSelector(queryState)
@@ -51,7 +51,7 @@ function CreateChoice(){
 
          <div className="page-title">Query choices</div>
 
-        <form>
+        <form className="create-choice-form">
 
           <label htmlFor="choice-input" className="choice-label">Choice:</label>
 

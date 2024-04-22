@@ -20,7 +20,7 @@ function CreateQuery() {
   const dispatch = useDispatch();
   const titleRef = useRef(null)
   const dateRef = useRef(null)
-  const navItems = ["Features", "Login", "How it Works"]
+  const navItems = [""]
   const [queryTitle, setQueryTitle] = useState("")
   const [startDate, setStartDate] = useState(null)
   const [expiryDate, setExpiryDate] = useState("")

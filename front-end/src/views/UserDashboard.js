@@ -26,7 +26,7 @@ function UserDashboard() {
 
   return (
     <>
-      <Navbar navItems={["Features", "Login", "How it Works"]} />
+      <Navbar navItems={[""]} />
       <main>
         <div className="side-menu">
           <div className="combined-svg">

@@ -48,6 +48,7 @@ width:500px;
     border:0px;
 }
 
+
 .buttons{
     display:flex;
     justify-content:space-around;
@@ -84,4 +85,9 @@ border:2px solid var(--white);
  background-color:white;
  width:400px;
  height:300px;
+}
+
+
+*{
+    
 }
