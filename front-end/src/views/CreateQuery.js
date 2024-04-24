@@ -73,8 +73,6 @@ function CreateQuery() {
 
       <div className="query-container">
 
-        <div className="query-form-div">
-
           <form className="query-form">
 
             <label htmlFor="query-title" id="title" className="input-title" >Tile:</label>
@@ -91,11 +89,11 @@ function CreateQuery() {
               <option value="display-none start-date-input">Immediately</option>
               <option value="start-date-input">Specific date</option>
             </select>
-            <input type="date" onChange={e => setStartDate(e.target.value)} className={showStartDateInput}></input>
+            <input type="date"  onChange={e => setStartDate(e.target.value)} className={showStartDateInput}></input>
 
             <label htmlFor="expiry-date" className="date-title">Expiry date:</label>
 
-            <input title="expiry-date" type="date" onChange={(e) => setExpiryDate(e.target.value)} ref={dateRef}></input>
+            <input title="expiry-date" placeholder="Select date" type="date" onChange={(e) => setExpiryDate(e.target.value)} ref={dateRef}></input>
 
             <button className="submit-button" disabled={canSave()} onClick={(e) => {
               e.preventDefault();
@@ -109,7 +107,6 @@ function CreateQuery() {
 
           </form>
         </div>
-      </div>
     </>
   )
 }

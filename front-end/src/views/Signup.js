@@ -5,7 +5,7 @@ function Signup() {
      const authType = true
      const passwordHeader = "Create a password:"
      const buttonText = "Sign up"
-     const navItems = ["Features", "Login", "How it Works"]
+     const navItems = ["About"]
 
     return (
     <>
