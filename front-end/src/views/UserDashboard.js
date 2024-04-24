@@ -27,7 +27,7 @@ function UserDashboard() {
   return (
     <>
       <Navbar navItems={[""]} />
-      <main>
+      <main className="dashboard-container">
         <div className="side-menu">
           <div className="combined-svg">
             <img className="user-svg" src="svg/account-icon.svg" onClick={() => setDashboardComponentId(1)}></img>

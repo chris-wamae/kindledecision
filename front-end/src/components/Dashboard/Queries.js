@@ -4,6 +4,7 @@ import axios from "axios";
 import { currentUserId } from "../../features/idSlice";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
+import { dummyQueries } from "./DummyQueries";
 
 function Queries({ queriesType }) {
   const userId = useSelector(currentUserId)
@@ -13,13 +14,16 @@ function Queries({ queriesType }) {
 
   useEffect(() => {
     if (queriesType == "My") {
-      axios.get(`${process.env.REACT_APP_BASE_URL}queries?creatorUserId=0`).then(r => setQueries(r.data))
+      //axios.get(`${process.env.REACT_APP_BASE_URL}queries?creatorUserId=0`).then(r => setQueries(r.data))
+      setQueries(dummyQueries())
     }
     else if (queriesType == "Pending") {
-      //axios.get(`${process.env.REACT_APP_BASE_URL}queries`).then(r => setQueries(r.data))
+           //axios.get(`${process.env.REACT_APP_BASE_URL}queries`).then(r => setQueries(r.data))
+      setQueries(dummyQueries())
     }
     else if (queriesType == "All") {
-      axios.get(`${process.env.REACT_APP_BASE_URL}queries`).then(r => setQueries(r.data))
+      //axios.get(`${process.env.REACT_APP_BASE_URL}queries`).then(r => setQueries(r.data))
+      setQueries(dummyQueries())
     }
   }, [queriesType])
 
@@ -37,20 +41,20 @@ function Queries({ queriesType }) {
       }}>
         <div className="query-title">{e.title}</div>
         <div className="other-container">
-            <div className="dates">{e.startDate ? e.startDate : "Open"}</div>
-            <div className="dates">{e.expiryDate}</div>
-            <div className="selections">
-              <div className="query-info">
-                <div className="query-selectioncount">
-                  <div>{e.selectionsCast}</div>
-                  <div>/{e.totalSelections}</div>
-                </div>
-
-                <div className="query-status">{e.totalSelections !== e.selectionsCast ? "ongoing" : "completed"}</div>
+          <div className="dates">{e.startDate ? e.startDate : "Open"}</div>
+          <div className="dates">{e.expiryDate}</div>
+          <div className="selections">
+            <div className="query-info">
+              <div className="query-selectioncount">
+                <div>{e.selectionsCast}</div>
+                <div>/{e.totalSelections}</div>
               </div>
+
+              <div className="query-status">{e.totalSelections !== e.selectionsCast ? "ongoing" : "completed"}</div>
+            </div>
+          </div>
         </div>
-        </div>
-       
+
       </div>
     })
   }

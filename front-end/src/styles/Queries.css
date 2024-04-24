@@ -141,3 +141,36 @@ display:flex;
 justify-content:space-between;
 background-color:white;
 }
+
+@media only screen and (max-width:450px)
+{
+
+.query-headers
+{
+font-size:24px;
+}  
+
+.query-headers div div 
+{
+font-size:24px;
+}
+
+.single-query
+{
+margin-top:20px;
+border-radius:10px;
+background-color:white;
+padding:10px 0px;
+}
+
+.query-title
+{
+font-size:28px;
+}
+
+.other-container *
+{
+font-size:20px;
+}
+
+}

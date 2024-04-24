@@ -69,3 +69,29 @@ font-size:20px;
 opacity:0.8;
 }
 
+@media only screen and (max-width:450px)
+{
+
+.page-title
+{
+font-size:48px;
+background-color:yellow;
+text-align:center;
+}
+
+.page-container
+{
+width:180%;
+background-color:red;
+min-height:800px;
+align-items:center;
+}
+
+.create-choice-form
+{
+width:80%;
+background-color:blue;
+}
+
+}
+

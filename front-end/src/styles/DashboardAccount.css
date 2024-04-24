@@ -80,3 +80,31 @@ background-color:var(--utOrange);
 margin-top:10px;
 }
 
+@media only screen and (max-width:450px)
+{
+
+.page-header
+{
+font-size:44px;
+}
+
+
+.card-container
+{
+flex-direction: column;
+align-items:center;
+min-height:1000px;
+}
+
+.card
+{
+width:70%;
+margin-top:50px;
+}
+
+.card *
+{
+margin-top:20px;
+font-size:32px;
+}
+} 

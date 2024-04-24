@@ -81,13 +81,13 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
 
 
                 </section>
-                <section>
+                <section className="auth-container">
                     <div className="auth-title">{authTitle}</div>
                     <form className="auth-form">
-                        <div className="input-header">Your email address:</div>
+                        <p className="input-header">Your email address:</p>
                         {emailToolTipRenderer(emailState)}
                         <input placeholder="email address" type="email" onChange={(e) => setEmail(e.target.value)}></input>
-                        <div className="input-header">{passwordHeader}</div>
+                        <p className="input-header" id="password-header">{passwordHeader}</p>
                         <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}></input>
                         <button onClick={(e) => {
                             e.preventDefault();
