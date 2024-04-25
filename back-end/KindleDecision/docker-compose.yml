@@ -25,7 +25,7 @@ services:
   db:
     image: "mcr.microsoft.com/mssql/server"
     environment:
-        MSSQL_SA_PASSWORD: "i34i.ad.AC"
+        MSSQL_SA_PASSWORD: i34i.ad.AC
         ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
