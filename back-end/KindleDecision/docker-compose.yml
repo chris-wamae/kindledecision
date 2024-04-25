@@ -8,24 +8,24 @@ services:
     ports: 
       - "5000:80"
     depends_on:
-      - migrations
+      - db
 
-  migrations:
-   container_name: service-migrations
-   image: service-migrations
-   build:
-     context: .
-     dockerfile: Dockerfile
-     target: migrations
-   depends_on: 
-       - db
+  # migrations:
+  #  container_name: service-migrations
+  #  image: service-migrations
+  #  build:
+  #    context: .
+  #    dockerfile: Dockerfile
+  #    target: migrations
+  #  depends_on: 
+  #      - db
 
    
 
   db:
     image: "mcr.microsoft.com/mssql/server"
     environment:
-        MSSQL_SA_PASSWORD: Roast.cinnamon123
-        ACCEPT_EULA: Y
+        MSSQL_SA_PASSWORD: "Roast.cinnamon123"
+        ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
