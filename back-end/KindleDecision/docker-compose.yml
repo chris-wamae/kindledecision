@@ -28,4 +28,4 @@ services:
         MSSQL_SA_PASSWORD: "Roast.cinnamon123"
         ACCEPT_EULA: "Y"
     ports:
-      - "1433:1433"
+      - "1434:1434"
