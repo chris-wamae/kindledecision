@@ -2,11 +2,9 @@ services:
   kindle-decision:
     build:
       context: .
-      args:
-        - KEY=${KEY}
       dockerfile: Dockerfile
     environment: 
-       - KEY
+       - KEY=${KEY}
     ports: 
       - "5000:80"
     depends_on:
@@ -26,12 +24,8 @@ services:
 
   db:
     image: "mcr.microsoft.com/mssql/server"
-    build:
-        args:
+    environment:
         - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
         - ACCEPT_EULA=${ACCEPT_EULA}
-    environment:
-        - MSSQL_SA_PASSWORD
-        - ACCEPT_EULA
     ports:
       - "1433:1433"
