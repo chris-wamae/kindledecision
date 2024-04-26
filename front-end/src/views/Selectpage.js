@@ -60,7 +60,7 @@ function Selectpage() {
 
     return (
         <>
-            <Navbar navItems={["Features", "Login", "How it Works"]} />
+            <Navbar navItems={["About"]} />
             <div className="page-title">Make your selection below</div>
             <div className="selection-container">
                 <div className="selection-title">

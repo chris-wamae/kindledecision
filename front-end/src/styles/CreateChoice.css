@@ -34,6 +34,12 @@ text-align:left;
 .add-button
 {
 background-color:var(--black);
+color:white;
+width:160px;
+height:40px;
+border:0px;
+border-radius:10px;
+
 }
 
 .add-button:hover
@@ -41,6 +47,12 @@ background-color:var(--black);
 color:var(--black);
 background-color:var(--white);
 font-weight:bold;
+}
+
+
+.mail-button
+{
+    
 }
 
 .done-button
@@ -69,28 +81,66 @@ font-size:20px;
 opacity:0.8;
 }
 
+
+
+
 @media only screen and (max-width:450px)
 {
 
 .page-title
 {
 font-size:48px;
-background-color:yellow;
 text-align:center;
+}
+
+.choice-label
+{
+font-size:40px;
+}
+
+.add-button
+{
+font-size:32px;
+width:200px;
+height:80px;
+}
+
+.done-button
+{
+height:80px;
+width:200px;
+font-size:32px;
 }
 
 .page-container
 {
-width:180%;
-background-color:red;
+width:196%;
 min-height:800px;
-align-items:center;
+margin-top:40%;
 }
 
 .create-choice-form
 {
-width:80%;
-background-color:blue;
+min-height:500px;
+border-radius:20px;
+padding:50px 300px;
+}
+
+.create-choice-form input
+{
+height:60px;
+font-size:24px;
+};
+
+.create-choice-form .choice-label
+{
+font-size:32px;
+}
+.dynamic-list
+{
+display:flex;
+justify-content:center;
+margin:0px;
 }
 
 }

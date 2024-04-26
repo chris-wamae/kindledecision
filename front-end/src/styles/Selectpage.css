@@ -107,3 +107,37 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 }
+
+@media only screen and (max-width:450px)
+{
+
+.page-title
+{
+width:190%;
+}
+
+.selection-container
+{
+width:180%;
+margin-left:7%;
+min-height:800px;
+}
+
+
+.selection-title
+{
+font-size:32px;
+padding:30px 0px;
+margin-bottom:10px;
+}
+
+.single-choice
+{
+height:80px;
+font-size:32px;
+margin-bottom:40px;
+}
+
+
+
+}

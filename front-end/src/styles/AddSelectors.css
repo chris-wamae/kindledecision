@@ -28,6 +28,10 @@ text-align:center;
 {
 min-width:300px;
 background-color:black;
+color:white;
+border:0px;
+height:40px;
+border-radius:10px;
 }
 
 .done-button
@@ -35,6 +39,34 @@ background-color:black;
 min-width:200px;
 margin-bottom:50px;
 margin-top:50px;
+}
+
+@media only screen and (max-width:450px)
+{
+
+.selector-form
+{
+min-height:500px;
+min-width:600px;
+}
+
+.selector-form label
+{
+font-size:32px;
+}
+
+.selector-form input
+{
+height:80px;
+font-size:24px;
+}
+
+.selector-form button
+{
+height:80px;
+font-size:24px;
+}
+
 }
 
 
