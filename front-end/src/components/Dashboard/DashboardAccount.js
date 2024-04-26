@@ -30,7 +30,9 @@ const DashboardAccount = () => {
 
   return (
     <>
-      <div className="page-header">Account</div>
+     <div className="page-header-container">
+     <div className="page-header">Account</div>
+     </div>  
       <div className="card-container">
 
         <div className="card">

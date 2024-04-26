@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import "../styles/AccountManagement.css"
+import "../styles/DashboardAccount.css"
 import { useState } from "react";
 
 function AccountManagement() {
@@ -10,8 +11,7 @@ function AccountManagement() {
 
     return (
         <>
-            <Navbar navItems={navItems} />
-            <div className="page-container">
+            <div className="acc-page-container">
                 <div className="page-title">Account Management</div>
                 <div className="email-container">
                     <div className="email-header">Email</div>
