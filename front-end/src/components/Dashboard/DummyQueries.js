@@ -36,10 +36,10 @@ return [
             "id": "198a",
             "title": "When will it rain?",
             "creationTime": "Thu Mar 07 2024 at 11:17:01 AM",
-            "startDate": null,
+            "startDate": "2024-03-18",
             "expiryDate": "2024-03-21",
-            "totalSelectors": null,
-            "remainingSelectors": null,
+            "totalSelectors": 14,
+            "remainingSelectors": 10,
             "creatorUserId": "0"
           },
           {

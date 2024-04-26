@@ -82,3 +82,24 @@ width:50px;
     border-top:1px solid var(--auburn);
     border-bottom:1px solid var(--auburn);
 }
+
+
+@media only screen and (max-width:450px)
+{
+
+.how-it-works-title
+{
+font-size:48px;
+}
+
+.single-hiw-element div
+{
+font-size:30px;
+}
+
+.single-hiw-element
+{
+min-height:150px;
+}
+
+}

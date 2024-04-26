@@ -45,7 +45,7 @@ function NewQuery() {
                 <div className="support-statement">
                     Kindledecision can automatically send emails to all participants informing them that the query has been created and asking them to participate.
                 </div>
-                <button className="mailButton">Send emails</button>
+                <button className="mail-button">Send emails</button>
                 <div className="link-statement">
                     You can also send them this link which will allow them to participate:
                     <a href={dummyLink} className="link">{dummyLink}</a>

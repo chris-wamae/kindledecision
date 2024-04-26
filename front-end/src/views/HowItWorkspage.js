@@ -8,7 +8,7 @@ function HowItWorkspage() {
 
     return (
         <>
-            <section>
+            <section className="hiw-container">
                 <div className="how-it-works-title">How it works</div>
                 <div>
                     <div className="single-hiw-element">

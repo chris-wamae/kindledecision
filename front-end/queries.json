@@ -169,6 +169,26 @@
       "totalSelectors": null,
       "remainingSelectors": null,
       "creatorUserId": "0"
+    },
+    {
+      "id": "e2ab",
+      "title": "Hello World",
+      "creationTime": "Fri Apr 26 2024 at 11:26:51 AM",
+      "startDate": null,
+      "expiryDate": "2024-04-30",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": null
+    },
+    {
+      "id": "95f8",
+      "title": "Where",
+      "creationTime": "Fri Apr 26 2024 at 2:53:09 PM",
+      "startDate": "2024-05-02",
+      "expiryDate": "2024-05-11",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": null
     }
   ],
   "Choices": [
@@ -416,6 +436,41 @@
       "id": "ac46",
       "title": "Prague",
       "queryId": "936e"
+    },
+    {
+      "id": "f14f",
+      "title": "Prague",
+      "queryId": "e2ab"
+    },
+    {
+      "id": "8cf8",
+      "title": "Prague",
+      "queryId": "e2ab"
+    },
+    {
+      "id": "11b9",
+      "title": "Prague",
+      "queryId": "e2ab"
+    },
+    {
+      "id": "1bae",
+      "title": "Prague",
+      "queryId": "95f8"
+    },
+    {
+      "id": "8300",
+      "title": "Prague",
+      "queryId": "95f8"
+    },
+    {
+      "id": "da10",
+      "title": "Prague",
+      "queryId": "95f8"
+    },
+    {
+      "id": "c641",
+      "title": "Prague",
+      "queryId": "95f8"
     }
   ],
   "selections": [
@@ -507,6 +562,36 @@
     {
       "id": "0d8b",
       "choiceId": "de29",
+      "selectorUserId": 0
+    },
+    {
+      "id": "892b",
+      "choiceId": "5c90",
+      "selectorUserId": 0
+    },
+    {
+      "id": "045b",
+      "choiceId": "e2dc",
+      "selectorUserId": 0
+    },
+    {
+      "id": "f3a0",
+      "choiceId": "e2dc",
+      "selectorUserId": 0
+    },
+    {
+      "id": "19cd",
+      "choiceId": "e2dc",
+      "selectorUserId": 0
+    },
+    {
+      "id": "11a1",
+      "choiceId": "e2dc",
+      "selectorUserId": 0
+    },
+    {
+      "id": "9c90",
+      "choiceId": "e2dc",
       "selectorUserId": 0
     }
   ],
@@ -798,6 +883,33 @@
     {
       "id": "41d0",
       "queryId": "936e",
+      "userId": "0"
+    },
+    {
+      "id": "1682",
+      "queryId": "e2ab",
+      "userId": "0"
+    },
+    {
+      "id": "9a2b",
+      "queryId": "e2ab",
+      "userId": "0"
+    },
+    {
+      "id": "a0f5",
+      "queryId": "e2ab",
+      "userId": "0"
+    },
+    {
+      "id": "fe62",
+      "userId": "0"
+    },
+    {
+      "id": "a649",
+      "userId": "0"
+    },
+    {
+      "id": "7642",
       "userId": "0"
     }
   ]

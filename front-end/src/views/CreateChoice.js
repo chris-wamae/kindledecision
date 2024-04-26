@@ -65,8 +65,10 @@ function CreateChoice(){
         </form>
 
         <button disabled={buttonDisable(queryChoices)} className="done-button" onMouseOver={e => e.target.textContent = "Done"} onMouseLeave={e => e.target.textContent = ">"} onClick={() => choiceDispatcher()}>&gt;</button>
-
+        <div className="dynamic-list">
         <DynamicList listTitle={"Added choices"} itemsArray={queryChoices} removeOption={removeOption}/>
+        </div>
+        
         
         </div>
         </>
