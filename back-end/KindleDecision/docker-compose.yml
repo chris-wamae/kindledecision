@@ -4,28 +4,25 @@ services:
       context: .
       dockerfile: Dockerfile
     environment: 
-       KEY: MangoMango123MangoMango4027
+       KEY: ${KEY}
     ports: 
       - "5000:80"
     depends_on:
       - db
 
-  # migrations:
-  #  container_name: service-migrations
-  #  image: service-migrations
-  #  build:
-  #    context: .
-  #    dockerfile: Dockerfile
-  #    target: migrations
-  #  depends_on: 
-  #      - db
+migrations:
+    container_name: service-migrations
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: migrations
+    depends_on: 
+        - db 
 
-   
-
-  db:
+db:
     image: "mcr.microsoft.com/mssql/server"
     environment:
-        MSSQL_SA_PASSWORD: roastcinnamon-123
-        ACCEPT_EULA: Y
+        MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+        ACCEPT_EULA: ${ACCEPT_EULA}
     ports:
       - "1433:1433"
