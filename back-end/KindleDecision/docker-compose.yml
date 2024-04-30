@@ -20,9 +20,4 @@ services:
         - db 
 
   db:
-    image: "mcr.microsoft.com/mssql/server:2022-latest"
-    environment:
-        MSSQL_SA_PASSWORD: 'yourStrongPassword(!)123'
-        ACCEPT_EULA: 'Y'
-    ports:
-      - "1433:1433"
+    command: docker run --name db -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=yourStrongPassword(!)123' -p 1433:1433 mcr.microsoft.com/mssql/server:2022-latest
