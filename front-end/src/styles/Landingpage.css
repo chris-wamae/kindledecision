@@ -1,6 +1,8 @@
 .main{
     background-color: var(--utOrange);
     display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .info{
@@ -85,6 +87,12 @@ border:2px solid var(--white);
  background-color:white;
  width:400px;
  height:300px;
+}
+
+
+@media only screen and (min-width:2500px)
+{
+
 }
 
 
