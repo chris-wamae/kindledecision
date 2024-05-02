@@ -9,7 +9,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal as base
 WORKDIR /app
 COPY --from=build /app ./
 EXPOSE 5000
-ENTRYPOINT ["dotnet", "KindleDecision.dll"]
+#ENTRYPOINT ["dotnet", "KindleDecision.dll"]
 
 #Migrations
 #
