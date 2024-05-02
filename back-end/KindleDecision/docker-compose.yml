@@ -1,6 +1,6 @@
 services:
   api:
-    container-name: kd-api
+    container_name: kd-api
     build:
       context: .
       dockerfile: Dockerfile
