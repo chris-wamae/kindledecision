@@ -10,16 +10,16 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 as base
 WORKDIR /app 
 COPY --from=build /publish ./publish
 
-##MIGRATIONS
-FROM build AS migrations
-RUN dotnet tool install --version 6.0.9 --global dotnet-ef
-ENV PATH="$PATH:/root/.dotnet/tools"
-ENTRYPOINT  dotnet-ef database update
-
 FROM base AS final
 WORKDIR /app/publish
 EXPOSE 5000
 ENTRYPOINT ["dotnet", "KindleDecision.dll"]
 
+#Migrations
+
+FROM build AS migrations
+RUN dotnet tool install --version 6.0.9 --global dotnet-ef
+ENV PATH="$PATH:/root/.dotnet/tools"
+ENTRYPOINT  dotnet-ef database update
 
 
