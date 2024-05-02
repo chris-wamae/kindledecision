@@ -1,5 +1,6 @@
 services:
-  kindle-decision:
+  api:
+    container_name: kd-api
     build:
       context: .
       dockerfile: Dockerfile
@@ -20,7 +21,7 @@ services:
         - db
 
   db:
-    container_name: db
+    container_name: kd-db
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
        - MSSQL_PID=Express
