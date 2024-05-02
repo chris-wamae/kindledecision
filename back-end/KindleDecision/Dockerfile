@@ -4,14 +4,14 @@ COPY . .
 RUN dotnet restore "KindleDecision.csproj" --disable-parallel
 RUN dotnet publish "KindleDecision.csproj" -c release -o /publish --no-restore
 
-#FROM mcr.microsoft.com/dotnet/aspnet:6.0 as BASE
-#WORKDIR /app 
-#COPY --from=build /publish ./publish
-#
-#FROM build AS final
-#WORKDIR /app/publish
-#EXPOSE 5000
-#ENTRYPOINT ["dotnet", "KindleDecision.dll"]
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 as BASE
+WORKDIR /publish
+COPY --from=build /publish ./app
+
+FROM build AS final
+WORKDIR /publish/app
+EXPOSE 5000
+ENTRYPOINT ["dotnet", "KindleDecision.dll"]
 
 
 ##MIGRATIONS
