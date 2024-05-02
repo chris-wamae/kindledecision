@@ -1,5 +1,3 @@
-
-
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /source
 COPY . .
@@ -13,10 +11,10 @@ EXPOSE 5000
 ENTRYPOINT ["dotnet", "KindleDecision.dll"]
 
 #Migrations
-
-FROM build AS migrations
-RUN dotnet tool install --version 6.0.9 --global dotnet-ef
-ENV PATH="$PATH:/root/.dotnet/tools"
-ENTRYPOINT  dotnet-ef database update
+#
+#FROM build AS migrations
+#RUN dotnet tool install --version 6.0.9 --global dotnet-ef
+#ENV PATH="$PATH:/root/.dotnet/tools"
+#ENTRYPOINT  dotnet-ef database update
 
 
