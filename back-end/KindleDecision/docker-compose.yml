@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: final
     environment: 
       - KEY=MangoMango123MangoMango321
     ports: 
