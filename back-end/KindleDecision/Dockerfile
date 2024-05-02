@@ -4,14 +4,14 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /source
 COPY . .
 RUN dotnet restore "KindleDecision.csproj" --disable-parallel
-RUN dotnet publish "KindleDecision.csproj" -c release -o /publish --no-restore
+RUN dotnet publish "KindleDecision.csproj" -c release -o /app --no-restore
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 as base
-WORKDIR /publish
-COPY --from=build /publish ./app
+WORKDIR /app
+COPY --from=build /app ./
 
 FROM base AS final
-WORKDIR /publish/app
+WORKDIR /app
 EXPOSE 5000
 ENTRYPOINT ["dotnet", "KindleDecision.dll"]
 
