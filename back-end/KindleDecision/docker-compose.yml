@@ -1,6 +1,5 @@
 services:
   kindle-decision:
-    container_name: kd-api
     build:
       context: .
       dockerfile: Dockerfile
@@ -18,7 +17,7 @@ services:
       dockerfile: Dockerfile
       target: migrations
     depends_on: 
-        - db 
+        - db
 
   db:
     container_name: db
