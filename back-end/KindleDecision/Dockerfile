@@ -1,5 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /source
+RUN pwd
 COPY . .
 RUN dotnet restore "KindleDecision.csproj" --disable-parallel
 RUN dotnet publish "KindleDecision.csproj" -c release -o /app --no-restore
