@@ -8,7 +8,8 @@ import { validateEmail } from "../Helper/Form";
 import { useEffect } from "react";
 import { emailToolTipRenderer } from "../Helper/Form";
 import { changeUserId } from "../features/idSlice";
-
+import { useSelector } from "react-redux";
+import { loginPost, loginState } from "../features/loginSlice";
 import { useNavigate } from "react-router-dom";
 
 //make email database search depend on physical button press by user
@@ -18,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     //authType = Sign up when true and Login when false
     const dispatch = useDispatch()
+    const loggedUser = useSelector(loginState);
     const navigate = useNavigate()
     const [user, setUser] = useState({})
     const [email, setEmail] = useState("")
@@ -41,36 +43,39 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         // }
     }, [email])
 
- 
+
     const searchUser = () => {
         if (emailState === true) {
-            axios.get(`${process.env.REACT_APP_BASE_URL}Users?email=${email}`).then(r => setFoundUser(r.data));
+            dispatch(loginPost({
+                email: email,
+                password: password
+            }))
         }
     }
 
-    useEffect(() => {
-    if(foundUser != undefined)
-    {
-    if (emailState && foundUser.length > 0) {
-            dispatch(changeUserId(foundUser[0].id))
-            navigate({
-            pathname:"/dashboard",
-            search:"?id=" + foundUser[0].id
-            })
-    }
-    else if(foundUser.length == 0)
-    {
-        setEmailState("notfound")
-    }
-    }
+    console.log(loggedUser);
 
-    },[foundUser])
+
+    useEffect(() => {
+        if (foundUser != undefined) {
+            if (emailState && foundUser.length > 0) {
+                dispatch(changeUserId(foundUser[0].id))
+                navigate({
+                    pathname: "/dashboard",
+                    search: "?id=" + foundUser[0].id
+                })
+            }
+            else if (foundUser.length == 0) {
+                setEmailState("notfound")
+            }
+        }
+
+    }, [foundUser])
 
     // useEffect(() => {
     //     //|| foundUser.length == 0
 
     // }, [fo])
-
 
     return (
         <>
