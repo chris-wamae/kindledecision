@@ -15,7 +15,7 @@ const initialState =
 {
     userDetails:
     {
-        userId: "",
+        ud: null,
         token: ""
     },
     status: "idle",

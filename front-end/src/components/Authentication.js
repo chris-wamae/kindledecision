@@ -21,12 +21,19 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     const dispatch = useDispatch()
     const loggedUser = useSelector(loginState);
     const navigate = useNavigate()
-    const [user, setUser] = useState({})
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [validEmail, setValidEmail] = useState(false);
-    const [foundUser, setFoundUser] = useState(undefined)
     const [emailState, setEmailState] = useState(undefined)
+    const [signupUser,setSignupUser] = useState({
+    email:"",
+    password:"",
+    username:"",
+    phone:"",
+    //boolean
+    viewingmode:undefined,
+    //boolean
+    uservisibility:undefined
+    })
 
     useEffect(() => {
         if (validateEmail(email)) {
@@ -53,24 +60,21 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         }
     }
 
-    console.log(loggedUser);
-
-
     useEffect(() => {
-        if (foundUser != undefined) {
-            if (emailState && foundUser.length > 0) {
-                dispatch(changeUserId(foundUser[0].id))
+        if (loggedUser.ud != undefined) {
+            if (emailState && loggedUser.ud != null) {
+                dispatch(changeUserId(loggedUser.ud))
                 navigate({
                     pathname: "/dashboard",
-                    search: "?id=" + foundUser[0].id
+                    search: "?id=" + loggedUser.ud
                 })
             }
-            else if (foundUser.length == 0) {
+            else if (loggedUser.ud == null) {
                 setEmailState("notfound")
             }
         }
 
-    }, [foundUser])
+    }, [loggedUser])
 
     // useEffect(() => {
     //     //|| foundUser.length == 0
@@ -92,12 +96,33 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                         <p className="input-header">Your email address:</p>
                         {emailToolTipRenderer(emailState)}
                         <input placeholder="email address" type="email" onChange={(e) => setEmail(e.target.value)}></input>
-                        <p className="input-header" id="password-header">{passwordHeader}</p>
+                        <p className="input-header" id="password-header"><br></br></p>
                         <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}></input>
+                        {
+                        authType ? 
+                        <div className="sign-up-container">
+                        <input type="text" placeholder="username"></input>
+                        <input type="text" placeholder="phone"></input>
+                        <select>
+                            <option>Viewing mode</option>
+                            <option value={false}>Darkmode</option>
+                            <option value={true}>Lightmode</option>
+                        </select>
+                        <select>
+                            <option>Selection visibility</option>
+                            <option value={false}>Anonymous</option>
+                            <option value={true}>Visible</option>
+                        </select>
+
+                        </div>    :
+                        <span></span>
+                        }
                         <button onClick={(e) => {
                             e.preventDefault();
+                            if(!authType)
+                            {
                             searchUser()
-
+                            }
                         }}>{buttonText}</button>
 
                     </form>
