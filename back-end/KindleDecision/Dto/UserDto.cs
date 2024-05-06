@@ -28,6 +28,11 @@ namespace KindleDecision.Dto
         public string Phone { get; set; }
 
         public string Language { get; set; }
+
+        public string Viewmode { get; set; }
+
+        public string UserVisibility { get; set; }
+
         public ICollection<string> Roles {get;set;}
 
     }
