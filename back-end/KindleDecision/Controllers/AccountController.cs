@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using KindleDecision.Data;
 using AutoMapper;
 using KindleDecision.Dto;
@@ -124,7 +125,11 @@ namespace KindleDecision.Controllers
                     HttpContext.Session.SetInt32("userId", user.UserId);
                 }
 
-                return Accepted(new { Token = await _authManager.CreateToken() });
+                return Accepted(new
+                {
+                    Token = await _authManager.CreateToken(),
+                    Ud = internalUser.Id
+                });
             }
 
 
@@ -134,6 +139,30 @@ namespace KindleDecision.Controllers
                 return Problem($"Something went wrong in the {nameof(Login)}", statusCode: 500);
             }
         }
+
+        [Authorize]
+        [HttpGet]
+        [Route("user-preferences/{userId}")]
+
+        public IActionResult GetPreferences(int userId) 
+        {
+        if(!ModelState.IsValid) { return BadRequest(ModelState); };
+        var user = _userRepository.GetUser(userId); 
+         
+        if(user == null)
+            {
+                return NotFound();
+            }
+
+            return Accepted(new {
+            Visibility = user.UserVisibility,
+            ViewMode = user.Viewmode,
+            });;
+
+
+        
+        }
+
 
     }
 
