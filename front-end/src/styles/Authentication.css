@@ -119,6 +119,13 @@ display:flex;
 color:black;
 }
 
+.sign-up-container
+{
+display:flex;
+flex-direction:column;
+justify-content:space-around;
+height:300px;
+}
 
 @media only screen and (max-width:450px)
 {
