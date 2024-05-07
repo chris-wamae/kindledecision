@@ -5,6 +5,7 @@ import idReducer from "../features/idSlice"
 import userQueriesReducer from "../features/userQueriesSlice";
 import selectionReducer from "../features/selectionSlice"
 import loginReducer from "../features/loginSlice"
+import signupReducer from "../features/signupSlice";
 
 export const store = configureStore({
     reducer:{
@@ -13,6 +14,7 @@ export const store = configureStore({
      id: idReducer,
      userQuery:userQueriesReducer,
      selection:selectionReducer,
-     login:loginReducer
+     login:loginReducer,
+     signup:signupReducer
         }
 })
