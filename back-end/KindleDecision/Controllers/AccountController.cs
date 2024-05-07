@@ -101,7 +101,7 @@ namespace KindleDecision.Controllers
 
             if(!ModelState.IsValid)
             { 
-             return BadRequest(ModelState);;
+             return BadRequest(ModelState);
             }
 
             try
