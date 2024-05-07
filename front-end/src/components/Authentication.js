@@ -10,6 +10,7 @@ import { emailToolTipRenderer } from "../Helper/Form";
 import { changeUserId } from "../features/idSlice";
 import { useSelector } from "react-redux";
 import { loginPost, loginState } from "../features/loginSlice";
+import { signUpState,signupPost } from "../features/signupSlice";
 import { useNavigate } from "react-router-dom";
 
 //make email database search depend on physical button press by user
@@ -20,19 +21,20 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     //authType = Sign up when true and Login when false
     const dispatch = useDispatch()
     const loggedUser = useSelector(loginState);
+    const signupState = useSelector(signUpState);
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [emailState, setEmailState] = useState(undefined)
-    const [signupUser,setSignupUser] = useState({
-    email:"",
-    password:"",
-    username:"",
-    phone:"",
-    //boolean
-    viewingmode:undefined,
-    //boolean
-    uservisibility:undefined
+    const [signupUser, setSignupUser] = useState({
+        email: "",
+        password: "",
+        username: "",
+        phone: "",
+        //boolean
+        viewingmode: undefined,
+        //boolean
+        userVisibility: undefined
     })
 
     useEffect(() => {
@@ -76,6 +78,21 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
 
     }, [loggedUser])
 
+     const createUser = () => {
+        dispatch(signupPost({
+       firstName:"Mr",
+       lastName:"Nobody",
+       username:signupUser.username,
+       email:email,
+       phone:signupUser.phone,
+       language:"en" ,
+       password:password,
+       viewingmode:signupUser.viewingmode,
+       userVisibility:signupUser.userVisibility,
+       roles:["user"]
+        }))
+    }
+
     // useEffect(() => {
     //     //|| foundUser.length == 0
 
@@ -99,30 +116,37 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                         <p className="input-header" id="password-header"><br></br></p>
                         <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}></input>
                         {
-                        authType ? 
-                        <div className="sign-up-container">
-                        <input type="text" placeholder="username"></input>
-                        <input type="text" placeholder="phone"></input>
-                        <select>
-                            <option>Viewing mode</option>
-                            <option value={false}>Darkmode</option>
-                            <option value={true}>Lightmode</option>
-                        </select>
-                        <select>
-                            <option>Selection visibility</option>
-                            <option value={false}>Anonymous</option>
-                            <option value={true}>Visible</option>
-                        </select>
+                            authType ?
+                                <div className="sign-up-container">
+                                    <input type="text" placeholder="username" onChange={(e) => setSignupUser({ ...signupUser, username: e.target.value })}></input>
+                                    <input type="text" placeholder="phone" onChange={(e) => setSignupUser({ ...signupUser, phone: e.target.value })}></input>
+                                    <select onChange={e => {
+                                        console.log(e.target.value);
+                                        setSignupUser({ ...signupUser, viewingmode:e.target.value })
+                                }}>
+                                        <option>Viewing mode</option>
+                                        <option value={false}>Darkmode</option>
+                                        <option value={true}>Lightmode</option>
+                                    </select>
+                                    <select onChange={e => setSignupUser({ ...signupUser, uservisibility:e.target.value })}>
+                                        <option>Selection visibility</option>
+                                        <option value={false}>Anonymous</option>
+                                        <option value={true}>Visible</option>
+                                    </select>
 
-                        </div>    :
-                        <span></span>
+                                </div> :
+                                <span></span>
                         }
                         <button onClick={(e) => {
                             e.preventDefault();
-                            if(!authType)
-                            {
-                            searchUser()
+                            if (!authType) {
+                                searchUser()
                             }
+                            else if(authType)
+                            {
+                             createUser();
+                            }
+
                         }}>{buttonText}</button>
 
                     </form>
