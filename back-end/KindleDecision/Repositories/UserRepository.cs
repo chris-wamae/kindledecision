@@ -67,8 +67,8 @@ namespace KindleDecision.Repositories
         }
 
         public User CreateUser(User user)
-        {
-            _context.Add(user);
+        { 
+           _context.Add(user);
             if(!Save())
             {
             return null;
