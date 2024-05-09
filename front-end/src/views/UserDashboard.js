@@ -30,13 +30,13 @@ function UserDashboard() {
       <main className="dashboard-container">
         <div className="side-menu">
           <div className="combined-svg">
-            <img className="user-svg" src="svg/account-icon.svg" onClick={() => setDashboardComponentId(1)}></img>
-            <img className="listSvg" src="svg/list.svg" onClick={() => setDashboardComponentId(1)}></img>
+            <img className="user-svg" src="account-icon.svg" onClick={() => setDashboardComponentId(1)}></img>
+            <img className="listSvg" src="list.svg" onClick={() => setDashboardComponentId(1)}></img>
           </div>
-          <img src="svg/pending.svg"></img>
-          <img src="svg/list.svg" onClick={() => setDashboardComponentId(3)}></img>
-          <img src="svg/account-icon.svg" onClick={() => setDashboardComponentId(4)}></img>
-          <img src="svg/add-icon.svg" onClick={() => navigate("/create-query")}></img>
+          <img src="pending.svg"></img>
+          <img src="list.svg" onClick={() => setDashboardComponentId(3)}></img>
+          <img src="account-icon.svg" onClick={() => setDashboardComponentId(4)}></img>
+          <img src="add-icon.svg" onClick={() => navigate("/create-query")}></img>
         </div>
         <div className="page-content">
           {dashBoardSetter(dashboardComponentId)}
