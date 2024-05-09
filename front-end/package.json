@@ -1,7 +1,7 @@
 {
   "name": "front-end",
   "version": "0.1.0",
-  "homepage":"./"
+  "homepage":"./",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
