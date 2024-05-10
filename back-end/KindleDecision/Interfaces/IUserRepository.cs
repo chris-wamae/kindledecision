@@ -8,7 +8,7 @@ namespace KindleDecision.Interfaces
 
         User GetUser(int id);
 
-        User GetUser(string username);
+        //User GetUser(string username);
 
         User GetUserByEmail(string email);
 

@@ -24,7 +24,7 @@ namespace KindleDecision.Controllers
             {
                 var user = _userRepository.GetUser((int)userId);
 
-                return Ok(user.Username);
+                return Ok(user.Id);
 
             }
             else 
