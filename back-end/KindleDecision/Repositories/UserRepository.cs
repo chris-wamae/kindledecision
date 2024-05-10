@@ -28,12 +28,6 @@ namespace KindleDecision.Repositories
         { 
             return _context.Users.Where(u => u.Id == id).FirstOrDefault();    
         }
-
-        public User GetUser(string username) 
-        {
-            return _context.Users.Where(u => u.Username == username).FirstOrDefault();
-        }
-
         public User GetUserByEmail(string email) 
         {
             return _context.Users.Where(u => u.Email == email).FirstOrDefault();

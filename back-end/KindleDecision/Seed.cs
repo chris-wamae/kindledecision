@@ -44,9 +44,8 @@ namespace KindleDecision
                         },
                         User = new User()
                         {
-                            Username = "Wamae",
+                            
                             Email = "wamae@gmail.com",
-                            Phone = "0122344449",
                             Language = "en",
                             Password = "wamae",
                         }
@@ -80,9 +79,7 @@ namespace KindleDecision
                         },
                         User = new User()
                         {
-                            Username = "Chris",
                             Email = "chris@gmail.com",
-                            Phone = "0122837449",
                             Language = "en",
                             Password = "chris",
                         }
@@ -116,9 +113,7 @@ namespace KindleDecision
                         },
                         User = new User()
                         {
-                            Username = "Troller",
                             Email = "troller@gmail.com",
-                            Phone = "0384848429",
                             Language = "en",
                             Password = "troller",
                         }
