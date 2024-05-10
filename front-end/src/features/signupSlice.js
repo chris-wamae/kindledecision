@@ -15,12 +15,12 @@ const initialState = {
     userDataObject: {
         email: "",
         password: "",
-        username: "",
-        phone: "",
-        //boolean
+        firstName:"",
+        lastName:"",
         viewingmode: undefined,
-        //boolean
-        userVisibility: undefined
+        userVisibility: undefined,
+        phone:"",
+        roles: ["user"]
     },
     status: "idle",
     error: null

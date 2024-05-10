@@ -28,9 +28,9 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [emailState, setEmailState] = useState(undefined)
-    const [username, setUsername] = useState("")
-    const [phone, setPhone] = useState("")
-    const [viewmode, setViewmode] = useState(undefined)
+   // const [username, setUsername] = useState("")
+    //const [phone, setPhone] = useState("")
+    const [passwordConfirm, setPasswordConfirm] = useState("")
     const [userVisibility, setUserVisibility] = useState(undefined)
 
     useEffect(() => {
@@ -47,7 +47,34 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         //     
         // }
     }, [email])
+    
+    // console.log(loggedUser);
+    // console.log(userVisibility);
 
+
+    const signUpValidator = () => {
+    if(emailState && password !== "" && passwordConfirm !== "" && firstName !== "" && lastName !== "" && userVisibility !== undefined)
+    {
+    return true
+    }
+    else
+    {
+    return false
+    }
+    } 
+
+    console.log({
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "language": "en",
+        "password": password,
+        "viewmode": true,
+        "userVisibility": userVisibility,
+        "phone":"",
+        "username":"",
+        "roles": ["user"]
+    })
 
     const searchUser = () => {
         if (emailState === true) {
@@ -59,15 +86,15 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     }
 
     useEffect(() => {
-        if (loggedUser.ud != undefined) {
-            if (emailState && loggedUser.ud != null) {
+        if (loggedUser != undefined) {
+            if (emailState && loggedUser[0].ud != null) {
                 dispatch(changeUserId(loggedUser.ud))
                 navigate({
                     pathname: "/dashboard",
                     search: "?id=" + loggedUser.ud
                 })
             }
-            else if (loggedUser.ud == null) {
+            else if (loggedUser[1] == "failed") {
                 setEmailState("notfound")
             }
         }
@@ -78,13 +105,13 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         dispatch(signupPost({
             "firstName": firstName,
             "lastName": lastName,
-            "username": username,
             "email": email,
-            "phone": phone,
             "language": "en",
             "password": password,
-            "viewmode": viewmode,
+            "viewmode": true,
             "userVisibility": userVisibility,
+            "phone":"",
+            "username":"",
             "roles": ["user"]
         }))
     }
@@ -114,11 +141,13 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                         {
                             authType ?
                                 <span className="sign-up-container">
+                                    {(password !== passwordConfirm) ? <ToolTip type={"error"} message={"Passwords do not match"} /> : <span></span>}
+                                    <input type="password" placeholder="Password confirmation" onChange={(e) => setPasswordConfirm(e.target.value)}></input>
                                     <input type="text" placeholder="First name" onChange={(e) => setFirstName(e.target.value)}></input>
                                     <input type="text" placeholder="Last name" onChange={(e) => setLastName(e.target.value)}></input>
-                                    <input type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)}></input>
-                                    <input type="text" placeholder="phone" onChange={(e) => setPhone(e.target.value)}></input>
-                                    <select onChange={e => {
+                                    {/* <input type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)}></input>
+                                    <input type="text" placeholder="phone" onChange={(e) => setPhone(e.target.value)}></input> */}
+                                    {/* <select onChange={e => {
                                         if (e.target.value == "true") {
                                             setViewmode(true)
                                         }
@@ -129,7 +158,7 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                                         <option>Viewing mode</option>
                                         <option value={"false"}>Darkmode</option>
                                         <option value={"true"}>Lightmode</option>
-                                    </select>
+                                    </select> */}
                                     <select onChange={e => {
                                         if (e.target.value == "true") {
                                             setUserVisibility(true)
@@ -145,19 +174,20 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                                         <option value={"true"}>Visible</option>
                                     </select>
 
-                                </span> :
-                                <span></span>
-                        }
-                        <button onClick={(e) => {
-                            e.preventDefault();
-                            if (!authType) {
-                                searchUser()
-                            }
-                            else if (authType) {
-                                createUser();
-                            }
+                                    <button disabled={signUpValidator() ? false : true} className={signUpValidator() ? "" : "disabled-button"}onClick={(e) => {
+                                    e.preventDefault();
+                                    createUser();
+                                }}>{buttonText}</button>
 
-                        }}>{buttonText}</button>
+                                </span>
+
+                                
+                                :
+                                <button disabled={(emailState && password !== "") ? false : true} className={(emailState && password !== "") ? "" : "disabled-button"}onClick={(e) => {
+                                    e.preventDefault();
+                                    searchUser();
+                                }}>{buttonText}</button>
+                        }
 
                     </form>
                 </section>

@@ -27,13 +27,14 @@ export const emailToolTipRenderer = (state) => {
    }
    else if(state == "notfound")
    {
-    return <ToolTip type={"error"} message={" A user with this email does not exist"}/>
+    return <ToolTip type={"error"} message={"Invalid credentials"}/>
    }
    else
    {
 
    }
   }
+
 
 
   export const validateEmail = (email) => {

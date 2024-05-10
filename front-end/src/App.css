@@ -15,3 +15,8 @@ a{
     display:none;
 }
 
+.disabled-button
+{
+opacity:50%;
+}
+
