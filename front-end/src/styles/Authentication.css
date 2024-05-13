@@ -69,8 +69,8 @@ align-items:center;
 .auth-form div 
 {
 font-size:20px;
-margin-top:40px;
-margin-bottom:40px;
+margin-top:10px;
+margin-bottom:10px;
 }
 
 .auth-form input
@@ -128,7 +128,7 @@ color:black;
 display:flex;
 flex-direction:column;
 justify-content:space-around;
-height:300px;
+min-height:300px;
 }
 
 .sign-up-container select

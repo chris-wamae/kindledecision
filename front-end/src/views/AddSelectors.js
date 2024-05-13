@@ -5,7 +5,7 @@ import { postUserQuery } from "../features/userQueriesSlice";
 import { currentQueryId } from "../features/idSlice";
 import { useSelector } from "react-redux";
 import { validateEmail } from "../Helper/Form";
-import { emailToolTipRenderer } from "../Helper/Form";
+import { authToolTipRenderer } from "../Helper/Form";
 import { useEffect } from "react";
 import axios from "axios";
 import "../styles/AddSelectors.css"
@@ -113,7 +113,7 @@ function AddSelectors() {
         <form className="selector-form">
 
           <label htmlFor="voter-input" className="voter-label">Voter:</label>
-          {emailToolTipRenderer(emailState)}
+          {authToolTipRenderer(emailState)}
           <input id="voter-input" className="enter-selector" placeholder="Please enter a selector's email" onChange={e => setSelectorEmail(e.target.value)}></input>
 
           <button style={{ display: `${showSearch}` }} disabled={disableSearch} className="search-button" onClick={

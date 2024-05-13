@@ -50,6 +50,7 @@ export const signupSlice = createSlice(
     }
 )
 
-export const signUpState = state  => state.signup.userDataObject;
+export const signUpState = state  => state.signup.userDataObject; 
+export const signUpStatus = state => state.signup.status;
 
 export default signupSlice.reducer;
