@@ -106,6 +106,7 @@ namespace KindleDecision.Controllers
             return Ok(querys);
         }
 
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -114,7 +115,7 @@ namespace KindleDecision.Controllers
         {
          if(queryCreate == null)
             {
-                return BadRequest(ModelState);
+                ModelState.AddModelError("","Invalid data was provided");
             }
 
          if(!ModelState.IsValid)
