@@ -55,7 +55,7 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
 
 
     const signUpValidator = () => {
-        if (emailState && password !== "" && passwordConfirm !== "" && firstName !== "" && lastName !== "" && userVisibility !== undefined && !passwordValidator(password)) {
+        if (emailState && password !== "" && passwordConfirm !== "" && firstName !== "" && lastName !== "" && userVisibility !== undefined && passwordValidator(password)) {
             return true
         }
         else {
@@ -64,7 +64,7 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     }
 
     const passwordValidator = (password) => {
-    if(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(password))
+    if(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[^\w\d\s]).{8,}$/.test(password))
     {
     return true
     }
