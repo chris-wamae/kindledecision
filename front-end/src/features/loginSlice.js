@@ -44,6 +44,7 @@ export const loginSlice = createSlice({
 }
 )
 
-export const loginState = state => [state.login.userDetails,state.login.status]
+export const loginState = state => state.login.userDetails
+export const loginStatus = state => state.login.status;
 
 export default loginSlice.reducer;

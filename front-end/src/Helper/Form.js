@@ -11,7 +11,7 @@ export const removeOption = (stateArray, stateArraySetterFunction, index) => {
  }
 
 
-export const emailToolTipRenderer = (state) => {
+export const authToolTipRenderer = (state) => {
 
    if(state == undefined)
    {
@@ -29,9 +29,9 @@ export const emailToolTipRenderer = (state) => {
    {
     return <ToolTip type={"error"} message={"Invalid credentials"}/>
    }
-   else
+   else if(state == "error")
    {
-
+    return <ToolTip type={"error"} message={"Unknown error, please try again"}/>
    }
   }
 

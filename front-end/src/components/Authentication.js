@@ -6,11 +6,11 @@ import ToolTip from "./ToolTip"
 import axios from "axios";
 import { validateEmail } from "../Helper/Form";
 import { useEffect } from "react";
-import { emailToolTipRenderer } from "../Helper/Form";
+import { authToolTipRenderer } from "../Helper/Form";
 import { changeUserId } from "../features/idSlice";
 import { useSelector } from "react-redux";
-import { loginPost, loginState } from "../features/loginSlice";
-import { signUpState, signupPost } from "../features/signupSlice";
+import { loginPost, loginState, loginStatus } from "../features/loginSlice";
+import { signUpState, signupPost, signUpStatus } from "../features/signupSlice";
 import { useNavigate } from "react-router-dom";
 
 //make email database search depend on physical button press by user
@@ -21,6 +21,8 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     //authType = Sign up when true and Login when false
     const dispatch = useDispatch()
     const loggedUser = useSelector(loginState);
+    const loggedUserStatus = useSelector(loginStatus)
+    const signupStatus = useSelector(signUpStatus)
     const signupState = useSelector(signUpState);
     const navigate = useNavigate()
     const [firstName, setFirstName] = useState("")
@@ -28,7 +30,7 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [emailState, setEmailState] = useState(undefined)
-   // const [username, setUsername] = useState("")
+    // const [username, setUsername] = useState("")
     //const [phone, setPhone] = useState("")
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [userVisibility, setUserVisibility] = useState(undefined)
@@ -47,34 +49,45 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         //     
         // }
     }, [email])
-    
+
     // console.log(loggedUser);
     // console.log(userVisibility);
 
 
     const signUpValidator = () => {
-    if(emailState && password !== "" && passwordConfirm !== "" && firstName !== "" && lastName !== "" && userVisibility !== undefined)
+        if (emailState && password !== "" && passwordConfirm !== "" && firstName !== "" && lastName !== "" && userVisibility !== undefined && !passwordValidator(password)) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+
+    const passwordValidator = (password) => {
+    if(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(password))
     {
     return true
     }
     else
-    {
+    {   
+    //console.log(password)
     return false
     }
-    } 
+    }
 
-    console.log({
-        "firstName": firstName,
-        "lastName": lastName,
-        "email": email,
-        "language": "en",
-        "password": password,
-        "viewmode": true,
-        "userVisibility": userVisibility,
-        "phone":"",
-        "username":"",
-        "roles": ["user"]
-    })
+    //console.log(password)
+    // console.log({
+    //     "firstName": firstName,
+    //     "lastName": lastName,
+    //     "email": email,
+    //     "language": "en",
+    //     "password": password,
+    //     "viewmode": true,
+    //     "userVisibility": userVisibility,
+    //     "phone": "",
+    //     "username": "",
+    //     "roles": ["user"]
+    // })
 
     const searchUser = () => {
         if (emailState === true) {
@@ -87,14 +100,14 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
 
     useEffect(() => {
         if (loggedUser != undefined) {
-            if (emailState && loggedUser[0].ud != null) {
+            if (emailState && loggedUser.ud != null) {
                 dispatch(changeUserId(loggedUser.ud))
                 navigate({
                     pathname: "/dashboard",
                     search: "?id=" + loggedUser.ud
                 })
             }
-            else if (loggedUser[1] == "failed") {
+            else if (loggedUserStatus == "failed") {
                 setEmailState("notfound")
             }
         }
@@ -110,11 +123,22 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
             "password": password,
             "viewmode": true,
             "userVisibility": userVisibility,
-            "phone":"",
-            "username":"",
+            "phone": "",
+            "username": "",
             "roles": ["user"]
         }))
     }
+
+    useEffect(() => {
+    if(signupStatus == "failed")
+    {
+    setEmailState("error")
+    }
+    else if(signupStatus == "successful")
+    {
+     navigate("/login")
+    }
+    },[signupState])
 
     // useEffect(() => {
     //     //|| foundUser.length == 0
@@ -135,8 +159,9 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                     <div className="auth-title">{authTitle}</div>
                     <form className="auth-form">
                         <p className="input-header">Your email address:</p>
-                        {emailToolTipRenderer(emailState)}
+                        {authToolTipRenderer(emailState)}
                         <input placeholder="Email address" type="email" onChange={(e) => setEmail(e.target.value)}></input>
+                        {(!passwordValidator(password) && password !== "" && authType) ? <ToolTip type={"error"} message={"Invalid password"}/> : <span></span>}
                         <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
                         {
                             authType ?
@@ -174,16 +199,16 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                                         <option value={"true"}>Visible</option>
                                     </select>
 
-                                    <button disabled={signUpValidator() ? false : true} className={signUpValidator() ? "" : "disabled-button"}onClick={(e) => {
-                                    e.preventDefault();
-                                    createUser();
-                                }}>{buttonText}</button>
+                                    <button disabled={signUpValidator() ? false : true} className={signUpValidator() ? "" : "disabled-button"} onClick={(e) => {
+                                        e.preventDefault();
+                                        createUser();
+                                    }}>{buttonText}</button>
 
                                 </span>
 
-                                
+
                                 :
-                                <button disabled={(emailState && password !== "") ? false : true} className={(emailState && password !== "") ? "" : "disabled-button"}onClick={(e) => {
+                                <button disabled={(emailState && password !== "") ? false : true} className={(emailState && password !== "") ? "" : "disabled-button"} onClick={(e) => {
                                     e.preventDefault();
                                     searchUser();
                                 }}>{buttonText}</button>
