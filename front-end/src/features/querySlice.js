@@ -3,10 +3,14 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { timeAfterMinutes } from "../Helper/Time";
+import { useSelector } from "react-redux";
+import { loginState } from "./loginSlice";
 
-export const postQuery = createAsyncThunk("query/postQuery",async (post) => {
+export const postQuery = createAsyncThunk("query/postQuery",async (post,config) => {
 
-const response = await axios.post(`${process.env.REACT_APP_BASE_URL}queries`, post )
+console.log(config)
+
+const response = await axios.post(`${process.env.REACT_APP_BASE_URL}query`, post, {headers: {Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVzdGVyQHRlc3Rlci5jb20iLCJleHAiOjE3MTU2MTIyMzQsImlzcyI6IktpbmRsZURlY2lzaW9uIn0.GlEhRZDxGZCnCLA9fKF_6LcnS_vBYPwQFrYnFes_XwA`}})
 
 Cookies.set("NQID", response.data.id, {expires:timeAfterMinutes(15)})
 

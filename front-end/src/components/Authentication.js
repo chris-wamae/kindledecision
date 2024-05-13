@@ -12,7 +12,8 @@ import { useSelector } from "react-redux";
 import { loginPost, loginState, loginStatus } from "../features/loginSlice";
 import { signUpState, signupPost, signUpStatus } from "../features/signupSlice";
 import { useNavigate } from "react-router-dom";
-
+import Cookies from "js-cookie";
+import { timeAfterMinutes } from "../Helper/Time";
 //make email database search depend on physical button press by user
 //move email validation to form Helper since it will no longer be using fetch
 
@@ -102,6 +103,8 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         if (loggedUser != undefined) {
             if (emailState && loggedUser.ud != null) {
                 dispatch(changeUserId(loggedUser.ud))
+                Cookies.set("ud", loggedUser.ud ,{expires:timeAfterMinutes(15)})
+                Cookies.set("t", loggedUser.token, {expires:timeAfterMinutes(15)})
                 navigate({
                     pathname: "/dashboard",
                     search: "?id=" + loggedUser.ud + "&t=" + loggedUser.token
