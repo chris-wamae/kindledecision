@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Extensions.FileSystemGlobbing.Internal;
+using System.ComponentModel.DataAnnotations;
 
 namespace KindleDecision.Dto
 {
@@ -10,6 +11,7 @@ namespace KindleDecision.Dto
         public string Email { get; set; }
 
         [Required]
+        [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[^\w\d\s]).{8,}$", ErrorMessage ="Password does not meet requirements")]
         public string Password { get; set; }
 
     }
