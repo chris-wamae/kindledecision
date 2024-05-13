@@ -1,9 +1,31 @@
 import React, { useState } from "react";
 import "../../styles/DashboardAccount.css"
+import { useSelector } from "react-redux";
+import { loginState} from "../../features/loginSlice";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const EditableDetail = ({ text, functionToCall, functionArg }) => {
   const [showEditIcon, setShowEditIcon] = useState(false);
-
+  const loggedUser = useSelector(loginState)
+  const location = useLocation();
+  const [userDetails,setUserDetails] = useState({})
+  const params = new URLSearchParams(location.search);
+    
+  
+  console.log(userDetails)
+  useEffect(() => {
+  if(loggedUser.token == "")
+    {
+    axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${params.get("id")}`, {headers: {Authorization: `Bearer ${params.get("t")}`}}).then(r => setUserDetails(r.data))
+    }
+  else
+  {
+    axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${loggedUser.id}`, {headers: {Authorization: `Bearer ${loggedUser.token}`}}).then(r => setUserDetails(r.data))
+  }
+  },[loggedUser])
+  
   return (
     <div
       className="detail-data"
@@ -11,7 +33,7 @@ const EditableDetail = ({ text, functionToCall, functionArg }) => {
       onMouseLeave={() => setShowEditIcon(false)}
       onClick={() =>{functionToCall(functionArg)}}
     >
-      {showEditIcon && <div className="edit-control"><img src="/svg/edit-icon.svg" alt="Edit Icon" /></div>}
+      {showEditIcon && <div className="edit-control"><img src="edit-icon.svg" alt="Edit Icon" /></div>}
       {text}
       <div className="detail-edit"></div>
     </div>
