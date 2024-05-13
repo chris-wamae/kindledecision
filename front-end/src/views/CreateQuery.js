@@ -10,6 +10,7 @@ import { getTime } from "../Helper/Time";
 import { queryState } from "../features/querySlice";
 import { changeQueryId } from "../features/idSlice";
 import { currentUserId } from "../features/idSlice";
+import { loginState } from "../features/loginSlice";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
 import { timeAfterMinutes } from "../Helper/Time";
@@ -25,7 +26,7 @@ function CreateQuery() {
   const [startDate, setStartDate] = useState(null)
   const [expiryDate, setExpiryDate] = useState("")
   const [showStartDateInput, setShowStartDateInput] = useState("display-none start-date-input")
-  const userId = useSelector(currentUserId)
+  const loggedUser = useSelector(loginState)
   const query = useSelector(queryState)
 
 
@@ -39,9 +40,9 @@ function CreateQuery() {
       return true
     }
   }
-
-
-
+  //console.log(loggedUser.token)
+  const config = {headers: {Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVzdGVyQHRlc3Rlci5jb20iLCJleHAiOjE3MTU2MTIyMzQsImlzcyI6IktpbmRsZURlY2lzaW9uIn0.GlEhRZDxGZCnCLA9fKF_6LcnS_vBYPwQFrYnFes_XwA`}}
+  console.log(config)
   const createQuery = (queryTitle) => {
 
     const creationTime = getTime();
@@ -60,7 +61,7 @@ function CreateQuery() {
 
       remainingSelectors: null,
 
-      creatorUserId: userId
+      //creatorUserId: loggedUser.ud
     }
 
   }
@@ -97,11 +98,11 @@ function CreateQuery() {
 
             <button className="submit-button" disabled={canSave()} onClick={(e) => {
               e.preventDefault();
-              dispatch(postQuery(createQuery(queryTitle)))
+              dispatch(postQuery(createQuery(queryTitle),config))
               resetForm([titleRef, dateRef])
               //console.log(currentElectionState);
               //dispatch(changeElectionId(currentElectionState["id"]))
-              redirect("/add-choices", { replace: true })
+            //  redirect("/add-choices", { replace: true })
 
             }}>Create</button>
 
