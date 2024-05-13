@@ -8,16 +8,17 @@ namespace KindleDecision.Controllers
     [Route("/user")]
     public class UserController : Controller
     {
-    private IUserRepository _userRepository;
-    public UserController(IUserRepository userRepository) 
-     {
-        _userRepository = userRepository;
-     }
+        private IUserRepository _userRepository;
 
-    [Authorize]
-    [HttpGet("current-user")]
-     public IActionResult GetCurrentUser () 
-      {
+        public UserController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
+        [Authorize]
+        [HttpGet("current-user")]
+        public IActionResult GetCurrentUser()
+        {
             var userId = HttpContext.Session.GetInt32("userId");
 
             if (userId != null)
@@ -25,15 +26,40 @@ namespace KindleDecision.Controllers
                 var user = _userRepository.GetUser((int)userId);
 
                 return Ok(user.Id);
-
             }
-            else 
+            else
             {
                 ModelState.AddModelError("", $"could not find user with Id: {userId}");
-                return StatusCode(404, ModelState); 
+                return StatusCode(404, ModelState);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("dashboard-details/{userId}")]
+        public IActionResult GetUserDashboardDetails(int userId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
             }
 
-            
-      }
+            var user = _userRepository.GetUser(userId);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", "User not found");
+                return BadRequest(ModelState);
+            }
+
+            return Ok(
+                new
+                {
+                    Email = user.Email,
+                    UserVisibility = user.UserVisibility,
+                    ViewMode = user.Viewmode,
+                }
+            );
+            ;
+        }
     }
 }
