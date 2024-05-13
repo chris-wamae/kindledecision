@@ -8,24 +8,7 @@ import axios from "axios";
 
 const EditableDetail = ({ text, functionToCall, functionArg }) => {
   const [showEditIcon, setShowEditIcon] = useState(false);
-  const loggedUser = useSelector(loginState)
-  const location = useLocation();
-  const [userDetails,setUserDetails] = useState({})
-  const params = new URLSearchParams(location.search);
-    
-  
-  console.log(userDetails)
-  useEffect(() => {
-  if(loggedUser.token == "")
-    {
-    axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${params.get("id")}`, {headers: {Authorization: `Bearer ${params.get("t")}`}}).then(r => setUserDetails(r.data))
-    }
-  else
-  {
-    axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${loggedUser.id}`, {headers: {Authorization: `Bearer ${loggedUser.token}`}}).then(r => setUserDetails(r.data))
-  }
-  },[loggedUser])
-  
+
   return (
     <div
       className="detail-data"
@@ -48,6 +31,21 @@ const DashboardAccount = () => {
     const [showEditUserAnonymity, setShowEditUserAnyonymity] = useState(false)
     const [showEditUserViewingMode,setShowUserViewingMode] = useState(false) 
     const [darkMode,setDarkMode] = useState(false)
+    const loggedUser = useSelector(loginState)
+    const location = useLocation();
+    const [userDetails, setUserDetails] = useState({})
+    const params = new URLSearchParams(location.search);
+  
+    useEffect(() => {
+    if(loggedUser.token == "")
+      {
+      axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${params.get("id")}`, {headers: {Authorization: `Bearer ${params.get("t")}`}}).then(r => setUserDetails(r.data))
+      }
+    else
+    {
+      axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${loggedUser.ud}`, {headers: {Authorization: `Bearer ${loggedUser.token}`}}).then(r => setUserDetails(r.data))
+    }
+    },[loggedUser])
       
 
   return (
@@ -61,7 +59,7 @@ const DashboardAccount = () => {
           <div className="header">Details</div>
           <div className="info-n-sub-header">
             <div className="sub-header" >Email</div>
-            <EditableDetail text="dummyemail@mail.com" functionToCall={setShowEmailEdit} functionArg={!showEditEmail}/>
+            {<EditableDetail text={userDetails.email} functionToCall={setShowEmailEdit} functionArg={!showEditEmail}/>}
             {showEditEmail ?
             <form className="edit-form">
             <input type="text" placeholder="Enter new email"></input>
@@ -75,7 +73,7 @@ const DashboardAccount = () => {
           </div>
           <div className="info-n-sub-header">
             <div className="sub-header">Password</div>
-            <EditableDetail text="dummyemailpassword" functionToCall={setShowEditPassword} functionArg={!showEditPassword} />
+            <EditableDetail text="********" functionToCall={setShowEditPassword} functionArg={!showEditPassword} />
             {showEditPassword ?
             <form className="edit-form">
             <input type="password" placeholder="Enter new password"></input>
@@ -98,7 +96,7 @@ const DashboardAccount = () => {
           <div className="header">Settings</div>
           <div className="info-n-sub-header">
             <div className="sub-header">User visibility</div>
-            <EditableDetail text="dummyemail@mail.com" functionToCall={setShowEditUserAnyonymity} functionArg={!showEditUserAnonymity} />
+            <EditableDetail text={(userDetails.userVisibility) ? "Visible" : "Anonymous"} functionToCall={setShowEditUserAnyonymity} functionArg={!showEditUserAnonymity} />
             {
             showEditUserAnonymity ?
             <form>  <label for="select-visibility">Select visibility</label>
@@ -114,7 +112,7 @@ const DashboardAccount = () => {
           </div>
           <div className="info-n-sub-header">
             <div className="sub-header">Viewing mode</div>
-            <EditableDetail text="dummyemail@mail.com" functionToCall={setShowUserViewingMode} functionArg={!showEditUserViewingMode}/>
+            <EditableDetail text={(userDetails.viewmode) ? "Lightmode" : "Darkmode"} functionToCall={setShowUserViewingMode} functionArg={!showEditUserViewingMode}/>
             {
             showEditUserViewingMode ? 
             <button onClick={() => setDarkMode(!darkMode)}>Change to {darkMode ? "light mode" : "darkmode"}</button>
