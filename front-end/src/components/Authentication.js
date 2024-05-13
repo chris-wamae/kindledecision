@@ -104,7 +104,7 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                 dispatch(changeUserId(loggedUser.ud))
                 navigate({
                     pathname: "/dashboard",
-                    search: "?id=" + loggedUser.ud
+                    search: "?id=" + loggedUser.ud + "&t=" + loggedUser.token
                 })
             }
             else if (loggedUserStatus == "failed") {

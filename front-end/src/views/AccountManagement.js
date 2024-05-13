@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import "../styles/AccountManagement.css"
 import "../styles/DashboardAccount.css"
 import { useState } from "react";
+import axios from "axios";
 
 function AccountManagement() {
     const navItems = [""]
