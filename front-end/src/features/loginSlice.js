@@ -16,7 +16,9 @@ const initialState =
     userDetails:
     {
         ud: null,
-        token: ""
+        accessToken: "",
+        refreshToken:"",
+        refreshTokenExpiry:""
     },
     status: "idle",
     error: null
