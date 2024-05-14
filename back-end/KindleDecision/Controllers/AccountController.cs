@@ -22,16 +22,18 @@ namespace KindleDecision.Controllers
     private readonly IMapper _mapper;
     private readonly IAuthManager _authManager;
     private readonly IUserRepository _userRepository;
+    private readonly IConfiguration _configuration;
 
 
 
-    public AccountController(UserManager<ApplicationUser> userManager, ILogger<AccountController> logger, IMapper mapper, IAuthManager authManager, IUserRepository userRepository)
+    public AccountController(UserManager<ApplicationUser> userManager, ILogger<AccountController> logger, IMapper mapper, IAuthManager authManager, IUserRepository userRepository, IConfiguration configuration)
         {
             _userManager = userManager;
             _logger = logger;
             _mapper = mapper;
             _authManager = authManager;
             _userRepository = userRepository;
+            _configuration = configuration;
 
         }
 
@@ -120,14 +122,30 @@ namespace KindleDecision.Controllers
 
                     return StatusCode(500, ModelState);
                 }
-                else
-                {
-                    HttpContext.Session.SetInt32("userId", user.UserId);
-                }
+                //else
+                //{
+                //    HttpContext.Session.SetInt32("userId", user.UserId);
+                //}
 
+                var refreshToken = _authManager.GenerateRefreshToken();
+                var jwtSettings = _configuration.GetSection("Jwt");
+
+                var refreshTokenExpiry = DateTime.Now.AddDays(Convert.ToDouble(jwtSettings.GetSection("refreshTokenDays").Value));
+
+                internalUser.RefreshToken = refreshToken;
+                internalUser.RefreshTokenExpiryTime = refreshTokenExpiry;
+
+                if(!_userRepository.UpdateUser(internalUser.Id, internalUser))
+                {
+                    ModelState.AddModelError("", "Refresh token error");
+                    return StatusCode(500, ModelState);
+                };
+                
                 return Accepted(new
                 {
                     Token = await _authManager.CreateToken(),
+                    RefreshToken = refreshToken,
+                    RefreshTokenExpiry = refreshTokenExpiry,
                     Ud = internalUser.Id
                 });
             }
@@ -158,10 +176,71 @@ namespace KindleDecision.Controllers
             Visibility = user.UserVisibility,
             ViewMode = user.Viewmode,
             });;
-
-
         
         }
+
+        [HttpPost]
+        [Route("refresh-token")]
+
+        public async Task<IActionResult> RefreshToken(Tokens tokenObject)
+        {
+            if(tokenObject.accessToken == null || tokenObject.refreshToken == null )
+            {
+               return BadRequest("Invalid data provided");
+            }
+
+            string? _accessToken = tokenObject.accessToken;
+            string? _refreshToken = tokenObject.refreshToken;
+
+            var principal = _authManager.GetPrincipalFromExpiredToken(_accessToken);
+
+            if(principal == null)
+            {
+                return BadRequest("Invalid access token");
+            }
+
+            string username = principal.Identity.Name;
+
+            var user = await _userManager.FindByEmailAsync(username);
+
+            if(user == null) 
+            {
+                return BadRequest("User not found");
+            }
+
+            var internalUser  = _userRepository.GetUserByEmail(user.Email);
+
+            if(internalUser.RefreshToken != _refreshToken) 
+            {
+                return BadRequest("Invalid refresh token");
+            }
+
+            if(internalUser.RefreshTokenExpiryTime <= DateTime.Now)
+            {
+                return BadRequest("Expired refresh token");
+            }
+
+            var newAccessToken = _authManager.CreateToken(principal.Claims.ToList());
+            var newRefreshToken = _authManager.GenerateRefreshToken();
+
+            internalUser.RefreshToken = newRefreshToken;
+            if (!_userRepository.UpdateUser(internalUser.Id, internalUser))
+            {
+                return BadRequest("There was an error adding the refresh token to the user");
+            }
+
+            return Ok(new
+            {
+            Token = newAccessToken,
+            RefreshToken = newRefreshToken,
+            RefreshTokenExpiryTime = internalUser.RefreshTokenExpiryTime, 
+            Ud = internalUser.Id    
+
+            });
+
+        }
+
+        
 
 
     }

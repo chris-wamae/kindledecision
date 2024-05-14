@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using KindleDecision.Models;
 using Microsoft.Extensions.Configuration;
+using System.Security.Cryptography;
 
 namespace KindleDecision.Services
 {
@@ -37,6 +38,16 @@ namespace KindleDecision.Services
 
             return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
         }
+
+        async Task<string> IAuthManager.CreateToken(List<Claim> authClaims)
+        {
+            var signInCredentials = GetSigningCredentials();
+            var claims = authClaims;
+            var tokenOptions = GenerateTokenOptions(signInCredentials, claims);
+
+            return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+        }
+
 
         private SigningCredentials GetSigningCredentials()
         {
@@ -69,7 +80,7 @@ namespace KindleDecision.Services
         private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
         {
             var jwtSettings = _configuration.GetSection("Jwt");
-            var expirationTime = DateTime.Now.AddMinutes(Convert.ToDouble(jwtSettings.GetSection("lifetime").Value));
+            var expirationTime = DateTime.Now.AddMinutes(Convert.ToDouble(jwtSettings.GetSection("accessTokenMinutes").Value));
 
             var token = new JwtSecurityToken(
                 issuer: jwtSettings.GetSection("validIssuer").Value,
@@ -79,6 +90,35 @@ namespace KindleDecision.Services
                 );
             return token;
 
+        }
+
+
+         string IAuthManager.GenerateRefreshToken()
+        {
+            var randomNumber = new byte[64];
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(randomNumber);
+            return Convert.ToBase64String(randomNumber);
+        }
+
+        ClaimsPrincipal? IAuthManager.GetPrincipalFromExpiredToken(string? token)
+        {   
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateAudience = false,
+                ValidateIssuer = false,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["KEY"])),
+                ValidateLifetime = false
+
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+            if (securityToken is not JwtSecurityToken jwtSecurityToken || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+                throw new SecurityTokenException("Invalid token");
+
+            return principal;
         }
 
    
