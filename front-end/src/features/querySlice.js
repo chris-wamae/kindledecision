@@ -6,13 +6,13 @@ import { timeAfterMinutes } from "../Helper/Time";
 import { useSelector } from "react-redux";
 import { loginState } from "./loginSlice";
 
-export const postQuery = createAsyncThunk("query/postQuery",async (post,config) => {
+export const postQuery = createAsyncThunk("query/postQuery",async (post) => {
 
-console.log(config)
+//console.log(config)
 
-const response = await axios.post(`${process.env.REACT_APP_BASE_URL}query`, post, {headers: {Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVzdGVyQHRlc3Rlci5jb20iLCJleHAiOjE3MTU2MTIyMzQsImlzcyI6IktpbmRsZURlY2lzaW9uIn0.GlEhRZDxGZCnCLA9fKF_6LcnS_vBYPwQFrYnFes_XwA`}})
+const response = await axios.post(`${process.env.REACT_APP_BASE_URL}query`, post, {headers: {Authorization: `Bearer ${Cookies.get("at")}`}})
 
-Cookies.set("NQID", response.data.id, {expires:timeAfterMinutes(15)})
+//Cookies.set("NQID", response.data.id, {expires:timeAfterMinutes(15)})
 
 return response.data
 
@@ -80,6 +80,8 @@ export const querySlice = createSlice({
 })
 
 export const queryState = state => state.query.query
+
+export const queryStatus = state => state.query.status
 
 export const {setQueryState} = querySlice.actions
 

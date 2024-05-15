@@ -4,11 +4,17 @@ import { queryState } from "../features/querySlice";
 import "../styles/SelectionSuccess.css"
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { refreshAuth } from "../Helper/Auth";
 
 function SelectionSuccess() {
 
     const query = useSelector(queryState);
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if(refreshAuth() === false){navigate("/login")};
+        },[])
+    
 
     useEffect(() => {
         if(query.title == "")

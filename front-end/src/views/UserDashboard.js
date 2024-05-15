@@ -11,9 +11,11 @@ import Cookies from "js-cookie";
 function UserDashboard() {
   const [dashboardComponentId, setDashboardComponentId] = useState(1)
   const navigate = useNavigate();
+
+ 
   
   useEffect(() => {
-  refreshAuth(Cookies.get("at"),Cookies.get("rt"));
+  if(refreshAuth() === false){navigate("/login")};
   },[])
 
 

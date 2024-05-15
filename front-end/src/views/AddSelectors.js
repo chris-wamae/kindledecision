@@ -12,6 +12,7 @@ import "../styles/AddSelectors.css"
 import Navbar from "../components/Navbar";
 import { queryState } from "../features/querySlice";
 import { redirect, useNavigate } from "react-router-dom";
+import { refreshAuth } from "../Helper/Auth";
 
 //make email database search depend on physical button press by user
 //move email validation to form Helper since it will no longer be using fetch
@@ -32,6 +33,11 @@ function AddSelectors() {
   const [showSearch, setShowSearch] = useState("inline");
   const [showAdd, setShowAdd] = useState("none");
   const [usersArray,setUsersArray] = useState([])
+  
+  useEffect(() => {
+    if(refreshAuth() === false){navigate("/login")};
+    },[])
+
 
   useEffect(() => {
 
