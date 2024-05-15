@@ -4,10 +4,18 @@ import DashboardAccount from "../components/Dashboard/DashboardAccount";
 import Queries from "../components/Dashboard/Queries";
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
+import { useEffect } from "react";
+import { refreshAuth } from "../Helper/Auth";
+import Cookies from "js-cookie";
 
 function UserDashboard() {
   const [dashboardComponentId, setDashboardComponentId] = useState(1)
   const navigate = useNavigate();
+  
+  useEffect(() => {
+  refreshAuth(Cookies.get("at"),Cookies.get("rt"));
+  },[])
+
 
   const dashBoardSetter = (componentId) => {
     if (componentId == 1) {

@@ -104,16 +104,14 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     useEffect(() => {
         if (loggedUser != undefined) {
             if (emailState && loggedUser.ud != null) {
-                let refreshExpiryTime = new Date()
                 dispatch(changeUserId(loggedUser.ud))
                 Cookies.set("ud", loggedUser.ud ,{expires:timeAfterMinutes(15)})
-                Cookies.set("at", loggedUser.accessToken, {expires:timeAfterMinutes(15)})
-                //convert loggedUser.refreshExpiryTime to the time required by expires;
-                Cookies.set("rt", loggedUser.refreshToken,{expires:refreshExpiryTime});
-               // navigate({
-               //     pathname: "/dashboard",
-              //      search: "?id=" + loggedUser.ud + "&t=" + loggedUser.token
-              //  })
+                Cookies.set("at", loggedUser.token, {expires:timeAfterMinutes(15)})
+                Cookies.set("rt", loggedUser.refreshToken,{expires:new Date(loggedUser.refreshTokenExpiry)});
+                navigate({
+                    pathname: "/dashboard",
+                    search: "?id=" + loggedUser.ud + "&t=" + loggedUser.token
+                })
             }
             else if (loggedUserStatus == "failed") {
                 setEmailState("notfound")
