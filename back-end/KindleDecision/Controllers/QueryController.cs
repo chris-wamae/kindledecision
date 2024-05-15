@@ -123,17 +123,18 @@ namespace KindleDecision.Controllers
                 return BadRequest(ModelState);
             }
 
-            var userId = HttpContext.Session.GetInt32("userId");
+            //var userId = HttpContext.Session.GetInt32("userId");
 
-            if(userId != null)
-            {
-                queryCreate.CreatorUserId = (int)userId;
-            }
-            else
-            {
-                ModelState.AddModelError("", "The current user details needed to create the query could not be retrieved");
-                return StatusCode(500, ModelState);
-            }
+            //if(userId != null)
+            //{
+            //    queryCreate.CreatorUserId = (int)userId;
+            //}
+
+            //else
+            //{
+            //    ModelState.AddModelError("", "The current user details needed to create the query could not be retrieved");
+            //    return StatusCode(500, ModelState);
+            //}
 
          
             var queryMap = _mapper.Map<Query>(queryCreate);
