@@ -231,12 +231,12 @@ namespace KindleDecision.Controllers
 
             return Ok(new
             {
-            Token = newAccessToken,
+            Token = newAccessToken.Result,
             RefreshToken = newRefreshToken,
             RefreshTokenExpiryTime = internalUser.RefreshTokenExpiryTime, 
             Ud = internalUser.Id    
 
-            });
+            });;
 
         }
 
