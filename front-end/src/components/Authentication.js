@@ -105,9 +105,10 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         if (loggedUser != undefined) {
             if (emailState && loggedUser.ud != null) {
                 dispatch(changeUserId(loggedUser.ud))
-                Cookies.set("ud", loggedUser.ud ,{expires:timeAfterMinutes(15)})
-                Cookies.set("at", loggedUser.token, {expires:timeAfterMinutes(15)})
+                Cookies.set("ud", loggedUser.ud ,{expires:new Date(loggedUser.refreshTokenExpiry)})
+                Cookies.set("at", loggedUser.token, {expires:new Date(loggedUser.refreshTokenExpiry)})
                 Cookies.set("rt", loggedUser.refreshToken,{expires:new Date(loggedUser.refreshTokenExpiry)});
+                Cookies.set("et","exp",{expires:timeAfterMinutes(15)})
                 navigate({
                     pathname: "/dashboard",
                     search: "?id=" + loggedUser.ud + "&t=" + loggedUser.token

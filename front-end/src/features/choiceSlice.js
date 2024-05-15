@@ -2,10 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const postChoice = createAsyncThunk("choice/postChoice", async (post) =>
+export const postChoice = createAsyncThunk("choice/postChoice", async ({id,post}) =>
 {
-
-const response = await axios.post(`${process.env.REACT_APP_BASE_URL}Choices`, post)
+const response = await axios.post(`${process.env.REACT_APP_BASE_URL}query/choice/${id}`, post)
 
 return response.data
 

@@ -12,6 +12,7 @@ import "../styles/Selectpage.css"
 import { postSelection } from "../features/selectionSlice";
 import { selectionState } from "../features/selectionSlice";
 import { useNavigate } from "react-router-dom";
+import { refreshAuth } from "../Helper/Auth";
 
 function Selectpage() {
     
@@ -43,6 +44,11 @@ function Selectpage() {
     //console.log(selection);
 
     //console.log(choiceId)
+
+    useEffect(() => {
+        if(refreshAuth() === false){navigate("/login")};
+        },[])
+    
 
     useEffect(() => {
         if (query.id == undefined) {

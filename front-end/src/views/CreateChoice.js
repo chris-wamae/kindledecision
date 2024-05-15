@@ -10,6 +10,9 @@ import { queryState } from "../features/querySlice";
 import Cookies from "js-cookie";
 import { timeAfterMinutes } from "../Helper/Time";
 import axios from "axios";
+import { refreshAuth } from "../Helper/Auth";
+import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 function CreateChoice(){  
     const navItems = [""]
@@ -18,23 +21,20 @@ function CreateChoice(){
     const currentQuery = useSelector(queryState)
     const [choiceName, setChoiceName] = useState("")
     const [queryChoices, setQueryChoices] = useState([])
+    //const location = useLocation();
+    const [searchParams,setSearchParams] = useSearchParams()
 
+    useEffect(() => {
+      if(refreshAuth() === false){navigate("/login")};
+      },[])
+  
     const choiceDispatcher = () => {
-     
-      let currentQueryId = currentQuery.id
-
-      if(currentQuery.id == undefined)
-      {
-       currentQueryId = Cookies.get("NQID")
-      }
-
-      console.log(currentQueryId);
-
       queryChoices.forEach((e) => {
-        dispatch(postChoice({title:e, queryId:currentQueryId}))
+        dispatch(postChoice({id:searchParams.get("qId"),post:{title:e, queryId:searchParams.get("qId")}}))
       })
-
-      navigate("/add-participants", {replace: true})
+      navigate({
+        pathname:"/add-participants",
+        search:`?qId=${searchParams.get("qId")}`}, {replace: true})
     }
 
     const removeOption = (e) => {
@@ -43,6 +43,8 @@ function CreateChoice(){
     }
 
     const buttonDisable = (array) => array.length > 1 ? false : true
+
+    console.log(searchParams.get("qId"));
 
     return(
         <>

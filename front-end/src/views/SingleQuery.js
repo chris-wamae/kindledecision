@@ -10,6 +10,7 @@ import "../styles/SingleQuery.css"
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
+import { refreshAuth } from "../Helper/Auth";
 
 
 function SingleQuery() {
@@ -23,6 +24,11 @@ function SingleQuery() {
     console.log(query.id)
     console.log(choices)
     console.log(queryUsers)
+
+    useEffect(() => {
+        if(refreshAuth() === false){navigate("/login")};
+        },[])
+    
 
     useEffect(() => {
         if (query.id == undefined) {

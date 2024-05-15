@@ -4,9 +4,16 @@ import { queryState } from "../features/querySlice";
 import {useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { useEffect } from "react";
+import { refreshAuth } from "../Helper/Auth";
 
 function NewQuery() {
-     
+    
+    useEffect(() => {
+        if(refreshAuth() === false){navigate("/login")};
+        },[])
+    
+
     //check for election voters in state
     //if present send them emails
     //if absent check for election in state

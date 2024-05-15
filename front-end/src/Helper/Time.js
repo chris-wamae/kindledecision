@@ -9,6 +9,9 @@ export const getTime = () => {
     return `${currentDate} at ${currentTime}`;
   }
 
+export const getCurrentISOTime = () => {
+  return new Date(new Date().getTime()).toISOString();
+}
 
 export const timeAfterMinutes = (minutes) => {
   
