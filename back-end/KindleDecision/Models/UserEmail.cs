@@ -1,9 +1,8 @@
 ﻿namespace KindleDecision.Models
 {
-    public class Participant
+    public class UserEmail
     {
-    public int Id { get; set; }
-
     public string Email { get; set; }
+
     }
 }

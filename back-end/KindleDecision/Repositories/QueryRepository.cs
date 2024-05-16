@@ -56,6 +56,17 @@ namespace KindleDecision.Repositories
             return Save();
         }
 
+        public bool AddParticipant(User user, Query query)
+        {
+            var userQuery = new UserQuery()
+            {
+                User = user,
+                Query = query
+            };
+            _dataContext.Add(userQuery);
+            return Save();
+        }
+
         public bool UpdateQuery(Query query)
         {
             _dataContext.Update(query);

@@ -1,6 +1,8 @@
-﻿using KindleDecision.Interfaces;
+﻿using KindleDecision.Models;
+using KindleDecision.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 namespace KindleDecision.Controllers
 {
@@ -9,10 +11,13 @@ namespace KindleDecision.Controllers
     public class UserController : Controller
     {
         private IUserRepository _userRepository;
-
-        public UserController(IUserRepository userRepository)
+        private IQueryRepository _queryRepository;
+        private IMapper _mapper;
+        public UserController(IUserRepository userRepository, IQueryRepository queryRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _queryRepository = queryRepository;
+            _mapper = mapper;   
         }
 
         [Authorize]
@@ -61,5 +66,26 @@ namespace KindleDecision.Controllers
             );
             ;
         }
+
+
+        [HttpGet("get-query-participants/{queryId}")]
+        
+        public IActionResult  GetQueryParticipats(int queryId)
+        {
+
+         if(!_queryRepository.QueryExists(queryId))
+            {
+                return BadRequest("Query does not exist");
+            }
+
+         var participants = _mapper.Map<List<Participant>>(_userRepository.GetUsersByQuery(queryId));
+
+            return Ok(participants);
+
+        }
+
+
+
+
     }
 }
