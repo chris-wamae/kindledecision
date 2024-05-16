@@ -13,6 +13,7 @@ import Navbar from "../components/Navbar";
 import { queryState } from "../features/querySlice";
 import { redirect, useNavigate } from "react-router-dom";
 import { refreshAuth } from "../Helper/Auth";
+import { useSearchParams } from "react-router-dom";
 
 //make email database search depend on physical button press by user
 //move email validation to form Helper since it will no longer be using fetch
@@ -33,12 +34,14 @@ function AddSelectors() {
   const [showSearch, setShowSearch] = useState("inline");
   const [showAdd, setShowAdd] = useState("none");
   const [usersArray,setUsersArray] = useState([])
+  const [searchParams,setSearchParams] = useSearchParams()
   
   useEffect(() => {
     if(refreshAuth() === false){navigate("/login")};
     },[])
 
-
+  //console.log(searchParams.get("qId"))
+  console.log(usersArray);
   useEffect(() => {
 
     setFoundUser(undefined)
@@ -61,11 +64,11 @@ function AddSelectors() {
   useEffect(() => {
     if (foundUser != undefined) {
 
-      if (emailState && foundUser.length == 0) {
+      if (emailState && foundUser.result == false) {
         setEmailState("notfound")
         setDisableSearch(true);
       }
-      else if (foundUser.length > 0) {
+      else if (foundUser.result == true) {
         setShowAdd("inline");
         setShowSearch("none");
 
@@ -80,23 +83,22 @@ function AddSelectors() {
 
   }, [foundUser])
 
-  const removeOption = (e) => {
-    let newSelectors = querySelectors.filter((c, i) => i !== e)
-    setQuerySelectors(newSelectors);
+  const removeOption = (i) => {
+    let newSelectors = usersArray.filter((o,x) => x !== i)
+    setUsersArray(newSelectors);
   }
 
   const selectorDispatcher = () => {
     querySelectors.forEach((e,i) => {
-      dispatch(postUserQuery({
-        queryId: stateQueryId.id,
-        userId: usersArray[i]
-      }))
+      dispatch(postUserQuery([searchParams.get("qId"),usersArray[i]]))
     })
-    navigate("/new-query", {replace:true})
+    navigate({pathname:"/new-query",
+      search:`?qId=${searchParams.get("qId")}`
+    }, {replace:true})
   }
 
   const emailSearch = () => {
-    axios.get(`${process.env.REACT_APP_BASE_URL}Users?email=${selectorEmail}`).then(r => setFoundUser(r.data))
+    axios.post(`${process.env.REACT_APP_BASE_URL}user/user-exists`,{"email":selectorEmail}).then(r => setFoundUser(r.data))
   }
 
 
@@ -132,16 +134,16 @@ function AddSelectors() {
           <button style={{ display: `${showAdd}` }} className="add-button" onClick={(e) => {
             e.preventDefault();
             setQuerySelectors([...querySelectors, selectorEmail])
-            setUsersArray([...usersArray,foundUser[0].id])
+            setUsersArray([...usersArray,selectorEmail])
           }
           }>Add</button>
         </form>
 
-        <button disabled={buttonDisable(querySelectors)} className="done-button" onClick={(e) => {
+        <button disabled={buttonDisable(usersArray)} className="done-button" onClick={(e) => {
           e.preventDefault();
-          selectorDispatcher()}}>Create query</button>
+          selectorDispatcher()}}>Done</button>
 
-        <DynamicList listTitle={"Added participants"} itemsArray={querySelectors} removeOption={removeOption} />
+        <DynamicList listTitle={"Added participants"} itemsArray={usersArray} removeOption={removeOption} />
 
       </div>
     </>
