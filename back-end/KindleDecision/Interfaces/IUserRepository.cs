@@ -14,6 +14,8 @@ namespace KindleDecision.Interfaces
 
         bool UserExists(int id);
 
+        bool UserExists(UserEmail userEmail);
+
         ICollection<User> GetUsersByQuery(int queryId);
 
         User GetQueryCreator(int queryId);

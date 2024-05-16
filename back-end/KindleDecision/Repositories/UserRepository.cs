@@ -20,6 +20,11 @@ namespace KindleDecision.Repositories
             return _context.Users.Any(u => u.Id == id);
         }
 
+        public bool UserExists(UserEmail userEmail)
+        {
+            return _context.Users.Any(u => u.Email == userEmail.Email);
+        }
+
         public User GetUser(int id)
         {
             return _context.Users.Where(u => u.Id == id).FirstOrDefault();
