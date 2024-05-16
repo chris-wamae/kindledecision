@@ -13,11 +13,16 @@ namespace KindleDecision.Controllers
         private IUserRepository _userRepository;
         private IQueryRepository _queryRepository;
         private IMapper _mapper;
-        public UserController(IUserRepository userRepository, IQueryRepository queryRepository, IMapper mapper)
+
+        public UserController(
+            IUserRepository userRepository,
+            IQueryRepository queryRepository,
+            IMapper mapper
+        )
         {
             _userRepository = userRepository;
             _queryRepository = queryRepository;
-            _mapper = mapper;   
+            _mapper = mapper;
         }
 
         [Authorize]
@@ -67,25 +72,30 @@ namespace KindleDecision.Controllers
             ;
         }
 
-
         [HttpGet("get-query-participants/{queryId}")]
-        
-        public IActionResult  GetQueryParticipats(int queryId)
+        public IActionResult GetQueryParticipats(int queryId)
         {
-
-         if(!_queryRepository.QueryExists(queryId))
+            if (!_queryRepository.QueryExists(queryId))
             {
                 return BadRequest("Query does not exist");
             }
 
-         var participants = _mapper.Map<List<Participant>>(_userRepository.GetUsersByQuery(queryId));
+            var participants = _mapper.Map<List<Participant>>(
+                _userRepository.GetUsersByQuery(queryId)
+            );
 
             return Ok(participants);
-
         }
 
+        [HttpPost("user-exists")]
+        public IActionResult UserExists(UserEmail userEmail)
+        {
+            if (!_userRepository.UserExists(userEmail))
+            {
+                return Ok(new { Result = false });
+            }
 
-
-
+            return Ok(new { Result = true });
+        }
     }
 }
