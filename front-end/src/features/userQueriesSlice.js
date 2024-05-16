@@ -1,10 +1,11 @@
 import { ReducerType, createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const postUserQuery = createAsyncThunk("userQueries/postUserQuery", async (post) => {
 
-  const response = await axios.post(`${process.env.REACT_APP_BASE_URL}UserQueries`,post )
+  const response = await axios.post(`${process.env.REACT_APP_BASE_URL}query/add-participant/${post[0]}`,{email:post[1]},{headers:{Authorization:Cookies.get("at")}})
 
   return response.data
 })

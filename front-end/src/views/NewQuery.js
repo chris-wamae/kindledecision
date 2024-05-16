@@ -49,20 +49,20 @@ function NewQuery() {
                 <div className="query-name-statement">
                     Your query <span className="query-title">{query.title}</span> has been created!
                 </div>
-                <div className="support-statement">
+                {/* <div className="support-statement">
                     Kindledecision can automatically send emails to all participants informing them that the query has been created and asking them to participate.
-                </div>
-                <button className="mail-button">Send emails</button>
+                </div> */}
+                {/* <button className="mail-button">Send emails</button>
                 <div className="link-statement">
                     You can also send them this link which will allow them to participate:
                     <a href={dummyLink} className="link">{dummyLink}</a>
-                </div>
-                <button className="copy-link-button" ref={buttonRef} onClick={e => {
+                </div> */}
+                {/* <button className="copy-link-button" ref={buttonRef} onClick={e => {
                     navigator.clipboard.writeText(dummyLink)
                     editButtonText()
                     setTimeout(editButtonText, 1000)
                 }
-                }>Copy</button>
+                }>Copy</button> */}
                 <div className="dashboard-button-container">
                 <button className="dashboard-btn" onClick={() => navigate("/dashboard")}>Go to dashboard</button>
                 <button className="dashboard-btn" onClick={() => {
