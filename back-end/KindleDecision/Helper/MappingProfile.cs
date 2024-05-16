@@ -17,6 +17,8 @@ namespace KindleDecision.Helper
             CreateMap<UserDto, User>();
             CreateMap<ChoiceDto, Choice>();
             CreateMap<QueryDto, Query>();
+            CreateMap<Selection, Selection>();
+            CreateMap<User,Participant>();
         }
     }
 }

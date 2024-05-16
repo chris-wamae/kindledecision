@@ -20,6 +20,8 @@ namespace KindleDecision.Interfaces
 
     bool UpdateQuery(Query query);
 
+    bool AddParticipant( User user, Query query);
+
     bool DeleteQuery(Query query);
 
     bool Save();

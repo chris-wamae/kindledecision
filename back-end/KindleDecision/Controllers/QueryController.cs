@@ -9,21 +9,25 @@ namespace KindleDecision.Controllers
 {
     [Route("query")]
     [ApiController]
-    
     public class QueryController : Controller
     {
         private readonly IQueryRepository _queryRepository;
         private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
 
-        public QueryController(IQueryRepository queryRepository, IMapper mapper)
+        public QueryController(
+            IQueryRepository queryRepository,
+            IMapper mapper,
+            IUserRepository userRepository
+        )
         {
             _queryRepository = queryRepository;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
-       
         public IActionResult GetQueries()
         {
             var querys = _mapper.Map<List<QueryDto>>(_queryRepository.GetAllQuerys());
@@ -32,8 +36,8 @@ namespace KindleDecision.Controllers
             {
                 return BadRequest(ModelState);
             }
-                
-              return Ok(querys);
+
+            return Ok(querys);
         }
 
         [HttpGet("{queryId}")]
@@ -54,50 +58,39 @@ namespace KindleDecision.Controllers
             return Ok(query);
         }
 
-        [HttpGet("created-querys")]
+        [HttpGet("created-querys/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
         [ProducesResponseType(400)]
-   
-        public IActionResult GetQuerysByCreator() 
+        public IActionResult GetQuerysByCreator(int userId)
         {
-
-         var userId = HttpContext.Session.GetInt32("userId");
-
-        if(userId == null)
-         {
+            if (userId == null)
+            {
                 ModelState.AddModelError("", "There was a problem retrieving the current user");
                 return StatusCode(500, ModelState);
-         }
+            }
 
-         var querys = _mapper.Map<List<QueryDto>>(_queryRepository.GetQuerysByCreator((int)userId));
-         if(!ModelState.IsValid)
+            var querys = _mapper.Map<List<QueryDto>>(
+                _queryRepository.GetQuerysByCreator((int)userId)
+            );
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-         return Ok(querys);  
-
+            return Ok(querys);
         }
 
-
-
-
-
-
-        [HttpGet("user-querys")]
+        [HttpGet("user-querys/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
-        public IActionResult GetElectionsByUser()
+        public IActionResult GetElectionsByUser(int userId)
         {
-            var userId = HttpContext.Session.GetInt32("userId");    
-            if(userId == null)
+            if (_userRepository.UserExists(userId))
             {
                 ModelState.AddModelError("", "There was a problem retriving the current user");
                 return StatusCode(500, ModelState);
             }
 
-            var querys = _mapper.Map<List<QueryDto>>(
-                _queryRepository.GetQuerysByUser((int)userId)
-            );
+            var querys = _mapper.Map<List<QueryDto>>(_queryRepository.GetQuerysByUser((int)userId));
 
             if (!ModelState.IsValid)
             {
@@ -110,15 +103,14 @@ namespace KindleDecision.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-
         public IActionResult CreateQuery([FromBody] QueryDto queryCreate)
         {
-         if(queryCreate == null)
+            if (queryCreate == null)
             {
-                ModelState.AddModelError("","Invalid data was provided");
+                ModelState.AddModelError("", "Invalid data was provided");
             }
 
-         if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
@@ -136,34 +128,32 @@ namespace KindleDecision.Controllers
             //    return StatusCode(500, ModelState);
             //}
 
-         
+
             var queryMap = _mapper.Map<Query>(queryCreate);
 
-        if(!_queryRepository.CreateQuery(queryMap))
+            if (!_queryRepository.CreateQuery(queryMap))
             {
                 ModelState.AddModelError("", "Something went wrong while saving");
                 return StatusCode(500, ModelState);
             }
-        return Ok(queryMap);
+            return Ok(queryMap);
         }
-
 
         [HttpPut("{queryId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-
-        public IActionResult UpdateQuery(int queryId, [FromBody] QueryDto updateQuery) 
+        public IActionResult UpdateQuery(int queryId, [FromBody] QueryDto updateQuery)
         {
             if (updateQuery == null)
                 return BadRequest(ModelState);
 
-            if(!_queryRepository.QueryExists(queryId))
+            if (!_queryRepository.QueryExists(queryId))
             {
                 return NotFound();
             }
 
-            if(queryId != updateQuery.Id)
+            if (queryId != updateQuery.Id)
             {
                 return BadRequest(ModelState);
             }
@@ -172,20 +162,20 @@ namespace KindleDecision.Controllers
 
             var userId = HttpContext.Session.GetInt32("userId");
 
-            if(userId != null) 
+            if (userId != null)
             {
-                ModelState.AddModelError("", "The user details required to update the query could not be retrieved");
+                ModelState.AddModelError(
+                    "",
+                    "The user details required to update the query could not be retrieved"
+                );
                 return StatusCode(500, ModelState);
             }
-
             else
             {
-
-             updatedQueryMap.CreatorUserId = (int)userId;
-
+                updatedQueryMap.CreatorUserId = (int)userId;
             }
 
-            if(!_queryRepository.UpdateQuery(updatedQueryMap))
+            if (!_queryRepository.UpdateQuery(updatedQueryMap))
             {
                 ModelState.AddModelError("", "Something went wrong while updating the Query");
                 return StatusCode(500, ModelState);
@@ -194,11 +184,40 @@ namespace KindleDecision.Controllers
             return Ok(updatedQueryMap);
         }
 
+        [HttpPost("add-participant/{queryId}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult AddParticipant(int queryId, [FromBody] UserEmail userEmail)
+
+        {
+
+            User user = _userRepository.GetUserByEmail(userEmail.Email);
+
+            Query query = _queryRepository.GetQuery(queryId);
+
+            if(user == null)
+            {
+                return BadRequest("A user with that email does not exist");
+            }
+
+            if(query == null) 
+            {
+                return BadRequest("Query does not exist");
+            }
+
+            if (!_queryRepository.AddParticipant(user,query))
+            {
+                return StatusCode(500, "Something went wrong while adding the participant");
+            }
+
+            return Ok();
+        }
+
         [HttpDelete("{queryId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public IActionResult DeleteQuery(int queryId) 
+        public IActionResult DeleteQuery(int queryId)
         {
             if (!_queryRepository.QueryExists(queryId))
             {
@@ -207,15 +226,15 @@ namespace KindleDecision.Controllers
 
             var queryToDelete = _queryRepository.GetQuery(queryId);
 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if(!_queryRepository.DeleteQuery(queryToDelete))
+            if (!_queryRepository.DeleteQuery(queryToDelete))
             {
                 ModelState.AddModelError("", "Something went wrong while deleting the Query");
-                return StatusCode(500, ModelState); 
+                return StatusCode(500, ModelState);
             }
 
             return NoContent();
