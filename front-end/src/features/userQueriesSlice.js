@@ -10,6 +10,15 @@ export const postUserQuery = createAsyncThunk("userQueries/postUserQuery", async
   return response.data
 })
 
+export const getQueryParticipants = createAsyncThunk("userQueries/getQueryParticipants", async(queryId) => {
+
+const response = await axios.get(`${process.env.REACT_APP_BASE_URL}user/get-query-participants/${queryId}`,{headers:{Authorization:Cookies.get("at")}})
+
+return response.data
+
+})
+
+
 const initialState = {
  
     userQuery: {
@@ -17,6 +26,7 @@ const initialState = {
         userId:null
 },
     queryUsers:[],
+    queryParticipants:[],
     status:"idle",
     error:null
 }
@@ -44,6 +54,17 @@ export const userQueriesSlice = createSlice({
        state.status = "failed"
        state.error = action.error.message
     })
+    .addCase(getQueryParticipants.pending, (state,action) => {
+      state.status = "loading"  
+    })
+    .addCase(getQueryParticipants.fulfilled, (state,action) => {
+    state.status = "successful"
+    state.queryParticipants = action.payload
+    })
+    .addCase(getQueryParticipants.rejected, (state,action) => {
+    state.status = "failed"
+    state.error = action.error.message
+    })
 
     }
 
@@ -55,6 +76,8 @@ export const userQueriesSlice = createSlice({
 export const userQueryState = state => state.userQuery.userQuery;
 
 export const queryUsersState = state => state.userQuery.queryUsers;
+
+export const queryParticipantsState = state => state.userQuery.queryParticipants;
 
 export const {setQueryUsers} = userQueriesSlice.actions;
 

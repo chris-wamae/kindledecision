@@ -92,6 +92,7 @@ function AddSelectors() {
     querySelectors.forEach((e,i) => {
       dispatch(postUserQuery([searchParams.get("qId"),usersArray[i]]))
     })
+    axios.put(`${process.env.REACT_APP_BASE_URL}query/total-selections/${searchParams.get("qId")}/${querySelectors.length}`)
     navigate({pathname:"/new-query",
       search:`?qId=${searchParams.get("qId")}`
     }, {replace:true})

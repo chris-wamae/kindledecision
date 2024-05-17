@@ -13,6 +13,8 @@ import { postSelection } from "../features/selectionSlice";
 import { selectionState } from "../features/selectionSlice";
 import { useNavigate } from "react-router-dom";
 import { refreshAuth } from "../Helper/Auth";
+import { useSearchParams } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function Selectpage() {
     
@@ -34,16 +36,19 @@ function Selectpage() {
 
     const [choiceTitle, setChoiceTitle] = useState("")
 
-        //placeholderUser(wamae)
-        const userId = 0
+    const [searchParams,setSeachParams] = useSearchParams()
 
-        const selectChoice = (choiceId, userId) => 
+        //placeholderUser(wamae)
+        const selectChoice = (choiceId) => 
         {
-        dispatch(postSelection({choiceId:choiceId, selectorUserId:userId}))
+        dispatch(postSelection({choiceId:choiceId, userId:Cookies.get("ud"), queryId:searchParams.get("qId")}))
+        axios.put(`${process.env.REACT_APP_BASE_URL}query/remaining-selections/${searchParams.get("qId")}`)
         }
     //console.log(selection);
 
     //console.log(choiceId)
+
+    console.log(query)
 
     useEffect(() => {
         if(refreshAuth() === false){navigate("/login")};
@@ -51,15 +56,15 @@ function Selectpage() {
     
 
     useEffect(() => {
-        if (query.id == undefined) {
-            axios.get(`${process.env.REACT_APP_BASE_URL}queries${location.search}`)
-                .then(r => dispatch(setQueryState(r.data[0])))
+        if (query.title == "") {
+            axios.get(`${process.env.REACT_APP_BASE_URL}query/${searchParams.get("qId")}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
+                .then(r => dispatch(setQueryState(r.data)))
         }
     }, [])
 
     useEffect(() => {
         if (choices.length == 0) {
-            axios.get(`${process.env.REACT_APP_BASE_URL}Choices?queryId=${query.id}`)
+            axios.get(`${process.env.REACT_APP_BASE_URL}query/choice/get-query-choices/${searchParams.get("qId")}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
                 .then(r => dispatch(setChoicesState(r.data)))
         }
     }, [query])
@@ -77,7 +82,7 @@ function Selectpage() {
                         <div className="options-title">Select <span className="choice-name">{choiceTitle}</span> as your choice?</div>
                         <div className="select-buttons">
                             <div className="yes option-select" onClick={() => {
-                                selectChoice(choiceId, userId)
+                                selectChoice(choiceId)
                                 navigate("/successful-selection")}
                         }>&#x2714;</div>
                             <div className="no option-select" onClick={() => setShowConfirmation(false)}>X</div>

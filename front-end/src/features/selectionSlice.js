@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const postSelection = createAsyncThunk("selection/postSelection", async (post) => {
-    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}selections`, post)
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}choice/selection/participate`, post, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
 
     return response.data
 
@@ -11,8 +12,7 @@ export const postSelection = createAsyncThunk("selection/postSelection", async (
 
 const initialState = {
     selection: {
-        choiceId: null,
-        selectorUserId: null
+    result:null
     },
     status: "idle",
     error: null

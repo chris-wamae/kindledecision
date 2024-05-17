@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const postChoice = createAsyncThunk("choice/postChoice", async ({id,post}) =>
 {
@@ -8,6 +9,14 @@ const response = await axios.post(`${process.env.REACT_APP_BASE_URL}query/choice
 
 return response.data
 
+})
+
+
+export const getChoices = createAsyncThunk("choice/getChoices", async (queryId)=> {
+
+const response = await axios.get(`${process.env.REACT_APP_BASE_URL}query/choice/get-query-choices/${queryId}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
+
+return response.data
 })
 
 const initialState = {
@@ -40,6 +49,17 @@ export const choiceSlice = createSlice(
             .addCase(postChoice.rejected, (state,action) => {
                 state.status = "failed"
                 state.error = action.error.message
+            })
+            .addCase(getChoices.fulfilled, (state,action) => {
+              state.status = "succeeded"
+              state.choices = action.payload
+            })
+            .addCase(getChoices.pending, (state,action) => {
+              state.status = "loading"
+            })
+            .addCase(getChoices.rejected, (state,action) => {
+              state.status = "failed"
+              state.error = action.error.message
             })
      }
     }

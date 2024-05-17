@@ -36,7 +36,7 @@ function SelectionSuccess() {
                         <button onClick={() => {
                             navigate({
                                 pathname: "/query",
-                                search: `?Id=${query.id}`
+                                search: `?qId=${query.id}`
                             })
                         }}>Back to query</button>
                         <button onClick={() => {
