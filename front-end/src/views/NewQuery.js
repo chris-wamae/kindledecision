@@ -6,11 +6,22 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useEffect } from "react";
 import { refreshAuth } from "../Helper/Auth";
+import { useDispatch } from "react-redux";
+import { getQuery } from "../features/querySlice";
+import { useSearchParams } from "react-router-dom";
+import { useState } from "react";
 
 function NewQuery() {
-    
-    useEffect(() => {
+
+    const dispatch = useDispatch();
+    const [searchParams,setSeachParams] = useSearchParams()
+
+    useEffect(() =>{
         if(refreshAuth() === false){navigate("/login")};
+        if(query.title == "")
+        {
+        dispatch(getQuery(searchParams.get("qId")));
+        }
         },[])
     
 
@@ -26,7 +37,7 @@ function NewQuery() {
     const dummyLink = "https://castavote.com/jc357cfh"
     const navigate = useNavigate()
 
-    console.log(query);
+    //console.log(query);
 
     const editButtonText = () => {
         if (buttonRef.current.textContent == "Copy") {
@@ -47,7 +58,7 @@ function NewQuery() {
                     Congratulations!
                 </div>
                 <div className="query-name-statement">
-                    Your query <span className="query-title">{query.title}</span> has been created!
+                    Your query<span className="query-title">{query.title}</span> ,has been created!
                 </div>
                 {/* <div className="support-statement">
                     Kindledecision can automatically send emails to all participants informing them that the query has been created and asking them to participate.
@@ -69,7 +80,7 @@ function NewQuery() {
                 navigate(
                 {
                 pathname: "/query",
-                search:`?id=${query.id}`
+                search:`?qId=${query.id}`
                 })
                 }}>Go to Query</button>
                 </div>

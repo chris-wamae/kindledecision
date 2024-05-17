@@ -11,7 +11,12 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { refreshAuth } from "../Helper/Auth";
-
+import { getChoices } from "../features/choiceSlice";
+import { useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import { queryParticipantsState } from "../features/userQueriesSlice";
+import { getQueryParticipants } from "../features/userQueriesSlice";
+import { getQuery } from "../features/querySlice";
 
 function SingleQuery() {
     const dispatch = useDispatch();
@@ -19,11 +24,12 @@ function SingleQuery() {
     const query = useSelector(queryState);
     const choices = useSelector(choicesState);
     const queryUsers = useSelector(queryUsersState);
+    const participants = useSelector(queryParticipantsState)
     const navigate = useNavigate();
-
-    console.log(query.id)
+    const [searchParams, setSeachParams] = useSearchParams()
+    //console.log(query)
     console.log(choices)
-    console.log(queryUsers)
+    console.log(participants)
 
     useEffect(() => {
         if(refreshAuth() === false){navigate("/login")};
@@ -31,76 +37,89 @@ function SingleQuery() {
     
 
     useEffect(() => {
-        if (query.id == undefined) {
-            // axios.get(`${process.env.REACT_APP_BASE_URL}queries${location.search}`)
-            //     .then(r => dispatch(setQueryState(r.data[0])))
-        dispatch(setQueryState({
-            "id": "198a",
-            "title": "When will it rain?",
-            "creationTime": "Thu Mar 07 2024 at 11:17:01 AM",
-            "startDate": "2024-03-18",
-            "expiryDate": "2024-03-21",
-            "totalSelectors": 14,
-            "remainingSelectors": 10,
-            "creatorUserId": "0"
-          }))
-        }
-    }, [])
+    if(query.title == "")
+    {
+    dispatch(getQuery(searchParams.get("qId")))
+    }
+    if(participants.length == 0) 
+    {
+    dispatch(getQueryParticipants(searchParams.get("qId")))
+    }
+    
+    if(choices.length == 0)
+    {
+    dispatch(getChoices(searchParams.get("qId")))
+    }
+    //     if (query.id == undefined) {
+    //         // axios.get(`${process.env.REACT_APP_BASE_URL}queries${location.search}`)
+    //         //     .then(r => dispatch(setQueryState(r.data[0])))
+    //     dispatch(setQueryState({
+    //         "id": "198a",
+    //         "title": "When will it rain?",
+    //         "creationTime": "Thu Mar 07 2024 at 11:17:01 AM",
+    //         "startDate": "2024-03-18",
+    //         "expiryDate": "2024-03-21",
+    //         "totalSelectors": 14,
+    //         "remainingSelectors": 10,
+    //         "creatorUserId": "0"
+    //       }))
+    //     }
+    // }, [])
 
-    useEffect(() => {
-        if (choices.length == 0) {
-            // axios.get(`${process.env.REACT_APP_BASE_URL}Choices?queryId=${query.id}`)
-            //     .then(r => dispatch(setChoicesState(r.data)))
+    // useEffect(() => {
+    //     if (choices.length == 0) {
+    //         // axios.get(`${process.env.REACT_APP_BASE_URL}Choices?queryId=${query.id}`)
+    //         //     .then(r => dispatch(setChoicesState(r.data)))
 
-            dispatch(setChoicesState([
-                {
-                  "id": "e2dc",
-                  "title": "adedaddae",
-                  "queryId": "a664"
-                },
-                {
-                  "id": "6877",
-                  "title": "dadada",
-                  "queryId": "7980"
-                },
-                {
-                  "id": "a5e3",
-                  "title": "dadada",
-                  "queryId": "7980"
-                },
-                {
-                  "id": "279b",
-                  "title": "dadada",
-                  "queryId": "7980"
-                },
-                {
-                  "id": "10dc",
-                  "title": "Prague",
-                  "queryId": "936e"
-                },
-                {
-                  "id": "24fd",
-                  "title": "Prague",
-                  "queryId": "936e"
-                }]))
+    //         dispatch(setChoicesState([
+    //             {
+    //               "id": "e2dc",
+    //               "title": "adedaddae",
+    //               "queryId": "a664"
+    //             },
+    //             {
+    //               "id": "6877",
+    //               "title": "dadada",
+    //               "queryId": "7980"
+    //             },
+    //             {
+    //               "id": "a5e3",
+    //               "title": "dadada",
+    //               "queryId": "7980"
+    //             },
+    //             {
+    //               "id": "279b",
+    //               "title": "dadada",
+    //               "queryId": "7980"
+    //             },
+    //             {
+    //               "id": "10dc",
+    //               "title": "Prague",
+    //               "queryId": "936e"
+    //             },
+    //             {
+    //               "id": "24fd",
+    //               "title": "Prague",
+    //               "queryId": "936e"
+    //             }]))
 
-            dispatch(setQueryUsers([{
-                id: 0,
-                email: "wamae@gmail.com",
-                status: true
-            },
-            {
-                id: 1,
-                email: "joker@gmail.com",
-                status: true
-            },
-            {
-                id: 2,
-                email: "killua@gmail.com",
-                status: false
-            }
-            ]))
-        }
+    //         dispatch(setQueryUsers([{
+    //             id: 0,
+    //             email: "wamae@gmail.com",
+    //             status: true
+    //         },
+    //         {
+    //             id: 1,
+    //             email: "joker@gmail.com",
+    //             status: true
+    //         },
+    //         {
+    //             id: 2,
+    //             email: "killua@gmail.com",
+    //             status: false
+    //         }
+    //         ]))
+    //     }
 
 
     }, [query])
@@ -116,14 +135,14 @@ function SingleQuery() {
                         <p>Title: {query.title}</p>
                         <p>Start date: {query.startDate}</p>
                         <p>Expiry date: {query.expiryDate}</p>
-                        <p>Total participants: {query.totalSelectors}</p>
-                        <p>Remaining participants: {query.remainingSelectors}</p>
+                        <p>Total participants: {query.totalSelections}</p>
+                        <p>Remaining participants: {query.remainingSelections}</p>
                         <p>Creator: creatorUserId:{query.creatorUserId}</p>
                     </div>
                     <button onClick={() => {
                     navigate({
                     pathname:"/selection",
-                    search:`?id=${query.id}`
+                    search:`?qId=${query.id}`
                     })
                     }}>Participate</button>
                 </section>
@@ -137,7 +156,7 @@ function SingleQuery() {
                             </div>                                                
                             <div className="participants">
                                 {
-                                    queryUsers.map((u,i) => {
+                                    participants.map((u,i) => {
                                         return <div className="single-participant">
                                             <div className="single-participant-email">
                                             <div>{i+1}.&#160;</div> 

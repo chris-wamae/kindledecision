@@ -18,6 +18,14 @@ return response.data
 
 })
 
+export const getQuery = createAsyncThunk("query/getQuery", async(queryId) => {
+
+const response = await axios.get(`${process.env.REACT_APP_BASE_URL}query/${queryId}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
+
+return response.data
+
+})
+
 
 
 
@@ -67,6 +75,17 @@ export const querySlice = createSlice({
     })
 
     .addCase(postQuery.rejected, (state,action) =>{
+        state.status = "failed"
+        state.error = action.error.message
+    })
+    .addCase(getQuery.pending, (state,action) => {
+        state.status = "loading"
+    })
+    .addCase(getQuery.fulfilled, (state,action) => {
+       state.status = "succeeded"
+       state.query = action.payload
+    })
+    .addCase(getQuery.rejected, (state,action) => {
         state.status = "failed"
         state.error = action.error.message
     })

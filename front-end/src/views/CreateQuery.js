@@ -27,6 +27,7 @@ function CreateQuery() {
   const [queryTitle, setQueryTitle] = useState("")
   const [startDate, setStartDate] = useState(null)
   const [expiryDate, setExpiryDate] = useState("")
+  const [allowRedirect, setAllowRedirect] = useState(false)
   const [showStartDateInput, setShowStartDateInput] = useState("display-none start-date-input")
   const loggedUser = useSelector(loginState)
   const query = useSelector(queryState)
@@ -48,11 +49,13 @@ function CreateQuery() {
   }
 
   useEffect(() => {
-    if (query.id !== undefined) {
+
+    if (query.id !== null && allowRedirect) {
       navigate({
         pathname: "/add-choices",
         search: `?qId=${query.id}`
       }, { replace: true })
+      setAllowRedirect(false)
     }
 
   }, [query])
@@ -121,6 +124,7 @@ function CreateQuery() {
           <button className="submit-button" disabled={canSave()} onClick={(e) => {
             e.preventDefault();
             dispatch(postQuery(createQuery(queryTitle)))
+            setAllowRedirect(true)
             resetForm([titleRef, dateRef])
             //console.log(currentElectionState);
             //dispatch(changeElectionId(currentElectionState["id"]))
