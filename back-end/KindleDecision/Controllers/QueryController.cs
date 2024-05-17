@@ -184,6 +184,65 @@ namespace KindleDecision.Controllers
             return Ok(updatedQueryMap);
         }
 
+        [HttpPut("total-selections/{queryId}/{totalSelections}")]
+        [ProducesResponseType(200)]
+
+        public IActionResult UpdateTotalSelectors(int queryId,int totalSelections)
+        {
+            var queryCreate = _queryRepository.GetQuery(queryId);
+
+            if(queryCreate == null)
+            {
+                return BadRequest("Query does not exist");
+            }
+
+            queryCreate.TotalSelections = totalSelections;
+            queryCreate.RemainingSelections = totalSelections;
+
+            if(!_queryRepository.UpdateQuery(queryCreate))
+            {
+                ModelState.AddModelError("", "Something went wrong while updating the query");
+               return StatusCode(500, ModelState);
+            }
+
+            return Ok();
+
+        }
+
+
+        [HttpPut("remaining-selections/{queryId}")]
+        [ProducesResponseType(200)]
+
+        public IActionResult UpdateRemainingSelectors(int queryId)
+        {
+            var queryCreate = _queryRepository.GetQuery(queryId);
+
+            if (queryCreate == null)
+            {
+                return BadRequest("Query does not exist");
+            }
+
+            if(queryCreate.RemainingSelections == 0)
+            {
+                return BadRequest("Remaining selections cannot be less that 0");
+            }
+
+            int newSelections = queryCreate.RemainingSelections - 1;
+
+            queryCreate.RemainingSelections = newSelections;
+
+            if (!_queryRepository.UpdateQuery(queryCreate))
+            {
+                ModelState.AddModelError("", "Something went wrong while updating the query");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok();
+
+        }
+
+
+
         [HttpPost("add-participant/{queryId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

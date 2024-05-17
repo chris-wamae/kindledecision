@@ -17,13 +17,15 @@ namespace KindleDecision.Controllers
         private readonly IMapper _mapper;
         private readonly IChoiceRepository _choiceRepository;
         private readonly IUserSelectedInQueryRepository _userSelectedInQueryRepository;
+        private readonly IUserRepository _userRepository;
 
         public SelectionController(
             DataContext dataContext,
             ISelectionRepository selectionRepository,
             IMapper mapper,
             IChoiceRepository choiceRepository,
-            IUserSelectedInQueryRepository userSelectedInQueryRepository
+            IUserSelectedInQueryRepository userSelectedInQueryRepository,
+            IUserRepository userRepository
         )
         {
             _dataContext = dataContext;
@@ -31,6 +33,7 @@ namespace KindleDecision.Controllers
             _mapper = mapper;
             _choiceRepository = choiceRepository;
             _userSelectedInQueryRepository = userSelectedInQueryRepository;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
@@ -110,10 +113,10 @@ namespace KindleDecision.Controllers
         //    return Ok(selections);
         //}
 
-        [HttpPost("{queryId}/{choiceId}")]
+        [HttpPost("participate")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateSelection( int queryId, int choiceId)
+        public IActionResult CreateSelection(MakeSelection makeSelection)
         {
             //List<Selection> userSelections = _selectionRepository.GetSelectionsByUser(userId).ToList();
 
@@ -131,15 +134,15 @@ namespace KindleDecision.Controllers
             //    }
             //}
 
-            var userId = HttpContext.Session.GetInt32("userId");
+            //var userId = HttpContext.Session.GetInt32("userId");
 
-            if(userId == null)
+            if(!_userRepository.UserExists(makeSelection.UserId))
             {
                 ModelState.AddModelError("", "There was an error retrieving the current user");
                 return StatusCode(500, ModelState);
             }
 
-            bool hasVoted = _userSelectedInQueryRepository.UserHasSelectedInQuery(queryId, (int)userId);
+            bool hasVoted = _userSelectedInQueryRepository.UserHasSelectedInQuery(makeSelection.QueryId, makeSelection.UserId);
 
             if (hasVoted)
             {
@@ -147,7 +150,7 @@ namespace KindleDecision.Controllers
                 return StatusCode(422, ModelState);
             }
 
-            SelectionDto selectionDto = new SelectionDto() { SelectorUserId = (int)userId };
+            SelectionDto selectionDto = new SelectionDto() { SelectorUserId = makeSelection.UserId };
 
             if (selectionDto == null)
             {   
@@ -169,15 +172,15 @@ namespace KindleDecision.Controllers
                 return BadRequest(ModelState);
             }
 
-            selectionDto.SelectorUserId = (int)userId;
+            selectionDto.SelectorUserId = makeSelection.UserId;
 
 
             var selectionCreate = _mapper.Map<Selection>(selectionDto);
 
-            selectionCreate.UserSelectedInQuery = new UserSelectedInQuery() { UserId = (int)userId, QueryId = queryId };
+            selectionCreate.UserSelectedInQuery = new UserSelectedInQuery() { UserId = makeSelection.UserId, QueryId = makeSelection.QueryId };
 
 
-            if (!_selectionRepository.CreateSelection(choiceId, selectionCreate))
+            if (!_selectionRepository.CreateSelection(makeSelection.ChoiceId, selectionCreate))
             {   
                 ModelState.AddModelError("", "Something went wrong while saving the selection");
 
@@ -198,7 +201,10 @@ namespace KindleDecision.Controllers
       //          return StatusCode(500, ModelState);
       //      }
 
-            return Ok(selectionCreate);
+            return Ok(new
+            {
+            Result = "successful"
+            });
         }
 
         [HttpDelete("{selectionId}")]
