@@ -14,16 +14,19 @@ namespace KindleDecision.Controllers
         private readonly IQueryRepository _queryRepository;
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
+        private readonly IUserSelectedInQueryRepository _userSelectedInQueryRepository;
 
         public QueryController(
             IQueryRepository queryRepository,
             IMapper mapper,
-            IUserRepository userRepository
+            IUserRepository userRepository,
+            IUserSelectedInQueryRepository userSelectedInQueryRepository
         )
         {
             _queryRepository = queryRepository;
             _mapper = mapper;
             _userRepository = userRepository;
+            _userSelectedInQueryRepository = userSelectedInQueryRepository;
         }
 
         [HttpGet]
@@ -82,9 +85,9 @@ namespace KindleDecision.Controllers
 
         [HttpGet("user-querys/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
-        public IActionResult GetElectionsByUser(int userId)
+        public IActionResult GetQueriesByUser(int userId)
         {
-            if (_userRepository.UserExists(userId))
+            if (!_userRepository.UserExists(userId))
             {
                 ModelState.AddModelError("", "There was a problem retriving the current user");
                 return StatusCode(500, ModelState);
@@ -98,6 +101,32 @@ namespace KindleDecision.Controllers
             }
             return Ok(querys);
         }
+
+        [HttpGet("pending-querys/{userId}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
+        public IActionResult GetUserPendingQueries(int userId)
+        {
+            if (!_userRepository.UserExists(userId))
+            {
+                ModelState.AddModelError("", "There was a problem retriving the current user");
+                return StatusCode(500, ModelState);
+            }
+
+            var selections = _userSelectedInQueryRepository.GetUserSelectedInQuerysByUser(userId).Select(x => x.QueryId);
+
+            var querys = _mapper.Map<List<QueryDto>>(_queryRepository.GetQuerysByUser((int)userId));
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return Ok(new { 
+                Selections = selections,
+                Queries = querys});
+        }
+
+
+
 
         [Authorize]
         [HttpPost]
@@ -297,6 +326,28 @@ namespace KindleDecision.Controllers
             }
 
             return NoContent();
+        }
+
+
+        [HttpGet("user-has-voted/{userId}/{queryId}")]
+        public IActionResult UserHasVoted(int userId, int queryId) 
+        {
+        if(!_userRepository.UserExists(userId))
+        {
+         return BadRequest("User does not exist");
+        }
+            if (!_queryRepository.QueryExists(queryId))
+            {
+                return BadRequest("Query does not exist");
+            }
+
+        var result = _userSelectedInQueryRepository.UserHasSelectedInQuery(queryId, userId);
+
+            return Ok(new
+            {
+            Result= result
+            });
+
         }
     }
 }
