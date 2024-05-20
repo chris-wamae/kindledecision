@@ -10,19 +10,22 @@ namespace KindleDecision.Controllers
     [Route("/user")]
     public class UserController : Controller
     {
-        private IUserRepository _userRepository;
-        private IQueryRepository _queryRepository;
-        private IMapper _mapper;
+        private readonly IUserRepository _userRepository;
+        private readonly IQueryRepository _queryRepository;
+        private readonly IMapper _mapper;
+        private readonly IUserSelectedInQueryRepository _userSelectedInQueryRepository;
 
         public UserController(
             IUserRepository userRepository,
             IQueryRepository queryRepository,
-            IMapper mapper
+            IMapper mapper,
+            IUserSelectedInQueryRepository userSelectedInQueryRepository
         )
         {
             _userRepository = userRepository;
             _queryRepository = queryRepository;
             _mapper = mapper;
+            _userSelectedInQueryRepository = userSelectedInQueryRepository;
         }
 
         [Authorize]
@@ -84,6 +87,11 @@ namespace KindleDecision.Controllers
                 _userRepository.GetUsersByQuery(queryId)
             );
 
+            foreach(var participant in participants)
+            {
+                participant.Status = _userSelectedInQueryRepository.UserHasSelectedInQuery(queryId, participant.Id);
+            }
+
             return Ok(participants);
         }
 
@@ -97,5 +105,6 @@ namespace KindleDecision.Controllers
 
             return Ok(new { Result = true });
         }
+
     }
 }
