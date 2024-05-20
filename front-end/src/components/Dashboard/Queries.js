@@ -5,48 +5,72 @@ import { currentUserId } from "../../features/idSlice";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import { dummyQueries } from "./DummyQueries";
+import Cookies from "js-cookie";
 
 function Queries({ queriesType }) {
-  const userId = useSelector(currentUserId)
+  //const userId = useSelector(currentUserId)
   const [whichQueries, setWhichQueries] = useState(true);
+  //const [myQueries, setMyQueries] = useState([])
+  //const [pendingQueries, setPendingQueries] = useState([])
+  //const [allQueries, setAllQueries] = useState([])
+  const [unfilteredQueries, setUnfilteredQueries] = useState([])
   const [queries, setQueries] = useState([])
+  const [filterIds, setFilterIds] = useState([])
   const navigate = useNavigate()
+  const pendingQueryFilter = (idArray, queryId) => {
+    let result = true;
+    idArray.forEach(element => {
+      if (element == queryId) {
+        result = false;
+      }
+    });
+    return result;
+  }
+
+  useEffect(() => {
+    let nr = unfilteredQueries.filter(q => pendingQueryFilter(filterIds, q.id))
+    setQueries(nr);
+  }, [filterIds])
+
 
   useEffect(() => {
     if (queriesType == "My") {
-      //axios.get(`${process.env.REACT_APP_BASE_URL}queries?creatorUserId=0`).then(r => setQueries(r.data))
-      setQueries(dummyQueries())
+      axios.get(`${process.env.REACT_APP_BASE_URL}query/created-querys/${Cookies.get("ud")}`).then(r => setQueries(r.data))
+      //setQueries(dummyQueries())
     }
     else if (queriesType == "Pending") {
-           //axios.get(`${process.env.REACT_APP_BASE_URL}queries`).then(r => setQueries(r.data))
-      setQueries(dummyQueries())
+      axios.get(`${process.env.REACT_APP_BASE_URL}query/pending-querys/${Cookies.get("ud")}`).then(r => {
+        setUnfilteredQueries(r.data.queries)
+        setFilterIds(r.data.selections)
+      })
     }
+
     else if (queriesType == "All") {
-      //axios.get(`${process.env.REACT_APP_BASE_URL}queries`).then(r => setQueries(r.data))
-      setQueries(dummyQueries())
+      axios.get(`${process.env.REACT_APP_BASE_URL}query/user-querys/${Cookies.get("ud")}`).then(r => setQueries(r.data))
+      //setQueries(dummyQueries())
     }
   }, [queriesType])
 
-  console.log(queries)
+  // console.log(pendingQueries)
 
   function QueriesDisplay() {
     return queries.map(e => {
       return <div key={e.id} className="single-query" onClick={() => {
         navigate({
           pathname: "/query",
-          search: `?id=${e.id}`
+          search: `?qId=${e.id}`
         }
 
         )
       }}>
         <div className="query-title">{e.title}</div>
         <div className="other-container">
-          <div className="dates">{e.startDate ? e.startDate : "Open"}</div>
-          <div className="dates">{e.expiryDate}</div>
+          <div className="dates">{e.startDate ? e.startDate.substring(0,10) : "Open"}</div>
+          <div className="dates">{e.expiryDate.substring(0,10)}</div>
           <div className="selections">
             <div className="query-info">
               <div className="query-selectioncount">
-                <div>{e.selectionsCast}</div>
+                <div>{e.remainingSelections}</div>
                 <div>/{e.totalSelections}</div>
               </div>
 

@@ -17,6 +17,7 @@ import { useState } from "react";
 import { queryParticipantsState } from "../features/userQueriesSlice";
 import { getQueryParticipants } from "../features/userQueriesSlice";
 import { getQuery } from "../features/querySlice";
+import Cookies from "js-cookie";
 
 function SingleQuery() {
     const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function SingleQuery() {
     const choices = useSelector(choicesState);
     const queryUsers = useSelector(queryUsersState);
     const participants = useSelector(queryParticipantsState)
+    const [particationStatus,setParticipationStatus] = useState(null)
     const navigate = useNavigate();
     const [searchParams, setSeachParams] = useSearchParams()
     //console.log(query)
@@ -33,7 +35,10 @@ function SingleQuery() {
 
     useEffect(() => {
         if(refreshAuth() === false){navigate("/login")};
+        axios.get(`${process.env.REACT_APP_BASE_URL}query/user-has-voted/${Cookies.get("ud")}/${searchParams.get("qId")}`).then(r => setParticipationStatus(r.data.result))
         },[])
+
+    
     
 
     useEffect(() => {
@@ -133,18 +138,22 @@ function SingleQuery() {
                     <div className="main-title">Query details</div>
                     <div className="inner-qdc">
                         <p>Title: {query.title}</p>
-                        <p>Start date: {query.startDate}</p>
-                        <p>Expiry date: {query.expiryDate}</p>
+                        <p>Start date: {query.startDate ? query.startDate.substring(0,10):""}</p>
+                        <p>Expiry date: {query.startDate ? query.expiryDate.substring(0,10):""}</p>
                         <p>Total participants: {query.totalSelections}</p>
                         <p>Remaining participants: {query.remainingSelections}</p>
                         <p>Creator: creatorUserId:{query.creatorUserId}</p>
                     </div>
-                    <button onClick={() => {
-                    navigate({
-                    pathname:"/selection",
-                    search:`?qId=${query.id}`
-                    })
-                    }}>Participate</button>
+                    {
+                    particationStatus ? <span></span> :  <button onClick={() => {
+                        navigate({
+                        pathname:"/selection",
+                        search:`?qId=${query.id}`
+                        })
+                        }}>Participate</button>
+
+                    }
+                   
                 </section>
                 <section className="secondary-details">
                     <div className="participants-container white-background">
