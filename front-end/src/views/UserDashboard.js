@@ -43,7 +43,7 @@ function UserDashboard() {
             <img className="user-svg" src="account-icon.svg" onClick={() => setDashboardComponentId(1)}></img>
             <img className="listSvg" src="list.svg" onClick={() => setDashboardComponentId(1)}></img>
           </div>
-          <img src="pending.svg"></img>
+          <img src="pending.svg" onClick={() => {setDashboardComponentId(2)}}></img>
           <img src="list.svg" onClick={() => setDashboardComponentId(3)}></img>
           <img src="account-icon.svg" onClick={() => setDashboardComponentId(4)}></img>
           <img src="add-icon.svg" onClick={() => navigate("/create-query")}></img>
