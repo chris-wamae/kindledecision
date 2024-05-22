@@ -46,10 +46,15 @@ border-radius:20px;
 .edit-form
 {
 width:80%;
+padding:10px;
+border:1px solid black;
+border-radius:10px;
 display:flex;
 flex-direction: column;
 justify-content:center;
 align-items:center;
+margin:auto;
+
 }
 
 .edit-form input
@@ -73,11 +78,20 @@ margin-bottom:5px;
 {
 width:100px;
 height:20px;
-font-size:16px;
+font-size:14px;
 padding:0px;
 margin:0px;
 background-color:var(--utOrange);
 margin-top:10px;
+font-weight:bold;
+border:none;
+border-radius:5px;
+}
+
+.edit-form button:hover
+{
+color:white;
+background-color:black;
 }
 
 @media only screen and (max-width:450px)
