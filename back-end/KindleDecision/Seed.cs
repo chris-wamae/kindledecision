@@ -46,8 +46,7 @@ namespace KindleDecision
                         {
                             
                             Email = "wamae@gmail.com",
-                            Language = "en",
-                            Password = "wamae",
+                            Language = "en"
                         }
                     },
                     new UserQuery()
@@ -80,8 +79,7 @@ namespace KindleDecision
                         User = new User()
                         {
                             Email = "chris@gmail.com",
-                            Language = "en",
-                            Password = "chris",
+                            Language = "en"
                         }
                     },
                     new UserQuery()
@@ -114,8 +112,7 @@ namespace KindleDecision
                         User = new User()
                         {
                             Email = "troller@gmail.com",
-                            Language = "en",
-                            Password = "troller",
+                            Language = "en"
                         }
                     }
                 };
