@@ -143,7 +143,9 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     }
     else if(signupStatus == "successful")
     {
+     
      navigate("/login")
+
     }
     },[signupState])
 
