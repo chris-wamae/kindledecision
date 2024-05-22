@@ -57,6 +57,8 @@ namespace KindleDecision.Controllers
                 
                 user.UserName = userDto.Email;
 
+                internalUser.RefreshToken = "";
+
                 internalUser = _userRepository.CreateUser(internalUser);
 
                 if(internalUser == null)
@@ -91,6 +93,67 @@ namespace KindleDecision.Controllers
                 return Problem($"Something went wrong in the {nameof(Register)}",statusCode:500);
             }
 
+
+        }
+
+
+        [HttpPost("update-user-email")]
+
+        public async Task<IActionResult> UpdateUser(UpdateUser updateUser)
+
+        {    var internalUser = _userRepository.GetUser(updateUser.Id);
+
+            if(internalUser == null)
+            {
+                return BadRequest("User not Found");
+            }
+
+            var user = await _userManager.FindByEmailAsync(internalUser.Email);
+
+            if(user == null)
+            {
+                return BadRequest("Asp user not found");
+            }
+
+
+            var validPwd = await _userManager.CheckPasswordAsync(user, updateUser.Password);
+
+            if(!validPwd) 
+            {
+                return Unauthorized("Invalid password");
+            }
+
+
+            var token = await _userManager.GenerateChangeEmailTokenAsync(user,updateUser.Email);
+
+            if(token == null) 
+            {
+                return StatusCode(500, "An error occured generating email change token");
+            }
+
+            var result = await _userManager.ChangeEmailAsync(user, updateUser.Email, token.ToString());
+
+            
+
+            if(!result.Succeeded) 
+            {
+                foreach(var error in result.Errors)
+                {
+                ModelState.AddModelError(error.Code, error.Description);
+                }
+
+                return BadRequest(ModelState);
+            }
+
+            user.UserName = updateUser.Email;
+            internalUser.Email = updateUser.Email;
+
+            if(!_userRepository.UpdateUser(internalUser.Id, internalUser))
+            {
+                return StatusCode(500, "There was a problem updating the internal user");
+            }
+
+            return Accepted();
 
         }
 
