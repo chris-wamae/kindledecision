@@ -5,6 +5,7 @@ import { loginState} from "../../features/loginSlice";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const EditableDetail = ({ text, functionToCall, functionArg }) => {
   const [showEditIcon, setShowEditIcon] = useState(false);
@@ -34,16 +35,18 @@ const DashboardAccount = () => {
     const loggedUser = useSelector(loginState)
     const location = useLocation();
     const [userDetails, setUserDetails] = useState({})
-    const params = new URLSearchParams(location.search);
+    const [email,setEmail] = useState("")
+    const [password,setPassword] = useState("")
+    //const params = new URLSearchParams(location.search);
   
     useEffect(() => {
     if(loggedUser.token == "")
       {
-      axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${params.get("id")}`, {headers: {Authorization: `Bearer ${params.get("t")}`}}).then(r => setUserDetails(r.data))
+      axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${Cookies.get("ud")}`, {headers: {Authorization: `Bearer ${Cookies.get("at")}`}}).then(r => setUserDetails(r.data))
       }
     else
     {
-      axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${loggedUser.ud}`, {headers: {Authorization: `Bearer ${loggedUser.token}`}}).then(r => setUserDetails(r.data))
+      axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${Cookies.get("ud")}`, {headers: {Authorization: `Bearer ${Cookies.get("at")}`}}).then(r => setUserDetails(r.data))
     }
     },[loggedUser])
       
@@ -62,18 +65,24 @@ const DashboardAccount = () => {
             {<EditableDetail text={userDetails.email} functionToCall={setShowEmailEdit} functionArg={!showEditEmail}/>}
             {showEditEmail ?
             <form className="edit-form">
-            <input type="text" placeholder="Enter new email"></input>
+            <input type="text" placeholder="Enter new email" onChange={e => setEmail(e.target.value)}></input>
             <p>You'll need to enter your password to make this change</p>
-            <input type="password" placeholder="Enter your password password"></input>
-            <button>Change</button>
+            <input type="password" placeholder="Enter your password password" onChange={e => setPassword(e.target.value)}></input>
+            <button onClick={e => {
+              e.preventDefault()
+              axios.post(`${process.env.REACT_APP_BASE_URL}account/update-user-email`,{id:Cookies.get("ud"),
+                email:email,
+                password:password
+              },{headers:{Authorization: `Bearer ${Cookies.get("at")}`}})
+            }}>Change</button>
             </form>
                            :
             <span></span>
             }
           </div>
           <div className="info-n-sub-header">
-            <div className="sub-header">Password</div>
-            <EditableDetail text="********" functionToCall={setShowEditPassword} functionArg={!showEditPassword} />
+            {/* <div className="sub-header">Password</div> */}
+            {/* <EditableDetail text="********" functionToCall={setShowEditPassword} functionArg={!showEditPassword} /> */}
             {showEditPassword ?
             <form className="edit-form">
             <input type="password" placeholder="Enter new password"></input>
@@ -96,7 +105,9 @@ const DashboardAccount = () => {
           <div className="header">Settings</div>
           <div className="info-n-sub-header">
             <div className="sub-header">User visibility</div>
-            <EditableDetail text={(userDetails.userVisibility) ? "Visible" : "Anonymous"} functionToCall={setShowEditUserAnyonymity} functionArg={!showEditUserAnonymity} />
+            {/* if using Editable detail remove div below */}
+            <div>Visible</div>
+            {/* <EditableDetail text={(userDetails.userVisibility) ? "Visible" : "Anonymous"} functionToCall={setShowEditUserAnyonymity} functionArg={!showEditUserAnonymity} /> */}
             {
             showEditUserAnonymity ?
             <form>  <label for="select-visibility">Select visibility</label>
@@ -112,7 +123,9 @@ const DashboardAccount = () => {
           </div>
           <div className="info-n-sub-header">
             <div className="sub-header">Viewing mode</div>
-            <EditableDetail text={(userDetails.viewmode) ? "Lightmode" : "Darkmode"} functionToCall={setShowUserViewingMode} functionArg={!showEditUserViewingMode}/>
+             {/* if using Editable detail remove div below */}
+            <div>Lightmode</div>
+            {/* <EditableDetail text={(userDetails.viewmode) ? "Lightmode" : "Darkmode"} functionToCall={setShowUserViewingMode} functionArg={!showEditUserViewingMode}/> */}
             {
             showEditUserViewingMode ? 
             <button onClick={() => setDarkMode(!darkMode)}>Change to {darkMode ? "light mode" : "darkmode"}</button>
