@@ -13,8 +13,9 @@ ENTRYPOINT ["dotnet-ef", "database", "update"]
 
 # Use the ASP.NET runtime image to run the app
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+ENV DOTNET_URLS=http://+:5000
 WORKDIR /app
 COPY --from=build /publish .
-EXPOSE 80
+EXPOSE 5000
 ENTRYPOINT ["dotnet", "KindleDecision.dll"]
 
