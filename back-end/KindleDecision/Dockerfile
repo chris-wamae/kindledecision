@@ -19,3 +19,6 @@ EXPOSE 80
 ENTRYPOINT ["dotnet", "KindleDecision.dll"]
 
 
+
+
+
