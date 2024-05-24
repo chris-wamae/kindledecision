@@ -8,7 +8,7 @@ RUN dotnet publish "KindleDecision.csproj" -c Release -o /publish --no-restore
 # Stage for running EF migrations
 FROM build AS migrations
 RUN dotnet tool install --global dotnet-ef --version 7.0.15
-ENV PATH="$PATH:/root/.dotnet/tools"
+ENV PATH="$PATH:/root/.dotnet/tools" 
 ENTRYPOINT ["dotnet-ef", "database", "update"]
 
 # Use the ASP.NET runtime image to run the app
