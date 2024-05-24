@@ -13,7 +13,7 @@ services:
       - migrations
 
   migrations:
-    container_name: service-migrations
+    container_name: kd-migrations
     build:
       context: .
       dockerfile: Dockerfile
@@ -22,7 +22,7 @@ services:
         - db
 
   db:
-    container_name: kd-db
+    container_name: kd-api-db
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
        - MSSQL_PID=Express
