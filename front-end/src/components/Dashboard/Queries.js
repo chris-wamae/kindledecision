@@ -70,11 +70,11 @@ function Queries({ queriesType }) {
           <div className="selections">
             <div className="query-info">
               <div className="query-selectioncount">
-                <div>{e.remainingSelections}</div>
+                <div>{e.totalSelections - e.remainingSelections}</div>
                 <div>/{e.totalSelections}</div>
               </div>
 
-              <div className="query-status">{e.totalSelections !== e.selectionsCast ? "ongoing" : "completed"}</div>
+              <div className="query-status">{e.remainingSelections == "0" ? "completed" : "ongoing"}</div>
             </div>
           </div>
         </div>
