@@ -126,6 +126,21 @@ namespace KindleDecision.Controllers
         }
 
 
+        [HttpGet("query-selection-complete/{queryId}")]
+
+        public IActionResult QuerySelectionComplete(int queryId) 
+        {
+            var query = _queryRepository.GetQuery(queryId);
+             
+            if(query == null)
+            {
+            return BadRequest("Query does not exist");
+            }
+
+            return Ok(query.TotalSelections - query.RemainingSelections == query.TotalSelections);
+        }
+
+
 
 
         [Authorize]
