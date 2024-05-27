@@ -10,6 +10,71 @@
    
 }
 
+.results-container
+{
+width:60%;
+background-color:white;
+display:flex;
+align-items:center;
+flex-direction:column;
+margin-bottom:40px;
+margin-left:15%;
+border-radius:20px;
+}
+
+.rs-title
+{
+font-size:24px;
+text-decoration:underline;
+}
+
+
+.winner-container > div
+{
+font-size:18px;
+text-decoration:underline;
+text-align:center;
+margin-bottom:10px;
+}
+
+.winner-container > span
+{
+text-align:center;
+font-size:18px;
+}
+
+.results-info-container
+{
+display:flex;
+width:100%;
+justify-content:space-around;
+}
+
+
+.sic-header
+{
+font-size:18px;
+text-decoration:underline;
+margin-bottom:10px;
+}
+
+.sic-titles
+{
+display:flex;
+width:250px;
+justify-content:space-around;
+text-decoration:underline;
+margin-bottom:5px;
+}
+
+.single-result-choice
+{
+display:flex;
+margin-bottom:5px;
+width:200px;
+justify-content:space-between;
+}
+
 .inner-qdc
 {
  display:flex;
@@ -142,6 +207,45 @@ width:196%;
 .query-details-container
 {
 min-height:700px;
+}
+
+.results-container
+{
+min-height:400px;
+min-width:85%;
+margin-left:5%;
+}
+
+.rs-title
+{
+font-size:40px;
+margin-bottom:20px;
+}
+
+.winner-container > div
+{
+font-size:32px;
+}
+
+.winner-container > span
+{
+font-size:26px;
+}
+
+.sic-header
+{
+font-size:32px;
+}
+
+.sic-titles > div
+{
+font-size:26px;
+margin-bottom:10px;
+}
+
+.single-result-choice > div
+{
+font-size:24px;
 }
 
 .main-title
