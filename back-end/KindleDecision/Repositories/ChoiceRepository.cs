@@ -2,6 +2,7 @@
 using KindleDecision.Data;
 using KindleDecision.Models;
 using System.Web.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace KindleDecision.Repositories
 {
@@ -35,10 +36,29 @@ namespace KindleDecision.Repositories
             return _dataContext.Choices.OrderBy(c => c.Id).ToList();
         }
 
-        public ICollection<Choice> GetChoicesByQuery(int queryId)
+        public ICollection<ChoiceWithSelectionCount> GetChoicesByQuery(int queryId)
         {
-           return _dataContext.Choices.Where(c => c.Query.Id == queryId).ToList();
+           var choices =  _dataContext.Choices.Where(c => c.Query.Id == queryId).ToList();
+
+           var choiceWithSelections = new List<ChoiceWithSelectionCount>();
+
+            foreach (var choice in choices) 
+            {  
+                var count = _dataContext.Selections.Where(s => s.Choice.Id == choice.Id).Count(); 
+
+                var newCWSC = new ChoiceWithSelectionCount()
+                {
+                    Id = choice.Id,
+                    Title = choice.Title,
+                    SelectionCount = count,
+                };
+                
+                choiceWithSelections.Add(newCWSC);
+            }
+
+            return choiceWithSelections;
         }
+
 
         public ICollection<Choice> GetChoicesByUserSelection(int userId)
         {

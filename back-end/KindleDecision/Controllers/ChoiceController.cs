@@ -59,12 +59,12 @@ namespace KindleDecision.Controllers
         }
 
         [HttpGet("get-query-choices/{queryId}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Choice>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ChoiceWithSelectionCount>))]
 
         public IActionResult GetChoicesByQuery(int queryId)
         {
 
-            var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByQuery(queryId));
+            var choices = _choiceRepository.GetChoicesByQuery(queryId);
 
             if (!ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace KindleDecision.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return Ok(choices);
+            return Ok(choices.OrderBy(c => c.SelectionCount).ToList());
 
         }
 

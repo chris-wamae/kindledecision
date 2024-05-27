@@ -12,7 +12,7 @@ namespace KindleDecision.Interfaces
 
         ICollection<Choice> GetAllChoices();
 
-        ICollection<Choice> GetChoicesByQuery(int queryId);
+        ICollection<ChoiceWithSelectionCount> GetChoicesByQuery(int queryId);
 
         ICollection<Choice> GetChoicesByUserSelection(int userId);
 
