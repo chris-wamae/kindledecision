@@ -18,7 +18,8 @@ import { queryParticipantsState } from "../features/userQueriesSlice";
 import { getQueryParticipants } from "../features/userQueriesSlice";
 import { getQuery } from "../features/querySlice";
 import Cookies from "js-cookie";
-import { retry } from "@reduxjs/toolkit/query";
+import DeleteQuery from "../components/DeleteQuery";
+import { queryChangeStatus } from "../features/querySlice";
 
 function SingleQuery() {
     const dispatch = useDispatch();
@@ -32,9 +33,11 @@ function SingleQuery() {
     const [queryWinner, setQueryWinner] = useState("")
     const [selections, setSelections] = useState([])
     const navigate = useNavigate();
+    const [queryCreator,setQueryCreator] = useState(undefined)
     const [searchParams, setSeachParams] = useSearchParams()
+    const queryHasChanged = useSelector(queryChangeStatus) 
 
-    console.log(selections);
+    console.log(queryHasChanged);
     //console.log(queryWinner)
     //console.log(choices)
     //console.log(participants)
@@ -46,6 +49,7 @@ function SingleQuery() {
         axios.get(`${process.env.REACT_APP_BASE_URL}query/query-selection-complete/${searchParams.get("qId")}`).then(r => {
             setQueryComplete(r.data)
         })
+        axios.get(`${process.env.REACT_APP_BASE_URL}query/get-query-creator/${searchParams.get("qId")}`).then(r => setQueryCreator(r.data))
     }, [])
 
     useEffect(() => {
@@ -249,7 +253,9 @@ function SingleQuery() {
                     </div>
 
                 </section>
+                    <DeleteQuery queryId={searchParams.get("qId")}/>
             </div>
+           
 
         </>
     )
