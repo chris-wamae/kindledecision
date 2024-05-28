@@ -25,7 +25,7 @@ namespace KindleDecision.Interfaces
         //ie. RemainingVotes == TotalVotes
         bool UpdateChoice(int choiceId,Choice choice);
 
-        bool DeleteChoice(Choice choice);
+        bool DeleteChoice(int choiceId);
 
     }
 }
