@@ -6,13 +6,25 @@ import { useState } from "react";
 import {useNavigate} from "react-router-dom";
 import { useEffect } from "react";
 import { refreshAuth } from "../Helper/Auth";
+import { queryChangeStatus } from "../features/querySlice";
 import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
+import { setQueryChange } from "../features/querySlice";
+import { useDispatch } from "react-redux";
 
 function UserDashboard() {
   const [dashboardComponentId, setDashboardComponentId] = useState(1)
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const queryHasChanged = useSelector(queryChangeStatus)
  
+  useEffect(() => {
+  if(queryHasChanged)
+    {
+    dispatch(setQueryChange(false))
+    window.location.reload()
+    }
+  })
   
   useEffect(() => {
   if(refreshAuth() === false){navigate("/login")};

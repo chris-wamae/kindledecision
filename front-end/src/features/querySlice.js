@@ -49,6 +49,7 @@ const initialState = {
         creatorUserId:null
     },
     queries:[],
+    queryChange:false,
     status: "idle",
     error: null
 }
@@ -60,6 +61,10 @@ export const querySlice = createSlice({
         setQueryState:
          (state, action) => {
             state.query = action.payload
+        },
+        setQueryChange:
+        (state,action) => {
+            state.queryChange = action.payload
         }
     },
     extraReducers(builder){
@@ -102,6 +107,10 @@ export const queryState = state => state.query.query
 
 export const queryStatus = state => state.query.status
 
+export const queryChangeStatus = state => state.query.queryChange
+
 export const {setQueryState} = querySlice.actions
+
+export const {setQueryChange} = querySlice.actions;
 
 export default querySlice.reducer;
