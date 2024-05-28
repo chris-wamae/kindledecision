@@ -77,7 +77,7 @@ namespace KindleDecision.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return Ok(choices.OrderBy(c => c.SelectionCount).ToList());
+            return Ok(choices.OrderByDescending(c => c.SelectionCount).ToList());
 
         }
 
@@ -170,14 +170,14 @@ namespace KindleDecision.Controllers
             if(!_choiceRepository.ChoiceExists(choiceId))
                 return NotFound();
 
-            var choiceToDelete = _choiceRepository.GetChoice(choiceId);
+            //var choiceToDelete = _choiceRepository.GetChoice(choiceId);
 
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if(!_choiceRepository.DeleteChoice(choiceToDelete))
+            if(!_choiceRepository.DeleteChoice(choiceId))
                 {
                 ModelState.AddModelError("", "Something went wrong while Deleting");
                 return StatusCode(500, ModelState);

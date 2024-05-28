@@ -112,7 +112,9 @@ namespace KindleDecision.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            var selections = _userSelectedInQueryRepository.GetUserSelectedInQuerysByUser(userId).Select(x => x.QueryId);
+            var selections = _userSelectedInQueryRepository
+                .GetUserSelectedInQuerysByUser(userId)
+                .Select(x => x.QueryId);
 
             var querys = _mapper.Map<List<QueryDto>>(_queryRepository.GetQuerysByUser((int)userId));
 
@@ -120,28 +122,37 @@ namespace KindleDecision.Controllers
             {
                 return BadRequest();
             }
-            return Ok(new { 
-                Selections = selections,
-                Queries = querys});
+            return Ok(new { Selections = selections, Queries = querys });
         }
 
-
         [HttpGet("query-selection-complete/{queryId}")]
-
-        public IActionResult QuerySelectionComplete(int queryId) 
+        public IActionResult QuerySelectionComplete(int queryId)
         {
             var query = _queryRepository.GetQuery(queryId);
-             
-            if(query == null)
+
+            if (query == null)
             {
-            return BadRequest("Query does not exist");
+                return BadRequest("Query does not exist");
             }
 
             return Ok(query.TotalSelections - query.RemainingSelections == query.TotalSelections);
         }
 
 
+        [HttpGet("get-query-creator/{queryId}")]
 
+        public IActionResult GetQueryCreator(int queryId)
+        {
+           var query =  _queryRepository.GetQuery(queryId);
+
+            var queryCreator = _userRepository.GetQueryCreator(queryId);
+
+            return Ok(new
+            {
+                Id = queryCreator.Id,
+               Email=queryCreator.Email}
+            );
+        }
 
         [Authorize]
         [HttpPost]
@@ -230,12 +241,11 @@ namespace KindleDecision.Controllers
 
         [HttpPut("total-selections/{queryId}/{totalSelections}")]
         [ProducesResponseType(200)]
-
-        public IActionResult UpdateTotalSelectors(int queryId,int totalSelections)
+        public IActionResult UpdateTotalSelectors(int queryId, int totalSelections)
         {
             var queryCreate = _queryRepository.GetQuery(queryId);
 
-            if(queryCreate == null)
+            if (queryCreate == null)
             {
                 return BadRequest("Query does not exist");
             }
@@ -243,20 +253,17 @@ namespace KindleDecision.Controllers
             queryCreate.TotalSelections = totalSelections;
             queryCreate.RemainingSelections = totalSelections;
 
-            if(!_queryRepository.UpdateQuery(queryCreate))
+            if (!_queryRepository.UpdateQuery(queryCreate))
             {
                 ModelState.AddModelError("", "Something went wrong while updating the query");
-               return StatusCode(500, ModelState);
+                return StatusCode(500, ModelState);
             }
 
             return Ok();
-
         }
-
 
         [HttpPut("remaining-selections/{queryId}")]
         [ProducesResponseType(200)]
-
         public IActionResult UpdateRemainingSelectors(int queryId)
         {
             var queryCreate = _queryRepository.GetQuery(queryId);
@@ -266,7 +273,7 @@ namespace KindleDecision.Controllers
                 return BadRequest("Query does not exist");
             }
 
-            if(queryCreate.RemainingSelections == 0)
+            if (queryCreate.RemainingSelections == 0)
             {
                 return BadRequest("Remaining selections cannot be less that 0");
             }
@@ -282,33 +289,28 @@ namespace KindleDecision.Controllers
             }
 
             return Ok();
-
         }
-
-
 
         [HttpPost("add-participant/{queryId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult AddParticipant(int queryId, [FromBody] UserEmail userEmail)
-
         {
-
             User user = _userRepository.GetUserByEmail(userEmail.Email);
 
             Query query = _queryRepository.GetQuery(queryId);
 
-            if(user == null)
+            if (user == null)
             {
                 return BadRequest("A user with that email does not exist");
             }
 
-            if(query == null) 
+            if (query == null)
             {
                 return BadRequest("Query does not exist");
             }
 
-            if (!_queryRepository.AddParticipant(user,query))
+            if (!_queryRepository.AddParticipant(user, query))
             {
                 return StatusCode(500, "Something went wrong while adding the participant");
             }
@@ -322,47 +324,68 @@ namespace KindleDecision.Controllers
         [ProducesResponseType(500)]
         public IActionResult DeleteQuery(int queryId)
         {
+            var uSIQ = _userSelectedInQueryRepository
+                .GetUserSelectedInQuerysByQuery(queryId)
+                .ToList();
+
+            bool hasFail = false;
+
+            if (uSIQ.Count() > 0)
+            {
+                foreach (var u in uSIQ)
+                {
+                    if(!_userSelectedInQueryRepository.DeleteUserSelectedInQuery(u))
+                    {
+                        hasFail = true;
+                    };
+
+                }
+            }
+
+
             if (!_queryRepository.QueryExists(queryId))
             {
                 return NotFound();
             }
 
-            var queryToDelete = _queryRepository.GetQuery(queryId);
+            //var queryToDelete = _queryRepository.GetQuery(queryId);
+
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (!_queryRepository.DeleteQuery(queryToDelete))
+            if (!_queryRepository.DeleteQuery(queryId))
             {
                 ModelState.AddModelError("", "Something went wrong while deleting the Query");
                 return StatusCode(500, ModelState);
             }
 
+            if (hasFail)
+            {
+                return StatusCode(500, "An error occurred deleting data associated with the query");
+            }
+
+
             return NoContent();
         }
 
-
         [HttpGet("user-has-voted/{userId}/{queryId}")]
-        public IActionResult UserHasVoted(int userId, int queryId) 
+        public IActionResult UserHasVoted(int userId, int queryId)
         {
-        if(!_userRepository.UserExists(userId))
-        {
-         return BadRequest("User does not exist");
-        }
+            if (!_userRepository.UserExists(userId))
+            {
+                return BadRequest("User does not exist");
+            }
             if (!_queryRepository.QueryExists(queryId))
             {
                 return BadRequest("Query does not exist");
             }
 
-        var result = _userSelectedInQueryRepository.UserHasSelectedInQuery(queryId, userId);
+            var result = _userSelectedInQueryRepository.UserHasSelectedInQuery(queryId, userId);
 
-            return Ok(new
-            {
-            Result= result
-            });
-
+            return Ok(new { Result = result });
         }
     }
 }

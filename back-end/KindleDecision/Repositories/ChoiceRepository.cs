@@ -100,9 +100,12 @@ namespace KindleDecision.Repositories
             return Save();
         }
 
-        public bool DeleteChoice(Choice choice)
+        public bool DeleteChoice(int choiceId)
         {
-            _dataContext.Remove(choice);
+            var choiceToDelete = _dataContext.Choices.Where(c => c.Id == choiceId).Include(c => c.Selections).FirstOrDefault(); 
+
+            _dataContext.Remove(choiceToDelete);
+
             return Save();
         }
     }

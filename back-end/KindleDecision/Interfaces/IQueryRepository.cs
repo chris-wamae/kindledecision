@@ -22,7 +22,7 @@ namespace KindleDecision.Interfaces
 
     bool AddParticipant( User user, Query query);
 
-    bool DeleteQuery(Query query);
+    bool DeleteQuery(int queryId);
 
     bool Save();
     }
