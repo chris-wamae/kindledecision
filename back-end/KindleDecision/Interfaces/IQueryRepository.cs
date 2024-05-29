@@ -24,6 +24,8 @@ namespace KindleDecision.Interfaces
 
     bool DeleteQuery(int queryId);
 
+    bool DeleteUsersCreatedQueries(int internalUserId);
+
     bool Save();
     }
 }

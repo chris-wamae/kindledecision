@@ -84,6 +84,16 @@ namespace KindleDecision.Repositories
         }
 
 
+        public bool DeleteUsersCreatedQueries(int internalUserId)
+        {
+            var queriesToDelete = _dataContext.Querys.Where(q => q.CreatorUserId == internalUserId).ToList();
+
+            _dataContext.RemoveRange(queriesToDelete);
+
+            return Save();
+        }
+
+
 
     }
 }

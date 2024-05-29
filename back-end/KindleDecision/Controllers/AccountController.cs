@@ -23,10 +23,11 @@ namespace KindleDecision.Controllers
     private readonly IAuthManager _authManager;
     private readonly IUserRepository _userRepository;
     private readonly IConfiguration _configuration;
+    private readonly IQueryRepository _queryRepository;
 
 
 
-    public AccountController(UserManager<ApplicationUser> userManager, ILogger<AccountController> logger, IMapper mapper, IAuthManager authManager, IUserRepository userRepository, IConfiguration configuration)
+    public AccountController(UserManager<ApplicationUser> userManager, ILogger<AccountController> logger, IMapper mapper, IAuthManager authManager, IUserRepository userRepository, IConfiguration configuration, IQueryRepository queryRepository)
         {
             _userManager = userManager;
             _logger = logger;
@@ -34,7 +35,7 @@ namespace KindleDecision.Controllers
             _authManager = authManager;
             _userRepository = userRepository;
             _configuration = configuration;
-
+            _queryRepository = queryRepository;
         }
 
 
@@ -303,11 +304,67 @@ namespace KindleDecision.Controllers
 
         }
 
+        [HttpDelete("delete-account")]
+        public async Task<IActionResult> DeleteAccount(LoginUserDto accountToDelete)
+        {
+         if(!await _authManager.ValidateUser(accountToDelete))
+            {
+                return Unauthorized();
+            }
+
+         if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
         
 
 
+         var aspUser = await _userManager.FindByEmailAsync(accountToDelete.Email);
+
+         var internalUser = _userRepository.GetUserByEmail(accountToDelete.Email);
+         
+         if(internalUser == null)
+            {
+                return BadRequest("Internal user could not be found");
+            }
+
+
+            var result = await _userManager.DeleteAsync(aspUser);
+
+
+            if(!result.Succeeded) 
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(error.Code, error.Description);
+                }
+
+
+                return BadRequest(ModelState);
+
+            }
+
+            if (!_userRepository.DeleteUser(internalUser))
+            {
+
+                _queryRepository.DeleteUsersCreatedQueries(internalUser.Id);
+
+            return StatusCode(500, "Something went wrong while deleting the internal user");
+                
+            }
+
+            if(!_queryRepository.DeleteUsersCreatedQueries(internalUser.Id))
+            {
+                return StatusCode(500, "Something went wrong while deleting the users queries");
+            }
+
+
+            return NoContent(); 
+
+        }
+      
+
     }
-
-
 
 }
