@@ -2,6 +2,7 @@
 using KindleDecision.Interfaces;
 using KindleDecision.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Web.Mvc;
 
 namespace KindleDecision.Repositories
@@ -80,8 +81,11 @@ namespace KindleDecision.Repositories
         }
 
         public bool DeleteUser(User userToDelete)
-        {
-            _context.Remove(userToDelete);
+        {   
+            var userToDeleteObj = _context.Users.Where(u => u.Id == userToDelete.Id).Include(u => u.UserQuerys).FirstOrDefault();
+
+            _context.Remove(userToDeleteObj);
+
             return Save();
         }
     }
