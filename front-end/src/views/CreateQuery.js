@@ -25,7 +25,7 @@ function CreateQuery() {
   const dateRef = useRef(null)
   const navItems = [""]
   const [queryTitle, setQueryTitle] = useState("")
-  const [startDate, setStartDate] = useState(null)
+  const [startDate, setStartDate] = useState(new Date().toISOString())
   const [expiryDate, setExpiryDate] = useState("")
   const [allowRedirect, setAllowRedirect] = useState(false)
   const [showStartDateInput, setShowStartDateInput] = useState("display-none start-date-input")
@@ -33,6 +33,7 @@ function CreateQuery() {
   const query = useSelector(queryState)
 
   //console.log(loggedUser.ud)
+  console.log(startDate)
 
   useEffect(() => {
     if (refreshAuth() === false) { navigate("/login") };

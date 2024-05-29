@@ -149,7 +149,7 @@ function SingleQuery() {
 
     }, [query])
 
-    //console.log(selections[0].title)
+ console.log(queryCreator)
 
     return (
         <>  <Navbar navItems={["Dashboard"]} />
@@ -162,7 +162,7 @@ function SingleQuery() {
                         <p>Expiry date: {query.startDate ? query.expiryDate.substring(0, 10) : ""}</p>
                         <p>Total participants: {query.totalSelections}</p>
                         <p>Remaining participants: {query.remainingSelections}</p>
-                        <p>Creator: creatorUserId:{query.creatorUserId}</p>
+                        <p>Creator:{queryCreator ? queryCreator.email : ""}</p>
                     </div>
                     {
                         particationStatus ? <span></span> : <button onClick={() => {
@@ -253,7 +253,13 @@ function SingleQuery() {
                     </div>
 
                 </section>
-                    <DeleteQuery queryId={searchParams.get("qId")}/>
+                     {
+                     (queryCreator && queryCreator.id == Cookies.get("ud")) ?
+                      <DeleteQuery queryId={searchParams.get("qId")}/>
+                      :
+                      <span></span>        
+                     }
+                    
             </div>
            
 
