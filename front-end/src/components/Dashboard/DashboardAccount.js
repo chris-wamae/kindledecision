@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
+import DeleteAccount from "../DeleteAccount";
 
 const EditableDetail = ({ text, functionToCall, functionArg }) => {
   const [showEditIcon, setShowEditIcon] = useState(false);
@@ -135,6 +136,7 @@ const DashboardAccount = () => {
           </div>
         </div>
       </div>
+      <DeleteAccount/>
 
     </>
   )
