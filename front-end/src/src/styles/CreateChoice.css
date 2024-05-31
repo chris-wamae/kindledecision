@@ -1,0 +1,147 @@
+.page-title
+{
+    text-align: center;
+    color:var(--black);
+}
+
+.create-choice-form
+{
+    width:500px;
+    margin:auto;
+    border: 1px solid var(--black);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:150px;
+    justify-content:space-around;
+}
+
+.create-choice-form input 
+{
+min-width:400px;
+height:30px;
+text-align:center;
+border-radius:5px;
+border:0px;
+}
+
+.choice-label
+{
+font-size:20px;
+text-align:left;
+}
+
+.add-button
+{
+background-color:var(--black);
+color:white;
+width:160px;
+height:40px;
+border:0px;
+border-radius:10px;
+
+}
+
+.add-button:hover
+{
+color:var(--black);
+background-color:var(--white);
+font-weight:bold;
+}
+
+
+.mail-button
+{
+    
+}
+
+.done-button
+{
+color:var(--white);
+background-color:var(--black);
+padding:0px;
+width:50px;
+height:35px;
+font-weight:bold;
+border:3px solid white;
+margin-top:10px;
+border-radius:20px;
+font-weight:bold;
+font-size:20px;
+}
+
+.done-button:hover{
+    width:80px;
+    color:var(--black);
+    background-color:var(--white);
+}
+
+.done-button:disabled
+{
+opacity:0.8;
+}
+
+
+
+
+@media only screen and (max-width:450px)
+{
+
+.page-title
+{
+font-size:48px;
+text-align:center;
+}
+
+.choice-label
+{
+font-size:40px;
+}
+
+.add-button
+{
+font-size:32px;
+width:200px;
+height:80px;
+}
+
+.done-button
+{
+height:80px;
+width:200px;
+font-size:32px;
+}
+
+.page-container
+{
+width:196%;
+min-height:800px;
+margin-top:40%;
+}
+
+.create-choice-form
+{
+min-height:500px;
+border-radius:20px;
+padding:50px 300px;
+}
+
+.create-choice-form input
+{
+height:60px;
+font-size:24px;
+};
+
+.create-choice-form .choice-label
+{
+font-size:32px;
+}
+.dynamic-list
+{
+display:flex;
+justify-content:center;
+margin:0px;
+}
+
+}
+

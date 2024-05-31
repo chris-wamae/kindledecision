@@ -1,0 +1,183 @@
+.info-container
+{
+background-color:white;
+width:80%;
+margin:auto;
+margin-top:5%;
+padding:20px;
+border-radius:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+min-height:450px;
+}
+
+.header{
+    font-size:37px;
+    margin-bottom:40px;
+    color:black;
+    text-decoration:underline;
+
+}
+
+.query-name-statement{
+    color:black;
+    font-size:25px;
+    width:80%;
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.query-title
+{
+color:var(--carrotOrange);
+font-size:25px;
+text-decoration:underline;
+}
+
+.support-statement
+{
+color:black;
+font-size:25px;
+margin-bottom:40px;
+}
+
+.link-statement
+{
+color:black;
+font-size:25px;
+text-align:center;
+}
+
+.link{
+color:var(--carrotOrange);
+text-align:center;
+}
+
+button.copy-link-button
+{
+  width:160px;
+  height:40px;
+  color:white;
+  background-color:var(--carrotOrange);
+  border:0px;
+  font-size:25px;
+  font-weight:bold;
+  border-radius:20px;
+  margin-top:40px;
+}
+
+
+.mail-button
+{
+width:160px;
+height:40px;
+background-color:black;
+color:white;
+font-size:16px;
+font-weight:bold;
+border:0px;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+.mail-button:hover
+{
+color:white;
+background-color:var(--utOrange);
+}
+
+.dashboard-btn
+{
+width:200px;
+height:40px;
+background-color:var(--utOrange);
+color:white;
+font-weight:bold;
+border-radius:10px;
+border:0px;
+font-size:16px;
+}
+
+.dashboard-btn:hover
+{
+color:white;
+background-color:black;
+}
+
+.dashboard-button-container
+{
+width:60%;
+display:flex;
+justify-content:space-between;
+}
+
+
+@media only screen and (max-width:450px)
+{
+
+.info-container
+{
+width:180%;
+margin-left:8%;
+min-height:1000px;
+}
+
+.info-container * 
+{
+margin-top:20px;
+text-align:center;
+line-height:60px;
+}
+
+.info-container .header
+{
+font-size:48px;
+text-decoration:underline;
+}
+
+.query-name-statement
+{
+font-size:36px;
+}
+
+.support-statement
+{
+  font-size:36px;
+}
+
+.link-statement
+{
+  font-size:36px;
+}
+
+.link
+{
+  font-size:36px;
+  display:block;
+}
+
+.info-container button
+{
+height:80px;
+width:480px;
+font-size:32px;
+}
+
+.dashboard-button-container
+{
+width:100%;
+display:flex;
+justify-content:space-around;
+
+}
+
+button.dashboard-btn
+{
+height:80px;
+width:300px;
+font-size:32px;
+}
+
+
+}
