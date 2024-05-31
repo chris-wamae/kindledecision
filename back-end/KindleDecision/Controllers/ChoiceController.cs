@@ -3,6 +3,7 @@ using KindleDecision.Interfaces;
 using KindleDecision.Dto;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KindleDecision.Controllers
 {
@@ -21,6 +22,7 @@ namespace KindleDecision.Controllers
             _queryRepository = queryRepository;
         }
 
+        [Authorize(Roles = "Administrator,Superadmin")]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Choice>))]
 
@@ -37,6 +39,7 @@ namespace KindleDecision.Controllers
 
         }
 
+        [Authorize]
         [HttpGet("{choiceId}")]
         [ProducesResponseType(200, Type = typeof(Choice))]
         [ProducesResponseType(400)]
@@ -58,6 +61,7 @@ namespace KindleDecision.Controllers
 
         }
 
+        [Authorize]
         [HttpGet("get-query-choices/{queryId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ChoiceWithSelectionCount>))]
 
@@ -102,6 +106,7 @@ namespace KindleDecision.Controllers
 
 
 
+        [Authorize]
         [HttpPost("{queryId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -129,6 +134,7 @@ namespace KindleDecision.Controllers
 
         }
 
+        [Authorize]
         [HttpPut("{choiceId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -159,7 +165,7 @@ namespace KindleDecision.Controllers
 
         }
 
-
+        [Authorize]
         [HttpDelete("{choiceId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using KindleDecision.Configurations;
+using Microsoft.AspNetCore.Identity;
 
 namespace KindleDecision.Data
 {
@@ -27,6 +28,51 @@ namespace KindleDecision.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            string ADMIN_ID = "02174cf0–9412–4cfe - afbf - 59f706d72xd6";
+
+            string SUPER_ADMIN_ROLE_ID = "341743f0 - asd2–42de - afbf - 59kmuixk72cf6";
+
+            string ADMIN_ROLE_ID = "341743f0 - asd2–42de - afbf - 59kCwmmk72cf6";
+
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Name = "SuperAdmin",
+                NormalizedName = "SUPERADMIN",
+                Id = SUPER_ADMIN_ROLE_ID,
+                ConcurrencyStamp = SUPER_ADMIN_ROLE_ID
+            });
+
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Name = "Admininistrator",
+                NormalizedName = "ADMINISTRATOR",
+                Id = ADMIN_ROLE_ID,
+                ConcurrencyStamp = ADMIN_ROLE_ID
+            });
+
+            var appUser = new ApplicationUser
+            {
+                Id = ADMIN_ID,
+                Email = "chriswamae123@gmail.com",
+                EmailConfirmed = true,
+                UserName = "chriswamae123@gmail.com",
+                NormalizedUserName = "CHRISWAMAE123@GMAIL.COM",
+                UserId = 1
+            };
+
+            PasswordHasher<ApplicationUser> ph = new PasswordHasher<ApplicationUser>();
+            appUser.PasswordHash = ph.HashPassword(appUser, "Week!Four.May@2024");
+
+            modelBuilder.Entity<ApplicationUser>().HasData(appUser);
+
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = SUPER_ADMIN_ROLE_ID,
+                UserId = ADMIN_ID
+            });
+
 
             modelBuilder.Entity<UserQuery>()
                 .HasKey(pc => new {pc.UserId, pc.QueryId});
