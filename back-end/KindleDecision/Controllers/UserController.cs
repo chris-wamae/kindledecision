@@ -75,6 +75,7 @@ namespace KindleDecision.Controllers
             ;
         }
 
+        [Authorize]
         [HttpGet("get-query-participants/{queryId}")]
         public IActionResult GetQueryParticipats(int queryId)
         {
@@ -95,6 +96,7 @@ namespace KindleDecision.Controllers
             return Ok(participants);
         }
 
+        [Authorize]
         [HttpPost("user-exists")]
         public IActionResult UserExists(UserEmail userEmail)
         {

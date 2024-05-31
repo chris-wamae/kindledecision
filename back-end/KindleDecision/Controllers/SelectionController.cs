@@ -4,6 +4,7 @@ using KindleDecision.Dto;
 using KindleDecision.Interfaces;
 using KindleDecision.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
 
 namespace KindleDecision.Controllers
@@ -36,6 +37,7 @@ namespace KindleDecision.Controllers
             _userRepository = userRepository;
         }
 
+        [Authorize(Roles = "Administrator,Superadmin")]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<SelectionDto>))]
         public IActionResult GetSelections()
@@ -51,6 +53,7 @@ namespace KindleDecision.Controllers
             return Ok(selections);
         }
 
+        [Authorize]
         [HttpGet("{selectionId}")]
         [ProducesResponseType(200, Type = typeof(SelectionDto))]
         [ProducesResponseType(400)]
@@ -73,6 +76,7 @@ namespace KindleDecision.Controllers
             return Ok(selection);
         }
 
+        [Authorize] 
         [HttpGet("get-selections-by-choice/{choiceId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<SelectionDto>))]
         [ProducesResponseType(400)]
@@ -112,7 +116,7 @@ namespace KindleDecision.Controllers
 
         //    return Ok(selections);
         //}
-
+        [Authorize]
         [HttpPost("participate")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -207,6 +211,7 @@ namespace KindleDecision.Controllers
             });
         }
 
+        [Authorize]
         [HttpDelete("{selectionId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]

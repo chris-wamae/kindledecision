@@ -36,9 +36,9 @@ namespace KindleDecision.Repositories
             return _context.Users.Where(u => u.Email == email).FirstOrDefault();
         }
 
-        public ICollection<User> GetUsers()
+        public ICollection<string> GetUsers()
         {
-            return _context.Users.OrderBy(u => u.Id).ToList();
+            return _context.Users.OrderBy(u => u.Id).Select(u => u.Email).ToList();
         }
 
         public ICollection<User> GetUsersByQuery(int queryId)

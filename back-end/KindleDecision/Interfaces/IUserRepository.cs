@@ -4,7 +4,7 @@ namespace KindleDecision.Interfaces
 {
     public interface IUserRepository
     {
-        ICollection<User> GetUsers();
+        ICollection<string> GetUsers();
 
         User GetUser(int id);
 

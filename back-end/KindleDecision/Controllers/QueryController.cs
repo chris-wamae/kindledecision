@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
 namespace KindleDecision.Controllers
-{
+{   
     [Route("query")]
     [ApiController]
     public class QueryController : Controller
@@ -29,6 +29,7 @@ namespace KindleDecision.Controllers
             _userSelectedInQueryRepository = userSelectedInQueryRepository;
         }
 
+        [Authorize(Roles = "Admininistrator,Superadmin")]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
         public IActionResult GetQueries()
@@ -43,6 +44,7 @@ namespace KindleDecision.Controllers
             return Ok(querys);
         }
 
+        [Authorize]
         [HttpGet("{queryId}")]
         [ProducesResponseType(200, Type = typeof(Query))]
         [ProducesResponseType(400)]
@@ -61,6 +63,7 @@ namespace KindleDecision.Controllers
             return Ok(query);
         }
 
+        [Authorize]
         [HttpGet("created-querys/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
         [ProducesResponseType(400)]
@@ -83,6 +86,7 @@ namespace KindleDecision.Controllers
             return Ok(querys);
         }
 
+        [Authorize]
         [HttpGet("user-querys/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
         public IActionResult GetQueriesByUser(int userId)
@@ -102,6 +106,7 @@ namespace KindleDecision.Controllers
             return Ok(querys);
         }
 
+        [Authorize]
         [HttpGet("pending-querys/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
         public IActionResult GetUserPendingQueries(int userId)
@@ -125,6 +130,7 @@ namespace KindleDecision.Controllers
             return Ok(new { Selections = selections, Queries = querys });
         }
 
+        [Authorize]
         [HttpGet("query-selection-complete/{queryId}")]
         public IActionResult QuerySelectionComplete(int queryId)
         {
@@ -139,6 +145,7 @@ namespace KindleDecision.Controllers
         }
 
 
+        [Authorize]
         [HttpGet("get-query-creator/{queryId}")]
 
         public IActionResult GetQueryCreator(int queryId)
@@ -194,6 +201,7 @@ namespace KindleDecision.Controllers
             return Ok(queryMap);
         }
 
+        [Authorize]
         [HttpPut("{queryId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -239,6 +247,7 @@ namespace KindleDecision.Controllers
             return Ok(updatedQueryMap);
         }
 
+        [Authorize]
         [HttpPut("total-selections/{queryId}/{totalSelections}")]
         [ProducesResponseType(200)]
         public IActionResult UpdateTotalSelectors(int queryId, int totalSelections)
@@ -262,6 +271,8 @@ namespace KindleDecision.Controllers
             return Ok();
         }
 
+
+        [Authorize]
         [HttpPut("remaining-selections/{queryId}")]
         [ProducesResponseType(200)]
         public IActionResult UpdateRemainingSelectors(int queryId)
@@ -291,6 +302,7 @@ namespace KindleDecision.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPost("add-participant/{queryId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -318,6 +330,7 @@ namespace KindleDecision.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpDelete("{queryId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -371,6 +384,7 @@ namespace KindleDecision.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpGet("user-has-voted/{userId}/{queryId}")]
         public IActionResult UserHasVoted(int userId, int queryId)
         {
