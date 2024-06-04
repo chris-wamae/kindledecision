@@ -318,7 +318,7 @@ namespace KindleDecision.Controllers
             ;
         }
 
-        [Authorize(Roles = "Administrator,Superadmin")]
+        [Authorize(Roles = "Administrator,SuperAdmin")]
         [HttpPost("admin-ban-user/{userEmail}")]
         public IActionResult BanUser(string userEmail)
         {
@@ -339,7 +339,7 @@ namespace KindleDecision.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "Superadmin")]
+        [Authorize(Roles = "SuperAdmin")]
         [HttpPost("admin-add-role-to-user")]
 
         public async Task<IActionResult> AddUserToRole(AddUserToRole addUserToRole)
@@ -419,7 +419,7 @@ namespace KindleDecision.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "Superadmin")]
+        [Authorize(Roles = "SuperAdmin")]
         [HttpDelete("admin-delete-account/{userEmail}")]
         public async Task<IActionResult> AdminDeleteAccount(string userEmail)
         {
@@ -465,7 +465,7 @@ namespace KindleDecision.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "Superadmin")]
+        [Authorize(Roles = "SuperAdmin")]
         [HttpGet("get-all-users")]
 
          public IActionResult GetAllUsers()

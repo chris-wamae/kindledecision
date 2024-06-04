@@ -29,7 +29,7 @@ namespace KindleDecision.Controllers
             _userSelectedInQueryRepository = userSelectedInQueryRepository;
         }
 
-        [Authorize(Roles = "Admininistrator,Superadmin")]
+        [Authorize(Roles = "Admininistrator,SuperAdmin")]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
         public IActionResult GetQueries()

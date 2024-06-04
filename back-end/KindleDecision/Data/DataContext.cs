@@ -55,6 +55,7 @@ namespace KindleDecision.Data
             {
                 Id = ADMIN_ID,
                 Email = "chriswamae123@gmail.com",
+                NormalizedEmail = "CHRISWAMAE123@GMAIL.COM",
                 EmailConfirmed = true,
                 UserName = "chriswamae123@gmail.com",
                 NormalizedUserName = "CHRISWAMAE123@GMAIL.COM",
