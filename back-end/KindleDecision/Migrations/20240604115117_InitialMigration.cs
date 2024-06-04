@@ -286,16 +286,16 @@ namespace KindleDecision.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
+                    { "1fc67b7a-0f38-4043-8846-72a31bbb66f9", "e1f0cead-2eb8-43e2-b6d7-df1bb9aa07b5", "Administrator", "ADMINISTATOR" },
                     { "341743f0 - asd2–42de - afbf - 59kCwmmk72cf6", "341743f0 - asd2–42de - afbf - 59kCwmmk72cf6", "Admininistrator", "ADMINISTRATOR" },
                     { "341743f0 - asd2–42de - afbf - 59kmuixk72cf6", "341743f0 - asd2–42de - afbf - 59kmuixk72cf6", "SuperAdmin", "SUPERADMIN" },
-                    { "4bd17e3c-e7b4-442a-96ba-4a1a07a72037", "1dbea50c-ae71-4dd6-9189-5ae640be3517", "User", "USER" },
-                    { "93745648-d679-433c-b8e4-8f5e2828ab16", "83acf895-498a-4887-843f-162360396085", "Administrator", "ADMINISTATOR" }
+                    { "cf6ddcfd-665f-4705-8139-be72fbf34572", "5444a205-90fc-4aec-83fb-35808e859681", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe - afbf - 59f706d72xd6", 0, "f9d0c1b3-6364-4938-80ad-a39f921d6585", "chriswamae123@gmail.com", true, false, null, null, "CHRISWAMAE123@GMAIL.COM", "AQAAAAEAACcQAAAAEI0zNwx6XSVU7HZzpUlg+Fgq7DUlbcUkkhEigS+T8RtH7AIeo2MEdz9mjf9J5p65RA==", null, false, "66f6ed08-6088-4441-975f-9e703efffea5", false, 1, "chriswamae123@gmail.com" });
+                values: new object[] { "02174cf0–9412–4cfe - afbf - 59f706d72xd6", 0, "3b177a01-5596-41d8-867e-65a847331e33", "chriswamae123@gmail.com", true, false, null, "CHRISWAMAE123@GMAIL.COM", "CHRISWAMAE123@GMAIL.COM", "AQAAAAEAACcQAAAAEMGeeEVodawGk/xLC03bbE7dKATFpMGAVQUPdKtOm7yT3CLkaRKsOvmAIbFIRXUJdw==", null, false, "ec3d2532-e3cd-468b-8586-93eb90b1b2e4", false, 1, "chriswamae123@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

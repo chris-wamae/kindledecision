@@ -94,14 +94,15 @@ namespace KindleDecision.Migrations
                         {
                             Id = "02174cf0–9412–4cfe - afbf - 59f706d72xd6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f9d0c1b3-6364-4938-80ad-a39f921d6585",
+                            ConcurrencyStamp = "3b177a01-5596-41d8-867e-65a847331e33",
                             Email = "chriswamae123@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
+                            NormalizedEmail = "CHRISWAMAE123@GMAIL.COM",
                             NormalizedUserName = "CHRISWAMAE123@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI0zNwx6XSVU7HZzpUlg+Fgq7DUlbcUkkhEigS+T8RtH7AIeo2MEdz9mjf9J5p65RA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMGeeEVodawGk/xLC03bbE7dKATFpMGAVQUPdKtOm7yT3CLkaRKsOvmAIbFIRXUJdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "66f6ed08-6088-4441-975f-9e703efffea5",
+                            SecurityStamp = "ec3d2532-e3cd-468b-8586-93eb90b1b2e4",
                             TwoFactorEnabled = false,
                             UserId = 1,
                             UserName = "chriswamae123@gmail.com"
@@ -302,15 +303,15 @@ namespace KindleDecision.Migrations
                         },
                         new
                         {
-                            Id = "4bd17e3c-e7b4-442a-96ba-4a1a07a72037",
-                            ConcurrencyStamp = "1dbea50c-ae71-4dd6-9189-5ae640be3517",
+                            Id = "cf6ddcfd-665f-4705-8139-be72fbf34572",
+                            ConcurrencyStamp = "5444a205-90fc-4aec-83fb-35808e859681",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "93745648-d679-433c-b8e4-8f5e2828ab16",
-                            ConcurrencyStamp = "83acf895-498a-4887-843f-162360396085",
+                            Id = "1fc67b7a-0f38-4043-8846-72a31bbb66f9",
+                            ConcurrencyStamp = "e1f0cead-2eb8-43e2-b6d7-df1bb9aa07b5",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTATOR"
                         });

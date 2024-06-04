@@ -37,7 +37,7 @@ namespace KindleDecision.Controllers
             _userRepository = userRepository;
         }
 
-        [Authorize(Roles = "Administrator,Superadmin")]
+        [Authorize(Roles = "Administrator,SuperAdmin")]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<SelectionDto>))]
         public IActionResult GetSelections()
