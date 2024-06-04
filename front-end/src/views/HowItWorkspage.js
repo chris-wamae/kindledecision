@@ -32,12 +32,12 @@ function HowItWorkspage() {
 
 
                     <div className="single-hiw-element">
-                        <div>Email notifications</div>
+                        <div>Creating a query</div>
 
                         <img src="download.png" onClick={() => setHideTextThree(!hideTextThree)}></img>
                     </div>
                     <div id={hideTextThree ? "hide-text" : ""} className="hiw-text">
-                     This feature is currently under development. It will allow the participants of a query to be emailed automatically.
+                     To create a query, click on the plus button on your dashboard and follow the steps to add all the details
                     </div>
 
                     {/* <div className="single-hiw-element" id="middle-hiw-element">

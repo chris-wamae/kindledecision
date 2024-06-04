@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import "../styles/DeleteAccount.css"
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function DeleteAccount() {
 
@@ -15,7 +16,7 @@ function DeleteAccount() {
             data: {
                 email: email,
                 password: password
-            }}).then(r => {
+            }}, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => {
             if(r.status == 204)
             {
             navigate("/")
