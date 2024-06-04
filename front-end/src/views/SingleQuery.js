@@ -45,16 +45,16 @@ function SingleQuery() {
 
     useEffect(() => {
         if (refreshAuth() === false) { navigate("/login") };
-        axios.get(`${process.env.REACT_APP_BASE_URL}query/user-has-voted/${Cookies.get("ud")}/${searchParams.get("qId")}`).then(r => setParticipationStatus(r.data.result))
-        axios.get(`${process.env.REACT_APP_BASE_URL}query/query-selection-complete/${searchParams.get("qId")}`).then(r => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}query/user-has-voted/${Cookies.get("ud")}/${searchParams.get("qId")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setParticipationStatus(r.data.result))
+        axios.get(`${process.env.REACT_APP_BASE_URL}query/query-selection-complete/${searchParams.get("qId")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => {
             setQueryComplete(r.data)
         })
-        axios.get(`${process.env.REACT_APP_BASE_URL}query/get-query-creator/${searchParams.get("qId")}`).then(r => setQueryCreator(r.data))
+        axios.get(`${process.env.REACT_APP_BASE_URL}query/get-query-creator/${searchParams.get("qId")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setQueryCreator(r.data))
     }, [])
 
     useEffect(() => {
         if (queryComplete) {
-            axios.get(`${process.env.REACT_APP_BASE_URL}query/choice/get-query-choices/${searchParams.get("qId")}`).then(r => setSelections(r.data))
+            axios.get(`${process.env.REACT_APP_BASE_URL}query/choice/get-query-choices/${searchParams.get("qId")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setSelections(r.data))
         }
     }, [queryComplete])
 

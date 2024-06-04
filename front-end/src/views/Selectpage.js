@@ -42,7 +42,7 @@ function Selectpage() {
         const selectChoice = (choiceId) => 
         {
         dispatch(postSelection({choiceId:choiceId, userId:Cookies.get("ud"), queryId:searchParams.get("qId")}))
-        axios.put(`${process.env.REACT_APP_BASE_URL}query/remaining-selections/${searchParams.get("qId")}`)
+        axios.put(`${process.env.REACT_APP_BASE_URL}query/remaining-selections/${searchParams.get("qId")}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
         }
     //console.log(selection);
 

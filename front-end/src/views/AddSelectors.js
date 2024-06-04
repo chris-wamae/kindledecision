@@ -14,6 +14,7 @@ import { queryState } from "../features/querySlice";
 import { redirect, useNavigate } from "react-router-dom";
 import { refreshAuth } from "../Helper/Auth";
 import { useSearchParams } from "react-router-dom";
+import Cookies from "js-cookie";
 
 //make email database search depend on physical button press by user
 //move email validation to form Helper since it will no longer be using fetch
@@ -92,14 +93,14 @@ function AddSelectors() {
     querySelectors.forEach((e,i) => {
       dispatch(postUserQuery([searchParams.get("qId"),usersArray[i]]))
     })
-    axios.put(`${process.env.REACT_APP_BASE_URL}query/total-selections/${searchParams.get("qId")}/${querySelectors.length}`)
+    axios.put(`${process.env.REACT_APP_BASE_URL}query/total-selections/${searchParams.get("qId")}/${querySelectors.length}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
     navigate({pathname:"/new-query",
       search:`?qId=${searchParams.get("qId")}`
     }, {replace:true})
   }
 
   const emailSearch = () => {
-    axios.post(`${process.env.REACT_APP_BASE_URL}user/user-exists`,{"email":selectorEmail}).then(r => setFoundUser(r.data))
+    axios.post(`${process.env.REACT_APP_BASE_URL}user/user-exists`,{"email":selectorEmail}, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setFoundUser(r.data))
   }
 
 

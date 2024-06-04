@@ -33,7 +33,7 @@ function CreateQuery() {
   const query = useSelector(queryState)
 
   //console.log(loggedUser.ud)
-  console.log(startDate)
+  //console.log(startDate)
 
   useEffect(() => {
     if (refreshAuth() === false) { navigate("/login") };

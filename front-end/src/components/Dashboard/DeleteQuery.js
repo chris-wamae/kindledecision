@@ -13,7 +13,7 @@ function DeleteQuery({queryId}) {
     //const [deleteStatus,setDeleteStatus] = useState(undefined)
     //console.log(queryId)
     const deleteQueryAsync = () => {
-    axios.delete(`${process.env.REACT_APP_BASE_URL}query/${queryId}`).then((r) => {
+    axios.delete(`${process.env.REACT_APP_BASE_URL}query/${queryId}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then((r) => {
 if(r.status == 204)
 {
 dispatch(setQueryChange(true))

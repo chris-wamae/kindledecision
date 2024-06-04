@@ -35,18 +35,18 @@ function Queries({ queriesType }) {
 
   useEffect(() => {
     if (queriesType == "My") {
-      axios.get(`${process.env.REACT_APP_BASE_URL}query/created-querys/${Cookies.get("ud")}`).then(r => setQueries(r.data))
+      axios.get(`${process.env.REACT_APP_BASE_URL}query/created-querys/${Cookies.get("ud")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setQueries(r.data))
       //setQueries(dummyQueries())
     }
     else if (queriesType == "Pending") {
-      axios.get(`${process.env.REACT_APP_BASE_URL}query/pending-querys/${Cookies.get("ud")}`).then(r => {
+      axios.get(`${process.env.REACT_APP_BASE_URL}query/pending-querys/${Cookies.get("ud")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => {
         setUnfilteredQueries(r.data.queries)
         setFilterIds(r.data.selections)
       })
     }
 
     else if (queriesType == "All") {
-      axios.get(`${process.env.REACT_APP_BASE_URL}query/user-querys/${Cookies.get("ud")}`).then(r => setQueries(r.data))
+      axios.get(`${process.env.REACT_APP_BASE_URL}query/user-querys/${Cookies.get("ud")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setQueries(r.data))
       //setQueries(dummyQueries())
     }
   }, [queriesType])
