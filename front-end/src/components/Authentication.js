@@ -51,10 +51,6 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         // }
     }, [email])
 
-    // console.log(loggedUser);
-    // console.log(userVisibility);
-
-
     const signUpValidator = () => {
         if (emailState && password !== "" && passwordConfirm !== "" && firstName !== "" && lastName !== "" && userVisibility !== undefined && passwordValidator(password)) {
             return true
@@ -71,24 +67,9 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     }
     else
     {   
-    //console.log(password)
     return false
     }
     }
-
-    //console.log(password)
-    // console.log({
-    //     "firstName": firstName,
-    //     "lastName": lastName,
-    //     "email": email,
-    //     "language": "en",
-    //     "password": password,
-    //     "viewmode": true,
-    //     "userVisibility": userVisibility,
-    //     "phone": "",
-    //     "username": "",
-    //     "roles": ["user"]
-    // })
 
     const searchUser = () => {
         if (emailState === true) {
@@ -98,8 +79,6 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
             }))
         }
     }
-
-    console.log(loggedUser);
 
     useEffect(() => {
         if (loggedUser != undefined) {
@@ -153,7 +132,6 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     //     //|| foundUser.length == 0
 
     // }, [fo])
-    //console.log(signupUser.viewingmode)
 
     return (
         <>

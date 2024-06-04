@@ -8,8 +8,6 @@ import { loginState } from "./loginSlice";
 
 export const postQuery = createAsyncThunk("query/postQuery",async (post) => {
 
-//console.log(config)
-
 const response = await axios.post(`${process.env.REACT_APP_BASE_URL}query`, post, {headers: {Authorization: `Bearer ${Cookies.get("at")}`}})
 
 //Cookies.set("NQID", response.data.id, {expires:timeAfterMinutes(15)})

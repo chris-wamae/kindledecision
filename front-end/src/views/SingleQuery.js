@@ -37,7 +37,6 @@ function SingleQuery() {
     const [searchParams, setSeachParams] = useSearchParams()
     const queryHasChanged = useSelector(queryChangeStatus) 
 
-    console.log(queryHasChanged);
     //console.log(queryWinner)
     //console.log(choices)
     //console.log(participants)
@@ -148,8 +147,6 @@ function SingleQuery() {
 
 
     }, [query])
-
- console.log(queryCreator)
 
     return (
         <>  <Navbar navItems={["Dashboard"]} />
