@@ -41,8 +41,8 @@ function Selectpage() {
         //placeholderUser(wamae)
         const selectChoice = (choiceId) => 
         {
-        dispatch(postSelection({choiceId:choiceId, userId:Cookies.get("ud"), queryId:searchParams.get("qId")}))
-        axios.put(`${process.env.REACT_APP_BASE_URL}query/remaining-selections/${searchParams.get("qId")}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
+        dispatch(postSelection({choiceId:choiceId, userId:parseInt(Cookies.get("ud")), queryId:parseInt(searchParams.get("qId"))}))
+        axios.post(`${process.env.REACT_APP_BASE_URL}query/remaining-selections/${searchParams.get("qId")}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
         }
     //console.log(selection);
 
@@ -63,10 +63,9 @@ function Selectpage() {
     }, [])
 
     useEffect(() => {
-        if (choices.length == 0) {
+
             axios.get(`${process.env.REACT_APP_BASE_URL}query/choice/get-query-choices/${searchParams.get("qId")}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
                 .then(r => dispatch(setChoicesState(r.data)))
-        }
     }, [query])
 
     return (

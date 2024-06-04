@@ -22,7 +22,7 @@ import Cookies from "js-cookie";
 
 
 function AddSelectors() {
-  
+
   const navigate = useNavigate()
   const navItems = ["About"]
   const stateQueryId = useSelector(queryState)
@@ -34,12 +34,12 @@ function AddSelectors() {
   const [disableSearch, setDisableSearch] = useState(true);
   const [showSearch, setShowSearch] = useState("inline");
   const [showAdd, setShowAdd] = useState("none");
-  const [usersArray,setUsersArray] = useState([])
-  const [searchParams,setSearchParams] = useSearchParams()
-  
+  const [usersArray, setUsersArray] = useState([])
+  const [searchParams, setSearchParams] = useSearchParams()
+
   useEffect(() => {
-    if(refreshAuth() === false){navigate("/login")};
-    },[])
+    if (refreshAuth() === false) { navigate("/login") };
+  }, [])
 
   //console.log(searchParams.get("qId"))
   console.log(usersArray);
@@ -85,22 +85,23 @@ function AddSelectors() {
   }, [foundUser])
 
   const removeOption = (i) => {
-    let newSelectors = usersArray.filter((o,x) => x !== i)
+    let newSelectors = usersArray.filter((o, x) => x !== i)
     setUsersArray(newSelectors);
   }
 
   const selectorDispatcher = () => {
-    querySelectors.forEach((e,i) => {
-      dispatch(postUserQuery([searchParams.get("qId"),usersArray[i]]))
+    querySelectors.forEach((e, i) => {
+      dispatch(postUserQuery([searchParams.get("qId"), usersArray[i]]))
     })
-    axios.put(`${process.env.REACT_APP_BASE_URL}query/total-selections/${searchParams.get("qId")}/${querySelectors.length}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
-    navigate({pathname:"/new-query",
-      search:`?qId=${searchParams.get("qId")}`
-    }, {replace:true})
+    axios.put(`${process.env.REACT_APP_BASE_URL}query/total-selections`, { "queryId": `${searchParams.get("qId")}`, "totalSelections": `${querySelectors.length}` }, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } })
+    navigate({
+      pathname: "/new-query",
+      search: `?qId=${searchParams.get("qId")}`
+    }, { replace: true })
   }
 
   const emailSearch = () => {
-    axios.post(`${process.env.REACT_APP_BASE_URL}user/user-exists`,{"email":selectorEmail}, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setFoundUser(r.data))
+    axios.post(`${process.env.REACT_APP_BASE_URL}user/user-exists`, { "email": selectorEmail }, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } }).then(r => setFoundUser(r.data))
   }
 
 
@@ -108,7 +109,7 @@ function AddSelectors() {
 
   return (
     <>
-    <Navbar navItems={navItems}/>
+      <Navbar navItems={navItems} />
       <div className="page-container">
         {/* <p>*for app to work use these emails in their order:
           <br></br>
@@ -136,14 +137,15 @@ function AddSelectors() {
           <button style={{ display: `${showAdd}` }} className="add-button" onClick={(e) => {
             e.preventDefault();
             setQuerySelectors([...querySelectors, selectorEmail])
-            setUsersArray([...usersArray,selectorEmail])
+            setUsersArray([...usersArray, selectorEmail])
           }
           }>Add</button>
         </form>
 
         <button disabled={buttonDisable(usersArray)} className="done-button" onClick={(e) => {
           e.preventDefault();
-          selectorDispatcher()}}>Done</button>
+          selectorDispatcher()
+        }}>Done</button>
 
         <DynamicList listTitle={"Added participants"} itemsArray={usersArray} removeOption={removeOption} />
 
