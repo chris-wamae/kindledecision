@@ -6,8 +6,6 @@ import axios from "axios";
 
 function AccountManagement() {
     const navItems = [""]
-    const dummyEmail = "dummy-email@mail.com"
-    const dummyPassword = "dummy-password"
     const [showPassword, setShowPassword] = useState(false)
 
     return (
@@ -16,7 +14,7 @@ function AccountManagement() {
                 <div className="page-title">Account Management</div>
                 <div className="email-container">
                     <div className="email-header">Email</div>
-                    <div className="email">{dummyEmail}</div>
+                    <div className="email">{"cheesy"}</div>
                 </div>
 
                 <div className="password-container">
@@ -29,7 +27,7 @@ function AccountManagement() {
                             :
                             <>
                                 <div className="password-header">Password</div>
-                                <div className="password">{dummyPassword}</div>
+                                <div className="password">{"******"}</div>
                                 <div>
                                 <button onClick={() => setShowPassword(false)} className="password-button">Hide password</button>
                                 <button className="password-button">Change password</button>

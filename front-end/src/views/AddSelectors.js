@@ -41,8 +41,6 @@ function AddSelectors() {
     if (refreshAuth() === false) { navigate("/login") };
   }, [])
 
-  //console.log(searchParams.get("qId"))
-  console.log(usersArray);
   useEffect(() => {
 
     setFoundUser(undefined)

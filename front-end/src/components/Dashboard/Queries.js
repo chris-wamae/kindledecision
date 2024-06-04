@@ -51,8 +51,6 @@ function Queries({ queriesType }) {
     }
   }, [queriesType])
 
-  // console.log(pendingQueries)
-
   function QueriesDisplay() {
     return queries.map(e => {
       return <div key={e.id} className="single-query" onClick={() => {

@@ -44,11 +44,6 @@ function Selectpage() {
         dispatch(postSelection({choiceId:choiceId, userId:parseInt(Cookies.get("ud")), queryId:parseInt(searchParams.get("qId"))}))
         axios.post(`${process.env.REACT_APP_BASE_URL}query/remaining-selections/${searchParams.get("qId")}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
         }
-    //console.log(selection);
-
-    //console.log(choiceId)
-
-    console.log(query)
 
     useEffect(() => {
         if(refreshAuth() === false){navigate("/login")};

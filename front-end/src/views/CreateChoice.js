@@ -44,8 +44,6 @@ function CreateChoice(){
 
     const buttonDisable = (array) => array.length > 1 ? false : true
 
-    console.log(searchParams.get("qId"));
-
     return(
         <>
           <Navbar navItems={navItems}/>

@@ -38,8 +38,7 @@ const DashboardAccount = () => {
     const [userDetails, setUserDetails] = useState({})
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
-    //const params = new URLSearchParams(location.search);
-  
+    
     useEffect(() => {
     if(loggedUser.token == "")
       {

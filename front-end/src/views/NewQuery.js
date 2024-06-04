@@ -37,8 +37,6 @@ function NewQuery() {
     const dummyLink = "https://castavote.com/jc357cfh"
     const navigate = useNavigate()
 
-    //console.log(query);
-
     const editButtonText = () => {
         if (buttonRef.current.textContent == "Copy") {
             buttonRef.current.textContent = "Copied!"
