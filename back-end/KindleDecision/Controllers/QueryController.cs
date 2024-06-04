@@ -248,19 +248,24 @@ namespace KindleDecision.Controllers
         }
 
         [Authorize]
-        [HttpPut("total-selections/{queryId}/{totalSelections}")]
+        [HttpPut("total-selections")]
         [ProducesResponseType(200)]
-        public IActionResult UpdateTotalSelectors(int queryId, int totalSelections)
+        public IActionResult UpdateTotalSelectors(TotalSelections totalSelections)
         {
-            var queryCreate = _queryRepository.GetQuery(queryId);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var queryCreate = _queryRepository.GetQuery(totalSelections.queryId);
 
             if (queryCreate == null)
             {
                 return BadRequest("Query does not exist");
             }
 
-            queryCreate.TotalSelections = totalSelections;
-            queryCreate.RemainingSelections = totalSelections;
+            queryCreate.TotalSelections = totalSelections.totalSelections;
+            queryCreate.RemainingSelections = totalSelections.totalSelections;
 
             if (!_queryRepository.UpdateQuery(queryCreate))
             {
@@ -272,12 +277,21 @@ namespace KindleDecision.Controllers
         }
 
 
-        [Authorize]
-        [HttpPut("remaining-selections/{queryId}")]
+        [HttpPost("remaining-selections/{queryId}")]
         [ProducesResponseType(200)]
         public IActionResult UpdateRemainingSelectors(int queryId)
         {
-            var queryCreate = _queryRepository.GetQuery(queryId);
+            if(!int.TryParse(queryId.ToString(), out int qD))
+            {
+                BadRequest("Invalid query Id");
+            };
+
+            if(!ModelState.IsValid)
+            {   
+                return BadRequest(ModelState);
+            }
+
+            var queryCreate = _queryRepository.GetQuery(qD);
 
             if (queryCreate == null)
             {
