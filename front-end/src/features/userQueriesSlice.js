@@ -5,14 +5,14 @@ import Cookies from "js-cookie";
 
 export const postUserQuery = createAsyncThunk("userQueries/postUserQuery", async (post) => {
 
-  const response = await axios.post(`${process.env.REACT_APP_BASE_URL}query/add-participant/${post[0]}`,{email:post[1]},{headers:{Authorization:Cookies.get("at")}})
+  const response = await axios.post(`${process.env.REACT_APP_BASE_URL}query/add-participant/${post[0]}`,{email:post[1]},{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
 
   return response.data
 })
 
 export const getQueryParticipants = createAsyncThunk("userQueries/getQueryParticipants", async(queryId) => {
 
-const response = await axios.get(`${process.env.REACT_APP_BASE_URL}user/get-query-participants/${queryId}`,{headers:{Authorization:Cookies.get("at")}})
+const response = await axios.get(`${process.env.REACT_APP_BASE_URL}user/get-query-participants/${queryId}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
 
 return response.data
 
