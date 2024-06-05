@@ -118,6 +118,12 @@ border:2px solid var(--white);
 @media only screen and (max-width:450px)
 {
 
+.hiw-button
+{
+margin-top:100px;
+margin-left:55%;
+}
+
 .main
 {
 width:196%;
