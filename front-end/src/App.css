@@ -20,3 +20,12 @@ a{
 opacity:50%;
 }
 
+.link-btn
+{
+color:blue;
+text-decoration:underline;
+font-size:14px;
+font-style:italic;
+margin-bottom:10px;
+}
+
