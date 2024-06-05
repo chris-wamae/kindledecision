@@ -5,6 +5,25 @@
     align-items:center;
 }
 
+.hiw-button
+{
+background-color:black;
+color:white;
+width:300px;
+margin:auto;
+margin-top:30px;
+text-align:center;
+padding:20px;
+font-size:24px;
+border-radius:20px;
+}
+
+.hiw-button:hover
+{
+color:black;
+background-color:white;
+}
+
 .info{
 margin-top:5px;
 display:flex;
