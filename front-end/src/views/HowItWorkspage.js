@@ -5,6 +5,7 @@ function HowItWorkspage() {
     const [hideText, setHideText] = useState(true);
     const [hideTextTwo, setHideTextTwo] = useState(true);
     const [hideTextThree, setHideTextThree] = useState(true);
+    const [hideTextFour, setHideTextFour] = useState(true);
 
     return (
         <>
@@ -15,9 +16,9 @@ function HowItWorkspage() {
                 <div className="single-hiw-element">
                         <div>FAQ</div>
 
-                        <img src="download.png" onClick={() => setHideTextThree(!hideTextThree)}></img>
+                        <img src="download.png" onClick={() => setHideTextFour(!hideTextFour)}></img>
                     </div>
-                    <div id={hideTextThree ? "hide-text" : ""} className="hiw-text">
+                    <div id={hideTextFour ? "hide-text" : ""} className="hiw-text">
                     </div>
 
                     <div className="single-hiw-element">
