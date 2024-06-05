@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar"
 import "../styles/Landingpage.css"
-import {Link} from "react-router-dom"
+import {Link, Navigate} from "react-router-dom"
 
 function Landingpage() {
     const navItems = ["Login", "About"]
@@ -37,11 +37,16 @@ function Landingpage() {
                         </div>
                     </div>
 
+                   
+
                 </div>
 
 
 
             </div>
+
+            <Link to="about"><div className="hiw-button">How it works?</div></Link>
+
         </>
     )
 }
