@@ -33,6 +33,7 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     const [emailState, setEmailState] = useState(undefined)
     // const [username, setUsername] = useState("")
     //const [phone, setPhone] = useState("")
+    const [showPassword,setShowPassword] = useState(false);
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [userVisibility, setUserVisibility] = useState(undefined)
 
@@ -149,12 +150,14 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                         {authToolTipRenderer(emailState)}
                         <input placeholder="Email address" type="email" onChange={(e) => setEmail(e.target.value)}></input>
                         {(!passwordValidator(password) && password !== "" && authType) ? <ToolTip type={"error"} message={"Invalid password"}/> : <span></span>}
-                        <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
+                        <input type={showPassword ? "text" : "password"} placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
+                        {(password !== "" ) ? <p className="link-btn" onClick={() => setShowPassword(!showPassword) }>{showPassword ? "hide" : "show"} password</p> : <span></span>}
+                        
                         {
                             authType ?
                                 <span className="sign-up-container">
                                     {(password !== passwordConfirm) ? <ToolTip type={"error"} message={"Passwords do not match"} /> : <span></span>}
-                                    <input type="password" placeholder="Password confirmation" onChange={(e) => setPasswordConfirm(e.target.value)}></input>
+                                    <input type={showPassword ? "text" : "password"} placeholder="Password confirmation" onChange={(e) => setPasswordConfirm(e.target.value)}></input>
                                     <input type="text" placeholder="First name" onChange={(e) => setFirstName(e.target.value)}></input>
                                     <input type="text" placeholder="Last name" onChange={(e) => setLastName(e.target.value)}></input>
                                     {/* <input type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)}></input>
