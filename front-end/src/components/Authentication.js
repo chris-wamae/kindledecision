@@ -72,6 +72,13 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     }
     }
 
+    useEffect(() => {
+    if(loggedUserStatus == "failed")
+    {
+    setEmailState("notfound")
+    }
+    },[loggedUserStatus])
+
     const searchUser = () => {
         if (emailState === true) {
             dispatch(loginPost({

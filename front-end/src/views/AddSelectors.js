@@ -118,7 +118,7 @@ function AddSelectors() {
           killua@gmail.com
         </p> */}
         <div className="page-title">Add query participants</div>
-
+        <p className="disclaimer">* You need to add your own email if you wish to participate in the query</p>
         <form className="selector-form">
 
           <label htmlFor="voter-input" className="voter-label">Voter:</label>
