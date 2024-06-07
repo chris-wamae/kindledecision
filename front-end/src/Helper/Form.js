@@ -77,6 +77,3 @@ export const authToolTipRenderer = (state) => {
  //      setValidEmail(true)
  //   }
  // }
-
-
-
