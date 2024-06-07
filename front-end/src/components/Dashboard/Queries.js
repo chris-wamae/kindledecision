@@ -35,18 +35,18 @@ function Queries({ queriesType }) {
 
   useEffect(() => {
     if (queriesType == "My") {
-      axios.get(`${process.env.REACT_APP_BASE_URL}query/created-querys/${Cookies.get("ud")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setQueries(r.data))
+      axios.get(`${process.env.REACT_APP_BASE_URL}query/created-querys/${Cookies.get("ud")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } }).then(r => setQueries(r.data))
       //setQueries(dummyQueries())
     }
     else if (queriesType == "Pending") {
-      axios.get(`${process.env.REACT_APP_BASE_URL}query/pending-querys/${Cookies.get("ud")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => {
+      axios.get(`${process.env.REACT_APP_BASE_URL}query/pending-querys/${Cookies.get("ud")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } }).then(r => {
         setUnfilteredQueries(r.data.queries)
         setFilterIds(r.data.selections)
       })
     }
 
     else if (queriesType == "All") {
-      axios.get(`${process.env.REACT_APP_BASE_URL}query/user-querys/${Cookies.get("ud")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setQueries(r.data))
+      axios.get(`${process.env.REACT_APP_BASE_URL}query/user-querys/${Cookies.get("ud")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } }).then(r => setQueries(r.data))
       //setQueries(dummyQueries())
     }
   }, [queriesType])
@@ -63,8 +63,8 @@ function Queries({ queriesType }) {
       }}>
         <div className="query-title">{e.title}</div>
         <div className="other-container">
-          <div className="dates">{e.startDate ? e.startDate.substring(0,10) : "Open"}</div>
-          <div className="dates">{e.expiryDate.substring(0,10)}</div>
+          <div className="dates">{e.startDate ? e.startDate.substring(0, 10) : "Open"}</div>
+          <div className="dates">{e.expiryDate.substring(0, 10)}</div>
           <div className="selections">
             <div className="query-info">
               <div className="query-selectioncount">
@@ -102,7 +102,15 @@ function Queries({ queriesType }) {
 
           </div>
           <div className="query-list">
-            {QueriesDisplay(whichQueries)}
+            {queries.length > 0 ?
+              QueriesDisplay(whichQueries) :
+              <div className="no-query-info">
+                {queriesType == "My" ? "You have no queries, please click the plus button on the left to create one"
+                  : queriesType == "Pending" ? "You have no pending queries that you need to participate in" 
+                    : queriesType == "All" ? "You have not created or been added to any queries. You can create a query by clicking the plus button on the left" 
+                      : ""
+                }
+              </div>}
           </div>
         </div>
 
