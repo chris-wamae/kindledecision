@@ -1,9 +1,9 @@
 import Navbar from "../components/Navbar"
 import "../styles/Landingpage.css"
-import {Link} from "react-router-dom"
+import {Link, Navigate} from "react-router-dom"
 
 function Landingpage() {
-    const navItems = ["Features", "Login", "How it Works"]
+    const navItems = ["Login","Sign-up","About"]
     return (
         <>
             <Navbar navItems={navItems} />
@@ -20,7 +20,7 @@ function Landingpage() {
                         </div>
 
                         <div className="sub-header">
-                            Kindledecision makes voting on anything increadibly simple while maintaining credibility and fairness.
+                            Kindledecision makes deciding on anything increadibly simple while maintaining credibility and fairness.
                         </div>
 
                     </div>
@@ -37,11 +37,16 @@ function Landingpage() {
                         </div>
                     </div>
 
+                   
+
                 </div>
 
 
 
             </div>
+
+            <Link to="about"><div className="hiw-button">How it works?</div></Link>
+
         </>
     )
 }

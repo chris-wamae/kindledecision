@@ -1,6 +1,7 @@
 ﻿using KindleDecision.Data;
 using KindleDecision.Interfaces;
 using KindleDecision.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace KindleDecision.Repositories
 {
@@ -56,16 +57,48 @@ namespace KindleDecision.Repositories
             return Save();
         }
 
+        public bool AddParticipant(User user, Query query)
+        {
+            var userQuery = new UserQuery()
+            {
+                User = user,
+                Query = query
+            };
+            _dataContext.Add(userQuery);
+            return Save();
+        }
+
         public bool UpdateQuery(Query query)
         {
             _dataContext.Update(query);
             return Save();
         }
 
-        public bool DeleteQuery(Query query) 
+        public bool DeleteQuery(int queryId) 
         {
-            _dataContext.Remove(query);
+            var queryToDelete = _dataContext.Querys.Where(q => q.Id == queryId).Include(q => q.Choices).FirstOrDefault();
+
+            _dataContext.Remove(queryToDelete);
+
             return Save();
+        }
+
+
+        public bool DeleteUsersCreatedQueries(int internalUserId)
+        {
+            var queriesToDelete = _dataContext.Querys.Where(q => q.CreatorUserId == internalUserId).ToList();
+
+            if(queriesToDelete.Count == 0)
+            {
+                return true;
+            }
+            else
+            {
+               _dataContext.RemoveRange(queriesToDelete);
+
+               return Save();
+            }
+           
         }
 
 

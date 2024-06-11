@@ -11,12 +11,14 @@ namespace KindleDecision.Helper
         {
             CreateMap<Query, QueryDto>();
             CreateMap<Selection, SelectionDto>();
-            CreateMap<User, UserDto>();
+            CreateMap<ApplicationUser, UserDto>().ReverseMap();
             CreateMap<Choice, ChoiceDto>();
             CreateMap<SelectionDto, Selection>();
             CreateMap<UserDto, User>();
             CreateMap<ChoiceDto, Choice>();
             CreateMap<QueryDto, Query>();
+            CreateMap<Selection, Selection>();
+            CreateMap<User,Participant>();
         }
     }
 }

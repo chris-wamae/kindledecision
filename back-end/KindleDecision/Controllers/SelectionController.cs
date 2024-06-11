@@ -4,6 +4,7 @@ using KindleDecision.Dto;
 using KindleDecision.Interfaces;
 using KindleDecision.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
 
 namespace KindleDecision.Controllers
@@ -16,25 +17,34 @@ namespace KindleDecision.Controllers
         private readonly ISelectionRepository _selectionRepository;
         private readonly IMapper _mapper;
         private readonly IChoiceRepository _choiceRepository;
+        private readonly IUserSelectedInQueryRepository _userSelectedInQueryRepository;
+        private readonly IUserRepository _userRepository;
 
         public SelectionController(
             DataContext dataContext,
             ISelectionRepository selectionRepository,
             IMapper mapper,
-            IChoiceRepository choiceRepository
+            IChoiceRepository choiceRepository,
+            IUserSelectedInQueryRepository userSelectedInQueryRepository,
+            IUserRepository userRepository
         )
         {
             _dataContext = dataContext;
             _selectionRepository = selectionRepository;
             _mapper = mapper;
             _choiceRepository = choiceRepository;
+            _userSelectedInQueryRepository = userSelectedInQueryRepository;
+            _userRepository = userRepository;
         }
 
+        [Authorize(Roles = "Administrator,SuperAdmin")]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<SelectionDto>))]
         public IActionResult GetSelections()
         {
-            var selections = _mapper.Map<List<SelectionDto>>(_selectionRepository.GetAllSelections());
+            var selections = _mapper.Map<List<SelectionDto>>(
+                _selectionRepository.GetAllSelections()
+            );
 
             if (!ModelState.IsValid)
             {
@@ -43,6 +53,7 @@ namespace KindleDecision.Controllers
             return Ok(selections);
         }
 
+        [Authorize]
         [HttpGet("{selectionId}")]
         [ProducesResponseType(200, Type = typeof(SelectionDto))]
         [ProducesResponseType(400)]
@@ -53,7 +64,9 @@ namespace KindleDecision.Controllers
                 return NotFound();
             }
 
-            var selection = _mapper.Map<SelectionDto>(_selectionRepository.GetSelection(selectionId));
+            var selection = _mapper.Map<SelectionDto>(
+                _selectionRepository.GetSelection(selectionId)
+            );
 
             if (!ModelState.IsValid)
             {
@@ -63,6 +76,7 @@ namespace KindleDecision.Controllers
             return Ok(selection);
         }
 
+        [Authorize] 
         [HttpGet("get-selections-by-choice/{choiceId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<SelectionDto>))]
         [ProducesResponseType(400)]
@@ -75,7 +89,9 @@ namespace KindleDecision.Controllers
                 return StatusCode(404, ModelState);
             }
 
-            var selections = _mapper.Map<List<SelectionDto>>(_selectionRepository.GetSelectionsByChoice(choiceId));
+            var selections = _mapper.Map<List<SelectionDto>>(
+                _selectionRepository.GetSelectionsByChoice(choiceId)
+            );
 
             if (!ModelState.IsValid)
             {
@@ -85,46 +101,52 @@ namespace KindleDecision.Controllers
             return Ok(selections);
         }
 
-        [HttpGet("get-selections-by-user/{userId}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<SelectionDto>))]
-        [ProducesResponseType(400)]
-        public IActionResult GetSelectionsByUser(int userId)
-        {
-            var selections = _mapper.Map<List<SelectionDto>>(_selectionRepository.GetSelectionsByUser(userId));
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[HttpGet("get-selections-by-user/{userId}")]
+        //[ProducesResponseType(200, Type = typeof(IEnumerable<SelectionDto>))]
+        //[ProducesResponseType(400)]
+        //public IActionResult GetSelectionsByUser(int userId)
+        //{
+        //    var selections = _mapper.Map<List<SelectionDto>>(
+        //        _selectionRepository.GetSelectionsByUser(userId)
+        //    );
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            return Ok(selections);
-        }
-
-        [HttpPost("{choiceId}")]
+        //    return Ok(selections);
+        //}
+        [Authorize]
+        [HttpPost("participate")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateSelection(
-            [Required] int queryId,
-            [Required] int userId,
-            int choiceId,
-            SelectionDto selectionDto
-        )
+        public IActionResult CreateSelection(MakeSelection makeSelection)
         {
-            List<Selection> userSelections = _selectionRepository.GetSelectionsByUser(userId).ToList();
+            //List<Selection> userSelections = _selectionRepository.GetSelectionsByUser(userId).ToList();
 
-            List<Selection> choiceSelections = _selectionRepository.GetSelectionsByChoice(choiceId).ToList();
+            //List<Selection> choiceSelections = _selectionRepository.GetSelectionsByChoice(choiceId).ToList();
 
-            bool hasVoted = false;
 
-            foreach (Selection cs in choiceSelections)
+            //foreach (Selection cs in choiceSelections)
+            //{
+            //    if (!hasVoted)
+            //    {
+            //        if(userSelections.Any(s => s.Id == cs.Id))
+            //        {
+            //            hasVoted = true;
+            //        }
+            //    }
+            //}
+
+            //var userId = HttpContext.Session.GetInt32("userId");
+
+            if(!_userRepository.UserExists(makeSelection.UserId))
             {
-                if (!hasVoted)
-                {
-                    if(userSelections.Any(s => s.Id == cs.Id))
-                    {
-                        hasVoted = true;
-                    }
-                }
+                ModelState.AddModelError("", "There was an error retrieving the current user");
+                return StatusCode(500, ModelState);
             }
+
+            bool hasVoted = _userSelectedInQueryRepository.UserHasSelectedInQuery(makeSelection.QueryId, makeSelection.UserId);
 
             if (hasVoted)
             {
@@ -132,8 +154,10 @@ namespace KindleDecision.Controllers
                 return StatusCode(422, ModelState);
             }
 
+            SelectionDto selectionDto = new SelectionDto() { SelectorUserId = makeSelection.UserId };
+
             if (selectionDto == null)
-            {
+            {   
                 return BadRequest(ModelState);
             }
 
@@ -152,44 +176,66 @@ namespace KindleDecision.Controllers
                 return BadRequest(ModelState);
             }
 
+            selectionDto.SelectorUserId = makeSelection.UserId;
+
+
             var selectionCreate = _mapper.Map<Selection>(selectionDto);
 
-            if (!_selectionRepository.CreateSelection(choiceId, selectionCreate))
-            {
+            selectionCreate.UserSelectedInQuery = new UserSelectedInQuery() { UserId = makeSelection.UserId, QueryId = makeSelection.QueryId };
+
+
+            if (!_selectionRepository.CreateSelection(makeSelection.ChoiceId, selectionCreate))
+            {   
                 ModelState.AddModelError("", "Something went wrong while saving the selection");
 
                 return StatusCode(500, ModelState);
             }
 
-            return Ok(selectionCreate);
+      //      if (
+      //    !_userSelectedInQueryRepository.CreateUserSelectedInQuery(
+      //        new UserSelectedInQuery() { UserId = (int)userId, QueryId = queryId }
+      //    )
+      //)
+      //      {
+      //          ModelState.AddModelError(
+      //              "",
+      //              "Something went wrong while saving the UserSelectedInQuery"
+      //          );
+
+      //          return StatusCode(500, ModelState);
+      //      }
+
+            return Ok(new
+            {
+            Result = "successful"
+            });
         }
 
+        [Authorize]
         [HttpDelete("{selectionId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-
         public IActionResult DeleteSelection(int selectionId)
         {
-            if(!_selectionRepository.SelectionExists(selectionId))
+            if (!_selectionRepository.SelectionExists(selectionId))
             {
                 return NotFound();
             }
 
-            var selectionRemove  = _selectionRepository.GetSelection(selectionId);
+            var selectionRemove = _selectionRepository.GetSelection(selectionId);
 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if(!_selectionRepository.DeleteSelection(selectionRemove))
+            if (!_selectionRepository.DeleteSelection(selectionRemove))
             {
                 ModelState.AddModelError("", "Something went wrong while deleting the selection");
                 return StatusCode(500, ModelState);
-            } 
+            }
 
             return NoContent();
         }
-
     }
 }

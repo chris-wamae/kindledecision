@@ -3,11 +3,12 @@ import HowItWorks from "./HowItWorkspage"
 import "../styles/Featurespage.css"
 
 function Featurespage() {
-    const navItems = ["Features", "Login", "How it Works"]
+    const navItems = ["Login", "Sign-up"]
     return (
         <>
             <Navbar navItems={navItems} />
-            <section>
+            <section className="about-page">
+            <section className="features-container">
                 <div className="features-title">Features</div>
                 <div>
                     <div className="single-feature">
@@ -28,6 +29,7 @@ function Featurespage() {
                 </div>
             </section>
             <HowItWorks />
+            </section>
         </>)
 }
 

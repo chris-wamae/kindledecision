@@ -1,0 +1,143 @@
+.selection-container
+{
+    background-color:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    border-radius:10px;
+    width:40%;
+    margin: auto;
+}
+
+.selection-title
+{
+    width:100%;
+    color:white;
+    background-color:black;
+    padding:20px 0px;
+    text-align:center;
+    border-radius:10px 10px 0px 0px;
+    font-size:22px;
+}
+
+.single-choice
+{
+width:80%;
+color:white;
+background-color:var(--utOrange);
+text-align:center;
+margin:20px 0px;
+padding:15px 0px;
+border-radius:5px;
+font-size:18px;
+}
+
+.choices
+{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.hide-confirmation
+{
+display:none;
+}
+
+.confirmation
+{
+background-color:white;
+border:1px solid var(--utOrange);
+padding:10px;
+margin:10px;
+border-radius:5px;
+}
+
+.options-title
+{
+font-size:20px;
+color:var(--utOrange);
+}
+
+.choice-name
+{
+text-decoration:underline;
+font-style: italic;
+font-weight:bold;
+}
+
+.option-select
+{
+width:60px;
+height:40px;
+}
+
+.select-buttons
+{
+display:flex;
+flex-direction:row;
+justify-content:space-around;
+margin-top:10px;
+}
+
+.select-buttons div
+{
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:5px;
+color:white;
+}
+
+.yes
+{
+background-color:green;
+}
+
+.no
+{
+background-color:red;
+}
+
+.inner-choices
+{
+width:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+@media only screen and (max-width:450px)
+{
+
+.page-title
+{
+width:190%;
+}
+
+.selection-container
+{
+width:180%;
+margin-left:7%;
+min-height:800px;
+}
+
+
+.selection-title
+{
+font-size:32px;
+padding:30px 0px;
+margin-bottom:10px;
+}
+
+.single-choice
+{
+height:80px;
+font-size:32px;
+margin-bottom:40px;
+}
+
+
+
+}

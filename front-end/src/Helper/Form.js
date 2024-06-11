@@ -11,7 +11,7 @@ export const removeOption = (stateArray, stateArraySetterFunction, index) => {
  }
 
 
-export const emailToolTipRenderer = (state) => {
+export const authToolTipRenderer = (state) => {
 
    if(state == undefined)
    {
@@ -27,13 +27,14 @@ export const emailToolTipRenderer = (state) => {
    }
    else if(state == "notfound")
    {
-    return <ToolTip type={"error"} message={" A user with this email does not exist"}/>
+    return <ToolTip type={"error"} message={"Invalid credentials"}/>
    }
-   else
+   else if(state == "error")
    {
-
+    return <ToolTip type={"error"} message={"Unknown error, please try again"}/>
    }
   }
+
 
 
   export const validateEmail = (email) => {
@@ -76,6 +77,3 @@ export const emailToolTipRenderer = (state) => {
  //      setValidEmail(true)
  //   }
  // }
-
-
-

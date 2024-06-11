@@ -9,5 +9,7 @@
 
     public int SelectorUserId { get; set;}
 
+    public UserSelectedInQuery UserSelectedInQuery { get; set;}
+
     }
 }
