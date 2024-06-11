@@ -9,7 +9,7 @@ function Login() {
     const authType = false
     const passwordHeader = "Enter your password:"
     const buttonText = "Sign in"
-    const navItems = ["About"]
+    const navItems = ["Sign-up","About"]
     
 
     return (

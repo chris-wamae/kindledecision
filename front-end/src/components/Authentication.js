@@ -33,9 +33,10 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     const [emailState, setEmailState] = useState(undefined)
     // const [username, setUsername] = useState("")
     //const [phone, setPhone] = useState("")
-    const [showPassword,setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [userVisibility, setUserVisibility] = useState(undefined)
+    const [previsousEmailState, setPreviousEmailState] = useState(undefined)
 
     useEffect(() => {
         if (validateEmail(email)) {
@@ -62,22 +63,21 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     }
 
     const passwordValidator = (password) => {
-    if(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[^\w\d\s]).{8,}$/.test(password))
-    {
-    return true
-    }
-    else
-    {   
-    return false
-    }
+        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[^\w\d\s]).{8,}$/.test(password)) {
+            return true
+        }
+        else {
+            return false
+        }
     }
 
     useEffect(() => {
-    if(loggedUserStatus == "failed")
-    {
-    setEmailState("notfound")
-    }
-    },[loggedUserStatus])
+        if (loggedUserStatus == "failed") {
+            setPreviousEmailState(emailState);
+            console.log(emailState);
+            setEmailState("notfound")
+        }
+    }, [loggedUserStatus])
 
     const searchUser = () => {
         if (emailState === true) {
@@ -92,10 +92,10 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         if (loggedUser != undefined) {
             if (emailState && loggedUser.ud != null) {
                 dispatch(changeUserId(loggedUser.ud))
-                Cookies.set("ud", loggedUser.ud ,{expires:new Date(loggedUser.refreshTokenExpiry)})
-                Cookies.set("at", loggedUser.token, {expires:new Date(loggedUser.refreshTokenExpiry)})
-                Cookies.set("rt", loggedUser.refreshToken,{expires:new Date(loggedUser.refreshTokenExpiry)});
-                Cookies.set("et","exp",{expires:timeAfterMinutes(15)})
+                Cookies.set("ud", loggedUser.ud, { expires: new Date(loggedUser.refreshTokenExpiry) })
+                Cookies.set("at", loggedUser.token, { expires: new Date(loggedUser.refreshTokenExpiry) })
+                Cookies.set("rt", loggedUser.refreshToken, { expires: new Date(loggedUser.refreshTokenExpiry) });
+                Cookies.set("et", "exp", { expires: timeAfterMinutes(15) })
                 navigate({
                     pathname: "/dashboard",
                     search: "?id=" + loggedUser.ud + "&t=" + loggedUser.token
@@ -124,17 +124,15 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     }
 
     useEffect(() => {
-    if(signupStatus == "failed")
-    {
-    setEmailState("error")
-    }
-    else if(signupStatus == "successful")
-    {
-     
-     navigate("/login")
+        if (signupStatus == "failed") {
+            setEmailState("error")
+        }
+        else if (signupStatus == "successful") {
 
-    }
-    },[signupState])
+            navigate("/login")
+
+        }
+    }, [signupState])
 
     // useEffect(() => {
     //     //|| foundUser.length == 0
@@ -156,10 +154,15 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                         <p className="input-header">Your email address:</p>
                         {authToolTipRenderer(emailState)}
                         <input placeholder="Email address" type="email" onChange={(e) => setEmail(e.target.value)}></input>
-                        {(!passwordValidator(password) && password !== "" && authType) ? <ToolTip type={"error"} message={"Invalid password"}/> : <span></span>}
-                        <input type={showPassword ? "text" : "password"} placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
-                        {(password !== "" ) ? <p className="link-btn" onClick={() => setShowPassword(!showPassword) }>{showPassword ? "hide" : "show"} password</p> : <span></span>}
-                        
+                        {(!passwordValidator(password) && password !== "" && authType) ? <ToolTip type={"error"} message={"Invalid password"} /> : <span></span>}
+                        <input type={showPassword ? "text" : "password"} placeholder="Password" onChange={(e) => {
+                            setPassword(e.target.value)
+                            if (loggedUserStatus == "failed") {
+                                setEmailState(previsousEmailState)
+                            }
+                        }}></input>
+                        {(password !== "") ? <p className="link-btn" onClick={() => setShowPassword(!showPassword)}>{showPassword ? "hide" : "show"} password</p> : <span></span>}
+
                         {
                             authType ?
                                 <span className="sign-up-container">
