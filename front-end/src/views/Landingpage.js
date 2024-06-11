@@ -3,7 +3,7 @@ import "../styles/Landingpage.css"
 import {Link, Navigate} from "react-router-dom"
 
 function Landingpage() {
-    const navItems = ["Login", "About"]
+    const navItems = ["Login","Sign-up","About"]
     return (
         <>
             <Navbar navItems={navItems} />

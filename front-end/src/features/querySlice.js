@@ -109,6 +109,6 @@ export const queryChangeStatus = state => state.query.queryChange
 
 export const {setQueryState} = querySlice.actions
 
-export const {setQueryChange} = querySlice.actions;
+export const {setQueryChange} = querySlice.actions.setQueryChange;
 
 export default querySlice.reducer;

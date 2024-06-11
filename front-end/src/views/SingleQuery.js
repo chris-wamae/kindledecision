@@ -41,7 +41,7 @@ function SingleQuery() {
     //console.log(choices)
     //console.log(participants)
     //console.log(queryComplete)
-
+    console.log(queryHasChanged)
     useEffect(() => {
         if (refreshAuth() === false) { navigate("/login") };
         axios.get(`${process.env.REACT_APP_BASE_URL}query/user-has-voted/${Cookies.get("ud")}/${searchParams.get("qId")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setParticipationStatus(r.data.result))

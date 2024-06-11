@@ -1,15 +1,17 @@
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
-import { queryState } from "../features/querySlice";
+import { queryState, setQueryChange } from "../features/querySlice";
 import "../styles/SelectionSuccess.css"
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { refreshAuth } from "../Helper/Auth";
-
+import { useDispatch } from "react-redux";
+//import { queryStatus} from "@reduxjs/toolkit/query";
 function SelectionSuccess() {
 
     const query = useSelector(queryState);
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if(refreshAuth() === false){navigate("/login")};
@@ -26,7 +28,7 @@ function SelectionSuccess() {
 
     return (
         <>
-            <Navbar navItems={["About"]} />
+            <Navbar navItems={["About","Dashboard"]} />
             <div className="success-page-container">
                 <div className="main-container">
                     <div className="success-title">Congratulations!</div>
@@ -40,7 +42,8 @@ function SelectionSuccess() {
                             })
                         }}>Back to query</button>
                         <button onClick={() => {
-                        navigate("/dashboard")
+                        //dispatch(setQueryChange(true))
+                        //navigate("/dashboard")
                         }}>Go to dashboard</button>
                     </div>
                 </div>

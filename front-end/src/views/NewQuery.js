@@ -30,7 +30,7 @@ function NewQuery() {
     //if absent check for election in state
     //if present search for its users and send them email
     //if absent redirect user to their dashboard
-    const navItems = [""]
+    const navItems = ["Dashboard"]
     const query = useSelector(queryState)
     const buttonRef = useRef(null);
     const dummyTitle = "How many days to master something?"
