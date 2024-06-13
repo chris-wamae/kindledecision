@@ -12,7 +12,7 @@ import "../styles/AddSelectors.css"
 import Navbar from "../components/Navbar";
 import { queryState } from "../features/querySlice";
 import { redirect, useNavigate } from "react-router-dom";
-import { refreshAuth } from "../Helper/Auth";
+import { refreshAuth,loggedStatus } from "../Helper/Auth";
 import { useSearchParams } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -36,9 +36,12 @@ function AddSelectors() {
   const [showAdd, setShowAdd] = useState("none");
   const [usersArray, setUsersArray] = useState([])
   const [searchParams, setSearchParams] = useSearchParams()
-
   useEffect(() => {
-    if (refreshAuth() === false) { navigate("/login") };
+    if(!loggedStatus())
+      {
+       navigate("/")
+      }
+    else if (refreshAuth() === false) { navigate("/login") };
   }, [])
 
   useEffect(() => {

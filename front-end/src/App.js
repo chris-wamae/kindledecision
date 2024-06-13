@@ -24,7 +24,6 @@ function App() {
       <Route exact path="/about" element={<Featurespage/>}></Route>
       <Route exact path="/sign-up" element={<Signup/>}></Route>
       <Route exact path="/login" element={<Login/>}></Route>
-      <Route exact path="/account-management" element={<AccountManagement/>}></Route>
       <Route exact path="/create-query" element={<CreateQuery/>}></Route>
       {/* <Route exact path="/queries" element={<Queries/>}></Route> */}
       <Route exact path="/new-query" element={<NewQuery/>}></Route>
