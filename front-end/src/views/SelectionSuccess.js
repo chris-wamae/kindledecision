@@ -4,7 +4,7 @@ import { queryState, setQueryChange } from "../features/querySlice";
 import "../styles/SelectionSuccess.css"
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { refreshAuth } from "../Helper/Auth";
+import { refreshAuth ,loggedStatus} from "../Helper/Auth";
 import { useDispatch } from "react-redux";
 //import { queryStatus} from "@reduxjs/toolkit/query";
 function SelectionSuccess() {
@@ -12,9 +12,13 @@ function SelectionSuccess() {
     const query = useSelector(queryState);
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
+    
     useEffect(() => {
-        if(refreshAuth() === false){navigate("/login")};
+        if(!loggedStatus())
+            {
+             navigate("/")
+            }
+        else if(refreshAuth() === false){navigate("/login")};
         },[])
     
 

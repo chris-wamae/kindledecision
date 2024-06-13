@@ -10,7 +10,7 @@ import "../styles/SingleQuery.css"
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
-import { refreshAuth } from "../Helper/Auth";
+import { refreshAuth, loggedStatus } from "../Helper/Auth";
 import { getChoices } from "../features/choiceSlice";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
@@ -33,27 +33,36 @@ function SingleQuery() {
     const [queryWinner, setQueryWinner] = useState("")
     const [selections, setSelections] = useState([])
     const navigate = useNavigate();
-    const [queryCreator,setQueryCreator] = useState(undefined)
+    const [queryCreator, setQueryCreator] = useState(undefined)
     const [searchParams, setSeachParams] = useSearchParams()
-    const queryHasChanged = useSelector(queryChangeStatus) 
+    const queryHasChanged = useSelector(queryChangeStatus)
 
     //console.log(queryWinner)
     //console.log(choices)
     //console.log(participants)
     //console.log(queryComplete)
-    console.log(queryHasChanged)
+
     useEffect(() => {
-        if (refreshAuth() === false) { navigate("/login") };
-        axios.get(`${process.env.REACT_APP_BASE_URL}query/user-has-voted/${Cookies.get("ud")}/${searchParams.get("qId")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setParticipationStatus(r.data.result))
-        axios.get(`${process.env.REACT_APP_BASE_URL}query/query-selection-complete/${searchParams.get("qId")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => {
-            setQueryComplete(r.data)
-        })
-        axios.get(`${process.env.REACT_APP_BASE_URL}query/get-query-creator/${searchParams.get("qId")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setQueryCreator(r.data))
+        if (!loggedStatus()) {
+            navigate("/")
+        }
+        else if (refreshAuth() === false) {
+            navigate("/login")
+
+        }
+        else {
+            axios.get(`${process.env.REACT_APP_BASE_URL}query/user-has-voted/${Cookies.get("ud")}/${searchParams.get("qId")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } }).then(r => setParticipationStatus(r.data.result))
+            axios.get(`${process.env.REACT_APP_BASE_URL}query/query-selection-complete/${searchParams.get("qId")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } }).then(r => {
+                setQueryComplete(r.data)
+            })
+            axios.get(`${process.env.REACT_APP_BASE_URL}query/get-query-creator/${searchParams.get("qId")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } }).then(r => setQueryCreator(r.data))
+        }
+
     }, [])
 
     useEffect(() => {
         if (queryComplete) {
-            axios.get(`${process.env.REACT_APP_BASE_URL}query/choice/get-query-choices/${searchParams.get("qId")}`, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => setSelections(r.data))
+            axios.get(`${process.env.REACT_APP_BASE_URL}query/choice/get-query-choices/${searchParams.get("qId")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } }).then(r => setSelections(r.data))
         }
     }, [queryComplete])
 
@@ -64,16 +73,15 @@ function SingleQuery() {
     }, [selections])
 
     useEffect(() => {
-        if (query.title == "") {
+        if (loggedStatus()) {
             dispatch(getQuery(searchParams.get("qId")))
-        }
-        if (participants.length == 0) {
-            dispatch(getQueryParticipants(searchParams.get("qId")))
-        }
 
-        if (choices.length == 0) {
+
+            dispatch(getQueryParticipants(searchParams.get("qId")))
+
             dispatch(getChoices(searchParams.get("qId")))
         }
+
         //     if (query.id == undefined) {
         //         // axios.get(`${process.env.REACT_APP_BASE_URL}queries${location.search}`)
         //         //     .then(r => dispatch(setQueryState(r.data[0])))
@@ -250,15 +258,15 @@ function SingleQuery() {
                     </div>
 
                 </section>
-                     {
-                     (queryCreator && queryCreator.id == Cookies.get("ud")) ?
-                      <DeleteQuery queryId={searchParams.get("qId")}/>
-                      :
-                      <span></span>        
-                     }
-                    
+                {
+                    (queryCreator && queryCreator.id == Cookies.get("ud")) ?
+                        <DeleteQuery queryId={searchParams.get("qId")} />
+                        :
+                        <span></span>
+                }
+
             </div>
-           
+
 
         </>
     )

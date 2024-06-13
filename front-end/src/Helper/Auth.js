@@ -13,6 +13,15 @@ export const refreshAuth = async () => {
         Cookies.set("rt", response.data.refreshToken, { expires: new Date(response.data.refreshTokenExpiryTime)});
         Cookies.set("et", "exp", { expires: timeAfterMinutes(15) })
     }
+}
 
-
+export const loggedStatus = () => {
+if(Cookies.get("ud") == undefined)
+{
+return false
+}
+else 
+{
+return true
+}
 }

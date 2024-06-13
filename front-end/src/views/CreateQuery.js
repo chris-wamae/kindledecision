@@ -14,7 +14,7 @@ import { loginState } from "../features/loginSlice";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
 import { timeAfterMinutes } from "../Helper/Time";
-import { refreshAuth } from "../Helper/Auth";
+import { refreshAuth, loggedStatus } from "../Helper/Auth";
 import { getCurrentISOTime } from "../Helper/Time";
 
 function CreateQuery() {
@@ -33,7 +33,11 @@ function CreateQuery() {
   const query = useSelector(queryState)
 
   useEffect(() => {
-    if (refreshAuth() === false) { navigate("/login") };
+    if (!loggedStatus()) {
+      navigate("/")
+    }
+    else if (refreshAuth() === false) { navigate("/login") }
+
   }, [])
 
   const canSave = () => {
