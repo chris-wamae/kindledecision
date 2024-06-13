@@ -12,12 +12,12 @@ import "../styles/Selectpage.css"
 import { postSelection } from "../features/selectionSlice";
 import { selectionState } from "../features/selectionSlice";
 import { useNavigate } from "react-router-dom";
-import { refreshAuth } from "../Helper/Auth";
+import { refreshAuth, loggedStatus } from "../Helper/Auth";
 import { useSearchParams } from "react-router-dom";
 import Cookies from "js-cookie";
 
 function Selectpage() {
-    
+
     const navigate = useNavigate()
 
     const query = useSelector(queryState)
@@ -36,31 +36,32 @@ function Selectpage() {
 
     const [choiceTitle, setChoiceTitle] = useState("")
 
-    const [searchParams,setSeachParams] = useSearchParams()
+    const [searchParams, setSeachParams] = useSearchParams()
 
-        //placeholderUser(wamae)
-        const selectChoice = (choiceId) => 
-        {
-        dispatch(postSelection({choiceId:choiceId, userId:parseInt(Cookies.get("ud")), queryId:parseInt(searchParams.get("qId"))}))
-        axios.post(`${process.env.REACT_APP_BASE_URL}query/remaining-selections/${searchParams.get("qId")}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
+    //placeholderUser(wamae)
+    const selectChoice = (choiceId) => {
+        dispatch(postSelection({ choiceId: choiceId, userId: parseInt(Cookies.get("ud")), queryId: parseInt(searchParams.get("qId")) }))
+        axios.post(`${process.env.REACT_APP_BASE_URL}query/remaining-selections/${searchParams.get("qId")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } })
+    }
+
+
+    useEffect(() => {
+        if (!loggedStatus()) {
+            navigate("/")
         }
-
-    useEffect(() => {
-        if(refreshAuth() === false){navigate("/login")};
-        },[])
-    
-
-    useEffect(() => {
-        if (query.title == "") {
-            axios.get(`${process.env.REACT_APP_BASE_URL}query/${searchParams.get("qId")}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
+        else if (refreshAuth() === false) { navigate("/login") }
+        else if (query.title == "") {
+            axios.get(`${process.env.REACT_APP_BASE_URL}query/${searchParams.get("qId")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } })
                 .then(r => dispatch(setQueryState(r.data)))
         }
     }, [])
 
     useEffect(() => {
-
-            axios.get(`${process.env.REACT_APP_BASE_URL}query/choice/get-query-choices/${searchParams.get("qId")}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
+        if (loggedStatus()) {
+            axios.get(`${process.env.REACT_APP_BASE_URL}query/choice/get-query-choices/${searchParams.get("qId")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } })
                 .then(r => dispatch(setChoicesState(r.data)))
+        }
+
     }, [query])
 
     return (
@@ -77,25 +78,26 @@ function Selectpage() {
                         <div className="select-buttons">
                             <div className="yes option-select" onClick={() => {
                                 selectChoice(choiceId)
-                                navigate("/successful-selection")}
-                        }>&#x2714;</div>
+                                navigate("/successful-selection")
+                            }
+                            }>&#x2714;</div>
                             <div className="no option-select" onClick={() => setShowConfirmation(false)}>X</div>
                         </div>
 
                     </div>
                     <div className="inner-choices">
-                    {
-                        choices.map(c => {
-                            return <div className="single-choice" onClick={() => {
-                                setShowConfirmation(!showConfirmation)
-                                setChoiceId(c.id)
-                                setChoiceTitle(c.title)
-                            }}
-                            >{c.title}</div>
-                        })
-                    }
+                        {
+                            choices.map(c => {
+                                return <div className="single-choice" onClick={() => {
+                                    setShowConfirmation(!showConfirmation)
+                                    setChoiceId(c.id)
+                                    setChoiceTitle(c.title)
+                                }}
+                                >{c.title}</div>
+                            })
+                        }
                     </div>
-                    
+
                     {/* add different choices here */}
                 </div>
             </div>

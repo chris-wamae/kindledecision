@@ -37,6 +37,13 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [userVisibility, setUserVisibility] = useState(undefined)
     const [previsousEmailState, setPreviousEmailState] = useState(undefined)
+    
+    useEffect(() => {
+     if(Cookies.get("ud") !== undefined)
+     {
+     navigate("/dashboard")
+     }
+    },[])
 
     useEffect(() => {
         if (validateEmail(email)) {

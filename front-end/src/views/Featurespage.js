@@ -1,9 +1,21 @@
 import Navbar from "../components/Navbar";
 import HowItWorks from "./HowItWorkspage"
 import "../styles/Featurespage.css"
+import { loggedStatus } from "../Helper/Auth";
+import { useEffect, useState } from "react";
 
 function Featurespage() {
-    const navItems = ["Login", "Sign-up"]
+    const [navItems,setNavItems] = useState(["Login", "Sign-up"])
+    useEffect(() => {
+    if(!loggedStatus())
+    {
+    setNavItems(["Login", "Sign-up"])
+    }
+    else
+    {
+    setNavItems(["Dashboard"])
+    }
+    },[])
     return (
         <>
             <Navbar navItems={navItems} />

@@ -1,7 +1,7 @@
 import "../styles/NewQuery.css"
 import { useRef } from "react"
 import { queryState } from "../features/querySlice";
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useEffect } from "react";
@@ -10,20 +10,28 @@ import { useDispatch } from "react-redux";
 import { getQuery } from "../features/querySlice";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
+import { loggedStatus } from "../Helper/Auth";
 
 function NewQuery() {
 
     const dispatch = useDispatch();
-    const [searchParams,setSeachParams] = useSearchParams()
+    const [searchParams, setSeachParams] = useSearchParams()
 
-    useEffect(() =>{
-        if(refreshAuth() === false){navigate("/login")};
-        if(query.title == "")
-        {
-        dispatch(getQuery(searchParams.get("qId")));
+    useEffect(() => {
+
+    }, [])
+
+    useEffect(() => {
+        if (!loggedStatus()) {
+            navigate("/")
         }
-        },[])
-    
+        else if (refreshAuth() === false) { navigate("/login") }
+
+        else if (query.title == "") {
+            dispatch(getQuery(searchParams.get("qId")));
+        }
+    }, [])
+
 
     //check for election voters in state
     //if present send them emails
@@ -48,8 +56,8 @@ function NewQuery() {
 
 
     return (
-        <>  
-            <Navbar navItems={navItems}/>  
+        <>
+            <Navbar navItems={navItems} />
 
             <div className="info-container">
                 <div className="header">
@@ -73,14 +81,14 @@ function NewQuery() {
                 }
                 }>Copy</button> */}
                 <div className="dashboard-button-container">
-                <button className="dashboard-btn" onClick={() => navigate("/dashboard")}>Go to dashboard</button>
-                <button className="dashboard-btn" onClick={() => {
-                navigate(
-                {
-                pathname: "/query",
-                search:`?qId=${query.id}`
-                })
-                }}>Go to Query</button>
+                    <button className="dashboard-btn" onClick={() => navigate("/dashboard")}>Go to dashboard</button>
+                    <button className="dashboard-btn" onClick={() => {
+                        navigate(
+                            {
+                                pathname: "/query",
+                                search: `?qId=${query.id}`
+                            })
+                    }}>Go to Query</button>
                 </div>
             </div>
         </>
