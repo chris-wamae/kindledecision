@@ -13,16 +13,17 @@ function DeleteAccount() {
 
     const deleteAccount = () => {
         axios.delete(`${process.env.REACT_APP_BASE_URL}account/delete-account`, {
+            headers: { Authorization: `Bearer ${Cookies.get("at")}` },
             data: {
                 email: email,
                 password: password
-            }}, {headers:{Authorization:`Bearer ${Cookies.get("at")}`}}).then(r => {
-            if(r.status == 204)
-            {
-            navigate("/")
             }
-            })
-        }
+        }).then(r => {
+            if (r.status == 204) {
+                navigate("/")
+            }
+        })
+    }
 
     return (
         <div className="del-acc-container">
@@ -44,7 +45,8 @@ function DeleteAccount() {
                         <div className="btns-cont">
                             <button onClick={(e) => {
                                 e.preventDefault()
-                                deleteAccount() }}>Delete</button>
+                                deleteAccount()
+                            }}>Delete</button>
                             <button onClick={(e) => {
                                 e.preventDefault()
                                 setShowCredentialsForm(false)

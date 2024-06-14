@@ -51,6 +51,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ISelectionRepository, SelectionRepository>();
 builder.Services.AddScoped<IChoiceRepository, ChoiceRepository>();
 builder.Services.AddScoped<IUserSelectedInQueryRepository, UserSelectedInQueryRepository>();
+builder.Services.AddScoped<IUserQueryRepository, UserQueryRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 AddSwaggerDoc(builder.Services);
