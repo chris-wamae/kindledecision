@@ -58,7 +58,7 @@ function SingleQuery() {
             axios.get(`${process.env.REACT_APP_BASE_URL}query/get-query-creator/${searchParams.get("qId")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } }).then(r => setQueryCreator(r.data))
         }
 
-    }, [])
+    },[])
 
     useEffect(() => {
         if (queryComplete) {
@@ -73,7 +73,7 @@ function SingleQuery() {
     }, [selections])
 
     useEffect(() => {
-        if (loggedStatus()) {
+        if (loggedStatus() && query.title == "") {
             dispatch(getQuery(searchParams.get("qId")))
 
 
