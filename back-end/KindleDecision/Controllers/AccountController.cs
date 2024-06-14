@@ -24,7 +24,7 @@ namespace KindleDecision.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
         private readonly IQueryRepository _queryRepository;
-
+        private readonly IUserQueryRepository _userQueryRepository;
         public AccountController(
             UserManager<ApplicationUser> userManager,
             ILogger<AccountController> logger,
@@ -32,7 +32,8 @@ namespace KindleDecision.Controllers
             IAuthManager authManager,
             IUserRepository userRepository,
             IConfiguration configuration,
-            IQueryRepository queryRepository
+            IQueryRepository queryRepository,
+            IUserQueryRepository userQueryRepository
         )
         {
             _userManager = userManager;
@@ -42,6 +43,7 @@ namespace KindleDecision.Controllers
             _userRepository = userRepository;
             _configuration = configuration;
             _queryRepository = queryRepository;
+            _userQueryRepository = userQueryRepository;
         }
 
         [HttpPost]
@@ -371,21 +373,24 @@ namespace KindleDecision.Controllers
 
         [Authorize]
         [HttpDelete("delete-account")]
-        public async Task<IActionResult> DeleteAccount(LoginUserDto accountToDelete)
+        public async Task<IActionResult> DeleteAccount([FromBody] LoginUserDto userDto)
         {
-            if (!await _authManager.ValidateUser(accountToDelete))
-            {
-                return Unauthorized();
-            }
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var aspUser = await _userManager.FindByEmailAsync(accountToDelete.Email);
 
-            var internalUser = _userRepository.GetUserByEmail(accountToDelete.Email);
+            if (!await _authManager.ValidateUser(userDto))
+            {
+                return Unauthorized(userDto);
+            }
+
+
+
+            var aspUser = await _userManager.FindByEmailAsync(userDto.Email);
+
+            var internalUser = _userRepository.GetUserByEmail(userDto.Email);
 
             if (internalUser == null)
             {
@@ -407,6 +412,8 @@ namespace KindleDecision.Controllers
             if (!_userRepository.DeleteUser(internalUser))
             {
                 _queryRepository.DeleteUsersCreatedQueries(internalUser.Id);
+
+                _userQueryRepository.DeleteUserQueriesByUser(internalUser.Id);
 
                 return StatusCode(500, "Something went wrong while deleting the internal user");
             }
