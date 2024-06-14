@@ -81,7 +81,7 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     useEffect(() => {
         if (loggedUserStatus == "failed") {
             setPreviousEmailState(emailState);
-            console.log(emailState);
+            //console.log(emailState);
             setEmailState("notfound")
         }
     }, [loggedUserStatus])
