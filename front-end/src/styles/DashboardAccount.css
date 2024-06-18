@@ -96,7 +96,7 @@ background-color:black;
 
 @media only screen and (max-width:450px)
 {
-.card-container
+/* .card-container
 {
 flex-direction: column;
 align-items:center;
@@ -119,6 +119,6 @@ font-size:32px;
 {
 display:flex;
 justify-content:center;
-}
+} */
 
 } 

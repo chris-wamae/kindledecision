@@ -150,7 +150,7 @@ background-color:white;
 
 @media only screen and (max-width:450px)
 {
-
+/* 
 .query-headers
 {
 font-size:24px;
@@ -177,7 +177,7 @@ font-size:28px;
 .other-container *
 {
 font-size:20px;
-}
+} */
 
 
 }

@@ -6,7 +6,7 @@ import Cookies from "js-cookie"
 import { useState, useEffect } from "react"
 
 function Landingpage() {
-    const navItems = ["Login", "Sign-up", "About"]
+    const [navItems,setNavItems] = useState(["Login", "Sign-up", "About"])
     const [loggedIn, setLoggedIn] = useState(false)
 
     const signUserOut = () => {
@@ -20,6 +20,10 @@ function Landingpage() {
     useEffect(() => {
         if (Cookies.get("ud") !== undefined) {
             setLoggedIn(true)
+        }
+        if(loggedIn)
+        {
+        setNavItems(["About"])
         }
     }, [loggedIn])
 

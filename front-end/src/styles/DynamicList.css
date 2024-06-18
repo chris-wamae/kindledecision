@@ -62,7 +62,7 @@ margin-left:10px;
 @media only screen and (max-width:450px)
 {
 
-.list-container
+/* .list-container
 {
 min-width:500px;
 }
@@ -88,6 +88,6 @@ font-size:32px;
   font-weight:bold;
   font-size:20px;
   color:white;
-}
+} */
 
 }
