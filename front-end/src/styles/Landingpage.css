@@ -108,17 +108,49 @@ border:2px solid var(--white);
  height:300px;
 }
 
-
-@media only screen and (min-width:2500px)
-{
-
-}
-
-
 @media only screen and (max-width:450px)
 {
 
-.hiw-button
+.info
+{
+display:flex;
+flex-direction:column;
+align-items:center;
+width:100%;
+}
+
+.graphic-placeholder
+{
+width:0px;
+height:0px;
+}
+
+.info-text
+{
+width:100%;
+}
+
+.main-header
+{
+width:100%;
+}
+
+.info-text .sub-header
+{
+font-size:26px;
+}
+
+.info-text .main-header
+{
+font-size:35px;
+}
+
+.info-img-buttons
+{
+width:100%;
+}
+
+/* .hiw-button
 {
 margin-top:100px;
 margin-left:55%;
@@ -166,6 +198,6 @@ display:none;
     height:80px;
     font-size:32px;
     border-radius:40px;
-}
+} */
 
 }

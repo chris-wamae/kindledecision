@@ -32,7 +32,7 @@ color:var(--black);
     padding-top:5px;
     padding-bottom:5px;
     background-color:white;
-    /* padding-bottom:5px; */
+    padding-bottom:5px; 
 }
 
  .nav-links{
@@ -51,15 +51,22 @@ color:var(--black);
 
 .nav-div
 {
-height:100px;
-font-size:36px;
-width: 195%;
+height:50px;
+padding-top:10px;
+font-size:18px;
+/* width: 195%; */
 align-items: center;
 }
 
 .nav-links
 {
-    font-size:32px;   
+    font-size:16px;   
+}
+
+.nav-links a{
+    text-decoration:none;
+    margin-left:20px;
+    color:var(--carrotOrange);
 }
 }
 

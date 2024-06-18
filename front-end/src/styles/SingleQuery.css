@@ -199,8 +199,8 @@ margin-bottom:20px;
 
 @media only screen and (max-width:450px)
 {
-.single-query-page
-{
+/* .single-query-page
+ {
 width:196%;
 }
 
@@ -311,6 +311,6 @@ font-size:24px;
 .choices-container
 {
 min-width:600px;
-}
+} */
 
 }

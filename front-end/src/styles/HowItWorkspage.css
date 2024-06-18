@@ -87,7 +87,7 @@ width:50px;
 @media only screen and (max-width:450px)
 {
 
-.how-it-works-title
+/* .how-it-works-title
 {
 font-size:48px;
 }
@@ -100,6 +100,6 @@ font-size:30px;
 .single-hiw-element
 {
 min-height:150px;
-}
+} */
 
 }

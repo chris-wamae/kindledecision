@@ -39,7 +39,7 @@ color:var(--carrotOrange);
 
 @media only screen and (max-width:450px)
 {
-  .about-page
+  /* .about-page
     {
     width:196%;
     }
@@ -65,5 +65,5 @@ color:var(--carrotOrange);
     {
     width:65px;
     height:65px;
-    }
+    } */
 }

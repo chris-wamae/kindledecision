@@ -116,7 +116,7 @@ justify-content:space-between;
 @media only screen and (max-width:450px)
 {
 
-.info-container
+/* .info-container
 {
 width:180%;
 margin-left:8%;
@@ -177,7 +177,7 @@ button.dashboard-btn
 height:80px;
 width:300px;
 font-size:32px;
-}
+} */
 
 
 }
