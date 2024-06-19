@@ -49,12 +49,6 @@ background-color:var(--white);
 font-weight:bold;
 }
 
-
-.mail-button
-{
-    
-}
-
 .done-button
 {
 color:var(--white);
@@ -87,61 +81,15 @@ opacity:0.8;
 @media only screen and (max-width:450px)
 {
 
-.page-title
-{
-font-size:48px;
-text-align:center;
-}
-
-.choice-label
-{
-font-size:40px;
-}
-
-.add-button
-{
-font-size:32px;
-width:200px;
-height:80px;
-}
-
-.done-button
-{
-height:80px;
-width:200px;
-font-size:32px;
-}
-
-.page-container
-{
-width:196%;
-min-height:800px;
-margin-top:40%;
-}
-
 .create-choice-form
 {
-min-height:500px;
-border-radius:20px;
-padding:50px 300px;
+width:90%;
 }
 
 .create-choice-form input
 {
-height:60px;
-font-size:24px;
-};
-
-.create-choice-form .choice-label
-{
-font-size:32px;
+min-width:0px;
+width:80%;
 }
-.dynamic-list
-{
-display:flex;
-justify-content:center;
-margin:0px;
-}
-
 }
 

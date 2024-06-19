@@ -39,31 +39,5 @@ color:var(--carrotOrange);
 
 @media only screen and (max-width:450px)
 {
-  .about-page
-    {
-    width:196%;
-    }
 
-    .features-container
-    {
-    min-height:400px;
-    margin-top:10%;
-    margin-bottom:5%;
-    }
-
-    .features-title
-    {
-    font-size:48px;
-    }
-
-    .single-feature div
-    {
-    font-size:32px;
-    }
-
-    .single-feature img
-    {
-    width:65px;
-    height:65px;
-    }
 }
