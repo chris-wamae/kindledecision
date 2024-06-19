@@ -62,32 +62,4 @@ margin-left:10px;
 @media only screen and (max-width:450px)
 {
 
-/* .list-container
-{
-min-width:500px;
-}
-
-.list-title
-{
-font-size:32px;
-padding:20px 0px;
-}
-
-.option-container > div
-{
-font-size:32px;
-}
-
-
-.remove-button{
-  border:0px;
-  width:35px;
-  height:35px;
-  border-radius:50%;
-  background-color:red;
-  font-weight:bold;
-  font-size:20px;
-  color:white;
-} */
-
 }

@@ -23,10 +23,10 @@ function SelectionSuccess() {
     
 
     useEffect(() => {
-        if(query.title == "")
-        {
-        navigate("/dashboard")
-        }
+        // if(query.title == "")
+        // {
+        // navigate("/dashboard")
+        // }
     },[query])
 
 

@@ -50,35 +50,17 @@ margin-top:50px;
 @media only screen and (max-width:450px)
 {
 
-/* .disclaimer
+.disclaimer
 {
-font-size:30px;
 text-align:center;
+font-size:18px;
+font-weight:100;
 }
 
 .selector-form
 {
-min-height:500px;
-min-width:600px;
+width:90%;
 }
-
-.selector-form label
-{
-font-size:32px;
-}
-
-.selector-form input
-{
-height:80px;
-font-size:24px;
-}
-
-.selector-form button
-{
-height:80px;
-font-size:24px;
-} */
-
 }
 
 

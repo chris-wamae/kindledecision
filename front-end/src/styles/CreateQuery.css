@@ -96,68 +96,11 @@ border:0px;
 @media only screen and (max-width:450px)
 {
 
-/* .query-form
-{
-width:80%;
-border-radius:20px;
-min-height:800px;
-margin-top:50px;
-}
-
-.query-form *
-{
-margin-top:40px;
-}
-
-.query-form input 
-{
-height:50px;
-font-size:24px;
-}
-
-
-.query-form select 
-{
-height:50px;
-font-size:24px;
-}
-
-.query-form input::placeholder
-{
-font-size:24px;
-}
-
-
-.query-form label
-{
-font-size:32px;
-}
-
-.query-container
-{
-width:196%;
-align-items:center;
-justify-content:center;
-}
-
-.page-header
-{
-  width:196%;
-  margin-top:50px;
-}
-
-
-.submit-button
-{
-margin-top:100px;
-height:60px;
-width:240px;
-font-size:32px;
-color:white;
-} */
-
-
-
+  .query-form
+  {
+  min-width:0px;
+  width:90%;
+  }
 } 
 
 
