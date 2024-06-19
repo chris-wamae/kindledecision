@@ -158,7 +158,7 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                 <section className="auth-container">
                     <div className="auth-title">{authTitle}</div>
                     <form className="auth-form">
-                        <p className="input-header">Your email address:</p>
+                        {/* <p className="input-header">Your email address:</p> */}
                         {authToolTipRenderer(emailState)}
                         <input placeholder="Email address" type="email" onChange={(e) => setEmail(e.target.value)}></input>
                         {(!passwordValidator(password) && password !== "" && authType) ? <ToolTip type={"error"} message={"Invalid password"} /> : <span></span>}
