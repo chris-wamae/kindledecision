@@ -115,4 +115,9 @@ align-items:center;
 {
 width:80%;
 }
+
+div.page-title
+{
+font-size:24px;
+}
 }

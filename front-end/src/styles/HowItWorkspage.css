@@ -87,4 +87,17 @@ width:50px;
 @media only screen and (max-width:450px)
 {
 
+.single-hiw-element > div
+{
+width:100%;
+margin:10px;
+}
+
+.single-hiw-element
+{
+margin-top:10px;
+margin-bottom:10px;
+padding:0px;
+}
+
 }
