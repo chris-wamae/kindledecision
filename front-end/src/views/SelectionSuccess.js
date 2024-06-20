@@ -40,13 +40,14 @@ function SelectionSuccess() {
                     <p>{query.title}</p>
                     <div className="btns-container">
                         <button onClick={() => {
+                            dispatch(setQueryChange(true))
                             navigate({
                                 pathname: "/query",
                                 search: `?qId=${query.id}`
                             })
                         }}>Back to query</button>
                         <button onClick={() => {
-                        //dispatch(setQueryChange(true))
+                        dispatch(setQueryChange(true))
                         //navigate("/dashboard")
                         }}>Go to dashboard</button>
                     </div>

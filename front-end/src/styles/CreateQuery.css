@@ -101,6 +101,27 @@ border:0px;
   min-width:0px;
   width:90%;
   }
+
+  .query-form input
+  {
+   height:40px;
+   font-size:16px;
+   min-width:0px;
+   width:80%;
+  }
+
+  .query-form select
+  {
+    height:40px;
+    font-size:16px;
+    min-width:0px;
+    width:80%;
+  }
+
+  .query-form
+  {
+  font-size:24px;
+  }
 } 
 
 
