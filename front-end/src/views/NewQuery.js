@@ -11,11 +11,17 @@ import { getQuery } from "../features/querySlice";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { loggedStatus } from "../Helper/Auth";
+import { queryChangeStatus, setQueryChange } from "../features/querySlice";
+// import { useSelector } from "react-redux";
 
 function NewQuery() {
 
     const dispatch = useDispatch();
+
+    const queryChanged = useSelector(queryChangeStatus)
+
     const [searchParams, setSeachParams] = useSearchParams()
+    
 
     useEffect(() => {
 
@@ -81,8 +87,11 @@ function NewQuery() {
                 }
                 }>Copy</button> */}
                 <div className="dashboard-button-container">
-                    <button className="dashboard-btn" onClick={() => navigate("/dashboard")}>Go to dashboard</button>
+                    <button className="dashboard-btn" onClick={() => 
+                  { dispatch(setQueryChange(true))
+                    navigate("/dashboard")}}>Go to dashboard</button>
                     <button className="dashboard-btn" onClick={() => {
+                        dispatch(setQueryChange(true))
                         navigate(
                             {
                                 pathname: "/query",

@@ -73,12 +73,9 @@ function SingleQuery() {
     }, [selections])
 
     useEffect(() => {
-        if (loggedStatus() && query.title == "") {
+        if ((loggedStatus() && query.title == "") || queryHasChanged ) {
             dispatch(getQuery(searchParams.get("qId")))
-
-
             dispatch(getQueryParticipants(searchParams.get("qId")))
-
             dispatch(getChoices(searchParams.get("qId")))
         }
 
@@ -154,7 +151,7 @@ function SingleQuery() {
         //     }
 
 
-    }, [query])
+    }, [query,queryHasChanged])
 
     return (
         <>  <Navbar navItems={["Dashboard"]} />
