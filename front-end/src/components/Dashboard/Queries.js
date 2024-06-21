@@ -2,7 +2,8 @@ import "../../styles/Queries.css"
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { currentUserId } from "../../features/idSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {queryChangeStatus,setQueryChange} from "../../features/querySlice"
 import { useNavigate } from "react-router-dom"
 import { dummyQueries } from "./DummyQueries";
 import Cookies from "js-cookie";
@@ -16,6 +17,8 @@ function Queries({ queriesType }) {
   const [unfilteredQueries, setUnfilteredQueries] = useState([])
   const [queries, setQueries] = useState([])
   const [filterIds, setFilterIds] = useState([])
+  const queryChanged = useSelector(queryChangeStatus)
+  const dispatch = useDispatch();
   const navigate = useNavigate()
   const pendingQueryFilter = (idArray, queryId) => {
     let result = true;
@@ -54,6 +57,7 @@ function Queries({ queriesType }) {
   function QueriesDisplay() {
     return queries.map(e => {
       return <div key={e.id} className="single-query" onClick={() => {
+        dispatch(setQueryChange(true))
         navigate({
           pathname: "/query",
           search: `?qId=${e.id}`
