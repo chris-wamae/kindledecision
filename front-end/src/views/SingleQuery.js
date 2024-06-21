@@ -77,6 +77,11 @@ function SingleQuery() {
             dispatch(getQuery(searchParams.get("qId")))
             dispatch(getQueryParticipants(searchParams.get("qId")))
             dispatch(getChoices(searchParams.get("qId")))
+            //console.log("act");
+            if(queryHasChanged !== false)
+            {
+            dispatch(setQueryState(false))
+            }
         }
 
         //     if (query.id == undefined) {
@@ -151,7 +156,7 @@ function SingleQuery() {
         //     }
 
 
-    }, [query,queryHasChanged])
+    }, [queryHasChanged])
 
     return (
         <>  <Navbar navItems={["Dashboard"]} />
