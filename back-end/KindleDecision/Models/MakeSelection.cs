@@ -7,5 +7,7 @@
         public int ChoiceId { get; set; }
 
         public int QueryId { get; set; }
+
+        public string Reason { get; set; }
     }
 }
