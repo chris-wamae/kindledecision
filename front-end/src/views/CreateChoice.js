@@ -21,6 +21,7 @@ function CreateChoice() {
   const currentQuery = useSelector(queryState)
   const [choiceName, setChoiceName] = useState("")
   const [queryChoices, setQueryChoices] = useState([])
+  const [description,setDescription] = useState("");
   //const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -33,7 +34,9 @@ function CreateChoice() {
 
   const choiceDispatcher = () => {
     queryChoices.forEach((e) => {
-      dispatch(postChoice({ id: searchParams.get("qId"), post: { title: e, queryId: searchParams.get("qId") } }))
+      dispatch(postChoice({ id: searchParams.get("qId"), post: { title: e, queryId: searchParams.get("qId"),
+        description:description
+       } }))
     })
     navigate({
       pathname: "/add-participants",
@@ -60,6 +63,10 @@ function CreateChoice() {
           <label htmlFor="choice-input" className="choice-label">Choice:</label>
 
           <input id="choice-input" className="enter-choice" placeholder="Please enter option for participants" onChange={e => setChoiceName(e.target.value)}></input>
+         
+           
+          <label htmlFor="choice-description" className="choice-label">Description(optional): </label>
+          <textarea placeholder="You may add a description of the choice here"></textarea>
 
           <button className="add-button" onClick={(e) => {
             e.preventDefault();

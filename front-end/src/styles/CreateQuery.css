@@ -78,16 +78,29 @@ width:150px;
 
 .input-title
 {
-font-size:25px;
-margin-top:40px;
+font-size:18px;
+margin-top:20px;
 margin-bottom:5px;
 }
+
+
+textarea
+{
+padding:20px;
+min-width:350px;
+height:120px;
+text-align:center;
+font-family:Arial, Helvetica, sans-serif;
+border-radius:10px;
+}
+
 
 .submit-button
 {
 background-color:var(--black);
 width:200px;
 height:45px;
+margin-top:20px;
 border-radius:5px;
 color:white;
 border:0px;

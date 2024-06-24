@@ -29,6 +29,8 @@ function Selectpage() {
     const selection = useSelector(selectionState)
 
     const dispatch = useDispatch()
+    
+    const [selectionReason,setSelectionReason] = useState("")
 
     const [choiceId, setChoiceId] = useState(null)
 
@@ -40,7 +42,7 @@ function Selectpage() {
 
     //placeholderUser(wamae)
     const selectChoice = (choiceId) => {
-        dispatch(postSelection({ choiceId: choiceId, userId: parseInt(Cookies.get("ud")), queryId: parseInt(searchParams.get("qId")) }))
+        dispatch(postSelection({ choiceId: choiceId, userId: parseInt(Cookies.get("ud")), queryId: parseInt(searchParams.get("qId")), reason:selectionReason }))
         axios.post(`${process.env.REACT_APP_BASE_URL}query/remaining-selections/${searchParams.get("qId")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } })
     }
 
@@ -83,6 +85,12 @@ function Selectpage() {
                             }>&#x2714;</div>
                             <div className="no option-select" onClick={() => setShowConfirmation(false)}>X</div>
                         </div>
+                        <div>
+                        <textarea placeholder="You may a reason for your choice here (this is optional)" onChange={(e) => {
+                        setSelectionReason(e.target.value)
+                        }}></textarea>
+                        </div>
+                        
 
                     </div>
                     <div className="inner-choices">

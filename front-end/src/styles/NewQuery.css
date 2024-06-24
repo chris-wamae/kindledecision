@@ -151,4 +151,10 @@ align-items:center;
 height:150px;
 }
 
+label.input-labels
+{
+font-size:32px;
+color:wheat;
+}
+
 }
