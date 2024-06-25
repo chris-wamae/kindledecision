@@ -29,8 +29,8 @@ function Selectpage() {
     const selection = useSelector(selectionState)
 
     const dispatch = useDispatch()
-    
-    const [selectionReason,setSelectionReason] = useState("")
+
+    const [selectionReason, setSelectionReason] = useState("")
 
     const [choiceId, setChoiceId] = useState(null)
 
@@ -40,9 +40,13 @@ function Selectpage() {
 
     const [searchParams, setSeachParams] = useSearchParams()
 
+    const [showQueryDescription, setShowQueryDescription] = useState(true)
+
+    const [showChoiceOfThisIdDescription, setShowChoiceOfThisIdDescription] = useState(undefined)
+
     //placeholderUser(wamae)
     const selectChoice = (choiceId) => {
-        dispatch(postSelection({ choiceId: choiceId, userId: parseInt(Cookies.get("ud")), queryId: parseInt(searchParams.get("qId")), reason:selectionReason }))
+        dispatch(postSelection({ choiceId: choiceId, userId: parseInt(Cookies.get("ud")), queryId: parseInt(searchParams.get("qId")), reason: selectionReason }))
         axios.post(`${process.env.REACT_APP_BASE_URL}query/remaining-selections/${searchParams.get("qId")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } })
     }
 
@@ -66,6 +70,20 @@ function Selectpage() {
 
     }, [query])
 
+
+    const queryDescription = () => {
+        if (!showQueryDescription) {
+            return <div className="description-toggle" onClick={() => { setShowQueryDescription(true) }}>show description</div>
+        }
+        else {
+            return <div className="query-description">
+                {query.description}
+                <div className="description-toggle" onClick={() => { setShowQueryDescription(false) }}>hide description</div>
+            </div>
+        }
+
+    }
+
     return (
         <>
             <Navbar navItems={["About"]} />
@@ -73,6 +91,8 @@ function Selectpage() {
             <div className="selection-container">
                 <div className="selection-title">
                     {query.title}
+                    {queryDescription()}
+
                 </div>
                 <div className="choices">
                     <div className={showConfirmation ? "confirmation" : "hide-confirmation"}>
@@ -86,23 +106,43 @@ function Selectpage() {
                             <div className="no option-select" onClick={() => setShowConfirmation(false)}>X</div>
                         </div>
                         <div>
-                        <textarea placeholder="You may a reason for your choice here (this is optional)" onChange={(e) => {
-                        setSelectionReason(e.target.value)
-                        }}></textarea>
+                            <textarea placeholder="You may a reason for your choice here (this is optional)" onChange={(e) => {
+                                setSelectionReason(e.target.value)
+                            }}></textarea>
                         </div>
-                        
+
 
                     </div>
                     <div className="inner-choices">
                         {
                             choices.map(c => {
-                                return <div className="single-choice" onClick={() => {
+                                return <div>
+                                <div className="single-choice" onClick={() => {
                                     setShowConfirmation(!showConfirmation)
+                                    setShowQueryDescription(false)
                                     setChoiceId(c.id)
                                     setChoiceTitle(c.title)
                                 }}
-                                >{c.title}</div>
+                                >{c.title}
+                                </div>
+                                
+                                <div>
+                                    {(showChoiceOfThisIdDescription == c.id) ? <div>{c.description}
+                                     <div className="choice-description-toggle" onClick={() => {
+                                         setShowChoiceOfThisIdDescription(undefined)
+                                         setShowConfirmation(false)
+                                     }
+                                     }>hide description</div>
+                                 </div> : ""}
+                                </div>
+                                 <div className="choice-description-toggle" onClick={() => {
+                                     setShowChoiceOfThisIdDescription(c.id)
+                                     setShowConfirmation(false)
+
+                                 }}>show description</div>
+                                 </div>
                             })
+                            
                         }
                     </div>
 
