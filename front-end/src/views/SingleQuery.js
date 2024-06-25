@@ -36,7 +36,7 @@ function SingleQuery() {
     const [queryCreator, setQueryCreator] = useState(undefined)
     const [searchParams, setSeachParams] = useSearchParams()
     const queryHasChanged = useSelector(queryChangeStatus)
-
+    const [showQueryDescription, setShowQueryDescription]  = useState(false)
     //console.log(queryWinner)
     //console.log(choices)
     //console.log(participants)
@@ -158,6 +158,21 @@ function SingleQuery() {
 
     }, [queryHasChanged])
 
+    const queryDescription = () => 
+    {
+     if(showQueryDescription)
+    {
+    return <div>
+        {query.description}
+        <button onClick={() => setShowQueryDescription(!showQueryDescription)}>hide description</button>
+    </div>
+    }
+    else 
+    {
+    return <button onClick={() => setShowQueryDescription(!showQueryDescription)}>show description</button>
+    }
+    }
+
     return (
         <>  <Navbar navItems={["Dashboard"]} />
             <div className="single-query-page">
@@ -221,6 +236,10 @@ function SingleQuery() {
                         :
                         <span></span>
                 }
+                                
+                <section className="query-description">
+                   {queryDescription()}
+                </section>
 
                 <section className="secondary-details">
                     <div className="participants-container white-background">

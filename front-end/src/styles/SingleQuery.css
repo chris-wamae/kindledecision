@@ -120,6 +120,8 @@ font-weight:bold;
 {
 display:flex;
 flex-wrap:wrap;
+justify-content:center;
+align-items:center;
 }
 
 .secondary-details
@@ -198,6 +200,52 @@ width:80%;
 margin-bottom:20px;
 }
 
+section.query-description
+{
+margin:auto;
+padding:10px;
+padding-bottom:20px;
+display:flex;
+justify-content:center;
+width:90%;
+padding:0px 0px 20px 0px;
+}
+
+.query-description div 
+{
+
+margin:auto;
+width:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background-color:white;
+border-radius:20px;
+padding:20px 0px;
+}
+
+.query-description button
+{
+margin:auto;
+margin-top:10px;
+width:15%;
+height:30px;
+background-color:black;
+color:white;
+border:0px;
+border-radius:10px;
+font-weight:bold;
+}
+
+.query-description button:hover
+{
+background-color:white;
+color:black;
+border:1px solid black;
+}
+
 @media only screen and (max-width:450px)
 {
 
@@ -231,5 +279,12 @@ width:100%;
 width:80%;
 margin-left:10%;
 }
+
+.query-description button
+{
+width:150px;
+}
+
+
 
 }
