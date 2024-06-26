@@ -197,7 +197,14 @@ width:80%;
 
 .one-choice
 {
+margin-top:10px;
 margin-bottom:20px;
+text-align:center;
+}
+
+.one-choice p 
+{
+margin-top:5px;
 }
 
 section.query-description
