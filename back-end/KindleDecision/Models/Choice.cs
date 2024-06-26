@@ -6,6 +6,8 @@
 
         public string Title { get; set; }
 
+        public string Description { get; set; }
+
         public  Query Query { get; set; }
 
         public ICollection<Selection> Selections { get; set; }

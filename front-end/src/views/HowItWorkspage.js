@@ -19,7 +19,31 @@ function HowItWorkspage() {
                         <img src="download.png" onClick={() => setHideTextFour(!hideTextFour)}></img>
                     </div>
                     <div id={hideTextFour ? "hide-text" : ""} className="hiw-text">
+                    Question:
+                    <br/>
+                    <br/>
+                     Total participants emails listed are less than the participants in the query?
+                    <br/>
+                    <br/>
+                     Answer:
+                     <br/>
+                     <br/>
+                     This happens when a user deletes their account as all their associated data is deleted as well
+                     <br/>
+                     <br/>
+                     Question:
+                    <br/>
+                    <br/>
+                     If a user deletes their account will the query complete if they were the last participant?
+                    <br/>
+                    <br/>
+                     Answer:
+                     <br/>
+                     <br/>
+                     The query can never be completed. The alternative of reducing the participants to make it complete would reduce credibility and thus is not done
                     </div>
+
+
 
                     <div className="single-hiw-element">
                         <div>Creating an account/login</div>

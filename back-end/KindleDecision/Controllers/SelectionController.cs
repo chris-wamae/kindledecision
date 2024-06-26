@@ -154,7 +154,10 @@ namespace KindleDecision.Controllers
                 return StatusCode(422, ModelState);
             }
 
-            SelectionDto selectionDto = new SelectionDto() { SelectorUserId = makeSelection.UserId };
+            SelectionDto selectionDto = new SelectionDto() { SelectorUserId = makeSelection.UserId,
+            
+            Reason = makeSelection.Reason,
+            };
 
             if (selectionDto == null)
             {   

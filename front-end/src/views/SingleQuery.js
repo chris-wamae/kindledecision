@@ -36,7 +36,7 @@ function SingleQuery() {
     const [queryCreator, setQueryCreator] = useState(undefined)
     const [searchParams, setSeachParams] = useSearchParams()
     const queryHasChanged = useSelector(queryChangeStatus)
-
+    const [showQueryDescription, setShowQueryDescription]  = useState(false)
     //console.log(queryWinner)
     //console.log(choices)
     //console.log(participants)
@@ -158,6 +158,21 @@ function SingleQuery() {
 
     }, [queryHasChanged])
 
+    const queryDescription = () => 
+    {
+     if(showQueryDescription)
+    {
+    return <div>
+        {query.description}
+        <button onClick={() => setShowQueryDescription(!showQueryDescription)}>hide description</button>
+    </div>
+    }
+    else 
+    {
+    return <button onClick={() => setShowQueryDescription(!showQueryDescription)}>show description</button>
+    }
+    }
+
     return (
         <>  <Navbar navItems={["Dashboard"]} />
             <div className="single-query-page">
@@ -169,7 +184,8 @@ function SingleQuery() {
                         <p>Expiry date: {query.startDate ? query.expiryDate.substring(0, 10) : ""}</p>
                         <p>Total participants: {query.totalSelections}</p>
                         <p>Remaining participants: {query.remainingSelections}</p>
-                        <p>Creator:{queryCreator ? queryCreator.email : ""}</p>
+                        <p>Creator: {queryCreator ? queryCreator.email : ""}</p>
+                        {/* <p>Description: {query.description}</p> */}
                     </div>
                     {
                         particationStatus ? <span></span> : <button onClick={() => {
@@ -221,6 +237,10 @@ function SingleQuery() {
                         :
                         <span></span>
                 }
+                                
+                <section className="query-description">
+                   {queryDescription()}
+                </section>
 
                 <section className="secondary-details">
                     <div className="participants-container white-background">
@@ -254,7 +274,12 @@ function SingleQuery() {
                         <div className="main-title">Choices</div>
                         <div className="choices">
                             {choices.map((c, i) => {
-                                return <div className="one-choice">{i + 1}.&#160;{c.title}</div>
+                                return <div className="one-choice">{i + 1}.&#160;{c.title}
+                                {
+                                (c.description !== "") ? <p>{c.description}</p> : <span></span>
+                                }
+                                
+                                </div>
                             })}
                         </div>
                     </div>

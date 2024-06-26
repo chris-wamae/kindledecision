@@ -7,6 +7,8 @@
 
     public Choice Choice { get; set; }
 
+    public string Reason { get; set; }
+
     public int SelectorUserId { get; set;}
 
     public UserSelectedInQuery UserSelectedInQuery { get; set;}

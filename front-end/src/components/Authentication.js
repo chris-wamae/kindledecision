@@ -14,9 +14,6 @@ import { signUpState, signupPost, signUpStatus } from "../features/signupSlice";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { timeAfterMinutes } from "../Helper/Time";
-//make email database search depend on physical button press by user
-//move email validation to form Helper since it will no longer be using fetch
-
 
 function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     //authType = Sign up when true and Login when false
@@ -36,7 +33,6 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [userVisibility, setUserVisibility] = useState(undefined)
-    const [previsousEmailState, setPreviousEmailState] = useState(undefined)
     
     useEffect(() => {
      if(Cookies.get("ud") !== undefined)
@@ -55,9 +51,6 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         else if (!validateEmail(email)) {
             setEmailState(false);
         }
-        // else if (validateEmail(email) && foundUser == undefined) {
-        //     
-        // }
     }, [email])
 
     const signUpValidator = () => {
@@ -80,8 +73,6 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
 
     useEffect(() => {
         if (loggedUserStatus == "failed") {
-            setPreviousEmailState(emailState);
-            //console.log(emailState);
             setEmailState("notfound")
         }
     }, [loggedUserStatus])
@@ -141,11 +132,6 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         }
     }, [signupState])
 
-    // useEffect(() => {
-    //     //|| foundUser.length == 0
-
-    // }, [fo])
-
     return (
         <>
             <div className="auth-page">
@@ -164,8 +150,8 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                         {(!passwordValidator(password) && password !== "" && authType) ? <ToolTip type={"error"} message={"Invalid password"} /> : <span></span>}
                         <input type={showPassword ? "text" : "password"} placeholder="Password" onChange={(e) => {
                             setPassword(e.target.value)
-                            if (loggedUserStatus == "failed") {
-                                setEmailState(previsousEmailState)
+                            if (loggedUserStatus == "failed" && !authType) {
+                                setEmailState(validateEmail(email))
                             }
                         }}></input>
                         {(password !== "") ? <p className="link-btn" onClick={() => setShowPassword(!showPassword)}>{showPassword ? "hide" : "show"} password</p> : <span></span>}
