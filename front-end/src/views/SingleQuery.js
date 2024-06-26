@@ -184,7 +184,8 @@ function SingleQuery() {
                         <p>Expiry date: {query.startDate ? query.expiryDate.substring(0, 10) : ""}</p>
                         <p>Total participants: {query.totalSelections}</p>
                         <p>Remaining participants: {query.remainingSelections}</p>
-                        <p>Creator:{queryCreator ? queryCreator.email : ""}</p>
+                        <p>Creator: {queryCreator ? queryCreator.email : ""}</p>
+                        {/* <p>Description: {query.description}</p> */}
                     </div>
                     {
                         particationStatus ? <span></span> : <button onClick={() => {
@@ -273,7 +274,12 @@ function SingleQuery() {
                         <div className="main-title">Choices</div>
                         <div className="choices">
                             {choices.map((c, i) => {
-                                return <div className="one-choice">{i + 1}.&#160;{c.title}</div>
+                                return <div className="one-choice">{i + 1}.&#160;{c.title}
+                                {
+                                (c.description !== "") ? <p>{c.description}</p> : <span></span>
+                                }
+                                
+                                </div>
                             })}
                         </div>
                     </div>
