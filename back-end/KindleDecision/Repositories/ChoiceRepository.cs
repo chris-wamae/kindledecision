@@ -50,6 +50,7 @@ namespace KindleDecision.Repositories
                 {
                     Id = choice.Id,
                     Title = choice.Title,
+                    Description = choice.Description,
                     SelectionCount = count,
                 };
                 
