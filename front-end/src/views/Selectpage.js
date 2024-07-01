@@ -116,7 +116,7 @@ function Selectpage() {
                     <div className="inner-choices">
                         {
                             choices.map(c => {
-                                console.log(c)
+                                //console.log(c)
                                 return <div>
                                 <div className="single-choice" onClick={() => {
                                     setShowConfirmation(!showConfirmation)
