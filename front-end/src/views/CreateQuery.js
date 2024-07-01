@@ -30,6 +30,7 @@ function CreateQuery() {
   const [description,setDescription] = useState("")
   const [allowRedirect, setAllowRedirect] = useState(false)
   const [showStartDateInput, setShowStartDateInput] = useState("display-none start-date-input")
+ 
   const loggedUser = useSelector(loginState)
   const query = useSelector(queryState)
 
@@ -40,6 +41,10 @@ function CreateQuery() {
     else if (refreshAuth() === false) { navigate("/login") }
 
   }, [])
+
+
+
+
 
   const canSave = () => {
 

@@ -1,11 +1,12 @@
 
+
+
 .list-container
 {
     background-color:white;
     border-radius:0px 0px 10px 10px;
     padding-top:10px;
     padding-bottom:10px;
-
 }
 
 .hr
@@ -51,6 +52,7 @@ height:20px;
   color:black;
   font-weight:100;
   margin-right:1%;
+
 }
 
 .list-column
