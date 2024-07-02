@@ -105,13 +105,25 @@ color:white;
 background-color:black;
 }
 
-.dashboard-button-container
+div.dashboard-button-container
 {
-width:60%;
+width:100%;
 display:flex;
-justify-content:space-between;
+justify-content:space-around;
 }
 
+.dashboard-button-container button
+{
+width:150px;
+}
+
+@media only screen and (max-width:530px)
+{
+.dashboard-button-container button
+{
+width:140px;
+}
+}
 
 @media only screen and (max-width:450px)
 {

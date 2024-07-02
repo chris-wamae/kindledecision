@@ -94,6 +94,23 @@ color:white;
 background-color:black;
 }
 
+
+@media only screen and (max-width:800px)
+{
+    .card-container
+    {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    }
+    
+    .card
+    {
+    margin-top:10px;
+    width:80%
+    }  
+}
+
 @media only screen and (max-width:450px)
 {
 
