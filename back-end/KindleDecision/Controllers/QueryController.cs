@@ -51,7 +51,7 @@ namespace KindleDecision.Controllers
         public IActionResult GetQuery(int queryId)
         {
             if (!_queryRepository.QueryExists(queryId))
-                return NotFound();
+                return NotFound($"Query with an id of {queryId} does not exist");
 
             var query = _mapper.Map<QueryDto>(_queryRepository.GetQuery(queryId));
 
@@ -80,7 +80,7 @@ namespace KindleDecision.Controllers
             );
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             return Ok(querys);
@@ -101,7 +101,7 @@ namespace KindleDecision.Controllers
 
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             return Ok(querys);
         }
@@ -125,7 +125,7 @@ namespace KindleDecision.Controllers
 
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             return Ok(new { Selections = selections, Queries = querys });
         }
@@ -138,7 +138,7 @@ namespace KindleDecision.Controllers
 
             if (query == null)
             {
-                return BadRequest("Query does not exist");
+                return NotFound($"Query with an id of {queryId} does not exist");
             }
 
             return Ok(query.TotalSelections - query.RemainingSelections == query.TotalSelections);
@@ -213,7 +213,7 @@ namespace KindleDecision.Controllers
 
             if (!_queryRepository.QueryExists(queryId))
             {
-                return NotFound();
+                return NotFound($"Query with an id of {queryId} does not exist");
             }
 
             if (queryId != updateQuery.Id)
@@ -295,7 +295,7 @@ namespace KindleDecision.Controllers
 
             if (queryCreate == null)
             {
-                return BadRequest("Query does not exist");
+                return NotFound($"Query with an id of {qD} does not exist");
             }
 
             if (queryCreate.RemainingSelections == 0)
@@ -372,7 +372,7 @@ namespace KindleDecision.Controllers
 
             if (!_queryRepository.QueryExists(queryId))
             {
-                return NotFound();
+                return NotFound($"Query with an id of {queryId} does not exist");
             }
 
             //var queryToDelete = _queryRepository.GetQuery(queryId);

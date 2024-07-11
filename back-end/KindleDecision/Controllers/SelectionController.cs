@@ -61,7 +61,7 @@ namespace KindleDecision.Controllers
         {
             if (!_selectionRepository.SelectionExists(selectionId))
             {
-                return NotFound();
+                return NotFound($"Selection with an id of {selectionId} does not exist");
             }
 
             var selection = _mapper.Map<SelectionDto>(
@@ -222,7 +222,7 @@ namespace KindleDecision.Controllers
         {
             if (!_selectionRepository.SelectionExists(selectionId))
             {
-                return NotFound();
+                return NotFound($"Selection with an id of {selectionId} does not exist");
             }
 
             var selectionRemove = _selectionRepository.GetSelection(selectionId);
