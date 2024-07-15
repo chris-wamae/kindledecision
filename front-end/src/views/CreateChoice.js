@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "../styles/CreateChoice.css"
 import DynamicList from "../components/DynamicList";
 import { useSelector, useDispatch } from "react-redux";
-import { currentQueryId } from "../features/idSlice";
 import { postChoice } from "../features/choiceSlice";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";

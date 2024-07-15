@@ -1,11 +1,9 @@
 import "../../styles/Queries.css"
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { currentUserId } from "../../features/idSlice";
 import { useSelector, useDispatch } from "react-redux";
 import {queryChangeStatus,setQueryChange} from "../../features/querySlice"
 import { useNavigate } from "react-router-dom"
-import { dummyQueries } from "./DummyQueries";
 import Cookies from "js-cookie";
 
 function Queries({ queriesType }) {
