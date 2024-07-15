@@ -37,6 +37,9 @@ function Queries({ queriesType }) {
 
 
   useEffect(() => {
+
+    console.log("fetching queries")
+
     if (queriesType == "My") {
       axios.get(`${process.env.REACT_APP_BASE_URL}query/created-querys/${Cookies.get("ud")}`, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } }).then(r => setQueries(r.data))
       //setQueries(dummyQueries())

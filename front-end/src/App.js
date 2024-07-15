@@ -3,7 +3,6 @@ import Landingpage from './views/Landingpage';
 import Featurespage from './views/Featurespage';
 import Signup from './views/Signup';
 import Login from './views/Login';
-import AccountManagement from './views/AccountManagement';
 import CreateQuery from './views/CreateQuery';
 import NewQuery from './views/NewQuery';
 import CreateChoice from './views/CreateChoice';
