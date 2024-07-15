@@ -2,7 +2,17 @@
 {
     text-align: center;
     color:var(--black);
+    font-size:30px;
+    margin-top:20px;
+    margin-bottom:20px;
 }
+
+.dynamic-list-container
+{
+display:flex;
+justify-content:center;
+}
+
 
 .create-choice-form
 {
@@ -53,6 +63,13 @@ background-color:var(--white);
 font-weight:bold;
 }
 
+
+.done-button-container
+{
+display:flex;
+justify-content:center;
+}
+
 .done-button
 {
 color:var(--white);
@@ -85,10 +102,16 @@ opacity:0.8;
 @media only screen and (max-width:450px)
 {
 
+.page-title
+{
+margin-top:20px;
+}
+
 .create-choice-form
 {
 width:90%;
 border-radius:10PX;
+margin-top:20px;
 }
 
 .create-choice-form input
@@ -97,6 +120,12 @@ min-width:0px;
 width:80%;
 height:40px;
 font-size:16px;
+}
+
+textarea
+{
+min-width:0px;
+width:80%;
 }
 }
 

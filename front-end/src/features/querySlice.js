@@ -18,6 +18,8 @@ return response.data
 
 export const getQuery = createAsyncThunk("query/getQuery", async(queryId) => {
 
+console.log("fetching query")
+
 const response = await axios.get(`${process.env.REACT_APP_BASE_URL}query/${queryId}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
 
 return response.data

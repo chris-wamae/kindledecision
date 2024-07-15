@@ -12,6 +12,8 @@ export const postUserQuery = createAsyncThunk("userQueries/postUserQuery", async
 
 export const getQueryParticipants = createAsyncThunk("userQueries/getQueryParticipants", async(queryId) => {
 
+console.log("fetching particiants")
+
 const response = await axios.get(`${process.env.REACT_APP_BASE_URL}user/get-query-participants/${queryId}`,{headers:{Authorization:`Bearer ${Cookies.get("at")}`}})
 
 return response.data
