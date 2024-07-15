@@ -476,16 +476,21 @@ namespace KindleDecision.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!_userRepository.DeleteUser(internalUser))
-            {
-                _queryRepository.DeleteUsersCreatedQueries(internalUser.Id);
-
-                return StatusCode(500, "Something went wrong while deleting the internal user");
-            }
-
             if (!_queryRepository.DeleteUsersCreatedQueries(internalUser.Id))
             {
-                return StatusCode(500, "Something went wrong while deleting the users queries");
+                _logger.LogError("Asp Net User was deleted successfully but an error occurred deleting the Users Queries");
+            };
+
+            if (!_userQueryRepository.DeleteUserQueriesByUser(internalUser.Id))
+            {
+                _logger.LogError("Asp Net User was deleted successfully but an error occurred deleting the Users UserQueries");
+            };
+
+            if (!_userRepository.DeleteUser(internalUser))
+            {
+                _logger.LogError("Asp Net User was deleted successfully but an error occurred deleting the internal User");
+
+                return StatusCode(500, "Something went wrong while deleting the internal user");
             }
 
             return NoContent();

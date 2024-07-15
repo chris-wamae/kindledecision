@@ -49,7 +49,7 @@ namespace KindleDecision.Controllers
 
             if (!_choiceRepository.ChoiceExists(choiceId))
             {
-                return NotFound();
+                return NotFound($"Choice with an id of {choiceId} does not exist");
             }
 
             var choice = _mapper.Map<ChoiceDto>(_choiceRepository.GetChoice(choiceId));
@@ -72,7 +72,7 @@ namespace KindleDecision.Controllers
 
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             if (choices == null)
             {
@@ -148,7 +148,7 @@ namespace KindleDecision.Controllers
             }
 
             if (!_choiceRepository.ChoiceExists(choiceId))
-                return NotFound();
+                return NotFound($"Choice with an id of {choiceId} does not exist");
 
             if(choiceId != updateChoice.Id)
                 return BadRequest(ModelState);
@@ -174,7 +174,7 @@ namespace KindleDecision.Controllers
         public IActionResult DeleteChoice(int choiceId) 
         {
             if(!_choiceRepository.ChoiceExists(choiceId))
-                return NotFound();
+                return NotFound($"Choice with an id of {choiceId} does not exist");
 
             //var choiceToDelete = _choiceRepository.GetChoice(choiceId);
 
