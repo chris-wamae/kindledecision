@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux"
 import { useState } from "react"
 import DynamicList from "../components/DynamicList";
 import { postUserQuery } from "../features/userQueriesSlice";
-import { currentQueryId } from "../features/idSlice";
 import { useSelector } from "react-redux";
 import { validateEmail } from "../Helper/Form";
 import { authToolTipRenderer } from "../Helper/Form";

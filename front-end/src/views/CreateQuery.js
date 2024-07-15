@@ -8,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { resetForm } from "../Helper/Form";
 import { getTime } from "../Helper/Time";
 import { queryState } from "../features/querySlice";
-import { changeQueryId } from "../features/idSlice";
-import { currentUserId } from "../features/idSlice";
 import { loginState } from "../features/loginSlice";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
