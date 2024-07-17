@@ -7,7 +7,6 @@ import axios from "axios";
 import { validateEmail } from "../Helper/Form";
 import { useEffect } from "react";
 import { authToolTipRenderer } from "../Helper/Form";
-import { changeUserId } from "../features/idSlice";
 import { useSelector } from "react-redux";
 import { loginPost, loginState, loginStatus } from "../features/loginSlice";
 import { signUpState, signupPost, signUpStatus } from "../features/signupSlice";
@@ -89,7 +88,7 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     useEffect(() => {
         if (loggedUser != undefined) {
             if (emailState && loggedUser.ud != null) {
-                dispatch(changeUserId(loggedUser.ud))
+                // dispatch(changeUserId(loggedUser.ud))
                 Cookies.set("ud", loggedUser.ud, { expires: new Date(loggedUser.refreshTokenExpiry) })
                 Cookies.set("at", loggedUser.token, { expires: new Date(loggedUser.refreshTokenExpiry) })
                 Cookies.set("rt", loggedUser.refreshToken, { expires: new Date(loggedUser.refreshTokenExpiry) });

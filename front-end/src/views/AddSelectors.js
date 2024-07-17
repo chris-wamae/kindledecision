@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux"
 import { useState } from "react"
 import DynamicList from "../components/DynamicList";
 import { postUserQuery } from "../features/userQueriesSlice";
-import { currentQueryId } from "../features/idSlice";
 import { useSelector } from "react-redux";
 import { validateEmail } from "../Helper/Form";
 import { authToolTipRenderer } from "../Helper/Form";
@@ -20,9 +19,9 @@ import Cookies from "js-cookie";
 //move email validation to form Helper since it will no longer be using fetch
 
 
-
 function AddSelectors() {
 
+  const [loggedUserEmail,setLoggedUserEmail] = useState("")
   const navigate = useNavigate()
   const navItems = ["About"]
   const stateQueryId = useSelector(queryState)
@@ -36,6 +35,8 @@ function AddSelectors() {
   const [showAdd, setShowAdd] = useState("none");
   const [usersArray, setUsersArray] = useState([])
   const [searchParams, setSearchParams] = useSearchParams()
+  const [includeUser,setIncludeUser] = useState(false)
+
   useEffect(() => {
     if(!loggedStatus())
       {
@@ -43,6 +44,22 @@ function AddSelectors() {
       }
     else if (refreshAuth() === false) { navigate("/login") };
   }, [])
+
+  useEffect(() => {
+    if(loggedUserEmail == "")
+    {
+      axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${Cookies.get("ud")}`, {headers: {Authorization: `Bearer ${Cookies.get("at")}`}}).then(r => setLoggedUserEmail(r.data.email))
+    }
+    
+    //console.log(loggedUserEmail)
+
+    if(includeUser)
+      {
+      setQuerySelectors([...querySelectors,loggedUserEmail])
+      setUsersArray([...usersArray,loggedUserEmail])
+      }
+    
+    },[loggedUserEmail,includeUser])
 
   useEffect(() => {
 
@@ -86,6 +103,12 @@ function AddSelectors() {
   }, [foundUser])
 
   const removeOption = (i) => {
+
+    if(usersArray[i] == loggedUserEmail)
+    {
+    setIncludeUser(false)
+    }
+
     let newSelectors = usersArray.filter((o, x) => x !== i)
     setUsersArray(newSelectors);
   }
@@ -104,8 +127,7 @@ function AddSelectors() {
   const emailSearch = () => {
     axios.post(`${process.env.REACT_APP_BASE_URL}user/user-exists`, { "email": selectorEmail }, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } }).then(r => setFoundUser(r.data))
   }
-
-
+  
   const buttonDisable = (array) => array.length > 1 ? false : true
 
   return (
@@ -121,8 +143,9 @@ function AddSelectors() {
           killua@gmail.com
         </p> */}
         <div className="page-title">Add query participants</div>
-        <p className="disclaimer">* You need to add your own email if you wish to participate in the query</p>
+        
         <form className="selector-form">
+        
 
           <label htmlFor="voter-input" className="voter-label">Voter:</label>
           {authToolTipRenderer(emailState)}
@@ -142,6 +165,11 @@ function AddSelectors() {
           }
           }>Add</button>
         </form>
+
+        <div className="add-self-container">
+        <label className="add-self-text">Add me as a participant in the query:</label>
+        <input className="add-self-checkbox" type="checkbox" checked={includeUser} onChange={() => {setIncludeUser(true)}}></input>
+        </div>
 
         <button disabled={buttonDisable(usersArray)} className="done-button" onClick={(e) => {
           e.preventDefault();

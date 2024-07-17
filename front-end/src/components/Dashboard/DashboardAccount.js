@@ -40,11 +40,8 @@ const DashboardAccount = () => {
     const [password,setPassword] = useState("")
     
     useEffect(() => {
-    if(loggedUser.token == "")
-      {
-      axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${Cookies.get("ud")}`, {headers: {Authorization: `Bearer ${Cookies.get("at")}`}}).then(r => setUserDetails(r.data))
-      }
-    else
+
+    if(userDetails.email == undefined)
     {
       axios.get(`${process.env.REACT_APP_BASE_URL}user/dashboard-details/${Cookies.get("ud")}`, {headers: {Authorization: `Bearer ${Cookies.get("at")}`}}).then(r => setUserDetails(r.data))
     }

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "../styles/CreateChoice.css"
 import DynamicList from "../components/DynamicList";
 import { useSelector, useDispatch } from "react-redux";
-import { currentQueryId } from "../features/idSlice";
 import { postChoice } from "../features/choiceSlice";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -80,10 +79,16 @@ function CreateChoice() {
           }>Add</button>
         </form>
 
+        <div className="done-button-container">
         <button disabled={buttonDisable(queryChoices)} className="done-button" onMouseOver={e => e.target.textContent = "Done"} onMouseLeave={e => e.target.textContent = ">"} onClick={() => choiceDispatcher()}>&gt;</button>
+        </div>
+
+        <div className="dynamic-list-container">
         <div className="dynamic-list">
           <DynamicList listTitle={"Added choices"} itemsArray={queryChoices} removeOption={removeOption} />
         </div>
+        </div>
+  
 
 
       </div>

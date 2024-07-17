@@ -116,7 +116,13 @@ namespace KindleDecision.Controllers
                 return BadRequest("User not Found");
             }
 
+            var previousEmail = internalUser.Email;
+
+            
+
             var user = await _userManager.FindByEmailAsync(internalUser.Email);
+
+            
 
             if (user == null)
             {
@@ -137,6 +143,15 @@ namespace KindleDecision.Controllers
                 return StatusCode(500, "An error occured generating email change token");
             }
 
+            internalUser.Email = updateUser.Email;
+
+            if (!_userRepository.UpdateUser(internalUser.Id, internalUser))
+            {
+                return StatusCode(500, "There was a problem updating the internal user");
+            }
+
+            user.UserName = updateUser.Email;
+
             var result = await _userManager.ChangeEmailAsync(
                 user,
                 updateUser.Email,
@@ -145,21 +160,17 @@ namespace KindleDecision.Controllers
 
             if (!result.Succeeded)
             {
+                internalUser.Email = previousEmail;
+
+                _userRepository.UpdateUser(internalUser.Id, internalUser);
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(error.Code, error.Description);
                 }
 
                 return BadRequest(ModelState);
-            }
-
-            user.UserName = updateUser.Email;
-            internalUser.Email = updateUser.Email;
-
-            if (!_userRepository.UpdateUser(internalUser.Id, internalUser))
-            {
-                return StatusCode(500, "There was a problem updating the internal user");
-            }
+            }            
 
             return Accepted();
         }
@@ -216,7 +227,7 @@ namespace KindleDecision.Controllers
 
                 if (!_userRepository.UpdateUser(internalUser.Id, internalUser))
                 {
-                    ModelState.AddModelError("", "Refresh token error");
+                    ModelState.AddModelError("", "Error adding refresh token to the internal User");
                     return StatusCode(500, ModelState);
                 }
                 ;
@@ -305,7 +316,7 @@ namespace KindleDecision.Controllers
             internalUser.RefreshToken = newRefreshToken;
             if (!_userRepository.UpdateUser(internalUser.Id, internalUser))
             {
-                return BadRequest("There was an error adding the refresh token to the user");
+                return BadRequest("There was an error adding the refresh token to the internal User");
             }
 
             return Ok(
@@ -335,7 +346,7 @@ namespace KindleDecision.Controllers
 
             if (!_userRepository.UpdateUser(user.Id, user))
             {
-                return BadRequest("Something went wrong when banning the user");
+                return BadRequest("Something went wrong updating the user refresh token");
             }
 
             return Ok();
@@ -390,6 +401,11 @@ namespace KindleDecision.Controllers
 
             var aspUser = await _userManager.FindByEmailAsync(userDto.Email);
 
+            if (aspUser == null)
+            {
+                return BadRequest("Asp user could not be found");
+            }
+
             var internalUser = _userRepository.GetUserByEmail(userDto.Email);
 
             if (internalUser == null)
@@ -409,18 +425,21 @@ namespace KindleDecision.Controllers
                 return BadRequest(ModelState);
             }
 
+            if(!_queryRepository.DeleteUsersCreatedQueries(internalUser.Id))
+            {
+                _logger.LogError("Asp Net User was deleted successfully but an error occurred deleting the Users Queries");
+            };
+
+            if(!_userQueryRepository.DeleteUserQueriesByUser(internalUser.Id))
+            {
+                _logger.LogError("Asp Net User was deleted successfully but an error occurred deleting the Users UserQueries");
+            };
+
             if (!_userRepository.DeleteUser(internalUser))
             {
-                _queryRepository.DeleteUsersCreatedQueries(internalUser.Id);
-
-                _userQueryRepository.DeleteUserQueriesByUser(internalUser.Id);
+                _logger.LogError("Asp Net User was deleted successfully but an error occurred deleting the internal User");
 
                 return StatusCode(500, "Something went wrong while deleting the internal user");
-            }
-
-            if (!_queryRepository.DeleteUsersCreatedQueries(internalUser.Id))
-            {
-                return StatusCode(500, "Something went wrong while deleting the users queries");
             }
 
             return NoContent();
@@ -457,16 +476,21 @@ namespace KindleDecision.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!_userRepository.DeleteUser(internalUser))
-            {
-                _queryRepository.DeleteUsersCreatedQueries(internalUser.Id);
-
-                return StatusCode(500, "Something went wrong while deleting the internal user");
-            }
-
             if (!_queryRepository.DeleteUsersCreatedQueries(internalUser.Id))
             {
-                return StatusCode(500, "Something went wrong while deleting the users queries");
+                _logger.LogError("Asp Net User was deleted successfully but an error occurred deleting the Users Queries");
+            };
+
+            if (!_userQueryRepository.DeleteUserQueriesByUser(internalUser.Id))
+            {
+                _logger.LogError("Asp Net User was deleted successfully but an error occurred deleting the Users UserQueries");
+            };
+
+            if (!_userRepository.DeleteUser(internalUser))
+            {
+                _logger.LogError("Asp Net User was deleted successfully but an error occurred deleting the internal User");
+
+                return StatusCode(500, "Something went wrong while deleting the internal user");
             }
 
             return NoContent();

@@ -8,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { resetForm } from "../Helper/Form";
 import { getTime } from "../Helper/Time";
 import { queryState } from "../features/querySlice";
-import { changeQueryId } from "../features/idSlice";
-import { currentUserId } from "../features/idSlice";
 import { loginState } from "../features/loginSlice";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
@@ -30,6 +28,7 @@ function CreateQuery() {
   const [description,setDescription] = useState("")
   const [allowRedirect, setAllowRedirect] = useState(false)
   const [showStartDateInput, setShowStartDateInput] = useState("display-none start-date-input")
+ 
   const loggedUser = useSelector(loginState)
   const query = useSelector(queryState)
 
@@ -40,6 +39,10 @@ function CreateQuery() {
     else if (refreshAuth() === false) { navigate("/login") }
 
   }, [])
+
+
+
+
 
   const canSave = () => {
 
