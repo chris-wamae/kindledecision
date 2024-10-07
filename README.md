@@ -1,2 +1,2 @@
-# casta-vote
-An application that allows users to hold simple elections amongst themselves or for candidates, either anonymously or openly.
+# Kindledecision
+An application that allows users to create queries with choices and invite other users to participate in them. Developed using ReactJs (front-end) and .NET (back-end)
