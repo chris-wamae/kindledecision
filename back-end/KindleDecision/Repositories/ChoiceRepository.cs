@@ -2,6 +2,10 @@
 using KindleDecision.Data;
 using KindleDecision.Models;
 using System.Web.Mvc;
+<<<<<<< HEAD
+=======
+using Microsoft.EntityFrameworkCore;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
 namespace KindleDecision.Repositories
 {
@@ -35,11 +39,39 @@ namespace KindleDecision.Repositories
             return _dataContext.Choices.OrderBy(c => c.Id).ToList();
         }
 
+<<<<<<< HEAD
         public ICollection<Choice> GetChoicesByQuery(int queryId)
         {
            return _dataContext.Choices.Where(c => c.Query.Id == queryId).ToList();
         }
 
+=======
+        public ICollection<ChoiceWithSelectionCount> GetChoicesByQuery(int queryId)
+        {
+           var choices =  _dataContext.Choices.Where(c => c.Query.Id == queryId).ToList();
+
+           var choiceWithSelections = new List<ChoiceWithSelectionCount>();
+
+            foreach (var choice in choices) 
+            {  
+                var count = _dataContext.Selections.Where(s => s.Choice.Id == choice.Id).Count(); 
+
+                var newCWSC = new ChoiceWithSelectionCount()
+                {
+                    Id = choice.Id,
+                    Title = choice.Title,
+                    Description = choice.Description,
+                    SelectionCount = count,
+                };
+                
+                choiceWithSelections.Add(newCWSC);
+            }
+
+            return choiceWithSelections;
+        }
+
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         public ICollection<Choice> GetChoicesByUserSelection(int userId)
         {
               List<Selection> selections = _dataContext.Selections.Where(s => s.SelectorUserId == userId).ToList();
@@ -80,9 +112,18 @@ namespace KindleDecision.Repositories
             return Save();
         }
 
+<<<<<<< HEAD
         public bool DeleteChoice(Choice choice)
         {
             _dataContext.Remove(choice);
+=======
+        public bool DeleteChoice(int choiceId)
+        {
+            var choiceToDelete = _dataContext.Choices.Where(c => c.Id == choiceId).Include(c => c.Selections).FirstOrDefault(); 
+
+            _dataContext.Remove(choiceToDelete);
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             return Save();
         }
     }

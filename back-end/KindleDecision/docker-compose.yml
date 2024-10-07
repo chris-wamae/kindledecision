@@ -1,0 +1,32 @@
+services:
+  api:
+    container_name: kd-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    environment: 
+      - KEY=${KEY}
+    ports: 
+      - "5000:80"
+    depends_on:
+      - migrations
+
+  migrations:
+    container_name: kd-migrations
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: migrations
+    depends_on: 
+        - db
+
+  db:
+    container_name: kd-api-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+       - MSSQL_PID=Express
+       - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
+       - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"

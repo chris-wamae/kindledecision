@@ -22,6 +22,96 @@ namespace KindleDecision.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+<<<<<<< HEAD
+=======
+            modelBuilder.Entity("KindleDecision.Models.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "02174cf0–9412–4cfe - afbf - 59f706d72xd6",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8d03db51-c1d1-4b17-9a2e-de72c20ac934",
+                            Email = "chriswamae123@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "CHRISWAMAE123@GMAIL.COM",
+                            NormalizedUserName = "CHRISWAMAE123@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAECcUonVdfPT+9udNRAhd1Fdfgn0qlLjaifQuQbLd5LmTlwELCUxf35pR46PZaaeiCQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "44f2a245-7679-4575-adfb-9a2958819923",
+                            TwoFactorEnabled = false,
+                            UserId = 1,
+                            UserName = "chriswamae123@gmail.com"
+                        });
+                });
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             modelBuilder.Entity("KindleDecision.Models.Choice", b =>
                 {
                     b.Property<int>("Id")
@@ -30,6 +120,13 @@ namespace KindleDecision.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+<<<<<<< HEAD
+=======
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                     b.Property<int>("QueryId")
                         .HasColumnType("int");
 
@@ -58,12 +155,25 @@ namespace KindleDecision.Migrations
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
 
+<<<<<<< HEAD
+=======
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("RemainingSelections")
                         .HasColumnType("int");
 
+<<<<<<< HEAD
+=======
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -87,13 +197,31 @@ namespace KindleDecision.Migrations
                     b.Property<int>("ChoiceId")
                         .HasColumnType("int");
 
+<<<<<<< HEAD
                     b.Property<int>("SelectorUserId")
                         .HasColumnType("int");
 
+=======
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SelectorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserSelectedInQueryId")
+                        .HasColumnType("int");
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                     b.HasKey("Id");
 
                     b.HasIndex("ChoiceId");
 
+<<<<<<< HEAD
+=======
+                    b.HasIndex("UserSelectedInQueryId");
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                     b.ToTable("Selections");
                 });
 
@@ -113,6 +241,7 @@ namespace KindleDecision.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+<<<<<<< HEAD
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -124,6 +253,20 @@ namespace KindleDecision.Migrations
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+=======
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RefreshTokenExpiryTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("UserVisibility")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Viewmode")
+                        .HasColumnType("bit");
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
                     b.HasKey("Id");
 
@@ -164,6 +307,179 @@ namespace KindleDecision.Migrations
                     b.ToTable("UserSelectedInQuerys");
                 });
 
+<<<<<<< HEAD
+=======
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "341743f0 - asd2–42de - afbf - 59kmuixk72cf6",
+                            ConcurrencyStamp = "341743f0 - asd2–42de - afbf - 59kmuixk72cf6",
+                            Name = "SuperAdmin",
+                            NormalizedName = "SUPERADMIN"
+                        },
+                        new
+                        {
+                            Id = "341743f0 - asd2–42de - afbf - 59kCwmmk72cf6",
+                            ConcurrencyStamp = "341743f0 - asd2–42de - afbf - 59kCwmmk72cf6",
+                            Name = "Admininistrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "6f52df7f-ee1c-40d9-8a06-6ec79479c747",
+                            ConcurrencyStamp = "70dcf28e-f281-4c08-b959-4a14c233e0f9",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "69d4d27f-59e6-489b-ae8f-466ecf7e9324",
+                            ConcurrencyStamp = "5332a7aa-285d-4f8d-bb92-3a565cb547a4",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTATOR"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "02174cf0–9412–4cfe - afbf - 59f706d72xd6",
+                            RoleId = "341743f0 - asd2–42de - afbf - 59kmuixk72cf6"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             modelBuilder.Entity("KindleDecision.Models.Choice", b =>
                 {
                     b.HasOne("KindleDecision.Models.Query", "Query")
@@ -183,7 +499,19 @@ namespace KindleDecision.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+<<<<<<< HEAD
                     b.Navigation("Choice");
+=======
+                    b.HasOne("KindleDecision.Models.UserSelectedInQuery", "UserSelectedInQuery")
+                        .WithMany()
+                        .HasForeignKey("UserSelectedInQueryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Choice");
+
+                    b.Navigation("UserSelectedInQuery");
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                 });
 
             modelBuilder.Entity("KindleDecision.Models.UserQuery", b =>
@@ -205,6 +533,60 @@ namespace KindleDecision.Migrations
                     b.Navigation("User");
                 });
 
+<<<<<<< HEAD
+=======
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("KindleDecision.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("KindleDecision.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KindleDecision.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("KindleDecision.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             modelBuilder.Entity("KindleDecision.Models.Choice", b =>
                 {
                     b.Navigation("Selections");

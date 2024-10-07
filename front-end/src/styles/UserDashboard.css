@@ -1,0 +1,79 @@
+main {
+    display: flex;
+    justify-content: space-around;
+}
+
+.page-content {
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    width: 120%;
+}
+
+
+
+.side-menu {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    height: 300px;
+    margin-left: 20px;
+    border-radius: 10px;
+}
+
+.side-menu>img {
+    margin-bottom: 20px;
+}
+
+.user-svg {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: 20px;
+    left: -4px;
+}
+
+.combined-svg {
+    width: 35px;
+    margin-left: 25%;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+
+@media only screen and (max-width:450px) {
+
+main 
+{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.side-menu
+{   display:flex;
+    flex-direction: row;
+    height:40px;
+    justify-content: space-around;
+    padding-top:15px;
+    width:350px;
+    margin-top:10%;
+}
+
+.combined-svg
+{
+margin-left:0px;
+margin-bottom:35px;
+}
+
+.page-content
+{
+margin-right:0px;
+width:100%;
+}
+
+}

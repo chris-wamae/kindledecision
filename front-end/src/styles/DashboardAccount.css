@@ -1,0 +1,139 @@
+.page-header
+{
+font-size:36px;
+text-decoration:none;
+}
+
+.card-container
+{
+display:flex;
+justify-content:space-around;
+}
+
+.header
+{
+font-size:24px;
+text-decoration:none;
+color:black;
+margin-bottom:10px;
+}
+
+.info-n-sub-header > div
+{
+margin-bottom:20px;
+}
+
+
+
+.sub-header
+{
+font-size:18px;
+text-decoration:underline;
+}
+
+.card
+{
+background-color:white;
+width:40%;
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+padding:20px;
+border-radius:20px;
+}
+
+.edit-form
+{
+width:80%;
+padding:10px;
+border:1px solid black;
+border-radius:10px;
+display:flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
+margin:auto;
+
+}
+
+.edit-form input
+{
+width:200px;
+text-align:center;
+height:20px;
+border-radius:5px;
+border:1px solid black;
+}
+
+
+.edit-form p
+{
+font-size:10px;
+margin-top:10px;
+margin-bottom:5px;
+}
+
+.edit-form button
+{
+width:100px;
+height:20px;
+font-size:14px;
+padding:0px;
+margin:0px;
+background-color:var(--utOrange);
+margin-top:10px;
+font-weight:bold;
+border:none;
+border-radius:5px;
+}
+
+.edit-form button:hover
+{
+color:white;
+background-color:black;
+}
+
+
+@media only screen and (max-width:800px)
+{
+    .card-container
+    {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    }
+    
+    .card
+    {
+    margin-top:10px;
+    width:80%
+    }  
+}
+
+@media only screen and (max-width:450px)
+{
+
+.card-container
+{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.card
+{
+margin-top:10px;
+width:80%
+}
+
+div.page-header
+{
+font-size:28px;
+}
+
+div.card .header
+{
+font-size:24px;
+}
+} 

@@ -1,6 +1,10 @@
 ﻿using KindleDecision.Data;
 using KindleDecision.Interfaces;
 using KindleDecision.Models;
+<<<<<<< HEAD
+=======
+using Microsoft.EntityFrameworkCore;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
 namespace KindleDecision.Repositories
 {
@@ -56,19 +60,63 @@ namespace KindleDecision.Repositories
             return Save();
         }
 
+<<<<<<< HEAD
+=======
+        public bool AddParticipant(User user, Query query)
+        {
+            var userQuery = new UserQuery()
+            {
+                User = user,
+                Query = query
+            };
+            _dataContext.Add(userQuery);
+            return Save();
+        }
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         public bool UpdateQuery(Query query)
         {
             _dataContext.Update(query);
             return Save();
         }
 
+<<<<<<< HEAD
         public bool DeleteQuery(Query query) 
         {
             _dataContext.Remove(query);
+=======
+        public bool DeleteQuery(int queryId) 
+        {
+            var queryToDelete = _dataContext.Querys.Where(q => q.Id == queryId).Include(q => q.Choices).FirstOrDefault();
+
+            _dataContext.Remove(queryToDelete);
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             return Save();
         }
 
 
+<<<<<<< HEAD
+=======
+        public bool DeleteUsersCreatedQueries(int internalUserId)
+        {
+            var queriesToDelete = _dataContext.Querys.Where(q => q.CreatorUserId == internalUserId).ToList();
+
+            if(queriesToDelete.Count == 0)
+            {
+                return true;
+            }
+            else
+            {
+               _dataContext.RemoveRange(queriesToDelete);
+
+               return Save();
+            }
+           
+        }
+
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
     }
 }

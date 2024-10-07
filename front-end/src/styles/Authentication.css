@@ -16,12 +16,21 @@ margin-top:20px;
 font-size:25px;
 width:200px;
 border:0px;
+<<<<<<< HEAD
 border-bottom:5px solid var(--carrotOrange);
 color:var(--carrotOrange);
+=======
+border-bottom:5px solid black;
+color:black;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 margin-right:2px;
 margin-left:2px;
 font-weight:bold;
 padding:5px;
+<<<<<<< HEAD
+=======
+background-color:white;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .form-change-inactive
@@ -29,24 +38,44 @@ padding:5px;
 font-size:25px;
 width:200px;
 border:0px;
+<<<<<<< HEAD
 border-bottom:5px solid lightslategray;
 color:lightslategray;
+=======
+border-bottom:5px solid gray;
+color:gray;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 margin-right:2px;
 font-weight: bold;
 margin-left:2px;  
 padding:5px;
+<<<<<<< HEAD
+=======
+background-color:white;
+opacity:85%;
+}
+
+.form-change-inactive:hover
+{
+opacity:100%;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .auth-title
 {
 text-align:center;
 font-size:30px;
+<<<<<<< HEAD
 color:var(--chefchaouenBlue);
+=======
+color:black;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 margin-top:20px;
 margin-bottom:20px;
 }
 
 
+<<<<<<< HEAD
 form
 {
 padding:50px;
@@ -74,20 +103,66 @@ font-size:15px;
 
 form button
 {
+=======
+.auth-form
+{
+padding:50px;
+border:2px solid black;
+border-radius:20px;
+text-align:center;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.auth-form div 
+{
+font-size:20px;
+margin-top:10px;
+margin-bottom:10px;
+}
+
+.auth-form input
+{
+text-align: center;
+height:40px;
+width:400px;
+border:0px;
+border-radius:10px;
+font-size:15px;
+margin-bottom:15px;
+}
+
+.auth-form button
+{
+width:200px;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 display:block;
 margin:auto;
 margin-top:40px;
 color:white;
+<<<<<<< HEAD
 background-color:var(--chefchaouenBlue);
+=======
+background-color:black;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 border:0px;
 font-size:22px;
 padding:5px 35px 5px 35px;
 border-radius:20px;
 }
 
+<<<<<<< HEAD
 .input-header 
 {
 color:var(--chefchaouenBlue);
+=======
+.auth-form button:hover
+{
+background-color:white;
+color:black;
+border:1px solid black;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .query-info
@@ -101,4 +176,81 @@ align-items:center;
 .query-selectioncount
 {
 display:flex;
+<<<<<<< HEAD
+=======
+}
+
+.auth-form div 
+{
+color:black;
+}
+
+.sign-up-container
+{
+display:flex;
+flex-direction:column;
+justify-content:space-around;
+align-items:center;
+min-height:300px;
+}
+
+.sign-up-container select
+{
+width:400px;
+height:40px;
+border-radius:10px;
+}
+
+@media only screen and (max-width:450px)
+{
+
+.auth-form input
+{
+width:90%;
+}
+
+.auth-form select
+{
+width:90%;
+}
+
+.auth-form
+{
+width:95%;
+padding:10px;
+}
+
+.sign-up-container select
+{
+min-width:90%;
+}
+
+.sign-up-container
+{
+width:100%;
+}
+
+.auth-container
+{
+display:flex;
+width:90%;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.form-change button
+{
+width:120px;
+height:30px;
+padding-top:0px;
+font-size:22px;
+}
+
+.auth-title
+{
+font-size:26px;
+}
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }

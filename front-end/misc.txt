@@ -1,0 +1,17 @@
+  const dummyMyQueries = [
+    { id: 1, title: "Where to go for road trip", selectionsCast: 3, totalSelections: 10 },
+    { id: 2, title: "What should we build in the Diani land", selectionsCast: 9, totalSelections: 10 },
+    { id: 3, title: "What birthday gift should we get for grandma",selectionsCast: 5, totalSelections: 8 },
+    { id: 4, title: "In whose house should we hold the next family meeting", selectionsCast: 3, totalSelections: 3 }
+  ];
+
+  const dummyAllQueries = [
+    { id: 1, title: "Best Valorant maps for LAN tourney", selectionsCast: 0, totalSelections: 10 },
+    { id: 2, title: "Should I get the AMG GT 45s or an AMG E63s", selectionsCast: 7, totalSelections: 8 },
+    { id: 3, title: "Should Jenny leave her job : )", selectionsCast: 3, totalSelections: 6 },
+    { id: 4, title: "Restaurant for besties lunch?", selectionsCast: 4, totalSelections: 6 },
+    { id: 5, title: "Where to go for road trip", selectionsCast: 0, totalSelections: 9 },
+    { id: 6, title: "What should we build in the Diani land", selectionsCast: 3, totalSelections: 3 },
+    { id: 7, title: "What birthday gift should we get for grandma", selectionsCast: 6, totalSelections: 8 },
+    { id: 8, title: "In whose house should we hold the next family meeting", selectionsCast: 4, totalSelections: 7 }
+  ];

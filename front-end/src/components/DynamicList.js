@@ -7,7 +7,11 @@ function DynamicList({listTitle, itemsArray, removeOption}){
 
 return (
 //pv:item-info
+<<<<<<< HEAD
  <div className="page-container">
+=======
+ <div className="dynamic-list-container">
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
           {
             <>
               {

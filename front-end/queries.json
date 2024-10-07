@@ -1,8 +1,611 @@
 {
   "queries": [
+<<<<<<< HEAD
   ],
   "Choices": [],
   "Selections": [],
+=======
+    {
+      "id": "5fee",
+      "title": "Where?",
+      "creationTime": "Fri Mar 01 2024 at 5:02:00 PM",
+      "startDate": null,
+      "expiryDate": "2024-03-22",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "00ea",
+      "title": "Where to go?",
+      "creationTime": "Thu Mar 07 2024 at 10:57:20 AM",
+      "startDate": "2024-03-28",
+      "expiryDate": "2024-03-30",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "4469",
+      "title": "Where to buy shoes?",
+      "creationTime": "Thu Mar 07 2024 at 11:02:20 AM",
+      "startDate": "2024-04-01",
+      "expiryDate": "2024-04-04",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "198a",
+      "title": "When will it rain?",
+      "creationTime": "Thu Mar 07 2024 at 11:17:01 AM",
+      "startDate": null,
+      "expiryDate": "2024-03-21",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "feba",
+      "title": "Where to go for Christmas?",
+      "creationTime": "Mon Mar 11 2024 at 2:29:02 PM",
+      "startDate": null,
+      "expiryDate": "2024-03-20",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "1126",
+      "title": "Where to go for Christmas?",
+      "creationTime": "Tue Mar 26 2024 at 12:19:11 PM",
+      "startDate": null,
+      "expiryDate": "2024-03-29",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "1065",
+      "title": "Where to go for Easter Holidays?",
+      "creationTime": "Thu Apr 04 2024 at 3:33:48 PM",
+      "startDate": "2024-05-01",
+      "expiryDate": "2024-05-10",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "260c",
+      "title": "Who let me?",
+      "creationTime": "Mon Apr 08 2024 at 11:05:16 AM",
+      "startDate": "2024-05-11",
+      "expiryDate": "2024-05-24",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "1e84",
+      "title": "Mango passion?",
+      "creationTime": "Mon Apr 08 2024 at 12:39:04 PM",
+      "startDate": "2024-06-06",
+      "expiryDate": "2024-07-18",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "fff1",
+      "title": "Writing gig?",
+      "creationTime": "Mon Apr 08 2024 at 12:43:55 PM",
+      "startDate": null,
+      "expiryDate": "2024-04-10",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "1"
+    },
+    {
+      "id": "e935",
+      "title": "Who am I?",
+      "creationTime": "Wed Apr 10 2024 at 6:15:10 AM",
+      "startDate": null,
+      "expiryDate": "2024-04-23",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "1"
+    },
+    {
+      "id": "e08c",
+      "title": "Who am I?",
+      "creationTime": "Fri Apr 12 2024 at 11:53:12 AM",
+      "startDate": null,
+      "expiryDate": "2024-05-03",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "d861",
+      "title": "Hello World",
+      "creationTime": "Mon Apr 22 2024 at 12:07:06 PM",
+      "startDate": null,
+      "expiryDate": "2024-05-01",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "fb8b",
+      "title": "How many?",
+      "creationTime": "Mon Apr 22 2024 at 4:39:26 PM",
+      "startDate": null,
+      "expiryDate": "2024-04-26",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": null
+    },
+    {
+      "id": "a664",
+      "title": "Juju",
+      "creationTime": "Mon Apr 22 2024 at 5:02:24 PM",
+      "startDate": null,
+      "expiryDate": "2024-05-04",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": null
+    },
+    {
+      "id": "7980",
+      "title": "Maki maki",
+      "creationTime": "Mon Apr 22 2024 at 5:07:04 PM",
+      "startDate": null,
+      "expiryDate": "2024-05-03",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "936e",
+      "title": "Ujuzi",
+      "creationTime": "Mon Apr 22 2024 at 5:10:50 PM",
+      "startDate": null,
+      "expiryDate": "2024-05-03",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": "0"
+    },
+    {
+      "id": "e2ab",
+      "title": "Hello World",
+      "creationTime": "Fri Apr 26 2024 at 11:26:51 AM",
+      "startDate": null,
+      "expiryDate": "2024-04-30",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": null
+    },
+    {
+      "id": "95f8",
+      "title": "Where",
+      "creationTime": "Fri Apr 26 2024 at 2:53:09 PM",
+      "startDate": "2024-05-02",
+      "expiryDate": "2024-05-11",
+      "totalSelectors": null,
+      "remainingSelectors": null,
+      "creatorUserId": null
+    }
+  ],
+  "Choices": [
+    {
+      "id": "de29",
+      "title": "dadada",
+      "queryId": "5fee"
+    },
+    {
+      "id": "005e",
+      "title": "London",
+      "queryId": "00ea"
+    },
+    {
+      "id": "77b3",
+      "title": "Paris",
+      "queryId": "00ea"
+    },
+    {
+      "id": "97f4",
+      "title": "Prague",
+      "queryId": "00ea"
+    },
+    {
+      "id": "38fa",
+      "title": "London",
+      "queryId": "4469"
+    },
+    {
+      "id": "824a",
+      "title": "Prague",
+      "queryId": "4469"
+    },
+    {
+      "id": "59ed",
+      "title": "Olkaria",
+      "queryId": "4469"
+    },
+    {
+      "id": "5c90",
+      "title": "Today",
+      "queryId": "198a"
+    },
+    {
+      "id": "2978",
+      "title": "After a month",
+      "queryId": "198a"
+    },
+    {
+      "id": "9441",
+      "title": "Tommorow",
+      "queryId": "198a"
+    },
+    {
+      "id": "b767",
+      "title": "Prague",
+      "queryId": "feba"
+    },
+    {
+      "id": "ce27",
+      "title": "Prague",
+      "queryId": "feba"
+    },
+    {
+      "id": "4fd2",
+      "title": "Prague",
+      "queryId": "feba"
+    },
+    {
+      "id": "9191",
+      "title": "Prague",
+      "queryId": "1126"
+    },
+    {
+      "id": "d114",
+      "title": "Nyeri",
+      "queryId": "1065"
+    },
+    {
+      "id": "4243",
+      "title": "Nakuru",
+      "queryId": "1065"
+    },
+    {
+      "id": "de46",
+      "title": "Meru",
+      "queryId": "1065"
+    },
+    {
+      "id": "c795",
+      "title": "Kisumu",
+      "queryId": "1065"
+    },
+    {
+      "id": "94cd",
+      "title": "You",
+      "queryId": "260c"
+    },
+    {
+      "id": "3caa",
+      "title": "YouMe",
+      "queryId": "260c"
+    },
+    {
+      "id": "4063",
+      "title": "Them",
+      "queryId": "260c"
+    },
+    {
+      "id": "3403",
+      "title": "Mango",
+      "queryId": "1e84"
+    },
+    {
+      "id": "2b27",
+      "title": "Passion",
+      "queryId": "1e84"
+    },
+    {
+      "id": "06e5",
+      "title": "MangoPassion",
+      "queryId": "1e84"
+    },
+    {
+      "id": "45a6",
+      "title": "MangoPassion",
+      "queryId": "1e84"
+    },
+    {
+      "id": "74a1",
+      "title": "No",
+      "queryId": "fff1"
+    },
+    {
+      "id": "4df5",
+      "title": "Ye",
+      "queryId": "fff1"
+    },
+    {
+      "id": "2cb5",
+      "title": "Mayb",
+      "queryId": "fff1"
+    },
+    {
+      "id": "ca36",
+      "title": "You",
+      "queryId": "e935"
+    },
+    {
+      "id": "8d32",
+      "title": "Me",
+      "queryId": "e935"
+    },
+    {
+      "id": "7f0c",
+      "title": "Us",
+      "queryId": "e935"
+    },
+    {
+      "id": "ffcf",
+      "title": "You",
+      "queryId": "e08c"
+    },
+    {
+      "id": "e5ee",
+      "title": "Me",
+      "queryId": "e08c"
+    },
+    {
+      "id": "d41b",
+      "title": "Us",
+      "queryId": "e08c"
+    },
+    {
+      "id": "5d27",
+      "title": "Us",
+      "queryId": "e08c"
+    },
+    {
+      "id": "c199",
+      "title": "Heiros",
+      "queryId": "d861"
+    },
+    {
+      "id": "283c",
+      "title": "Magical",
+      "queryId": "d861"
+    },
+    {
+      "id": "60ea",
+      "title": "Sense",
+      "queryId": "d861"
+    },
+    {
+      "id": "3bb4",
+      "title": "dadada",
+      "queryId": "fb8b"
+    },
+    {
+      "id": "16c5",
+      "title": "dadada",
+      "queryId": "fb8b"
+    },
+    {
+      "id": "58bb",
+      "title": "dadada",
+      "queryId": "fb8b"
+    },
+    {
+      "id": "e3a7",
+      "title": "adedad",
+      "queryId": "a664"
+    },
+    {
+      "id": "e2dc",
+      "title": "adedaddae",
+      "queryId": "a664"
+    },
+    {
+      "id": "6877",
+      "title": "dadada",
+      "queryId": "7980"
+    },
+    {
+      "id": "a5e3",
+      "title": "dadada",
+      "queryId": "7980"
+    },
+    {
+      "id": "279b",
+      "title": "dadada",
+      "queryId": "7980"
+    },
+    {
+      "id": "10dc",
+      "title": "Prague",
+      "queryId": "936e"
+    },
+    {
+      "id": "24fd",
+      "title": "Prague",
+      "queryId": "936e"
+    },
+    {
+      "id": "ac46",
+      "title": "Prague",
+      "queryId": "936e"
+    },
+    {
+      "id": "f14f",
+      "title": "Prague",
+      "queryId": "e2ab"
+    },
+    {
+      "id": "8cf8",
+      "title": "Prague",
+      "queryId": "e2ab"
+    },
+    {
+      "id": "11b9",
+      "title": "Prague",
+      "queryId": "e2ab"
+    },
+    {
+      "id": "1bae",
+      "title": "Prague",
+      "queryId": "95f8"
+    },
+    {
+      "id": "8300",
+      "title": "Prague",
+      "queryId": "95f8"
+    },
+    {
+      "id": "da10",
+      "title": "Prague",
+      "queryId": "95f8"
+    },
+    {
+      "id": "c641",
+      "title": "Prague",
+      "queryId": "95f8"
+    }
+  ],
+  "selections": [
+    {
+      "id": "c543",
+      "choiceId": "94cd",
+      "selectorUserId": 0
+    },
+    {
+      "id": "9f97",
+      "choiceId": "3caa",
+      "selectorUserId": 0
+    },
+    {
+      "id": "999b",
+      "choiceId": "94cd",
+      "selectorUserId": 0
+    },
+    {
+      "id": "16b3",
+      "choiceId": "3caa",
+      "selectorUserId": 0
+    },
+    {
+      "id": "ab0a",
+      "choiceId": "94cd",
+      "selectorUserId": 0
+    },
+    {
+      "id": "0d9b",
+      "choiceId": "3caa",
+      "selectorUserId": 0
+    },
+    {
+      "id": "6152",
+      "choiceId": "94cd",
+      "selectorUserId": 0
+    },
+    {
+      "id": "e018",
+      "choiceId": "3caa",
+      "selectorUserId": 0
+    },
+    {
+      "id": "14c8",
+      "choiceId": "3caa",
+      "selectorUserId": 0
+    },
+    {
+      "id": "16d8",
+      "choiceId": "3403",
+      "selectorUserId": 0
+    },
+    {
+      "id": "d554",
+      "choiceId": "06e5",
+      "selectorUserId": 0
+    },
+    {
+      "id": "65ec",
+      "choiceId": "06e5",
+      "selectorUserId": 0
+    },
+    {
+      "id": "f28b",
+      "choiceId": "74a1",
+      "selectorUserId": 0
+    },
+    {
+      "id": "2c4e",
+      "choiceId": "4df5",
+      "selectorUserId": 0
+    },
+    {
+      "id": "ed8f",
+      "choiceId": "ca36",
+      "selectorUserId": 0
+    },
+    {
+      "id": "dadc",
+      "choiceId": "7f0c",
+      "selectorUserId": 0
+    },
+    {
+      "id": "576b",
+      "choiceId": "de29",
+      "selectorUserId": 0
+    },
+    {
+      "id": "0d8b",
+      "choiceId": "de29",
+      "selectorUserId": 0
+    },
+    {
+      "id": "892b",
+      "choiceId": "5c90",
+      "selectorUserId": 0
+    },
+    {
+      "id": "045b",
+      "choiceId": "e2dc",
+      "selectorUserId": 0
+    },
+    {
+      "id": "f3a0",
+      "choiceId": "e2dc",
+      "selectorUserId": 0
+    },
+    {
+      "id": "19cd",
+      "choiceId": "e2dc",
+      "selectorUserId": 0
+    },
+    {
+      "id": "11a1",
+      "choiceId": "e2dc",
+      "selectorUserId": 0
+    },
+    {
+      "id": "9c90",
+      "choiceId": "e2dc",
+      "selectorUserId": 0
+    },
+    {
+      "id": "8ca6",
+      "choiceId": "e2dc",
+      "selectorUserId": 0
+    }
+  ],
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
   "Users": [
     {
       "id": "0",
@@ -77,5 +680,252 @@
       "password": "alex"
     }
   ],
+<<<<<<< HEAD
   "UserQueries": []
+=======
+  "UserQueries": [
+    {
+      "id": "c08c",
+      "queryId": "5fee",
+      "userId": "0"
+    },
+    {
+      "id": "f3f1",
+      "queryId": "5fee",
+      "userId": "0"
+    },
+    {
+      "id": "6dd4",
+      "queryId": "5fee",
+      "userId": "0"
+    },
+    {
+      "id": "0de0",
+      "queryId": "00ea",
+      "userId": "0"
+    },
+    {
+      "id": "bf69",
+      "queryId": "00ea",
+      "userId": "1"
+    },
+    {
+      "id": "2be9",
+      "queryId": "00ea",
+      "userId": "2"
+    },
+    {
+      "id": "e8ec",
+      "queryId": "4469",
+      "userId": "2"
+    },
+    {
+      "id": "7c29",
+      "queryId": "4469",
+      "userId": "0"
+    },
+    {
+      "id": "4be9",
+      "queryId": "4469",
+      "userId": "1"
+    },
+    {
+      "id": "bdc1",
+      "queryId": "198a",
+      "userId": "0"
+    },
+    {
+      "id": "e622",
+      "queryId": "198a",
+      "userId": "2"
+    },
+    {
+      "id": "488f",
+      "queryId": "feba",
+      "userId": "0"
+    },
+    {
+      "id": "5289",
+      "queryId": "feba",
+      "userId": "0"
+    },
+    {
+      "id": "a938",
+      "queryId": "feba",
+      "userId": "0"
+    },
+    {
+      "id": "18d7",
+      "queryId": "1126",
+      "userId": "0"
+    },
+    {
+      "id": "fcd9",
+      "queryId": "1126",
+      "userId": "2"
+    },
+    {
+      "id": "511d",
+      "queryId": "1065",
+      "userId": "2"
+    },
+    {
+      "id": "89ca",
+      "queryId": "1065",
+      "userId": "0"
+    },
+    {
+      "id": "e1ae",
+      "queryId": "1065",
+      "userId": "0"
+    },
+    {
+      "id": "80fd",
+      "queryId": "1065",
+      "userId": "0"
+    },
+    {
+      "id": "ae22",
+      "queryId": "260c",
+      "userId": "0"
+    },
+    {
+      "id": "befa",
+      "queryId": "260c",
+      "userId": "1"
+    },
+    {
+      "id": "5913",
+      "queryId": "260c",
+      "userId": "2"
+    },
+    {
+      "id": "addc",
+      "queryId": "1e84",
+      "userId": "0"
+    },
+    {
+      "id": "aaa9",
+      "queryId": "1e84",
+      "userId": "2"
+    },
+    {
+      "id": "4ede",
+      "queryId": "1e84",
+      "userId": "1"
+    },
+    {
+      "id": "9350",
+      "queryId": "fff1",
+      "userId": "0"
+    },
+    {
+      "id": "5dfc",
+      "queryId": "fff1",
+      "userId": "2"
+    },
+    {
+      "id": "1c9a",
+      "queryId": "fff1",
+      "userId": "1"
+    },
+    {
+      "id": "682a",
+      "queryId": "e935",
+      "userId": "0"
+    },
+    {
+      "id": "45cd",
+      "queryId": "e935",
+      "userId": "2"
+    },
+    {
+      "id": "89c2",
+      "queryId": "e08c",
+      "userId": "0"
+    },
+    {
+      "id": "b0e1",
+      "queryId": "e08c",
+      "userId": "0"
+    },
+    {
+      "id": "5181",
+      "queryId": "e08c",
+      "userId": "0"
+    },
+    {
+      "id": "8082",
+      "queryId": "e08c",
+      "userId": "1"
+    },
+    {
+      "id": "2f91",
+      "userId": "0"
+    },
+    {
+      "id": "39e7",
+      "userId": "0"
+    },
+    {
+      "id": "7cef",
+      "userId": "0"
+    },
+    {
+      "id": "f34b",
+      "userId": "0"
+    },
+    {
+      "id": "8190",
+      "userId": "2"
+    },
+    {
+      "id": "c872",
+      "queryId": "7980",
+      "userId": "1"
+    },
+    {
+      "id": "b192",
+      "queryId": "7980",
+      "userId": "0"
+    },
+    {
+      "id": "2246",
+      "queryId": "936e",
+      "userId": "1"
+    },
+    {
+      "id": "41d0",
+      "queryId": "936e",
+      "userId": "0"
+    },
+    {
+      "id": "1682",
+      "queryId": "e2ab",
+      "userId": "0"
+    },
+    {
+      "id": "9a2b",
+      "queryId": "e2ab",
+      "userId": "0"
+    },
+    {
+      "id": "a0f5",
+      "queryId": "e2ab",
+      "userId": "0"
+    },
+    {
+      "id": "fe62",
+      "userId": "0"
+    },
+    {
+      "id": "a649",
+      "userId": "0"
+    },
+    {
+      "id": "7642",
+      "userId": "0"
+    }
+  ]
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }

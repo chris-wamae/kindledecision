@@ -1,6 +1,30 @@
 .main{
     background-color: var(--utOrange);
     display:flex;
+<<<<<<< HEAD
+=======
+    justify-content:center;
+    align-items:center;
+}
+
+.hiw-button
+{
+background-color:black;
+color:white;
+width:300px;
+margin:auto;
+margin-top:30px;
+text-align:center;
+padding:20px;
+font-size:24px;
+border-radius:20px;
+}
+
+.hiw-button:hover
+{
+color:black;
+background-color:white;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .info{
@@ -48,6 +72,10 @@ width:500px;
     border:0px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 .buttons{
     display:flex;
     justify-content:space-around;
@@ -84,4 +112,163 @@ border:2px solid var(--white);
  background-color:white;
  width:400px;
  height:300px;
+<<<<<<< HEAD
+=======
+}
+
+@media only screen and (max-width:1000px)
+{
+    .info
+    {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+    }
+    
+    .graphic-placeholder
+    {
+    width:0px;
+    height:0px;
+    }
+    
+    .info-text
+    {
+    width:100%;
+    }
+    
+    .main-header
+    {
+    width:80%;
+    }
+    
+    .main-header h1
+    {
+    padding-top:20px;
+    font-size:84px;
+    padding-bottom:20px;
+    }
+    
+    .info-text .sub-header
+    {
+    font-size:32px;
+    }
+    
+    .info-text .main-header
+    {
+    font-size:35px;
+    }
+    
+    .info-img-buttons
+    {
+    width:70%;
+    }
+    
+    .hiw-button
+    {
+    margin-top:40px;
+    width:240px;
+    height:60px;
+    padding-top:15px;
+    }
+
+    .info-img-buttons .buttons button
+    {
+    width:180px;
+    height:45px;
+    font-size:22px;
+    }
+}
+
+
+@media only screen and (max-width:630px)
+{
+.main-header h1
+{
+font-size:72px;
+}
+
+.info-img-buttons
+{
+width:80%;
+}
+
+.info-text .sub-header
+{
+font-size:28px;
+}
+}
+
+@media only screen and (max-width:510px)
+{
+.main-header h1
+{
+font-size:64px;
+}
+
+.info-img-buttons 
+{
+width:100%;
+}
+}
+
+
+@media only screen and (max-width:450px)
+{
+
+.info
+{
+display:flex;
+flex-direction:column;
+align-items:center;
+width:100%;
+}
+
+.graphic-placeholder
+{
+width:0px;
+height:0px;
+}
+
+.info-text
+{
+width:100%;
+}
+
+.main-header
+{
+width:100%;
+}
+
+.main-header h1
+{
+padding-top:20px;
+font-size:64px;
+padding-bottom:20px;
+}
+
+.info-text .sub-header
+{
+font-size:24px;
+}
+
+.info-text .main-header
+{
+font-size:35px;
+}
+
+.info-img-buttons
+{
+width:100%;
+}
+
+.hiw-button
+{
+margin-top:40px;
+width:220px;
+height:60px;
+padding-top:15px;
+}
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }

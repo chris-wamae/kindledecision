@@ -3,6 +3,10 @@ using KindleDecision.Interfaces;
 using KindleDecision.Dto;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+<<<<<<< HEAD
+=======
+using Microsoft.AspNetCore.Authorization;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
 namespace KindleDecision.Controllers
 {
@@ -21,6 +25,10 @@ namespace KindleDecision.Controllers
             _queryRepository = queryRepository;
         }
 
+<<<<<<< HEAD
+=======
+        [Authorize(Roles = "Administrator,SuperAdmin")]
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Choice>))]
 
@@ -37,6 +45,10 @@ namespace KindleDecision.Controllers
 
         }
 
+<<<<<<< HEAD
+=======
+        [Authorize]
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         [HttpGet("{choiceId}")]
         [ProducesResponseType(200, Type = typeof(Choice))]
         [ProducesResponseType(400)]
@@ -46,7 +58,11 @@ namespace KindleDecision.Controllers
 
             if (!_choiceRepository.ChoiceExists(choiceId))
             {
+<<<<<<< HEAD
                 return NotFound();
+=======
+                return NotFound($"Choice with an id of {choiceId} does not exist");
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             }
 
             var choice = _mapper.Map<ChoiceDto>(_choiceRepository.GetChoice(choiceId));
@@ -58,17 +74,31 @@ namespace KindleDecision.Controllers
 
         }
 
+<<<<<<< HEAD
         [HttpGet("get-query-choices/{queryId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Choice>))]
+=======
+        [Authorize]
+        [HttpGet("get-query-choices/{queryId}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ChoiceWithSelectionCount>))]
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
         public IActionResult GetChoicesByQuery(int queryId)
         {
 
+<<<<<<< HEAD
             var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByQuery(queryId));
 
             if (!ModelState.IsValid)
             {
                 return BadRequest();
+=======
+            var choices = _choiceRepository.GetChoicesByQuery(queryId);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             }
             if (choices == null)
             {
@@ -77,11 +107,16 @@ namespace KindleDecision.Controllers
                 return StatusCode(500, ModelState);
             }
 
+<<<<<<< HEAD
             return Ok(choices);
+=======
+            return Ok(choices.OrderByDescending(c => c.SelectionCount).ToList());
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
         }
 
 
+<<<<<<< HEAD
         [HttpGet("get-choices-by-user-vote/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Choice>))]
 
@@ -98,6 +133,29 @@ namespace KindleDecision.Controllers
 
         }
 
+=======
+
+
+        //[HttpGet("get-choices-by-user-vote/{userId}")]
+        //[ProducesResponseType(200, Type = typeof(IEnumerable<Choice>))]
+
+        //public IActionResult GetChoicesByUserId(int userId)
+        //{
+        //    var choices = _mapper.Map<List<ChoiceDto>>(_choiceRepository.GetChoicesByUserSelection(userId));
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    return Ok(choices);
+
+        //}
+
+
+
+        [Authorize]
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         [HttpPost("{queryId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -125,6 +183,10 @@ namespace KindleDecision.Controllers
 
         }
 
+<<<<<<< HEAD
+=======
+        [Authorize]
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         [HttpPut("{choiceId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -138,7 +200,11 @@ namespace KindleDecision.Controllers
             }
 
             if (!_choiceRepository.ChoiceExists(choiceId))
+<<<<<<< HEAD
                 return NotFound();
+=======
+                return NotFound($"Choice with an id of {choiceId} does not exist");
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
             if(choiceId != updateChoice.Id)
                 return BadRequest(ModelState);
@@ -155,7 +221,11 @@ namespace KindleDecision.Controllers
 
         }
 
+<<<<<<< HEAD
 
+=======
+        [Authorize]
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         [HttpDelete("{choiceId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -164,16 +234,26 @@ namespace KindleDecision.Controllers
         public IActionResult DeleteChoice(int choiceId) 
         {
             if(!_choiceRepository.ChoiceExists(choiceId))
+<<<<<<< HEAD
                 return NotFound();
 
             var choiceToDelete = _choiceRepository.GetChoice(choiceId);
+=======
+                return NotFound($"Choice with an id of {choiceId} does not exist");
+
+            //var choiceToDelete = _choiceRepository.GetChoice(choiceId);
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+<<<<<<< HEAD
             if(!_choiceRepository.DeleteChoice(choiceToDelete))
+=======
+            if(!_choiceRepository.DeleteChoice(choiceId))
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                 {
                 ModelState.AddModelError("", "Something went wrong while Deleting");
                 return StatusCode(500, ModelState);

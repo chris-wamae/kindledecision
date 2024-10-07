@@ -3,8 +3,13 @@
 text-align:center;
 padding-top:3px;
 padding-bottom:3px;
+<<<<<<< HEAD
 font-size:30px;
 color:var(--chefchaouenBlue);
+=======
+font-size:24px;
+color:black;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 background-color:white;
 margin-top:5px;
 align-items:center;
@@ -21,6 +26,12 @@ margin-top:15px;
 padding-bottom:15px;
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 .single-feature img
 {
 width:50px;
@@ -29,6 +40,17 @@ margin-right:10px;
 
 .single-feature div
 {
+<<<<<<< HEAD
 font-size:30px;
 color:var(--carrotOrange);
+=======
+font-size:20px;
+color:var(--carrotOrange);
+}
+
+
+@media only screen and (max-width:450px)
+{
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }

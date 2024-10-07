@@ -2,29 +2,78 @@
 {
     text-align: center;
     color:var(--black);
+<<<<<<< HEAD
 }
 
 form
+=======
+    font-size:30px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.dynamic-list-container
+{
+display:flex;
+justify-content:center;
+}
+
+
+.create-choice-form
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 {
     width:500px;
     margin:auto;
     border: 1px solid var(--black);
+<<<<<<< HEAD
 }
 
 form input 
 {
 min-width:400px;
+=======
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:150px;
+    justify-content:space-around;
+    border-radius:10px;
+}
+
+.create-choice-form input 
+{
+min-width:400px;
+height:30px;
+text-align:center;
+border-radius:5px;
+border:0px;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .choice-label
 {
 font-size:20px;
 text-align:left;
+<<<<<<< HEAD
+=======
+padding:15px;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .add-button
 {
 background-color:var(--black);
+<<<<<<< HEAD
+=======
+color:white;
+width:160px;
+height:40px;
+border:0px;
+border-radius:10px;
+margin-top:20px;
+margin-bottom:20px;
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .add-button:hover
@@ -34,6 +83,16 @@ background-color:var(--white);
 font-weight:bold;
 }
 
+<<<<<<< HEAD
+=======
+
+.done-button-container
+{
+display:flex;
+justify-content:center;
+}
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 .done-button
 {
 color:var(--white);
@@ -60,3 +119,39 @@ font-size:20px;
 opacity:0.8;
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+@media only screen and (max-width:450px)
+{
+
+.page-title
+{
+margin-top:20px;
+}
+
+.create-choice-form
+{
+width:90%;
+border-radius:10PX;
+margin-top:20px;
+}
+
+.create-choice-form input
+{
+min-width:0px;
+width:80%;
+height:40px;
+font-size:16px;
+}
+
+textarea
+{
+min-width:0px;
+width:80%;
+}
+}
+
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
