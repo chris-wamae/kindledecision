@@ -22,8 +22,6 @@ namespace KindleDecision.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-<<<<<<< HEAD
-=======
             modelBuilder.Entity("KindleDecision.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -111,7 +109,6 @@ namespace KindleDecision.Migrations
                         });
                 });
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             modelBuilder.Entity("KindleDecision.Models.Choice", b =>
                 {
                     b.Property<int>("Id")
@@ -120,13 +117,10 @@ namespace KindleDecision.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-<<<<<<< HEAD
-=======
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                     b.Property<int>("QueryId")
                         .HasColumnType("int");
 
@@ -155,25 +149,19 @@ namespace KindleDecision.Migrations
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
-=======
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("RemainingSelections")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
-=======
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -197,11 +185,6 @@ namespace KindleDecision.Migrations
                     b.Property<int>("ChoiceId")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
-                    b.Property<int>("SelectorUserId")
-                        .HasColumnType("int");
-
-=======
                     b.Property<string>("Reason")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -212,16 +195,12 @@ namespace KindleDecision.Migrations
                     b.Property<int>("UserSelectedInQueryId")
                         .HasColumnType("int");
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                     b.HasKey("Id");
 
                     b.HasIndex("ChoiceId");
 
-<<<<<<< HEAD
-=======
                     b.HasIndex("UserSelectedInQueryId");
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                     b.ToTable("Selections");
                 });
 
@@ -241,19 +220,6 @@ namespace KindleDecision.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-=======
                     b.Property<string>("RefreshToken")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -266,7 +232,6 @@ namespace KindleDecision.Migrations
 
                     b.Property<bool>("Viewmode")
                         .HasColumnType("bit");
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
                     b.HasKey("Id");
 
@@ -307,8 +272,6 @@ namespace KindleDecision.Migrations
                     b.ToTable("UserSelectedInQuerys");
                 });
 
-<<<<<<< HEAD
-=======
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -479,7 +442,6 @@ namespace KindleDecision.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             modelBuilder.Entity("KindleDecision.Models.Choice", b =>
                 {
                     b.HasOne("KindleDecision.Models.Query", "Query")
@@ -499,9 +461,6 @@ namespace KindleDecision.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<< HEAD
-                    b.Navigation("Choice");
-=======
                     b.HasOne("KindleDecision.Models.UserSelectedInQuery", "UserSelectedInQuery")
                         .WithMany()
                         .HasForeignKey("UserSelectedInQueryId")
@@ -511,7 +470,6 @@ namespace KindleDecision.Migrations
                     b.Navigation("Choice");
 
                     b.Navigation("UserSelectedInQuery");
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
                 });
 
             modelBuilder.Entity("KindleDecision.Models.UserQuery", b =>
@@ -533,8 +491,6 @@ namespace KindleDecision.Migrations
                     b.Navigation("User");
                 });
 
-<<<<<<< HEAD
-=======
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -586,7 +542,6 @@ namespace KindleDecision.Migrations
                         .IsRequired();
                 });
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             modelBuilder.Entity("KindleDecision.Models.Choice", b =>
                 {
                     b.Navigation("Selections");

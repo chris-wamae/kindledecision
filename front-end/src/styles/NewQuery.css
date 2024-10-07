@@ -9,31 +9,19 @@ border-radius:20px;
 display:flex;
 flex-direction:column;
 align-items:center;
-<<<<<<< HEAD
-height:450px;
-=======
 min-height:450px;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .header{
     font-size:37px;
     margin-bottom:40px;
-<<<<<<< HEAD
-    color:var(--chefchaouenBlue);
-=======
     color:black;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
     text-decoration:underline;
 
 }
 
 .query-name-statement{
-<<<<<<< HEAD
-    color:var(--chefchaouenBlue);
-=======
     color:black;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
     font-size:25px;
     width:80%;
     text-align:center;
@@ -49,22 +37,14 @@ text-decoration:underline;
 
 .support-statement
 {
-<<<<<<< HEAD
-color:var(--chefchaouenBlue);
-=======
 color:black;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 font-size:25px;
 margin-bottom:40px;
 }
 
 .link-statement
 {
-<<<<<<< HEAD
-color:var(--chefchaouenBlue);
-=======
 color:black;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 font-size:25px;
 text-align:center;
 }
@@ -74,11 +54,7 @@ color:var(--carrotOrange);
 text-align:center;
 }
 
-<<<<<<< HEAD
-.copy-link-button
-=======
 button.copy-link-button
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 {
   width:160px;
   height:40px;
@@ -89,8 +65,6 @@ button.copy-link-button
   font-weight:bold;
   border-radius:20px;
   margin-top:40px;
-<<<<<<< HEAD
-=======
 }
 
 
@@ -195,5 +169,4 @@ font-size:32px;
 color:wheat;
 }
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }

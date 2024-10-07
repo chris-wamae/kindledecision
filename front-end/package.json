@@ -1,10 +1,7 @@
 {
   "name": "front-end",
   "version": "0.1.0",
-<<<<<<< HEAD
-=======
   "homepage":"./",
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
@@ -12,10 +9,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.5",
-<<<<<<< HEAD
-=======
     "js-cookie": "^3.0.5",
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",

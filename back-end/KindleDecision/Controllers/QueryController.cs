@@ -3,31 +3,16 @@ using KindleDecision.Models;
 using AutoMapper;
 using KindleDecision.Dto;
 using Microsoft.AspNetCore.Mvc;
-<<<<<<< HEAD
-
-namespace KindleDecision.Controllers
-{
-=======
 using Microsoft.AspNetCore.Authorization;
 
 namespace KindleDecision.Controllers
 {   
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
     [Route("query")]
     [ApiController]
     public class QueryController : Controller
     {
         private readonly IQueryRepository _queryRepository;
         private readonly IMapper _mapper;
-<<<<<<< HEAD
-
-        public QueryController(IQueryRepository queryRepository, IMapper mapper)
-        {
-            _queryRepository = queryRepository;
-            _mapper = mapper;
-        }
-
-=======
         private readonly IUserRepository _userRepository;
         private readonly IUserSelectedInQueryRepository _userSelectedInQueryRepository;
 
@@ -45,7 +30,6 @@ namespace KindleDecision.Controllers
         }
 
         [Authorize(Roles = "Admininistrator,SuperAdmin")]
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
         public IActionResult GetQueries()
@@ -60,21 +44,14 @@ namespace KindleDecision.Controllers
             return Ok(querys);
         }
 
-<<<<<<< HEAD
-=======
         [Authorize]
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         [HttpGet("{queryId}")]
         [ProducesResponseType(200, Type = typeof(Query))]
         [ProducesResponseType(400)]
         public IActionResult GetQuery(int queryId)
         {
             if (!_queryRepository.QueryExists(queryId))
-<<<<<<< HEAD
-                return NotFound();
-=======
                 return NotFound($"Query with an id of {queryId} does not exist");
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
             var query = _mapper.Map<QueryDto>(_queryRepository.GetQuery(queryId));
 
@@ -86,40 +63,6 @@ namespace KindleDecision.Controllers
             return Ok(query);
         }
 
-<<<<<<< HEAD
-        [HttpGet("created-querys/{userId}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
-        [ProducesResponseType(400)]
-   
-        public IActionResult GetQuerysByCreator(int userId) 
-        {
-         var querys = _mapper.Map<List<QueryDto>>(_queryRepository.GetQuerysByCreator(userId));
-         if(!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
-         return Ok(querys);  
-
-        }
-
-
-
-
-
-
-        [HttpGet("user-querys/{userId}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
-        public IActionResult GetElectionsByUser(int userId)
-        {
-            var querys = _mapper.Map<List<QueryDto>>(
-                _queryRepository.GetQuerysByUser(userId)
-            );
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-=======
         [Authorize]
         [HttpGet("created-querys/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
@@ -159,20 +102,10 @@ namespace KindleDecision.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             }
             return Ok(querys);
         }
 
-<<<<<<< HEAD
-        [HttpPost]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400)]
-
-        public IActionResult CreateQuery([FromBody] QueryDto queryCreate)
-        {
-         if(queryCreate == null)
-=======
         [Authorize]
         [HttpGet("pending-querys/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Query>))]
@@ -240,21 +173,10 @@ namespace KindleDecision.Controllers
             }
 
             if (!ModelState.IsValid)
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             {
                 return BadRequest(ModelState);
             }
 
-<<<<<<< HEAD
-         if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var queryMap = _mapper.Map<Query>(queryCreate);
-
-        if(!_queryRepository.CreateQuery(queryMap))
-=======
             //var userId = HttpContext.Session.GetInt32("userId");
 
             //if(userId != null)
@@ -272,60 +194,35 @@ namespace KindleDecision.Controllers
             var queryMap = _mapper.Map<Query>(queryCreate);
 
             if (!_queryRepository.CreateQuery(queryMap))
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             {
                 ModelState.AddModelError("", "Something went wrong while saving");
                 return StatusCode(500, ModelState);
             }
-<<<<<<< HEAD
-        return Ok(queryMap);
-        }
-
-
-=======
             return Ok(queryMap);
         }
 
         [Authorize]
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         [HttpPut("{queryId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-<<<<<<< HEAD
-
-        public IActionResult UpdateQuery(int queryId, [FromBody] QueryDto updateQuery) 
-=======
         public IActionResult UpdateQuery(int queryId, [FromBody] QueryDto updateQuery)
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         {
             if (updateQuery == null)
                 return BadRequest(ModelState);
 
-<<<<<<< HEAD
-            if(!_queryRepository.QueryExists(queryId))
-            {
-                return NotFound();
-            }
-
-            if(queryId != updateQuery.Id)
-=======
             if (!_queryRepository.QueryExists(queryId))
             {
                 return NotFound($"Query with an id of {queryId} does not exist");
             }
 
             if (queryId != updateQuery.Id)
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             {
                 return BadRequest(ModelState);
             }
 
             var updatedQueryMap = _mapper.Map<Query>(updateQuery);
 
-<<<<<<< HEAD
-            if(!_queryRepository.UpdateQuery(updatedQueryMap))
-=======
             var userId = HttpContext.Session.GetInt32("userId");
 
             if (userId != null)
@@ -342,7 +239,6 @@ namespace KindleDecision.Controllers
             }
 
             if (!_queryRepository.UpdateQuery(updatedQueryMap))
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             {
                 ModelState.AddModelError("", "Something went wrong while updating the Query");
                 return StatusCode(500, ModelState);
@@ -351,43 +247,16 @@ namespace KindleDecision.Controllers
             return Ok(updatedQueryMap);
         }
 
-<<<<<<< HEAD
-        [HttpDelete("{queryId}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
-        [ProducesResponseType(500)]
-        public IActionResult DeleteQuery(int queryId) 
-        {
-            if (!_queryRepository.QueryExists(queryId))
-            {
-                return NotFound();
-            }
-
-            var queryToDelete = _queryRepository.GetQuery(queryId);
-
-            if(!ModelState.IsValid)
-=======
         [Authorize]
         [HttpPut("total-selections")]
         [ProducesResponseType(200)]
         public IActionResult UpdateTotalSelectors(TotalSelections totalSelections)
         {
             if (!ModelState.IsValid)
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
             {
                 return BadRequest(ModelState);
             }
 
-<<<<<<< HEAD
-            if(!_queryRepository.DeleteQuery(queryToDelete))
-            {
-                ModelState.AddModelError("", "Something went wrong while deleting the Query");
-                return StatusCode(500, ModelState); 
-            }
-
-            return NoContent();
-        }
-=======
             var queryCreate = _queryRepository.GetQuery(totalSelections.queryId);
 
             if (queryCreate == null)
@@ -546,6 +415,5 @@ namespace KindleDecision.Controllers
 
             return Ok(new { Result = result });
         }
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
     }
 }

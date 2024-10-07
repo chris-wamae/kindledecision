@@ -16,21 +16,13 @@ margin-top:20px;
 font-size:25px;
 width:200px;
 border:0px;
-<<<<<<< HEAD
-border-bottom:5px solid var(--carrotOrange);
-color:var(--carrotOrange);
-=======
 border-bottom:5px solid black;
 color:black;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 margin-right:2px;
 margin-left:2px;
 font-weight:bold;
 padding:5px;
-<<<<<<< HEAD
-=======
 background-color:white;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .form-change-inactive
@@ -38,19 +30,12 @@ background-color:white;
 font-size:25px;
 width:200px;
 border:0px;
-<<<<<<< HEAD
-border-bottom:5px solid lightslategray;
-color:lightslategray;
-=======
 border-bottom:5px solid gray;
 color:gray;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 margin-right:2px;
 font-weight: bold;
 margin-left:2px;  
 padding:5px;
-<<<<<<< HEAD
-=======
 background-color:white;
 opacity:85%;
 }
@@ -58,52 +43,18 @@ opacity:85%;
 .form-change-inactive:hover
 {
 opacity:100%;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .auth-title
 {
 text-align:center;
 font-size:30px;
-<<<<<<< HEAD
-color:var(--chefchaouenBlue);
-=======
 color:black;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 margin-top:20px;
 margin-bottom:20px;
 }
 
 
-<<<<<<< HEAD
-form
-{
-padding:50px;
-border:1px solid var(--chefchaouenBlue);
-border-radius:20px;
-text-align:center;
-}
-
-form div 
-{
-font-size:20px;
-margin-top:40px;
-margin-bottom:40px;
-}
-
-input
-{
-text-align: center;
-height:40px;
-width:240px;
-border:0px;
-border-radius:10px;
-font-size:15px;
-}
-
-form button
-{
-=======
 .auth-form
 {
 padding:50px;
@@ -136,33 +87,22 @@ margin-bottom:15px;
 .auth-form button
 {
 width:200px;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 display:block;
 margin:auto;
 margin-top:40px;
 color:white;
-<<<<<<< HEAD
-background-color:var(--chefchaouenBlue);
-=======
 background-color:black;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 border:0px;
 font-size:22px;
 padding:5px 35px 5px 35px;
 border-radius:20px;
 }
 
-<<<<<<< HEAD
-.input-header 
-{
-color:var(--chefchaouenBlue);
-=======
 .auth-form button:hover
 {
 background-color:white;
 color:black;
 border:1px solid black;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .query-info
@@ -176,8 +116,6 @@ align-items:center;
 .query-selectioncount
 {
 display:flex;
-<<<<<<< HEAD
-=======
 }
 
 .auth-form div 
@@ -252,5 +190,4 @@ font-size:22px;
 font-size:26px;
 }
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
