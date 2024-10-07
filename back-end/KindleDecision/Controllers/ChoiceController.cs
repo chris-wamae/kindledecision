@@ -134,10 +134,7 @@ namespace KindleDecision.Controllers
 
         }
 
-<<<<<<< HEAD
-=======
         [Authorize]
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         [HttpPut("{choiceId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
