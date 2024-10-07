@@ -12,7 +12,11 @@ namespace KindleDecision.Interfaces
 
         ICollection<Choice> GetAllChoices();
 
+<<<<<<< HEAD
+        ICollection<Choice> GetChoicesByQuery(int queryId);
+=======
         ICollection<ChoiceWithSelectionCount> GetChoicesByQuery(int queryId);
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
         ICollection<Choice> GetChoicesByUserSelection(int userId);
 
@@ -25,7 +29,11 @@ namespace KindleDecision.Interfaces
         //ie. RemainingVotes == TotalVotes
         bool UpdateChoice(int choiceId,Choice choice);
 
+<<<<<<< HEAD
+        bool DeleteChoice(Choice choice);
+=======
         bool DeleteChoice(int choiceId);
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
     }
 }

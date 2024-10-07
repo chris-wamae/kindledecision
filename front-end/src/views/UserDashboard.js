@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+function UserDashboard()
+{
+  return (
+    <>
+=======
 import "../styles/UserDashboard.css"
 import Navbar from "../components/Navbar";
 import DashboardAccount from "../components/Dashboard/DashboardAccount";
@@ -78,6 +84,7 @@ function UserDashboard() {
 
 
 
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
     </>
   )
 }

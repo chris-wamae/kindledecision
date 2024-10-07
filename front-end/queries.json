@@ -1,5 +1,10 @@
 {
   "queries": [
+<<<<<<< HEAD
+  ],
+  "Choices": [],
+  "Selections": [],
+=======
     {
       "id": "5fee",
       "title": "Where?",
@@ -600,6 +605,7 @@
       "selectorUserId": 0
     }
   ],
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
   "Users": [
     {
       "id": "0",
@@ -674,6 +680,9 @@
       "password": "alex"
     }
   ],
+<<<<<<< HEAD
+  "UserQueries": []
+=======
   "UserQueries": [
     {
       "id": "c08c",
@@ -918,4 +927,5 @@
       "userId": "0"
     }
   ]
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }

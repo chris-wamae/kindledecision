@@ -2,7 +2,10 @@
 using KindleDecision.Interfaces;
 using KindleDecision.Data;
 using System.Web.Mvc;
+<<<<<<< HEAD
+=======
 using Microsoft.EntityFrameworkCore;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
 namespace KindleDecision.Repositories
 {
@@ -40,6 +43,9 @@ namespace KindleDecision.Repositories
             return _dataContext.UserSelectedInQuerys.Where(uVE => uVE.QueryId == queryId).ToList();
         }
 
+<<<<<<< HEAD
+
+=======
         public bool Save()
         {
            var saved = _dataContext.SaveChanges();
@@ -75,6 +81,7 @@ namespace KindleDecision.Repositories
             }
 
         }
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
 
 

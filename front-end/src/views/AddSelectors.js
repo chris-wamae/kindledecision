@@ -2,28 +2,46 @@ import { useDispatch } from "react-redux"
 import { useState } from "react"
 import DynamicList from "../components/DynamicList";
 import { postUserQuery } from "../features/userQueriesSlice";
+<<<<<<< HEAD
+import { currentQueryId } from "../features/idSlice";
+import { useSelector } from "react-redux";
+import { validateEmail } from "../Helper/Form";
+import { emailToolTipRenderer } from "../Helper/Form";
+=======
 import { useSelector } from "react-redux";
 import { validateEmail } from "../Helper/Form";
 import { authToolTipRenderer } from "../Helper/Form";
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 import { useEffect } from "react";
 import axios from "axios";
 import "../styles/AddSelectors.css"
 import Navbar from "../components/Navbar";
 import { queryState } from "../features/querySlice";
 import { redirect, useNavigate } from "react-router-dom";
+<<<<<<< HEAD
+=======
 import { refreshAuth,loggedStatus } from "../Helper/Auth";
 import { useSearchParams } from "react-router-dom";
 import Cookies from "js-cookie";
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
 //make email database search depend on physical button press by user
 //move email validation to form Helper since it will no longer be using fetch
 
 
+<<<<<<< HEAD
+
+function AddSelectors() {
+  
+  const navigate = useNavigate()
+  const navItems = ["Features", "Login", "How it Works"]
+=======
 function AddSelectors() {
 
   const [loggedUserEmail,setLoggedUserEmail] = useState("")
   const navigate = useNavigate()
   const navItems = ["About"]
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
   const stateQueryId = useSelector(queryState)
   const dispatch = useDispatch();
   const [selectorEmail, setSelectorEmail] = useState("")
@@ -33,6 +51,9 @@ function AddSelectors() {
   const [disableSearch, setDisableSearch] = useState(true);
   const [showSearch, setShowSearch] = useState("inline");
   const [showAdd, setShowAdd] = useState("none");
+<<<<<<< HEAD
+  const [usersArray,setUsersArray] = useState([])
+=======
   const [usersArray, setUsersArray] = useState([])
   const [searchParams, setSearchParams] = useSearchParams()
   const [includeUser,setIncludeUser] = useState(false)
@@ -60,6 +81,7 @@ function AddSelectors() {
       }
     
     },[loggedUserEmail,includeUser])
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
   useEffect(() => {
 
@@ -83,11 +105,19 @@ function AddSelectors() {
   useEffect(() => {
     if (foundUser != undefined) {
 
+<<<<<<< HEAD
+      if (emailState && foundUser.length == 0) {
+        setEmailState("notfound")
+        setDisableSearch(true);
+      }
+      else if (foundUser.length > 0) {
+=======
       if (emailState && foundUser.result == false) {
         setEmailState("notfound")
         setDisableSearch(true);
       }
       else if (foundUser.result == true) {
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         setShowAdd("inline");
         setShowSearch("none");
 
@@ -102,6 +132,28 @@ function AddSelectors() {
 
   }, [foundUser])
 
+<<<<<<< HEAD
+  const removeOption = (e) => {
+    let newSelectors = querySelectors.filter((c, i) => i !== e)
+    setQuerySelectors(newSelectors);
+  }
+
+  const selectorDispatcher = () => {
+    querySelectors.forEach((e,i) => {
+      dispatch(postUserQuery({
+        queryId: stateQueryId.id,
+        userId: usersArray[i]
+      }))
+    })
+    navigate("/new-query", {replace:true})
+  }
+
+  const emailSearch = () => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}Users?email=${selectorEmail}`).then(r => setFoundUser(r.data))
+  }
+
+
+=======
   const removeOption = (i) => {
 
     if(usersArray[i] == loggedUserEmail)
@@ -128,10 +180,22 @@ function AddSelectors() {
     axios.post(`${process.env.REACT_APP_BASE_URL}user/user-exists`, { "email": selectorEmail }, { headers: { Authorization: `Bearer ${Cookies.get("at")}` } }).then(r => setFoundUser(r.data))
   }
   
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
   const buttonDisable = (array) => array.length > 1 ? false : true
 
   return (
     <>
+<<<<<<< HEAD
+    <Navbar navItems={navItems}/>
+      <div className="page-container">
+
+        <div className="page-title">Query selectors</div>
+
+        <form>
+
+          <label htmlFor="voter-input" className="voter-label">Voter:</label>
+          {emailToolTipRenderer(emailState)}
+=======
       <Navbar navItems={navItems} />
       <div className="page-container">
         {/* <p>*for app to work use these emails in their order:
@@ -149,6 +213,7 @@ function AddSelectors() {
 
           <label htmlFor="voter-input" className="voter-label">Voter:</label>
           {authToolTipRenderer(emailState)}
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
           <input id="voter-input" className="enter-selector" placeholder="Please enter a selector's email" onChange={e => setSelectorEmail(e.target.value)}></input>
 
           <button style={{ display: `${showSearch}` }} disabled={disableSearch} className="search-button" onClick={
@@ -161,11 +226,22 @@ function AddSelectors() {
           <button style={{ display: `${showAdd}` }} className="add-button" onClick={(e) => {
             e.preventDefault();
             setQuerySelectors([...querySelectors, selectorEmail])
+<<<<<<< HEAD
+            setUsersArray([...usersArray,foundUser[0].id])
+=======
             setUsersArray([...usersArray, selectorEmail])
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
           }
           }>Add</button>
         </form>
 
+<<<<<<< HEAD
+        <button disabled={buttonDisable(querySelectors)} className="done-button" onClick={(e) => {
+          e.preventDefault();
+          selectorDispatcher()}}>Create query</button>
+
+        <DynamicList listTitle={"Added participants"} itemsArray={querySelectors} removeOption={removeOption} />
+=======
         <div className="add-self-container">
         <label className="add-self-text">Add me as a participant in the query:</label>
         <input className="add-self-checkbox" type="checkbox" checked={includeUser} onChange={() => {setIncludeUser(true)}}></input>
@@ -177,6 +253,7 @@ function AddSelectors() {
         }}>Done</button>
 
         <DynamicList listTitle={"Added participants"} itemsArray={usersArray} removeOption={removeOption} />
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
       </div>
     </>

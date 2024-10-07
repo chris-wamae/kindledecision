@@ -2,6 +2,11 @@
 {
     text-align: center;
     color:var(--black);
+<<<<<<< HEAD
+}
+
+form
+=======
     font-size:30px;
     margin-top:20px;
     margin-bottom:20px;
@@ -15,10 +20,18 @@ justify-content:center;
 
 
 .create-choice-form
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 {
     width:500px;
     margin:auto;
     border: 1px solid var(--black);
+<<<<<<< HEAD
+}
+
+form input 
+{
+min-width:400px;
+=======
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -34,18 +47,24 @@ height:30px;
 text-align:center;
 border-radius:5px;
 border:0px;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .choice-label
 {
 font-size:20px;
 text-align:left;
+<<<<<<< HEAD
+=======
 padding:15px;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .add-button
 {
 background-color:var(--black);
+<<<<<<< HEAD
+=======
 color:white;
 width:160px;
 height:40px;
@@ -54,6 +73,7 @@ border-radius:10px;
 margin-top:20px;
 margin-bottom:20px;
 
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .add-button:hover
@@ -63,6 +83,8 @@ background-color:var(--white);
 font-weight:bold;
 }
 
+<<<<<<< HEAD
+=======
 
 .done-button-container
 {
@@ -70,6 +92,7 @@ display:flex;
 justify-content:center;
 }
 
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 .done-button
 {
 color:var(--white);
@@ -96,6 +119,8 @@ font-size:20px;
 opacity:0.8;
 }
 
+<<<<<<< HEAD
+=======
 
 
 
@@ -129,3 +154,4 @@ width:80%;
 }
 }
 
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d

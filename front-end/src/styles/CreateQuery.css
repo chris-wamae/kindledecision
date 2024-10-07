@@ -18,6 +18,18 @@
 {
 display:flex;
 flex-direction:column;
+<<<<<<< HEAD
+min-width:450px;
+padding-top:0px;
+border:1px solid black;
+}
+
+.query-form input
+{
+min-width:350px;
+}
+
+=======
 align-items:center;
 min-width:450px;
 padding-top:0px;
@@ -45,6 +57,7 @@ margin-bottom:10px;
 
 
 
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 /* .election-form-div {}
 
 .election-form {}
@@ -78,6 +91,13 @@ width:150px;
 
 .input-title
 {
+<<<<<<< HEAD
+font-size:25px;
+margin-top:40px;
+margin-bottom:5px;
+}
+
+=======
 font-size:18px;
 margin-top:20px;
 margin-bottom:5px;
@@ -95,11 +115,17 @@ border-radius:10px;
 }
 
 
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 .submit-button
 {
 background-color:var(--black);
 width:200px;
 height:45px;
+<<<<<<< HEAD
+border-radius:5px;
+}
+
+=======
 margin-top:20px;
 border-radius:5px;
 color:white;
@@ -137,6 +163,7 @@ border:0px;
   }
 } 
 
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
 
 

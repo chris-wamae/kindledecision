@@ -1,6 +1,13 @@
 :root
 {
+<<<<<<< HEAD
+--auburn:#A52A2A;
+--chefchaouenBlue:#478FE3;
 --lavender:#E1E8FF;
+--persianBlue:#192BC2;
+=======
+--lavender:#E1E8FF;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 --utOrange:#fb8b24;
 --white:white;
 --black:black;
@@ -13,6 +20,9 @@ a{
 
 .display-none{
     display:none;
+<<<<<<< HEAD
+}
+=======
 }
 
 .disabled-button
@@ -30,3 +40,4 @@ margin-bottom:10px;
 }
 
 
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d

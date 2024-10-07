@@ -1,3 +1,35 @@
+<<<<<<< HEAD
+.query-selectors
+{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+}
+
+.query-selector-active
+{
+    font-size:25px;
+    width:200px;
+    border:0px;
+    border-bottom:5px solid var(--black);
+    color:var(--carrotOrange);
+    margin-right:2px;
+    margin-left:2px;
+    font-weight:bold;
+    padding:5px;
+}
+
+.query-selector-inactive 
+{
+    font-size:25px;
+    width:200px;
+    border:0px;
+    color:lightslategray;
+    margin-right:2px;
+    font-weight: bold;
+    margin-left:2px;  
+    padding:5px;
+=======
 .no-query-info
 {
 text-align:center;
@@ -22,6 +54,7 @@ text-align: center;
 display: flex;
 justify-content:space-around;
 width:55%;
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .query-section
@@ -29,6 +62,24 @@ width:55%;
 display:flex;
 flex-direction:column;
 align-items:center;
+<<<<<<< HEAD
+margin-top:30px;
+padding-top:30px;
+border-top:1px solid var(--carrotOrange);
+}
+
+.query-section button 
+{
+width:250px;
+height:40px;
+border-radius:15px;
+border:0px;
+color:white;
+background-color:var(--carrotOrange);
+font-weight:bold;
+font-size:20px;
+=======
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .query-list-container
@@ -37,12 +88,20 @@ background-color:white;
 padding:20px;
 border-radius:20px;
 margin-top:20px;
+<<<<<<< HEAD
+width:60%;
+}
+.query-list
+{
+background-color:var(--lavender);
+=======
 width:90%;
 }
 
 .query-list
 {
 background-color:var(--utOrange);
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -55,6 +114,10 @@ padding-bottom:20px;
 {
 display:flex;
 margin-top:10px;
+<<<<<<< HEAD
+color:var(--chefchaouenBlue);
+=======
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 width:95%;
 justify-content:space-between;
 }
@@ -72,7 +135,11 @@ background-color:white;
 {
 font-size:20px;
  background-color:white; 
+<<<<<<< HEAD
+ width:95%; 
+=======
  width:50%; 
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
  text-align:center;
  padding-top:10px;
  padding-bottom:5px;
@@ -95,6 +162,8 @@ font-size:12px;
 {   
     color:green;
     font-size:12px;
+<<<<<<< HEAD
+=======
 }
 
 .other-container
@@ -151,4 +220,5 @@ div.no-query-info
 font-size:20px;
 }
 
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }

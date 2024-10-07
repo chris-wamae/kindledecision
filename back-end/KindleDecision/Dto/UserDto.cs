@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+﻿namespace KindleDecision.Dto
+{
+    public class UserDto
+    {
+     
+     public string Username { get; set; }
+
+     public string Email { get; set; }
+
+     public string Phone { get; set; }
+
+     public string Language { get; set; }
+
+
+=======
 ﻿using Microsoft.Extensions.FileSystemGlobbing.Internal;
 using System.ComponentModel.DataAnnotations;
 
@@ -36,5 +52,6 @@ namespace KindleDecision.Dto
 
         public ICollection<string> Roles {get;set;}
 
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
     }
 }

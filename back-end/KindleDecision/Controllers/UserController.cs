@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+﻿namespace KindleDecision.Controllers
+{
+    public class UserController
+    {
+=======
 ﻿using KindleDecision.Models;
 using KindleDecision.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -108,5 +114,6 @@ namespace KindleDecision.Controllers
             return Ok(new { Result = true });
         }
 
+>>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
     }
 }
