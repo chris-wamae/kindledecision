@@ -12,11 +12,8 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.0" />
     <PackageReference Include="Microsoft.AspNet.MVC" Version="5.3.0" />
-<<<<<<< HEAD
-=======
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.15">
       <PrivateAssets>all</PrivateAssets>

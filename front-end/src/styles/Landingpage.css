@@ -1,8 +1,6 @@
 .main{
     background-color: var(--utOrange);
     display:flex;
-<<<<<<< HEAD
-=======
     justify-content:center;
     align-items:center;
 }
@@ -24,7 +22,6 @@ border-radius:20px;
 {
 color:black;
 background-color:white;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .info{
@@ -72,10 +69,6 @@ width:500px;
     border:0px;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 .buttons{
     display:flex;
     justify-content:space-around;
@@ -112,8 +105,6 @@ border:2px solid var(--white);
  background-color:white;
  width:400px;
  height:300px;
-<<<<<<< HEAD
-=======
 }
 
 @media only screen and (max-width:1000px)
@@ -270,5 +261,4 @@ height:60px;
 padding-top:15px;
 }
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }

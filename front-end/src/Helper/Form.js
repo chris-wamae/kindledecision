@@ -11,11 +11,7 @@ export const removeOption = (stateArray, stateArraySetterFunction, index) => {
  }
 
 
-<<<<<<< HEAD
-export const emailToolTipRenderer = (state) => {
-=======
 export const authToolTipRenderer = (state) => {
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
    if(state == undefined)
    {
@@ -31,27 +27,15 @@ export const authToolTipRenderer = (state) => {
    }
    else if(state == "notfound")
    {
-<<<<<<< HEAD
-    return <ToolTip type={"error"} message={" A user with this email does not exist"}/>
-   }
-   else
-   {
-
-=======
     return <ToolTip type={"error"} message={"Invalid credentials"}/>
    }
    else if(state == "error")
    {
     return <ToolTip type={"error"} message={"Unknown error, please try again"}/>
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
    }
   }
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
   export const validateEmail = (email) => {
    var regex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3})$/
    return regex.test(email);
@@ -92,9 +76,3 @@ export const authToolTipRenderer = (state) => {
  //      setValidEmail(true)
  //   }
  // }
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d

@@ -32,11 +32,7 @@ color:var(--black);
     padding-top:5px;
     padding-bottom:5px;
     background-color:white;
-<<<<<<< HEAD
-    /* padding-bottom:5px; */
-=======
     padding-bottom:5px; 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
  .nav-links{
@@ -51,8 +47,6 @@ color:var(--black);
 }
 
 
-<<<<<<< HEAD
-=======
 @media only screen and (max-width:450px) {
 
 .nav-div
@@ -76,4 +70,3 @@ align-items: center;
 }
 }
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d

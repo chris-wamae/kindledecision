@@ -6,16 +6,6 @@ import ToolTip from "./ToolTip"
 import axios from "axios";
 import { validateEmail } from "../Helper/Form";
 import { useEffect } from "react";
-<<<<<<< HEAD
-import { emailToolTipRenderer } from "../Helper/Form";
-import { changeUserId } from "../features/idSlice";
-
-import { useNavigate } from "react-router-dom";
-
-//make email database search depend on physical button press by user
-//move email validation to form Helper since it will no longer be using fetch
-
-=======
 import { authToolTipRenderer } from "../Helper/Form";
 import { useSelector } from "react-redux";
 import { loginPost, loginState, loginStatus } from "../features/loginSlice";
@@ -23,20 +13,10 @@ import { signUpState, signupPost, signUpStatus } from "../features/signupSlice";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { timeAfterMinutes } from "../Helper/Time";
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
 function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
     //authType = Sign up when true and Login when false
     const dispatch = useDispatch()
-<<<<<<< HEAD
-    const navigate = useNavigate()
-    const [user, setUser] = useState({})
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [validEmail, setValidEmail] = useState(false);
-    const [foundUser, setFoundUser] = useState(undefined)
-    const [emailState, setEmailState] = useState(undefined)
-=======
     const loggedUser = useSelector(loginState);
     const loggedUserStatus = useSelector(loginStatus)
     const signupStatus = useSelector(signUpStatus)
@@ -59,7 +39,6 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
      navigate("/dashboard")
      }
     },[])
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
     useEffect(() => {
         if (validateEmail(email)) {
@@ -71,17 +50,6 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         else if (!validateEmail(email)) {
             setEmailState(false);
         }
-<<<<<<< HEAD
-        // else if (validateEmail(email) && foundUser == undefined) {
-        //     
-        // }
-    }, [email])
-
- 
-    const searchUser = () => {
-        if (emailState === true) {
-            axios.get(`${process.env.REACT_APP_BASE_URL}Users?email=${email}`).then(r => setFoundUser(r.data));
-=======
     }, [email])
 
     const signUpValidator = () => {
@@ -99,32 +67,10 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
         }
         else {
             return false
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
         }
     }
 
     useEffect(() => {
-<<<<<<< HEAD
-    if(foundUser != undefined)
-    {
-    if (emailState && foundUser.length > 0) {
-            dispatch(changeUserId(foundUser[0].id))
-            navigate("/create-query")
-    }
-    else if(foundUser.length == 0)
-    {
-        setEmailState("notfound")
-    }
-    }
-
-    },[foundUser])
-
-    // useEffect(() => {
-    //     //|| foundUser.length == 0
-
-    // }, [fo])
-
-=======
         if (loggedUserStatus == "failed") {
             setEmailState("notfound")
         }
@@ -184,7 +130,6 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
 
         }
     }, [signupState])
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
     return (
         <>
@@ -195,21 +140,6 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
 
 
                 </section>
-<<<<<<< HEAD
-                <section>
-                    <div className="auth-title">{authTitle}</div>
-                    <form>
-                        <div className="input-header">Your email address:</div>
-                        {emailToolTipRenderer(emailState)}
-                        <input placeholder="email address" type="email" onChange={(e) => setEmail(e.target.value)}></input>
-                        <div className="input-header">{passwordHeader}</div>
-                        <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}></input>
-                        <button onClick={(e) => {
-                            e.preventDefault();
-                            searchUser()
-
-                        }}>{buttonText}</button>
-=======
                 <section className="auth-container">
                     <div className="auth-title">{authTitle}</div>
                     <form className="auth-form">
@@ -275,7 +205,6 @@ function Authetication({ authType, authTitle, passwordHeader, buttonText }) {
                                     searchUser();
                                 }}>{buttonText}</button>
                         }
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 
                     </form>
                 </section>

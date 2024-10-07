@@ -4,21 +4,14 @@
 
 .hiw-text
 {
-<<<<<<< HEAD
-font-size:20px;
-=======
 font-size:16px;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 padding:20px;
 margin-bottom:20px;
 margin-top:20px;
 border-radius:10px;
 border:1px solid lightslategray;
 color:lightslategray;
-<<<<<<< HEAD
-=======
 text-align:center;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
 
 .how-it-works-title + div 
@@ -34,15 +27,9 @@ text-align:center;
 
 .how-it-works-title
 {
-<<<<<<< HEAD
-font-size:30px;
-text-align: center;
-color:var(--chefchaouenBlue);
-=======
 font-size:24px;
 text-align: center;
 color:black;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 background-color:white;
 padding-top:5px;
 padding-bottom:5px;
@@ -61,11 +48,7 @@ padding-bottom:10px;
 
 .single-hiw-element > div 
 {
-<<<<<<< HEAD
-font-size:30px;
-=======
 font-size:18px;
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 color:var(--carrotOrange);
 text-align:center;
 margin-left:30%;
@@ -98,8 +81,6 @@ width:50px;
 {
     border-top:1px solid var(--auburn);
     border-bottom:1px solid var(--auburn);
-<<<<<<< HEAD
-=======
 }
 
 
@@ -119,5 +100,4 @@ margin-bottom:10px;
 padding:0px;
 }
 
->>>>>>> 457789307ffcfbd7b1fc73237874950057a83f7d
 }
