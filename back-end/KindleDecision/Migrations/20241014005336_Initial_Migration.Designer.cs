@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KindleDecision.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240604115117_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20241014005336_Initial_Migration")]
+    partial class Initial_Migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -97,15 +97,15 @@ namespace KindleDecision.Migrations
                         {
                             Id = "02174cf0–9412–4cfe - afbf - 59f706d72xd6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3b177a01-5596-41d8-867e-65a847331e33",
+                            ConcurrencyStamp = "d36f3c23-2a30-4568-9d53-0084120c2d3b",
                             Email = "chriswamae123@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "CHRISWAMAE123@GMAIL.COM",
                             NormalizedUserName = "CHRISWAMAE123@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMGeeEVodawGk/xLC03bbE7dKATFpMGAVQUPdKtOm7yT3CLkaRKsOvmAIbFIRXUJdw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFALVusmEo1KWTrWzow8xddicX9bizjZC0y/Jyl9xSqULGp9FW2XQvypJPC/0r06Ow==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ec3d2532-e3cd-468b-8586-93eb90b1b2e4",
+                            SecurityStamp = "175492ed-20dd-4d85-861f-34fbc9f658c8",
                             TwoFactorEnabled = false,
                             UserId = 1,
                             UserName = "chriswamae123@gmail.com"
@@ -119,6 +119,10 @@ namespace KindleDecision.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("QueryId")
                         .HasColumnType("int");
@@ -147,6 +151,10 @@ namespace KindleDecision.Migrations
 
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
@@ -179,6 +187,10 @@ namespace KindleDecision.Migrations
 
                     b.Property<int>("ChoiceId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SelectorUserId")
                         .HasColumnType("int");
@@ -306,15 +318,15 @@ namespace KindleDecision.Migrations
                         },
                         new
                         {
-                            Id = "cf6ddcfd-665f-4705-8139-be72fbf34572",
-                            ConcurrencyStamp = "5444a205-90fc-4aec-83fb-35808e859681",
+                            Id = "b535d4e2-b89b-4848-bc26-9fe74b68be60",
+                            ConcurrencyStamp = "a3e030c2-98b3-4400-b545-2af095546984",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "1fc67b7a-0f38-4043-8846-72a31bbb66f9",
-                            ConcurrencyStamp = "e1f0cead-2eb8-43e2-b6d7-df1bb9aa07b5",
+                            Id = "3b07d4e8-d222-4d91-8ffc-ba7a3009a708",
+                            ConcurrencyStamp = "27082895-e00c-40e9-b4e0-540bce937132",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTATOR"
                         });

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace KindleDecision.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class Initial_Migration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -60,6 +60,7 @@ namespace KindleDecision.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -217,6 +218,7 @@ namespace KindleDecision.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     QueryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -261,6 +263,7 @@ namespace KindleDecision.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ChoiceId = table.Column<int>(type: "int", nullable: false),
+                    Reason = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SelectorUserId = table.Column<int>(type: "int", nullable: false),
                     UserSelectedInQueryId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -286,16 +289,16 @@ namespace KindleDecision.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1fc67b7a-0f38-4043-8846-72a31bbb66f9", "e1f0cead-2eb8-43e2-b6d7-df1bb9aa07b5", "Administrator", "ADMINISTATOR" },
                     { "341743f0 - asd2–42de - afbf - 59kCwmmk72cf6", "341743f0 - asd2–42de - afbf - 59kCwmmk72cf6", "Admininistrator", "ADMINISTRATOR" },
                     { "341743f0 - asd2–42de - afbf - 59kmuixk72cf6", "341743f0 - asd2–42de - afbf - 59kmuixk72cf6", "SuperAdmin", "SUPERADMIN" },
-                    { "cf6ddcfd-665f-4705-8139-be72fbf34572", "5444a205-90fc-4aec-83fb-35808e859681", "User", "USER" }
+                    { "3b07d4e8-d222-4d91-8ffc-ba7a3009a708", "27082895-e00c-40e9-b4e0-540bce937132", "Administrator", "ADMINISTATOR" },
+                    { "b535d4e2-b89b-4848-bc26-9fe74b68be60", "a3e030c2-98b3-4400-b545-2af095546984", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe - afbf - 59f706d72xd6", 0, "3b177a01-5596-41d8-867e-65a847331e33", "chriswamae123@gmail.com", true, false, null, "CHRISWAMAE123@GMAIL.COM", "CHRISWAMAE123@GMAIL.COM", "AQAAAAEAACcQAAAAEMGeeEVodawGk/xLC03bbE7dKATFpMGAVQUPdKtOm7yT3CLkaRKsOvmAIbFIRXUJdw==", null, false, "ec3d2532-e3cd-468b-8586-93eb90b1b2e4", false, 1, "chriswamae123@gmail.com" });
+                values: new object[] { "02174cf0–9412–4cfe - afbf - 59f706d72xd6", 0, "d36f3c23-2a30-4568-9d53-0084120c2d3b", "chriswamae123@gmail.com", true, false, null, "CHRISWAMAE123@GMAIL.COM", "CHRISWAMAE123@GMAIL.COM", "AQAAAAEAACcQAAAAEFALVusmEo1KWTrWzow8xddicX9bizjZC0y/Jyl9xSqULGp9FW2XQvypJPC/0r06Ow==", null, false, "175492ed-20dd-4d85-861f-34fbc9f658c8", false, 1, "chriswamae123@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
