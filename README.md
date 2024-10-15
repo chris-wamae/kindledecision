@@ -1,7 +1,10 @@
 # Kindledecision
-Kindledecision is a web application that aims to easen the process of making group decisions.
+Kindledecision is a web application that facilitates group decision making in a way that ensures everyone is on the same page. 
 
 ## How does it work
+In summary, the application works by users creating topics called queries and adding other users to take part in them. 
+
+These topics have choices that other users can select. All the users that were added to the query can view the progress of the selections and the final results at the end.
 
 ### User accounts
 
