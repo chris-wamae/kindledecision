@@ -14,11 +14,25 @@ Queries are questions/topics created by users when they are looking for anwsers/
 
 Finally, the creator of the query adds other app users to the query (called participants) who will be able to select a choice in the query. The application verifies the existance of each user before allowing them to be added as a participant in the query.
 
-The creator also has the option of adding themselves as a participant in the query
+The creator also has the option of adding themselves as a participant in the query.
 
 ### Additional functionalities
 Other things that users can do on the app are:
-  1. Delete  a query they created
-  2. Delete their account
+  1. Delete  a query they created.
+  2. Delete their account.
   3. Change the email address associated with their account.
+
+## App technologies and frameworks
+
+The application has been developed using ReactJs for the front end and .NET(ASP .NET Web API) for the back end. The app was deployed on a Linux VPS (AWS Lightsail) using Nginx and Docker(the web api needed to be Dockerized in order for it to run on Linux). 
+
+### Front end
+The main packages used in development of the app on React are redux-toolkit for state management, axios for http requests, react-router-dom for
+routing and js-cookie for cookies and sessions.
+
+### Back end
+On the back end Automapper was used for preventing protected information from being sent out during requests. Identity Framework was also used to handle Authentication and Authorization using JWT.  
+
+##Testing the application on your computer
+ 
 
