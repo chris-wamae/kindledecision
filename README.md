@@ -33,6 +33,14 @@ routing and js-cookie for cookies and sessions.
 ### Back end
 On the back end Automapper was used for preventing protected information from being sent out during requests. Identity Framework was also used to handle Authentication and Authorization using JWT.  
 
-##Testing the application on your computer
- 
+## Testing the application on your computer
+
+### Requirements 
+- .NET 6.0 or greater
+- MSSMS version 19.1 or greater
+- Nodejs version 18.16.1 or greater
+
+### Getting the application
+### Setting up and running the application
+
 
