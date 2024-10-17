@@ -97,6 +97,16 @@ Using the terminal, navigate to the directory in which you saved the project. To
 
 Create a new terminal window and navigate into the project again. This time, navigate into back-end/KindleDecision/ and run this command:
 
-**dotnet run** 
+**dotnet run**
+
+## Application Status
+
+This application is currently not being updated, but this might change in the future 
+
+## Author and License
+
+- Author: [Christopher Wamae](https://github.com/chris-wamae)
+- License: This application is covered under the MIT License
+
 
 
