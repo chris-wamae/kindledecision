@@ -6,17 +6,17 @@ In summary, the application works by users creating topics called queries and ad
 
 These topics have choices that other users can select. All the users that were added to the query can view the progress of the selections and the final results at the end.
 
-### User accounts
+  ### User accounts
 The application uses the emails associated with user accounts in order to keep track of who created which queries and who is participating in them. When creating an account, the user is required to create a password for purposes of securing their account. The password and email is used to login in order to view the queries and create them. Additional information that may be requested during sign up is the names of the user, this information is just meant to allow users to identify each other easily. 
 
-### Queries
+  ### Queries
 Queries are questions/topics created by users when they are looking for anwsers/opinions from specific people. After creating the query, a user then adds choices to it for which serve as the available anwsers to it. 
 
 Finally, the creator of the query adds other app users to the query (called participants) who will be able to select a choice in the query. The application verifies the existance of each user before allowing them to be added as a participant in the query.
 
 The creator also has the option of adding themselves as a participant in the query.
 
-### Additional functionalities
+  ### Additional functionalities
 Other things that users can do on the app are:
   1. Delete  a query they created.
   2. Delete their account.
@@ -26,31 +26,31 @@ Other things that users can do on the app are:
 
 The application has been developed using ReactJs for the front end and .NET(ASP .NET Web API) for the back end. The app was deployed on a Linux VPS (AWS Lightsail) using Nginx and Docker(the web api needed to be Dockerized in order for it to run on Linux). 
 
-### Front end
+  ### Front end
 The main packages used in development of the app on React are redux-toolkit for state management, axios for http requests, react-router-dom for
 routing and js-cookie for cookies and sessions.
 
-### Back end
+  ### Back end
 On the back end Automapper was used for preventing protected information from being sent out during requests. Identity Framework was also used to handle Authentication and Authorization using JWT.  
 
 ## Testing the application on your computer
 
-### Requirements 
+  ### Requirements 
 - .NET 6.0 or greater
 - MSSMS version 19.1 or greater
 - Nodejs version 18.16.1 or greater
 - Visual Studio
 
-### Getting the application
+  ### Getting the application
 Clone this repository into your local machine or download the project as a ZIP file and extract it on your computer
 
-### Setting up and running the application
+  ### Setting up and running the application
 For the application to run on your local machine, you will have to make a few changes to the files. 
 
-#### MSSQL
+  #### MSSQL
 Open MSSQL and click on connect to server. On the menu on the left, click on databases. It should show a list of the databases you have on your machine. Right click on databases and select create new database,add the database and click ok. This is the database the application will be using to save all its data.
 
-#### Back end
+  #### Back end
 
 Open the project in Visual Studio. Click on search on the menu on at the top, select feature search and look up SQL Server Object Explorer and click on the first result. 
 
@@ -78,7 +78,7 @@ Wait for it to finish running, there should be a new directory in the main direc
 
 Wait for it to finish running, after this you can close Visual Studio,you are done with the backend changes.
 
-#### Front end 
+   #### Front end 
 
 In the main directory (/front-end) create a .env file.
 
@@ -86,7 +86,7 @@ Copy and add the line below to the file and then save the changes.
 
 **REACT_APP_BASE_URL=http://localhost:5044/**
 
-#### Running the application
+   #### Running the application
 
 With these changes, the application should be ready to run.
 Using the terminal, navigate to the directory in which you saved the project. To get the front-end started, navigate into the front-end directory and run **npm start** to start it up.
