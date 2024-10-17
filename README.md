@@ -70,6 +70,6 @@ In the main directory (/front-end) create a .env file.
 
 Copy and add the line below to the file and then save the changes.
 
-*REACT_APP_BASE_URL=http://localhost:5044/*
+**REACT_APP_BASE_URL=http://localhost:5044/**
 
 
