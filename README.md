@@ -53,7 +53,16 @@ Open MSSQL and click on connect to server. On the menu on the left, click on dat
 Back end
 Open the project in Visual Studio. Click on search on the menu on at the top, select feature search and look up SQL Server Object Explorer and click on the first result. 
 The SQL Server Object Explorer window should now be visible on the right. Click on SQL Server, a dropdown should appear. Click on the option with the name of your computer. Another menu should appear, click on databases and find the database that you  created in MSSQL.
-Click on it and wait for it to finish loading. Right click on it and go to propeties. Find the Connection String field and copy its contents (it 
+Click on it and wait for it to finish loading. Right click on it and go to propeties. Find the Connection String field and copy its contents (starts with Data Source...)
+Close the SQL Server Object Exploer window and open the Solution Explorer. Find the appSettings.json file in the main directory. 
+
+Replace the <enter database connection string here"> text under Default Connection with the connection string you copied and save the changes.  
+
+Next navigate into the Data directory and click on the DataContext.cs file. Starting from line 57, replace the fields asking you to enter your email with whatever email you would like to use to login to the application as the super admin.
+
+Also take note of the password on line 67, you will have to use it during login (you may also change the default value if you wish to use anothet password)
+
+
 
 1. DataContext.cs
 2. AppSettings.json
