@@ -48,7 +48,7 @@ Clone this repository into your local machine or download the project as a ZIP f
 For the application to run on your local machine, you will have to make a few changes to the files and create a database for it. 
 
   #### MSSQL
-Open MSSQL and click on connect to server. On the menu on the left, click on databases. It should show a list of the databases you have on your machine. Right click on databases and select create new database,add the database and click ok. This is the database the application will be using to save all its data.
+Open MSSQL and click on connect to server. On the menu on the left, click on databases. It should show a list of the databases you have on your machine. Right click on databases and select create new database,add the database name and click ok. This is the database the application will be using to save all its data.
 
   #### Back end
 
@@ -85,6 +85,8 @@ In the main directory (/front-end) create a .env file.
 Copy and add the line below to the file and then save the changes.
 
 **REACT_APP_BASE_URL=http://localhost:5044/**
+
+This is the URL the back-end will be running on in your local machine, adding this line tells the front-end to send its http requests here.
 
    #### Running the application
 
