@@ -53,7 +53,7 @@ Open MSSQL and click on connect to server. On the menu on the left, click on dat
 Back end
 Open the project in Visual Studio. Click on search on the menu on at the top, select feature search and look up SQL Server Object Explorer and click on the first result. 
 The SQL Server Object Explorer window should now be visible on the right. Click on SQL Server, a dropdown should appear. Click on the option with the name of your computer. Another menu should appear, click on databases and find the database that you  created in MSSQL.
-Click on it and wait for it to finish loading. Right click on it and go to propeties. Find the Connection String field and copy its 
+Click on it and wait for it to finish loading. Right click on it and go to propeties. Find the Connection String field and copy its contents (it 
 
 1. DataContext.cs
 2. AppSettings.json
