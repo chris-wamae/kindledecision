@@ -45,7 +45,7 @@ On the back end Automapper was used for preventing protected information from be
 Clone this repository into your local machine or download the project as a ZIP file and extract it on your computer
 
   ### Setting up and running the application
-For the application to run on your local machine, you will have to make a few changes to the files. 
+For the application to run on your local machine, you will have to make a few changes to the files and create a database for it. 
 
   #### MSSQL
 Open MSSQL and click on connect to server. On the menu on the left, click on databases. It should show a list of the databases you have on your machine. Right click on databases and select create new database,add the database and click ok. This is the database the application will be using to save all its data.
