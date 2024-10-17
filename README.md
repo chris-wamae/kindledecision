@@ -89,8 +89,12 @@ Copy and add the line below to the file and then save the changes.
    #### Running the application
 
 With these changes, the application should be ready to run.
-Using the terminal, navigate to the directory in which you saved the project. To get the front-end started, navigate into the front-end directory and run **npm start** to start it up.
+Using the terminal, navigate to the directory in which you saved the project. To get the front-end started, navigate into the front-end directory and run this command to start it up:
 
-Create a new terminal window and navigate into the project again. This time, navigate into back-end/KindleDecision/ and run **dotnet run** 
+**npm start**
+
+Create a new terminal window and navigate into the project again. This time, navigate into back-end/KindleDecision/ and run this command:
+
+**dotnet run** 
 
 
