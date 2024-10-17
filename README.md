@@ -46,12 +46,19 @@ Clone this repository into your local machine or download the project as a ZIP f
 
 ### Setting up and running the application
 For the application to run on your local machine, you will have to make a few changes to the files. 
+
 MSSQL
+Open MSSQL and click on connect to server. On the menu on the left, click on databases. It should show a list of the databases you have on your machine. Right click on databases and select create new database,add the database and click ok. This will be the database we will use with the application.
+
+Back end
+Open the project in Visual Studio. Click on search on the menu on at the top, select feature search and look up SQL Server Object Explorer and click on the first result.
+
+1. DataContext.cs
+2. AppSettings.json
+3.
+
 Front end 
 Create .env file in  the front-end directory  and this line to it: 
 REACT_APP_BASE_URL=http://localhost:5044/
-Back end
-1. DataContext.cs
-2. AppSettings.json
-3. 
+
 
