@@ -47,10 +47,10 @@ Clone this repository into your local machine or download the project as a ZIP f
 ### Setting up and running the application
 For the application to run on your local machine, you will have to make a few changes to the files. 
 
-MSSQL
+#### MSSQL
 Open MSSQL and click on connect to server. On the menu on the left, click on databases. It should show a list of the databases you have on your machine. Right click on databases and select create new database,add the database and click ok. This will be the database we will use with the application.
 
-Back end
+#### Back end
 Open the project in Visual Studio. Click on search on the menu on at the top, select feature search and look up SQL Server Object Explorer and click on the first result. 
 The SQL Server Object Explorer window should now be visible on the right. Click on SQL Server, a dropdown should appear. Click on the option with the name of your computer. Another menu should appear, click on databases and find the database that you  created in MSSQL.
 Click on it and wait for it to finish loading. Right click on it and go to propeties. Find the Connection String field and copy its contents (starts with Data Source...)
@@ -60,16 +60,16 @@ Replace the <enter database connection string here"> text under Default Connecti
 
 Next navigate into the Data directory and click on the DataContext.cs file. Starting from line 57, replace the fields asking you to enter your email with whatever email you would like to use to login to the application as the super admin.
 
-Also take note of the password on line 67, you will have to use it during login (you may also change the default value if you wish to use anothet password)
+Also take note of the password on line 67, you will have to use it during login (you may also change the default value if you wish to use another password)
 
+Save the changes you made and the backend should now be ready to run on your computer.
 
+#### Front end 
 
-1. DataContext.cs
-2. AppSettings.json
-3.
+In the main directory (/front-end) create a .env file.
 
-Front end 
-Create .env file in  the front-end directory  and this line to it: 
-REACT_APP_BASE_URL=http://localhost:5044/
+Copy and add the line below to the file and then save the changes.
+
+*REACT_APP_BASE_URL=http://localhost:5044/*
 
 
