@@ -42,5 +42,11 @@ On the back end Automapper was used for preventing protected information from be
 
 ### Getting the application
 ### Setting up and running the application
-
+Front end 
+Create .env file in  the front-end directory  and this line to it: 
+REACT_APP_BASE_URL=http://localhost:5044/
+Back end
+1. DataContext.cs
+2. AppSettings.json
+3. 
 
