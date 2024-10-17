@@ -54,11 +54,11 @@ namespace KindleDecision.Data
             var appUser = new ApplicationUser
             {
                 Id = ADMIN_ID,
-                Email = "chriswamae123@gmail.com",
-                NormalizedEmail = "CHRISWAMAE123@GMAIL.COM",
+                Email = "<enter your email here >",
+                NormalizedEmail = "<ENTER YOUR EMAIL IN CAPITAL LETTERS HERE>",
                 EmailConfirmed = true,
-                UserName = "chriswamae123@gmail.com",
-                NormalizedUserName = "CHRISWAMAE123@GMAIL.COM",
+                UserName = "<enter your email here>",
+                NormalizedUserName = "<ENTER YOUR EMAIL IN CAPITAL LETTERS HERE>",
                 UserId = 1
             };
 
