@@ -39,9 +39,14 @@ On the back end Automapper was used for preventing protected information from be
 - .NET 6.0 or greater
 - MSSMS version 19.1 or greater
 - Nodejs version 18.16.1 or greater
+- Visual Studio
 
 ### Getting the application
+Clone this repository into your local machine or download the project as a ZIP file and extract it on your computer
+
 ### Setting up and running the application
+For the application to run on your local machine, you will have to make a few changes to the files. 
+MSSQL
 Front end 
 Create .env file in  the front-end directory  and this line to it: 
 REACT_APP_BASE_URL=http://localhost:5044/
