@@ -42,7 +42,8 @@ On the back end Automapper was used for preventing protected information from be
 - Visual Studio
 
   ### Getting the application
-Clone this repository into your local machine or download the project as a ZIP file and extract it on your computer
+  
+Change to the localhost branch and the clone this repository into your local machine or download the project as a ZIP file and extract it on your computer
 
   ### Setting up and running the application
 For the application to run on your local machine, you will have to make a few changes to the files and create a database for it. 
