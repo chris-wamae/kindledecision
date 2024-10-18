@@ -96,7 +96,7 @@ Using the terminal, navigate to the directory in which you saved the project. To
 
 **npm start**
 
-Create a new terminal window and navigate into the project again. This time, navigate into back-end/KindleDecision/ and run this command:
+Startup a new terminal window and navigate into the project again. This time, navigate into back-end/KindleDecision/ and run this command:
 
 **dotnet run**
 
