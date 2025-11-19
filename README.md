@@ -101,7 +101,7 @@ Create a new terminal window and navigate into the project again. This time, nav
 
 ## Application Status
 
-This application is currently not being updated, but this might change in the future 
+This application is currently still under development 
 
 ## Author and License
 
